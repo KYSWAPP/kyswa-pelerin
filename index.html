@@ -6,7 +6,11 @@
   <meta name="theme-color" content="#111"/>
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <meta name="apple-mobile-web-app-title" content="Kyswa Travel"/>
   <title>Kyswa Travel</title>
+  <link rel="manifest" href="/manifest.json"/>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(()=>{});}</script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -28,7 +32,7 @@
 <body>
 <div id="root"></div>
 <script type="text/babel">
-const {useState,useEffect,useRef,useCallback}=React;
+const {useState,useEffect,useRef}=React;
 const sb=supabase.createClient(
   "https://zpgxxqzgqeogupzltrqp.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpwZ3h4cXpncWVvZ3Vwemx0cnFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1MzkxNTUsImV4cCI6MjA1NzExNTE1NX0.qEHBDKb4JKuAHGjqGMBnMBqUolr7VhPkHHBLdM8Trac"
@@ -38,11 +42,8 @@ const fmt=n=>(Number(n)||0).toLocaleString("fr-FR")+" FCFA";
 const PRAYERS=["Fajr","Dhuhr","Asr","Maghrib","Isha"];
 const PICONS={Fajr:"🌅",Dhuhr:"☀️",Asr:"🌤️",Maghrib:"🌆",Isha:"🌙"};
 const NIGHT_PRAYERS=["Fajr","Isha"];
-
-// AZAN AUDIO — Voix Makkah (jour) & Madinah (nuit)
 const AZAN_MAKKAH="https://cdn.islamic.network/mp3/prayer-times/azan/Makkah.mp3";
 const AZAN_MADINAH="https://cdn.islamic.network/mp3/prayer-times/azan/Madinah.mp3";
-
 const SURAHS=[
   {n:1,name:"Al-Fatiha",ar:"الفاتحة",v:7},{n:2,name:"Al-Baqarah",ar:"البقرة",v:286},
   {n:3,name:"Al-Imran",ar:"آل عمران",v:200},{n:4,name:"An-Nisa",ar:"النساء",v:176},
@@ -63,9 +64,11 @@ const DHIKRS=[
   {ar:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ",fr:"Salat sur le Prophète ﷺ",target:100},
 ];
 const PACKAGES=[
-  {nom:"Oumra Ramadan 2026",desc:"Voyage spirituel pendant le mois béni de Ramadan",prix:"1 450 000",icone:"🌙",badge:"⭐ Populaire"},
-  {nom:"Oumra Chawal 2026",desc:"Après Ramadan — Places limitées !",prix:"1 200 000",icone:"✈️",badge:"Disponible"},
-  {nom:"Ziarra Fès — Touba",desc:"Pèlerinage au cœur de la spiritualité",prix:"850 000",icone:"🕌",badge:"Bientôt"},
+  {nom:"🌟 PROMO Oumra Juin 2026",desc:"Du 20 au 30 Juin 2026 — Offre limitée !",prix:"990 000",badge:"🔥 PROMO",color:GL,dates:"20 — 30 Juin 2026"},
+  {nom:"Oumra Standard",desc:"Du 20 au 30 Juin 2026",prix:"1 850 000",badge:"Standard",color:G,dates:"20 — 30 Juin 2026"},
+  {nom:"Oumra VIP",desc:"Du 20 au 30 Juin 2026 — Service premium",prix:"2 200 000",badge:"⭐ VIP",color:"#c9a84c",dates:"20 — 30 Juin 2026"},
+  {nom:"Oumra Shawal 2026",desc:"Après Korité — Voyage béni",prix:"2 850 000",badge:"Shawal",color:"#9c27b0",dates:"Après Korité 2026"},
+  {nom:"🏦 Tontine Oumra",desc:"Versement mensuel — Inscription 200 000 FCFA pour démarrer",prix:"200 000",badge:"📅 Mensuel",color:"#1565c0",dates:"Inscription ouverte"},
 ];
 
 function App() {
@@ -78,29 +81,24 @@ function App() {
   const [loc,setLoc]=useState(null);
   const lastAzan=useRef({});
 
-  // GÉOLOCALISATION AUTOMATIQUE
   useEffect(()=>{
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(
         p=>setLoc({lat:p.coords.latitude,lng:p.coords.longitude}),
-        ()=>setLoc({lat:14.6937,lng:-17.4441}) // Dakar par défaut
+        ()=>setLoc({lat:14.6937,lng:-17.4441})
       );
     } else setLoc({lat:14.6937,lng:-17.4441});
   },[]);
 
-  // HORAIRES DE PRIÈRE selon position
   useEffect(()=>{
     if(!loc) return;
     const d=new Date();
     fetch(`https://api.aladhan.com/v1/timings/${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}?latitude=${loc.lat}&longitude=${loc.lng}&method=2`)
       .then(r=>r.json())
-      .then(data=>{
-        setPrayerTimes(data.data.timings);
-        setHijriDate(data.data.date.hijri);
-      }).catch(()=>{});
+      .then(data=>{setPrayerTimes(data.data.timings);setHijriDate(data.data.date.hijri);})
+      .catch(()=>{});
   },[loc]);
 
-  // ADHAN AUTOMATIQUE
   useEffect(()=>{
     if(!prayerTimes) return;
     const iv=setInterval(()=>{
@@ -110,7 +108,7 @@ function App() {
       const nowStr=`${hh}:${mm}`;
       PRAYERS.forEach(p=>{
         const t=prayerTimes[p]?.substring(0,5);
-        if(t===nowStr && lastAzan.current[p]!==nowStr){
+        if(t===nowStr&&lastAzan.current[p]!==nowStr){
           lastAzan.current[p]=nowStr;
           const isNight=NIGHT_PRAYERS.includes(p);
           const audio=new Audio(isNight?AZAN_MADINAH:AZAN_MAKKAH);
@@ -125,11 +123,7 @@ function App() {
     setPhoneRef(phone);
     const cleaned=phone.replace(/\s/g,"").replace(/[^0-9]/g,"");
     const last9=cleaned.slice(-9);
-    const variants=[
-      last9,`+221${last9}`,`221${last9}`,
-      `0${last9}`,cleaned,
-      `+221${cleaned}`,
-    ];
+    const variants=[last9,`+221${last9}`,`221${last9}`,`0${last9}`,cleaned,`+221${cleaned}`];
     for(const v of variants){
       try{
         const {data,error}=await sb.from("clients")
@@ -164,8 +158,7 @@ function App() {
   );
 }
 
-// ==================== HOME ====================
-function HomeTab({prayerTimes,hijriDate,setTab,loc}) {
+function HomeTab({prayerTimes,hijriDate,setTab,loc}){
   const [nextPrayer,setNextPrayer]=useState(null);
   const [countdown,setCountdown]=useState("");
   const [city,setCity]=useState("Dakar");
@@ -201,9 +194,7 @@ function HomeTab({prayerTimes,hijriDate,setTab,loc}) {
         React.createElement("div",null,
           React.createElement("div",{style:{color:GR,fontSize:12}},"🙏 Assalamu Alaikum"),
           React.createElement("div",{style:{color:W,fontSize:22,fontWeight:"bold",marginTop:2}},"Kyswa Travel"),
-          React.createElement("div",{style:{color:GL,fontSize:12,marginTop:2}},
-            (hijriDate?`${hijriDate.day} ${hijriDate.month.en} ${hijriDate.year} H — `:"")+(city?" 📍"+city:"")
-          )
+          React.createElement("div",{style:{color:GL,fontSize:12,marginTop:2}},(hijriDate?`${hijriDate.day} ${hijriDate.month.en} ${hijriDate.year} H — `:"")+(city?"📍"+city:""))
         ),
         React.createElement("div",{style:{fontSize:42}},"🕌")
       )
@@ -215,22 +206,22 @@ function HomeTab({prayerTimes,hijriDate,setTab,loc}) {
     ),
     React.createElement("div",{style:{padding:"20px 16px 0"}},
       React.createElement("div",{style:{background:`linear-gradient(135deg,${G},${GL})`,borderRadius:14,padding:"10px 16px",marginBottom:12,display:"flex",justifyContent:"space-between",alignItems:"center"}},
-        React.createElement("div",{style:{color:W,fontSize:15,fontWeight:"bold"}},"✈️ Nos Packages Oumra 2026"),
+        React.createElement("div",{style:{color:W,fontSize:15,fontWeight:"bold"}},"✈️ Nos Packages 2026"),
         React.createElement("div",{style:{color:"rgba(255,255,255,0.7)",fontSize:10}},"Kyswa Travel")
       ),
       PACKAGES.map((p,i)=>
-        React.createElement("div",{key:i,style:{background:BG2,border:`1px solid rgba(30,126,62,${i===0?0.5:0.2})`,borderRadius:16,padding:16,marginBottom:10}},
+        React.createElement("div",{key:i,style:{background:BG2,border:`1px solid ${i===0?"rgba(37,160,80,0.6)":"rgba(30,126,62,0.2)"}`,borderRadius:16,padding:16,marginBottom:10}},
           React.createElement("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}},
             React.createElement("div",{style:{flex:1}},
               React.createElement("div",{style:{display:"flex",alignItems:"center",gap:8,marginBottom:4}},
-                React.createElement("span",{style:{fontSize:22}},p.icone),
-                React.createElement("span",{style:{background:i===0?`linear-gradient(135deg,${G},${GL})`:"#333",borderRadius:10,padding:"2px 8px",color:W,fontSize:9,fontWeight:"bold"}},p.badge)
+                React.createElement("span",{style:{background:i===0?`linear-gradient(135deg,${G},${GL})`:"#333",borderRadius:10,padding:"2px 10px",color:W,fontSize:9,fontWeight:"bold"}},p.badge)
               ),
               React.createElement("div",{style:{color:W,fontSize:14,fontWeight:"bold"}},p.nom),
-              React.createElement("div",{style:{color:GR,fontSize:11,marginTop:2}},p.desc)
+              React.createElement("div",{style:{color:GR,fontSize:11,marginTop:2}},p.desc),
+              React.createElement("div",{style:{color:p.color,fontSize:10,marginTop:4,fontWeight:"bold"}},"📅 "+p.dates)
             ),
             React.createElement("div",{style:{textAlign:"right",marginLeft:10}},
-              React.createElement("div",{style:{color:GL,fontSize:14,fontWeight:"bold"}},p.prix),
+              React.createElement("div",{style:{color:p.color,fontSize:14,fontWeight:"bold"}},p.prix),
               React.createElement("div",{style:{color:GR,fontSize:9}},"FCFA")
             )
           ),
@@ -256,8 +247,7 @@ function HomeTab({prayerTimes,hijriDate,setTab,loc}) {
   );
 }
 
-// ==================== PRIÈRES ====================
-function PrieresTab({prayerTimes,loc}) {
+function PrieresTab({prayerTimes,loc}){
   const [tab,setTab]=useState("horaires");
   const [qibla,setQibla]=useState(null);
   const [compass,setCompass]=useState(0);
@@ -272,24 +262,22 @@ function PrieresTab({prayerTimes,loc}) {
     setQibla(Math.round((Math.atan2(y,x)*180/Math.PI+360)%360));
   },[loc]);
 
+  const handleOrientation=(e)=>{
+    if(e.webkitCompassHeading!=null) setCompass(e.webkitCompassHeading);
+    else if(e.alpha!=null) setCompass(360-e.alpha);
+  };
+
   const requestCompass=async()=>{
-    if(typeof DeviceOrientationEvent!=="undefined" && typeof DeviceOrientationEvent.requestPermission==="function"){
+    if(typeof DeviceOrientationEvent!=="undefined"&&typeof DeviceOrientationEvent.requestPermission==="function"){
       try{
         const perm=await DeviceOrientationEvent.requestPermission();
-        if(perm==="granted"){
-          setHasPermission(true);
-          window.addEventListener("deviceorientation",handleOrientation,true);
-        } else setPermDenied(true);
+        if(perm==="granted"){setHasPermission(true);window.addEventListener("deviceorientation",handleOrientation,true);}
+        else setPermDenied(true);
       }catch(e){setPermDenied(true);}
     } else {
       setHasPermission(true);
       window.addEventListener("deviceorientation",handleOrientation,true);
     }
-  };
-
-  const handleOrientation=(e)=>{
-    if(e.webkitCompassHeading!=null) setCompass(e.webkitCompassHeading);
-    else if(e.alpha!=null) setCompass(360-e.alpha);
   };
 
   const now=new Date();
@@ -330,10 +318,10 @@ function PrieresTab({prayerTimes,loc}) {
     ),
     tab==="qibla"&&React.createElement("div",{style:{padding:16,textAlign:"center"}},
       React.createElement("div",{style:{color:GR,fontSize:13,marginBottom:20}},"Boussole vers La Mecque"),
-      !hasPermission&&!permDenied&&React.createElement("button",{onClick:requestCompass,style:{background:`linear-gradient(135deg,${G},${GL})`,border:"none",borderRadius:14,padding:"14px 28px",color:W,fontSize:14,fontWeight:"bold",cursor:"pointer",marginBottom:24,boxShadow:`0 4px 20px rgba(30,126,62,0.3)`}},"🧭 Activer la boussole"),
+      !hasPermission&&!permDenied&&React.createElement("button",{onClick:requestCompass,style:{background:`linear-gradient(135deg,${G},${GL})`,border:"none",borderRadius:14,padding:"14px 28px",color:W,fontSize:14,fontWeight:"bold",cursor:"pointer",marginBottom:24}},"🧭 Activer la boussole"),
       permDenied&&React.createElement("div",{style:{color:"#ff6b6b",fontSize:12,marginBottom:20}},"Permission refusée — activez dans les réglages"),
       React.createElement("div",{style:{position:"relative",width:240,height:240,margin:"0 auto 24px"}},
-        React.createElement("div",{style:{width:240,height:240,borderRadius:120,border:`3px solid rgba(30,126,62,0.3)`,background:BG2,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",boxShadow:`0 0 30px rgba(30,126,62,0.1)`}},
+        React.createElement("div",{style:{width:240,height:240,borderRadius:120,border:`3px solid rgba(30,126,62,0.3)`,background:BG2,display:"flex",alignItems:"center",justifyContent:"center",position:"relative"}},
           ["N","S","O","E"].map((d,i)=>{
             const pos=[{top:10,left:"50%",transform:"translateX(-50%)"},{bottom:10,left:"50%",transform:"translateX(-50%)"},{left:10,top:"50%",transform:"translateY(-50%)"},{right:10,top:"50%",transform:"translateY(-50%)"}][i];
             return React.createElement("div",{key:d,style:{position:"absolute",...pos,color:d==="N"?GL:GR,fontSize:d==="N"?13:11,fontWeight:"bold"}},d);
@@ -354,8 +342,7 @@ function PrieresTab({prayerTimes,loc}) {
   );
 }
 
-// ==================== CORAN (fond blanc) ====================
-function CoranTab() {
+function CoranTab(){
   const [selected,setSelected]=useState(null);
   const [verses,setVerses]=useState([]);
   const [loading,setLoading]=useState(false);
@@ -374,7 +361,7 @@ function CoranTab() {
   const filtered=SURAHS.filter(s=>s.name.toLowerCase().includes(search.toLowerCase())||s.ar.includes(search)||String(s.n).includes(search));
 
   if(selected) return React.createElement("div",{className:"fade",style:{paddingBottom:80,background:"#fafafa",minHeight:"100vh"}},
-    React.createElement("div",{style:{background:W,padding:"50px 16px 16px",borderBottom:"1px solid #e0e0e0",position:"relative",textAlign:"center",boxShadow:"0 2px 8px rgba(0,0,0,0.06)"}},
+    React.createElement("div",{style:{background:W,padding:"50px 16px 16px",borderBottom:"1px solid #e0e0e0",position:"relative",textAlign:"center"}},
       React.createElement("button",{onClick:()=>setSelected(null),style:{position:"absolute",left:16,top:50,background:"none",border:"none",color:G,fontSize:22,cursor:"pointer"}},"←"),
       React.createElement("div",{style:{color:"#111",fontSize:16,fontWeight:"bold"}},selected.name),
       React.createElement("div",{style:{color:G,fontSize:15,fontFamily:"serif"}},selected.ar),
@@ -385,8 +372,8 @@ function CoranTab() {
       React.createElement("div",null,
         React.createElement("div",{style:{color:G,fontSize:22,textAlign:"center",fontFamily:"serif",padding:"16px 0",lineHeight:2,background:W,borderRadius:14,marginBottom:12,border:"1px solid #e8e8e8"}},"بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ"),
         verses.map((v,i)=>
-          React.createElement("div",{key:i,style:{background:W,border:"1px solid #e8e8e8",borderRadius:12,padding:16,marginBottom:10,boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}},
-            React.createElement("div",{style:{color:G,fontSize:10,marginBottom:8,display:"flex",alignItems:"center",gap:6}},
+          React.createElement("div",{key:i,style:{background:W,border:"1px solid #e8e8e8",borderRadius:12,padding:16,marginBottom:10}},
+            React.createElement("div",{style:{color:G,fontSize:10,marginBottom:8}},
               React.createElement("div",{style:{background:G,borderRadius:10,width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",color:W,fontSize:10,fontWeight:"bold"}},v.numberInSurah)
             ),
             React.createElement("div",{style:{color:"#1a1a1a",fontSize:20,textAlign:"right",direction:"rtl",lineHeight:2,fontFamily:"serif"}},v.text)
@@ -397,13 +384,13 @@ function CoranTab() {
   );
 
   return React.createElement("div",{className:"fade",style:{paddingBottom:80,background:"#fafafa",minHeight:"100vh"}},
-    React.createElement("div",{style:{background:W,padding:"50px 16px 16px",borderBottom:"1px solid #e0e0e0",boxShadow:"0 2px 8px rgba(0,0,0,0.06)"}},
+    React.createElement("div",{style:{background:W,padding:"50px 16px 16px",borderBottom:"1px solid #e0e0e0"}},
       React.createElement("div",{style:{color:"#111",fontSize:18,fontWeight:"bold",textAlign:"center",marginBottom:14}},"📖 Coran"),
       React.createElement("input",{value:search,onChange:e=>setSearch(e.target.value),placeholder:"🔍 Rechercher une sourate...",style:{width:"100%",background:"#f5f5f5",border:"1px solid #e0e0e0",borderRadius:12,padding:"12px 16px",color:"#111",fontSize:14,outline:"none",boxSizing:"border-box"}})
     ),
     React.createElement("div",{style:{padding:16}},
       filtered.map((s,i)=>
-        React.createElement("div",{key:i,onClick:()=>open(s),style:{background:W,border:"1px solid #e8e8e8",borderRadius:14,padding:"14px 16px",marginBottom:8,display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}},
+        React.createElement("div",{key:i,onClick:()=>open(s),style:{background:W,border:"1px solid #e8e8e8",borderRadius:14,padding:"14px 16px",marginBottom:8,display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer"}},
           React.createElement("div",{style:{display:"flex",alignItems:"center",gap:12}},
             React.createElement("div",{style:{width:34,height:34,borderRadius:17,background:`linear-gradient(135deg,${G},${GL})`,display:"flex",alignItems:"center",justifyContent:"center",color:W,fontSize:11,fontWeight:"bold"}},s.n),
             React.createElement("div",null,
@@ -418,8 +405,7 @@ function CoranTab() {
   );
 }
 
-// ==================== DHIKR (clignotant) ====================
-function DhikrTab() {
+function DhikrTab(){
   const [sel,setSel]=useState(0);
   const [count,setCount]=useState(0);
   const [total,setTotal]=useState(0);
@@ -433,11 +419,9 @@ function DhikrTab() {
     const newCount=count+1;
     setCount(newCount);
     setTotal(t=>t+1);
-    // Ripple animation
     const id=Date.now();
     setRipples(r=>[...r,id]);
     setTimeout(()=>setRipples(r=>r.filter(x=>x!==id)),800);
-    // Glow flash
     setIsGlowing(true);
     setTimeout(()=>setIsGlowing(false),300);
   };
@@ -452,15 +436,13 @@ function DhikrTab() {
       )
     ),
     React.createElement("div",{style:{display:"flex",flexDirection:"column",alignItems:"center",padding:"28px 20px"}},
-      React.createElement("div",{style:{color:done?"#2ecc71":GL,fontSize:24,textAlign:"center",direction:"rtl",fontFamily:"serif",marginBottom:6,lineHeight:1.8,transition:"color 0.3s"}},d.ar),
+      React.createElement("div",{style:{color:done?"#2ecc71":GL,fontSize:24,textAlign:"center",direction:"rtl",fontFamily:"serif",marginBottom:6,lineHeight:1.8}},d.ar),
       React.createElement("div",{style:{color:GR,fontSize:13,marginBottom:28,fontStyle:"italic"}},d.fr),
-      // BOUTON PRINCIPAL avec clignotement
       React.createElement("div",{style:{position:"relative",width:200,height:200,marginBottom:20}},
         React.createElement("svg",{width:200,height:200,style:{position:"absolute",top:0,left:0,transform:"rotate(-90deg)"}},
           React.createElement("circle",{cx:100,cy:100,r:88,fill:"none",stroke:"#222",strokeWidth:12}),
           React.createElement("circle",{cx:100,cy:100,r:88,fill:"none",stroke:done?"#2ecc71":GL,strokeWidth:12,strokeDasharray:`${2*Math.PI*88}`,strokeDashoffset:`${2*Math.PI*88*(1-pct/100)}`,strokeLinecap:"round",style:{transition:"stroke-dashoffset 0.2s,stroke 0.3s"}})
         ),
-        // Ripples
         ...ripples.map(id=>
           React.createElement("div",{key:id,style:{position:"absolute",inset:0,borderRadius:"50%",border:`3px solid ${GL}`,animation:"ripple 0.8s ease-out forwards",pointerEvents:"none"}})
         ),
@@ -481,12 +463,9 @@ function DhikrTab() {
   );
 }
 
-// ==================== ESPACE PÈLERIN ====================
-function EspaceTab({pelerin,setPelerin,findPelerin,phoneRef}) {
+function EspaceTab({pelerin,setPelerin,findPelerin,phoneRef}){
   const [sub,setSub]=useState("home");
-
   if(!pelerin) return React.createElement(EspaceLogin,{findPelerin,phoneRef,setPelerin});
-
   const ins=pelerin?.inscriptions?.[0];
   const dep=ins?.departs;
   const pays=ins?.paiements||[];
@@ -496,7 +475,6 @@ function EspaceTab({pelerin,setPelerin,findPelerin,phoneRef}) {
   const pct=totalDu>0?Math.round((totalPaye/totalDu)*100):0;
   const dd=dep?.date_depart?new Date(dep.date_depart):null;
   const daysLeft=dd?Math.ceil((dd-new Date())/864e5):null;
-
   const tabs=[{id:"home",ico:"🏠"},{id:"dossier",ico:"📋"},{id:"paiements",ico:"💳"},{id:"programme",ico:"🗓️"},{id:"guide",ico:"📖"},{id:"notifs",ico:"🔔"}];
 
   return React.createElement("div",{className:"fade",style:{paddingBottom:80}},
@@ -542,7 +520,7 @@ function EspaceTab({pelerin,setPelerin,findPelerin,phoneRef}) {
         ),
         React.createElement("div",{style:{display:"flex",justifyContent:"space-between",marginTop:6}},
           React.createElement("div",{style:{color:GR,fontSize:10}},"Payé: "+fmt(totalPaye)),
-          React.createElement("div",{style:{color:GR,fontSize:10}},"Total: "+fmt(totalDu))
+          React.createElement("div",{style:{color:GR,fontSize:10}},"Total: "+fmt(totalDu)}
         )
       )
     ),
@@ -560,15 +538,6 @@ function EspaceTab({pelerin,setPelerin,findPelerin,phoneRef}) {
           React.createElement("div",{style:{color:GR,fontSize:12}},icon+" "+label),
           React.createElement("div",{style:{color:value.includes("✓")?"#2ecc71":value.includes("⚠️")?"#ffc107":W,fontSize:12}},value)
         )
-      ),
-      dep&&React.createElement("div",{style:{background:BG2,border:`1px solid rgba(30,126,62,0.3)`,borderRadius:16,padding:16,marginTop:4}},
-        React.createElement("div",{style:{color:GL,fontSize:13,fontWeight:"bold",marginBottom:10}},"✈️ "+dep.nom_programme),
-        [["Départ",new Date(dep.date_depart).toLocaleDateString("fr-FR")],["Retour",new Date(dep.date_retour).toLocaleDateString("fr-FR")],["Hôtel Makkah",dep.hotel_makkah||"À confirmer"],["Hôtel Médine",dep.hotel_medine||"À confirmer"]].map(([k,v])=>
-          React.createElement("div",{key:k,style:{display:"flex",justifyContent:"space-between",marginBottom:6}},
-            React.createElement("div",{style:{color:GR,fontSize:12}},k),
-            React.createElement("div",{style:{color:W,fontSize:12}},v)
-          )
-        )
       )
     ),
     sub==="paiements"&&React.createElement("div",{style:{padding:16}},
@@ -580,7 +549,7 @@ function EspaceTab({pelerin,setPelerin,findPelerin,phoneRef}) {
         ),
         React.createElement("div",{style:{display:"flex",justifyContent:"space-between"}},
           React.createElement("div",{style:{color:"#2ecc71",fontSize:11}},"✓ "+fmt(totalPaye)),
-          React.createElement("div",{style:{color:"#e74c3c",fontSize:11}},"Reste: "+fmt(reste))
+          React.createElement("div",{style:{color:"#e74c3c",fontSize:11}},"Reste: "+fmt(reste)}
         ),
         React.createElement("div",{style:{color:GR,fontSize:11,marginTop:6}},"Total: "+fmt(totalDu)+" • "+pct+"%")
       ),
@@ -594,7 +563,7 @@ function EspaceTab({pelerin,setPelerin,findPelerin,phoneRef}) {
       ))
     ),
     sub==="programme"&&React.createElement("div",{style:{padding:16}},
-      [{jour:1,lieu:"Dakar → Djeddah",act:"Départ ✈️",ico:"✈️"},{jour:2,lieu:"Makkah",act:"Arrivée — Tawaf d'arrivée",ico:"🕋"},{jour:3,lieu:"Makkah",act:"Umrah complète + Saï",ico:"🤲"},{jour:4,lieu:"Makkah",act:"Visites sites historiques",ico:"🕌"},{jour:5,lieu:"Makkah",act:"1er Ramadan — Taraweeh",ico:"🌙"},{jour:10,lieu:"Médine",act:"Départ vers Médine",ico:"🚌"},{jour:14,lieu:"Médine",act:"Visite Masjid Nabawi",ico:"🕌"},{jour:16,lieu:"Dakar",act:"Retour au Sénégal",ico:"🏠"}].map((j,i,arr)=>
+      [{jour:1,lieu:"Dakar → Djeddah",act:"Départ ✈️",ico:"✈️"},{jour:2,lieu:"Makkah",act:"Arrivée — Tawaf d'arrivée",ico:"🕋"},{jour:3,lieu:"Makkah",act:"Umrah complète + Saï",ico:"🤲"},{jour:4,lieu:"Makkah",act:"Visites sites historiques",ico:"🕌"},{jour:5,lieu:"Makkah",act:"Prières et recueillement",ico:"🌙"},{jour:8,lieu:"Médine",act:"Départ vers Médine",ico:"🚌"},{jour:12,lieu:"Médine",act:"Visite Masjid Nabawi",ico:"🕌"},{jour:14,lieu:"Dakar",act:"Retour au Sénégal",ico:"🏠"}].map((j,i,arr)=>
         React.createElement("div",{key:i,style:{display:"flex",gap:12,marginBottom:12}},
           React.createElement("div",{style:{display:"flex",flexDirection:"column",alignItems:"center",flexShrink:0}},
             React.createElement("div",{style:{width:38,height:38,borderRadius:19,background:i===0?`linear-gradient(135deg,${G},${GL})`:"rgba(30,126,62,0.1)",border:`1px solid rgba(30,126,62,0.3)`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}},j.ico),
@@ -631,7 +600,7 @@ function EspaceTab({pelerin,setPelerin,findPelerin,phoneRef}) {
   );
 }
 
-function GuideSection() {
+function GuideSection(){
   const [tab,setTab]=useState("inv");
   const [exp,setExp]=useState(null);
   const invs=[{titre:"Talbiyah",ar:"لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ",fr:"Me voici ô Allah, me voici !",wo:"Maay fii, Yàlla !",moment:"À l'état d'Ihram"},{titre:"Vue de la Kaaba",ar:"اللَّهُمَّ زِدْ هَذَا الْبَيْتَ تَشْرِيفًا",fr:"Ô Allah, augmente la vénération de cette Maison",wo:"Yàlla, yokk sa dëkk bii",moment:"Premier regard sur la Kaaba"},{titre:"Début Tawaf",ar:"بِسْمِ اللَّهِ اللَّهُ أَكْبَرُ",fr:"Au nom d'Allah, Allah est le Plus Grand",wo:"Ci turu Yàlla",moment:"Chaque tour"},{titre:"Zamzam",ar:"اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا",fr:"Ô Allah, donne-moi une connaissance utile",wo:"Yàlla, may ma xam bu baax",moment:"En buvant l'eau de Zamzam"}];
@@ -677,8 +646,7 @@ function GuideSection() {
   );
 }
 
-// ==================== LOGIN ESPACE ====================
-function EspaceLogin({findPelerin,phoneRef,setPelerin}) {
+function EspaceLogin({findPelerin,phoneRef,setPelerin}){
   const [phone,setPhone]=useState(phoneRef||"");
   const [loading,setLoading]=useState(false);
   const [error,setError]=useState("");
@@ -686,7 +654,6 @@ function EspaceLogin({findPelerin,phoneRef,setPelerin}) {
   const [prenom,setPrenom]=useState("");
   const [nom,setNom]=useState("");
   const [email,setEmail]=useState("");
-  const [success,setSuccess]=useState(false);
 
   const handleLogin=async()=>{
     if(phone.length<8) return;
@@ -746,8 +713,7 @@ function EspaceLogin({findPelerin,phoneRef,setPelerin}) {
   );
 }
 
-// ==================== NAV ====================
-function BottomNav({tab,setTab,pelerin}) {
+function BottomNav({tab,setTab,pelerin}){
   const items=[{id:"home",icon:"🏠",label:"Accueil"},{id:"prieres",icon:"🕌",label:"Prières"},{id:"coran",icon:"📖",label:"Coran"},{id:"dhikr",icon:"📿",label:"Dhikr"},{id:"espace",icon:"👤",label:"Espace"}];
   return React.createElement("div",{style:{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:430,background:"#0a0a0a",borderTop:`1px solid rgba(30,126,62,0.3)`,display:"flex",justifyContent:"space-around",padding:"10px 0 20px",zIndex:100}},
     items.map(item=>
