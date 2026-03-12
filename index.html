@@ -147,12 +147,46 @@ function Login({t,lang,setLang,findPelerin,setScreen}) {
   );
 }
 
-function NotFound({t,setScreen}) {
-  return React.createElement("div",{className:"fade",style:{height:"100vh",background:BG,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:16,padding:30,textAlign:"center"}},
-    React.createElement("div",{style:{fontSize:52}},"❌"),
-    React.createElement("div",{style:{color:W,fontSize:15}},t.notFound),
-    React.createElement("div",{style:{color:GL,fontSize:14,fontWeight:"bold"}},"+221 78 781 16 16"),
-    React.createElement("button",{onClick:()=>setScreen("login"),style:{marginTop:8,background:`linear-gradient(135deg,${G},${GL})`,border:"none",borderRadius:12,padding:"12px 28px",color:W,fontSize:14,cursor:"pointer"}},"← Réessayer")
+function NotFound({t,setScreen,phone,setPelerin}) {
+  const [prenom,setPrenom] = useState("");
+  const [nom,setNom] = useState("");
+  const [email,setEmail] = useState("");
+  const [loading,setLoading] = useState(false);
+  const [done,setDone] = useState(false);
+
+  const inscrire = async() => {
+    if(!prenom||!nom) return;
+    setLoading(true);
+    const tel = phone.replace(/\s/g,"").startsWith("+") ? phone.replace(/\s/g,"") : `+221${phone.replace(/\s/g,"")}`;
+    const {data,error} = await sb.from("clients").insert([{
+      prenom, nom, telephone:tel, email, statut_visa:"En attente"
+    }]).select("*,inscriptions(*,departs(*),paiements(*))").maybeSingle();
+    if(data){ setPelerin(data); setDone(true); setScreen("home"); }
+    setLoading(false);
+  };
+
+  return React.createElement("div",{className:"fade",style:{minHeight:"100vh",background:BG,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:24}},
+    React.createElement("div",{style:{width:"100%",maxWidth:360}},
+      React.createElement("div",{style:{textAlign:"center",marginBottom:28}},
+        React.createElement("div",{style:{fontSize:42}},"📋"),
+        React.createElement("div",{style:{color:W,fontSize:20,fontWeight:"bold",marginTop:12}},"Créer mon dossier"),
+        React.createElement("div",{style:{color:GR,fontSize:12,marginTop:4}},"Numéro : +221"+phone.replace(/\s/g,"").replace(/^\+221/,""))
+      ),
+      React.createElement("div",{style:{color:GR,fontSize:12,marginBottom:6}},"Prénom *"),
+      React.createElement("input",{value:prenom,onChange:e=>setPrenom(e.target.value),placeholder:"Moussa",style:{width:"100%",background:BG2,border:`1px solid ${prenom?"#1e7e3e":"#333"}`,borderRadius:12,padding:"14px 16px",color:W,fontSize:15,outline:"none",marginBottom:12,boxSizing:"border-box"}}),
+      React.createElement("div",{style:{color:GR,fontSize:12,marginBottom:6}},"Nom *"),
+      React.createElement("input",{value:nom,onChange:e=>setNom(e.target.value),placeholder:"Diallo",style:{width:"100%",background:BG2,border:`1px solid ${nom?"#1e7e3e":"#333"}`,borderRadius:12,padding:"14px 16px",color:W,fontSize:15,outline:"none",marginBottom:12,boxSizing:"border-box"}}),
+      React.createElement("div",{style:{color:GR,fontSize:12,marginBottom:6}},"Email (optionnel)"),
+      React.createElement("input",{value:email,onChange:e=>setEmail(e.target.value),placeholder:"moussa@email.com",type:"email",style:{width:"100%",background:BG2,border:"1px solid #333",borderRadius:12,padding:"14px 16px",color:W,fontSize:15,outline:"none",marginBottom:20,boxSizing:"border-box"}}),
+      React.createElement("button",{onClick:inscrire,disabled:loading||!prenom||!nom,
+        style:{width:"100%",background:prenom&&nom?`linear-gradient(135deg,${G},${GL})`:"#222",border:"none",borderRadius:14,padding:16,color:W,fontSize:15,fontWeight:"bold",cursor:prenom&&nom?"pointer":"not-allowed",marginBottom:10,boxShadow:prenom&&nom?`0 4px 20px rgba(30,126,62,0.3)`:"none"}},
+        loading?"Enregistrement...":"✅ Créer mon dossier"
+      ),
+      React.createElement("button",{onClick:()=>setScreen("login"),
+        style:{width:"100%",background:"none",border:"1px solid #333",borderRadius:14,padding:14,color:GR,fontSize:13,cursor:"pointer"}},
+        "← Changer de numéro"
+      )
+    )
   );
 }
 
