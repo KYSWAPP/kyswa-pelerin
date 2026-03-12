@@ -3,633 +3,999 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-<meta name="theme-color" content="#111"/>
+<meta name="theme-color" content="#00815A"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Kyswa Travel"/>
 <title>Kyswa Travel</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{background:#111;font-family:Georgia,serif;color:#fff;overflow-x:hidden;}
-button,input,select,textarea{font-family:Georgia,serif;outline:none;}
-::-webkit-scrollbar{display:none;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-@keyframes ripple{0%{transform:scale(1);opacity:0.7;}100%{transform:scale(3);opacity:0;}}
-@keyframes glow{0%,100%{box-shadow:0 0 10px rgba(37,160,80,0.4);}50%{box-shadow:0 0 50px rgba(37,160,80,1);}}
-.fade{animation:fadeIn 0.4s ease;}
-.page{display:none;padding-bottom:80px;}
-.page.active{display:block;}
+
+/* ╔══════════════════════════════════════════╗
+   ║        KYSWA DESIGN SYSTEM v2.0          ║
+   ║   Changez tout ici en une seule ligne    ║
+   ╚══════════════════════════════════════════╝ */
+:root {
+  /* 🎨 COULEURS PRIMAIRES */
+  --primary:        #00815A;
+  --primary-light:  #00A572;
+  --primary-dark:   #005C40;
+  --primary-soft:   rgba(0,129,90,0.08);
+  --primary-mid:    rgba(0,129,90,0.18);
+
+  /* 🟡 ACCENT */
+  --gold:           #C9A84C;
+  --gold-light:     #E8C96A;
+  --gold-soft:      rgba(201,168,76,0.12);
+
+  /* 🔴 DANGER / PROMO */
+  --danger:         #E53935;
+  --danger-soft:    rgba(229,57,53,0.10);
+
+  /* 🔵 INFO */
+  --blue:           #1565C0;
+  --blue-soft:      rgba(21,101,192,0.10);
+
+  /* ✅ SUCCESS */
+  --success:        #2E7D32;
+  --success-soft:   rgba(46,125,50,0.10);
+
+  /* ⬛ NEUTRES */
+  --bg:             #F5F6F7;
+  --surface:        #FFFFFF;
+  --surface-2:      #F0F1F2;
+  --border:         rgba(0,0,0,0.07);
+  --text-primary:   #1A1A2E;
+  --text-secondary: #6B7280;
+  --text-hint:      #9CA3AF;
+
+  /* 🌙 DARK SURFACES (Dhikr, pages sombres) */
+  --dark-bg:        #0D1117;
+  --dark-surface:   #161B22;
+  --dark-surface-2: #21262D;
+  --dark-border:    rgba(255,255,255,0.08);
+  --dark-text:      #E6EDF3;
+  --dark-hint:      #8B949E;
+
+  /* 📐 SPACING */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+
+  /* 🔲 RADIUS */
+  --radius-sm:  10px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-xl:  32px;
+  --radius-full: 999px;
+
+  /* 🌫️ OMBRES */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-primary: 0 8px 24px rgba(0,129,90,0.22);
+  --shadow-gold:    0 8px 24px rgba(201,168,76,0.22);
+
+  /* ⚡ TRANSITIONS */
+  --transition-fast:   0.15s cubic-bezier(0.4,0,0.2,1);
+  --transition-normal: 0.25s cubic-bezier(0.4,0,0.2,1);
+  --transition-slow:   0.4s cubic-bezier(0.4,0,0.2,1);
+
+  /* 🔤 TYPOGRAPHIE */
+  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-arabic: 'Amiri', 'Traditional Arabic', Georgia, serif;
+
+  /* 📏 NAV HEIGHT */
+  --nav-height: 72px;
+}
+
+/* ══ RESET & BASE ══ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { background:var(--bg); font-family:var(--font-main); color:var(--text-primary); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+button, input, select, textarea { font-family:var(--font-main); outline:none; }
+::-webkit-scrollbar { display:none; }
+a { text-decoration:none; }
+
+/* ══ ANIMATIONS ══ */
+@keyframes fadeSlideUp   { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeSlideDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes scaleIn       { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
+@keyframes pulse         { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+@keyframes rippleOut     { 0%{transform:scale(1);opacity:0.6;} 100%{transform:scale(3.5);opacity:0;} }
+@keyframes shimmer       { 0%{background-position:-200% 0;} 100%{background-position:200% 0;} }
+@keyframes bounceIn      { 0%{transform:scale(0.3);opacity:0;} 60%{transform:scale(1.08);} 100%{transform:scale(1);opacity:1;} }
+@keyframes countUp       { from{transform:scale(1.3);opacity:0.5;} to{transform:scale(1);opacity:1;} }
+
+/* ══ PAGES ══ */
+.page { display:none; padding-bottom:calc(var(--nav-height) + 12px); min-height:100vh; }
+.page.active { display:block; }
+.page-enter { animation: fadeSlideUp var(--transition-slow) both; }
+
+/* ══ CARDS ══ */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  border: 1px solid var(--border);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.card:active { transform: scale(0.99); }
+.card-dark {
+  background: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  box-shadow: none;
+}
+
+/* ══ PASTILLES (badges Nusuk) ══ */
+.badge {
+  display: inline-flex; align-items:center; gap:4px;
+  padding: 4px 10px; border-radius: var(--radius-full);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+}
+.badge-primary { background:var(--primary-soft); color:var(--primary); }
+.badge-gold    { background:var(--gold-soft); color:var(--gold); }
+.badge-danger  { background:var(--danger-soft); color:var(--danger); }
+.badge-blue    { background:var(--blue-soft); color:var(--blue); }
+.badge-dark    { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.8); }
+
+/* ══ BOUTONS ══ */
+.btn {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; padding:16px; border:none; border-radius: var(--radius-md);
+  font-size:15px; font-weight:700; cursor:pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+}
+.btn:active { transform:scale(0.97); }
+.btn-primary { background:var(--primary); color:#fff; box-shadow:var(--shadow-primary); }
+.btn-primary:active { box-shadow:none; }
+.btn-outline { background:transparent; color:var(--primary); border:1.5px solid var(--primary); }
+.btn-ghost   { background:var(--surface-2); color:var(--text-secondary); }
+.btn-whatsapp { background:#25D366; color:#fff; box-shadow:0 8px 24px rgba(37,211,102,0.25); }
+
+/* ══ INPUTS ══ */
+.input {
+  width:100%; padding:14px 16px;
+  background:var(--surface-2); border:1.5px solid transparent;
+  border-radius: var(--radius-md); font-size:14px; color:var(--text-primary);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.input:focus { border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
+.input-dark {
+  background:var(--dark-surface-2); border-color:var(--dark-border);
+  color:var(--dark-text);
+}
+.input-dark:focus { border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
+
+/* ══ SECTION LABEL ══ */
+.section-label {
+  font-size:11px; font-weight:700; letter-spacing:1px;
+  color:var(--text-hint); text-transform:uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+/* ══ DIVIDER ══ */
+.divider { height:1px; background:var(--border); margin: var(--space-md) 0; }
+
 </style>
 </head>
 <body>
 <div id="app" style="max-width:430px;margin:0 auto;">
 
-<!-- HOME -->
-<div id="pg-home" class="page active fade">
-  <div style="background:linear-gradient(160deg,#0a1a0f,#111);padding:50px 20px 20px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;">
+<!-- ░░░░░░ HOME ░░░░░░ -->
+<div id="pg-home" class="page active">
+  <!-- HERO -->
+  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-xl);position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.05);"></div>
+    <div style="position:absolute;right:20px;bottom:-40px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.04);"></div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;">
       <div>
-        <div style="color:#8a8a8a;font-size:12px;">🙏 Assalamu Alaikum</div>
-        <div style="font-size:22px;font-weight:bold;margin-top:2px;">Kyswa Travel</div>
-        <div style="color:#25a050;font-size:12px;margin-top:2px;" id="hijri-city">📍 Dakar, Sénégal</div>
+        <div style="color:rgba(255,255,255,0.65);font-size:12px;font-weight:500;margin-bottom:4px;">🙏 Assalamu Alaikum</div>
+        <div style="color:#fff;font-size:26px;font-weight:800;letter-spacing:-0.5px;">Kyswa Travel</div>
+        <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:6px;display:flex;align-items:center;gap:4px;" id="hijri-city">
+          <span style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;"></span>
+          Dakar, Sénégal
+        </div>
       </div>
-      <div style="font-size:42px;">🕌</div>
+      <div style="width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:26px;backdrop-filter:blur(10px);">🕌</div>
     </div>
   </div>
-  <div id="next-prayer-box" style="margin:14px 16px 0;background:linear-gradient(135deg,rgba(30,126,62,0.2),rgba(30,126,62,0.05));border:1px solid rgba(30,126,62,0.4);border-radius:18px;padding:16px;text-align:center;cursor:pointer;" onclick="showPage('prieres')">
-    <div style="color:#8a8a8a;font-size:10px;letter-spacing:1px;">PROCHAINE PRIÈRE</div>
-    <div id="next-prayer-name" style="font-size:17px;font-weight:bold;margin-top:4px;">⏳ Chargement...</div>
-    <div id="countdown-el" style="color:#25a050;font-size:26px;font-weight:bold;margin-top:4px;">--:--:--</div>
-    <div style="color:#8a8a8a;font-size:10px;margin-top:4px;">Appuyez pour voir tous les horaires</div>
-  </div>
-  <div style="padding:16px 16px 0;">
-    <div style="background:linear-gradient(135deg,#0d4a22,#1e7e3e);border:2px solid #25a050;border-radius:18px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:-20px;right:-20px;font-size:80px;opacity:0.08;">🕋</div>
-      <div style="background:#ff4444;border-radius:20px;padding:3px 12px;font-size:10px;font-weight:bold;display:inline-block;margin-bottom:8px;animation:pulse 1.5s ease infinite;">🔥 OFFRE LIMITÉE</div>
-      <div style="font-size:18px;font-weight:bold;">🌟 PROMO Oumra Juin 2026</div>
-      <div style="color:rgba(255,255,255,0.8);font-size:12px;margin-top:4px;">Du 20 au 30 Juin 2026</div>
-      <div style="font-size:28px;font-weight:bold;color:#fff;margin-top:8px;">990 000 <span style="font-size:14px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Bonjour%2C%20je%20veux%20r%C3%A9server%20Promo%20Oumra%20Juin%202026" target="_blank" style="display:block;background:#fff;border-radius:10px;padding:10px;font-size:13px;font-weight:bold;text-align:center;text-decoration:none;color:#1e7e3e;margin-top:12px;">📱 Réserver via WhatsApp</a>
+
+  <!-- NEXT PRAYER CARD -->
+  <div style="padding:0 var(--space-md);margin-top:-20px;">
+    <div id="next-prayer-box" onclick="showPage('prieres')" style="background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:var(--space-md) var(--space-lg);cursor:pointer;border:1px solid var(--border);margin-bottom:var(--space-md);">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="section-label">Prochaine prière</div>
+          <div id="next-prayer-name" style="font-size:18px;font-weight:700;color:var(--text-primary);margin-top:4px;">⏳ Chargement...</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:6px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block;animation:pulse 2s ease infinite;"></span>
+            <span style="color:var(--text-secondary);font-size:12px;">Appuyez pour les horaires</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div id="countdown-el" style="font-size:28px;font-weight:800;color:var(--primary);letter-spacing:-1px;">--:--</div>
+          <div style="color:var(--text-hint);font-size:10px;margin-top:2px;">restant</div>
+        </div>
+      </div>
     </div>
-    <div style="background:linear-gradient(135deg,#0d1a4a,#1565c0);border:1px solid rgba(21,101,192,0.6);border-radius:18px;padding:16px;margin-bottom:16px;">
-      <div style="font-size:16px;font-weight:bold;">🏦 Tontine Oumra</div>
-      <div style="color:rgba(255,255,255,0.8);font-size:12px;margin-top:4px;">Versement mensuel — Partez sans stress !</div>
-      <div style="font-size:22px;font-weight:bold;margin-top:8px;">200 000 <span style="font-size:12px;">FCFA</span> <span style="font-size:11px;color:rgba(255,255,255,0.6);">pour démarrer</span></div>
-      <a href="https://wa.me/221787811616?text=Bonjour%2C%20je%20veux%20m%27inscrire%20Tontine%20Oumra" target="_blank" style="display:block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:10px;padding:10px;font-size:12px;font-weight:bold;text-align:center;text-decoration:none;color:#fff;margin-top:10px;">📱 S'inscrire via WhatsApp</a>
+
+    <!-- PROMO CARD -->
+    <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);position:relative;overflow:hidden;box-shadow:var(--shadow-primary);">
+      <div style="position:absolute;right:-20px;bottom:-20px;font-size:100px;opacity:0.07;">🕋</div>
+      <div class="badge badge-danger" style="margin-bottom:var(--space-sm);animation:pulse 2s ease infinite;">🔥 OFFRE LIMITÉE</div>
+      <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Oumra Juin 2026</div>
+      <div style="color:rgba(255,255,255,0.75);font-size:13px;margin-bottom:var(--space-md);">Du 20 au 30 Juin · Places limitées</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+        <div>
+          <div style="color:rgba(255,255,255,0.6);font-size:11px;">À partir de</div>
+          <div style="color:#fff;font-size:32px;font-weight:900;line-height:1;letter-spacing:-1px;">990 000<span style="font-size:14px;font-weight:600;"> FCFA</span></div>
+        </div>
+        <a href="https://wa.me/221787811616?text=Bonjour%2C%20Promo%20Oumra%20Juin%202026" target="_blank" style="background:#fff;color:var(--primary);border-radius:var(--radius-md);padding:12px 18px;font-size:13px;font-weight:700;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,0.15);">Réserver →</a>
+      </div>
     </div>
-    <div style="color:#8a8a8a;font-size:10px;margin-bottom:10px;letter-spacing:1px;">ACCÈS RAPIDE</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:6px;margin-bottom:16px;">
-      <button onclick="showPage('packages')" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:12px 4px;cursor:pointer;text-align:center;color:#fff;"><div style="font-size:20px;">✈️</div><div style="font-size:8px;margin-top:4px;">Packages</div></button>
-      <button onclick="showPage('boutique')" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:12px 4px;cursor:pointer;text-align:center;color:#fff;"><div style="font-size:20px;">🛍️</div><div style="font-size:8px;margin-top:4px;">Boutique</div></button>
-      <button onclick="showPage('prieres')" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:12px 4px;cursor:pointer;text-align:center;color:#fff;"><div style="font-size:20px;">🕌</div><div style="font-size:8px;margin-top:4px;">Prières</div></button>
-      <button onclick="showPage('coran')" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:12px 4px;cursor:pointer;text-align:center;color:#fff;"><div style="font-size:20px;">📖</div><div style="font-size:8px;margin-top:4px;">Coran</div></button>
-      <button onclick="showPage('dhikr')" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:12px 4px;cursor:pointer;text-align:center;color:#fff;"><div style="font-size:20px;">📿</div><div style="font-size:8px;margin-top:4px;">Dhikr</div></button>
+
+    <!-- TONTINE CARD -->
+    <div style="background:linear-gradient(135deg,#0D1B6E,var(--blue));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-lg);box-shadow:0 8px 24px rgba(21,101,192,0.22);">
+      <div class="badge badge-dark" style="margin-bottom:var(--space-sm);">📅 Paiement mensuel</div>
+      <div style="color:#fff;font-size:18px;font-weight:700;margin-bottom:4px;">🏦 Tontine Oumra</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div style="color:#fff;font-size:24px;font-weight:800;">200 000 <span style="font-size:13px;font-weight:500;opacity:0.7;">FCFA</span></div>
+        <a href="https://wa.me/221787811616?text=Tontine%20Oumra" target="_blank" style="background:rgba(255,255,255,0.18);color:#fff;border-radius:var(--radius-md);padding:10px 16px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,0.25);">S'inscrire →</a>
+      </div>
+    </div>
+
+    <!-- QUICK ACCESS -->
+    <div class="section-label">Accès rapide</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-sm);margin-bottom:var(--space-md);">
+      <button onclick="showPage('packages')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 4px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);transition:all var(--transition-fast);"><div style="font-size:22px;">✈️</div><div style="font-size:9px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Packages</div></button>
+      <button onclick="showPage('boutique')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 4px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);"><div style="font-size:22px;">🛍️</div><div style="font-size:9px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Boutique</div></button>
+      <button onclick="showPage('prieres')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 4px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);"><div style="font-size:22px;">🕌</div><div style="font-size:9px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Prières</div></button>
+      <button onclick="showPage('coran')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 4px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);"><div style="font-size:22px;">📖</div><div style="font-size:9px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Coran</div></button>
+      <button onclick="showPage('dhikr')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 4px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);"><div style="font-size:22px;">📿</div><div style="font-size:9px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Dhikr</div></button>
     </div>
   </div>
 </div>
 
-<!-- PACKAGES -->
+<!-- ░░░░░░ PACKAGES ░░░░░░ -->
 <div id="pg-packages" class="page">
-  <div style="background:linear-gradient(135deg,#0a1a0f,#111);padding:50px 20px 16px;">
-    <div style="font-size:18px;font-weight:bold;">✈️ Nos Packages 2026</div>
-    <div style="color:#8a8a8a;font-size:12px;margin-top:4px;">Kyswa Travel — Dakar, Sénégal</div>
+  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-xl);">
+    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-bottom:4px;">Kyswa Travel</div>
+    <div style="color:#fff;font-size:24px;font-weight:800;">✈️ Nos Packages 2026</div>
   </div>
-  <div style="padding:16px;">
-    <div style="background:linear-gradient(135deg,#0d4a22,#1e7e3e);border:2px solid #25a050;border-radius:18px;padding:16px;margin-bottom:12px;">
-      <div style="background:#ff4444;border-radius:20px;padding:3px 12px;font-size:10px;font-weight:bold;display:inline-block;margin-bottom:8px;animation:pulse 1.5s ease infinite;">🔥 PROMO</div>
-      <div style="font-size:16px;font-weight:bold;">🌟 PROMO Oumra Juin 2026</div>
-      <div style="color:rgba(255,255,255,0.8);font-size:12px;margin-top:4px;">Du 20 au 30 Juin 2026 — Offre limitée !</div>
-      <div style="font-size:26px;font-weight:bold;margin-top:8px;">990 000 <span style="font-size:12px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026%20990.000F" target="_blank" style="display:block;background:#fff;border-radius:10px;padding:10px;font-size:12px;font-weight:bold;text-align:center;text-decoration:none;color:#1e7e3e;margin-top:10px;">📱 Réserver via WhatsApp</a>
-    </div>
-    <div style="background:#1a1a1a;border:1px solid rgba(30,126,62,0.3);border-radius:16px;padding:16px;margin-bottom:10px;">
-      <span style="background:#333;border-radius:10px;padding:2px 10px;font-size:9px;font-weight:bold;">Standard</span>
-      <div style="font-size:15px;font-weight:bold;margin-top:8px;">Oumra Standard</div>
-      <div style="color:#8a8a8a;font-size:12px;margin-top:2px;">Du 20 au 30 Juin 2026</div>
-      <div style="color:#25a050;font-size:22px;font-weight:bold;margin-top:8px;">1 850 000 <span style="font-size:11px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Oumra%20Standard%201.850.000F" target="_blank" style="display:block;background:linear-gradient(135deg,#1e7e3e,#25a050);border-radius:10px;padding:10px;font-size:12px;font-weight:bold;text-align:center;text-decoration:none;color:#fff;margin-top:10px;">📱 Réserver via WhatsApp</a>
-    </div>
-    <div style="background:#1a1a1a;border:1px solid rgba(201,168,76,0.4);border-radius:16px;padding:16px;margin-bottom:10px;">
-      <span style="background:linear-gradient(135deg,#7a6010,#c9a84c);border-radius:10px;padding:2px 10px;font-size:9px;font-weight:bold;">⭐ VIP</span>
-      <div style="font-size:15px;font-weight:bold;margin-top:8px;">⭐ Oumra VIP</div>
-      <div style="color:#8a8a8a;font-size:12px;margin-top:2px;">Du 20 au 30 Juin 2026 — Service premium</div>
-      <div style="color:#c9a84c;font-size:22px;font-weight:bold;margin-top:8px;">2 200 000 <span style="font-size:11px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Oumra%20VIP%202.200.000F" target="_blank" style="display:block;background:linear-gradient(135deg,#7a6010,#c9a84c);border-radius:10px;padding:10px;font-size:12px;font-weight:bold;text-align:center;text-decoration:none;color:#fff;margin-top:10px;">📱 Réserver via WhatsApp</a>
-    </div>
-    <div style="background:#1a1a1a;border:1px solid rgba(156,39,176,0.4);border-radius:16px;padding:16px;margin-bottom:10px;">
-      <span style="background:#6a1b9a;border-radius:10px;padding:2px 10px;font-size:9px;font-weight:bold;">🌙 Shawal</span>
-      <div style="font-size:15px;font-weight:bold;margin-top:8px;">Oumra Shawal 2026</div>
-      <div style="color:#8a8a8a;font-size:12px;margin-top:2px;">Après Korité — Voyage béni</div>
-      <div style="color:#ce93d8;font-size:22px;font-weight:bold;margin-top:8px;">2 850 000 <span style="font-size:11px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Oumra%20Shawal%202.850.000F" target="_blank" style="display:block;background:linear-gradient(135deg,#6a1b9a,#9c27b0);border-radius:10px;padding:10px;font-size:12px;font-weight:bold;text-align:center;text-decoration:none;color:#fff;margin-top:10px;">📱 Réserver via WhatsApp</a>
-    </div>
-    <div style="background:linear-gradient(135deg,#0d1a4a,#1565c0);border:1px solid rgba(21,101,192,0.5);border-radius:16px;padding:16px;margin-bottom:12px;">
-      <span style="background:rgba(255,255,255,0.15);border-radius:10px;padding:2px 10px;font-size:9px;font-weight:bold;">📅 Mensuel</span>
-      <div style="font-size:15px;font-weight:bold;margin-top:8px;">🏦 Tontine Oumra</div>
-      <div style="color:rgba(255,255,255,0.7);font-size:12px;margin-top:2px;">Versement mensuel — Partez sans stress !</div>
-      <div style="font-size:22px;font-weight:bold;margin-top:8px;">200 000 <span style="font-size:11px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Tontine%20Oumra%20inscription" target="_blank" style="display:block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:10px;padding:10px;font-size:12px;font-weight:bold;text-align:center;text-decoration:none;color:#fff;margin-top:10px;">📱 S'inscrire via WhatsApp</a>
-    </div>
-    <button onclick="showPage('formulaire')" style="width:100%;background:linear-gradient(135deg,#1e7e3e,#25a050);border:none;border-radius:14px;padding:16px;color:#fff;font-size:14px;font-weight:bold;cursor:pointer;">📋 Demande personnalisée</button>
-  </div>
-</div>
+  <div style="padding:var(--space-md);margin-top:-16px;">
 
-<!-- BOUTIQUE -->
-<div id="pg-boutique" class="page">
-  <div style="background:linear-gradient(135deg,#1a0a2e,#2d1b69);padding:50px 20px 20px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-      <div>
-        <div style="color:rgba(255,255,255,0.6);font-size:12px;">🕋 Produits de La Mecque</div>
-        <div style="font-size:20px;font-weight:bold;margin-top:2px;">Boutique Kyswa</div>
-        <div style="color:#ce93d8;font-size:11px;margin-top:2px;">Livraison à Dakar disponible</div>
+    <!-- PROMO -->
+    <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);box-shadow:var(--shadow-primary);position:relative;overflow:hidden;">
+      <div style="position:absolute;right:-15px;top:-15px;font-size:90px;opacity:0.07;">🕋</div>
+      <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;">🔥 PROMO</div>
+      <div style="color:#fff;font-size:18px;font-weight:800;">Oumra Juin 2026</div>
+      <div style="color:rgba(255,255,255,0.7);font-size:12px;margin:4px 0 12px;">Du 20 au 30 Juin 2026</div>
+      <div style="color:#fff;font-size:30px;font-weight:900;letter-spacing:-1px;margin-bottom:14px;">990 000 <span style="font-size:14px;font-weight:500;">FCFA</span></div>
+      <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank" class="btn" style="background:#fff;color:var(--primary);border-radius:var(--radius-md);font-weight:700;font-size:13px;padding:13px;box-shadow:0 4px 12px rgba(0,0,0,0.12);">📱 Réserver via WhatsApp</a>
+    </div>
+
+    <!-- STANDARD -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+        <div><span class="badge badge-primary">Standard</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Standard</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Du 20 au 30 Juin 2026</div></div>
+        <div style="font-size:36px;">🌙</div>
       </div>
-      <div style="font-size:40px;">🛍️</div>
+      <div style="color:var(--primary);font-size:24px;font-weight:800;margin-bottom:14px;">1 850 000 <span style="font-size:13px;">FCFA</span></div>
+      <a href="https://wa.me/221787811616?text=Oumra%20Standard" target="_blank" class="btn btn-primary" style="border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a>
     </div>
-    <!-- CATEGORIES -->
-    <div style="display:flex;gap:8px;margin-top:14px;overflow-x:auto;scrollbar-width:none;">
-      <button onclick="filterBoutique('tout')" id="cat-tout" style="flex-shrink:0;background:rgba(255,255,255,0.9);border:none;border-radius:20px;padding:6px 14px;color:#2d1b69;font-size:11px;font-weight:bold;cursor:pointer;font-family:Georgia,serif;">Tout</button>
-      <button onclick="filterBoutique('zamzam')" id="cat-zamzam" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:6px 14px;color:#fff;font-size:11px;cursor:pointer;font-family:Georgia,serif;">💧 Zamzam</button>
-      <button onclick="filterBoutique('dattes')" id="cat-dattes" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:6px 14px;color:#fff;font-size:11px;cursor:pointer;font-family:Georgia,serif;">🌴 Dattes</button>
-      <button onclick="filterBoutique('vetements')" id="cat-vetements" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:6px 14px;color:#fff;font-size:11px;cursor:pointer;font-family:Georgia,serif;">👘 Vêtements</button>
-      <button onclick="filterBoutique('parfums')" id="cat-parfums" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:6px 14px;color:#fff;font-size:11px;cursor:pointer;font-family:Georgia,serif;">🌹 Parfums</button>
-      <button onclick="filterBoutique('accessoires')" id="cat-accessoires" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:6px 14px;color:#fff;font-size:11px;cursor:pointer;font-family:Georgia,serif;">📿 Accessoires</button>
+
+    <!-- VIP -->
+    <div class="card" style="border:1.5px solid var(--gold-soft);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+        <div><span class="badge badge-gold">⭐ VIP</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra VIP</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Du 20 au 30 Juin · Service premium</div></div>
+        <div style="font-size:36px;">⭐</div>
+      </div>
+      <div style="color:var(--gold);font-size:24px;font-weight:800;margin-bottom:14px;">2 200 000 <span style="font-size:13px;">FCFA</span></div>
+      <a href="https://wa.me/221787811616?text=Oumra%20VIP" target="_blank" class="btn" style="background:var(--gold);color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;box-shadow:var(--shadow-gold);">📱 Réserver via WhatsApp</a>
     </div>
+
+    <!-- SHAWAL -->
+    <div class="card" style="background:linear-gradient(135deg,#F8F4FF,#F0E6FF);border:1.5px solid rgba(103,58,183,0.1);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+        <div><span class="badge" style="background:rgba(103,58,183,0.1);color:#673AB7;">🌙 Shawal</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Shawal 2026</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Après Korité — Voyage béni</div></div>
+        <div style="font-size:36px;">🌙</div>
+      </div>
+      <div style="color:#673AB7;font-size:24px;font-weight:800;margin-bottom:14px;">2 850 000 <span style="font-size:13px;">FCFA</span></div>
+      <a href="https://wa.me/221787811616?text=Oumra%20Shawal" target="_blank" class="btn" style="background:#673AB7;color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;box-shadow:0 8px 24px rgba(103,58,183,0.22);">📱 Réserver via WhatsApp</a>
+    </div>
+
+    <!-- TONTINE -->
+    <div class="card" style="background:linear-gradient(135deg,#F0F4FF,#E6EDFF);border:1.5px solid rgba(21,101,192,0.1);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+        <div><span class="badge badge-blue">📅 Mensuel</span><div style="font-size:17px;font-weight:700;margin-top:8px;">🏦 Tontine Oumra</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Versement mensuel — Partez sans stress !</div></div>
+        <div style="font-size:36px;">🏦</div>
+      </div>
+      <div style="color:var(--blue);font-size:24px;font-weight:800;margin-bottom:14px;">200 000 <span style="font-size:13px;">FCFA</span></div>
+      <a href="https://wa.me/221787811616?text=Tontine%20Oumra" target="_blank" class="btn" style="background:var(--blue);color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;box-shadow:0 8px 24px rgba(21,101,192,0.22);">📱 S'inscrire via WhatsApp</a>
+    </div>
+
+    <button onclick="showPage('formulaire')" class="btn btn-outline" style="margin-top:4px;">📋 Demande personnalisée</button>
   </div>
-  <div id="boutique-grid" style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;"></div>
 </div>
 
-<!-- DETAIL PRODUIT -->
+<!-- ░░░░░░ BOUTIQUE ░░░░░░ -->
+<div id="pg-boutique" class="page">
+  <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-md);">
+    <div style="color:rgba(255,255,255,0.6);font-size:12px;margin-bottom:4px;">🕋 Produits de La Mecque</div>
+    <div style="color:#fff;font-size:24px;font-weight:800;">Boutique Kyswa</div>
+    <div style="color:rgba(255,255,255,0.6);font-size:12px;margin-top:4px;">📦 Livraison à Dakar disponible</div>
+    <div style="display:flex;gap:8px;margin-top:16px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
+      <button onclick="filterBoutique('tout')" id="cat-tout" style="flex-shrink:0;background:#fff;border:none;border-radius:var(--radius-full);padding:7px 16px;color:#3D1A78;font-size:11px;font-weight:700;cursor:pointer;">Tout</button>
+      <button onclick="filterBoutique('zamzam')" id="cat-zamzam" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">💧 Zamzam</button>
+      <button onclick="filterBoutique('dattes')" id="cat-dattes" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">🌴 Dattes</button>
+      <button onclick="filterBoutique('vetements')" id="cat-vetements" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">👘 Vêtements</button>
+      <button onclick="filterBoutique('parfums')" id="cat-parfums" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">🌹 Parfums</button>
+      <button onclick="filterBoutique('accessoires')" id="cat-accessoires" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">📿 Accessoires</button>
+    </div>
+  </div>
+  <div id="boutique-grid" style="padding:var(--space-md);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);"></div>
+</div>
+
+<!-- ░░░░░░ DETAIL PRODUIT ░░░░░░ -->
 <div id="pg-produit" class="page">
   <div id="produit-content"></div>
 </div>
 
-<!-- PRIERES -->
+<!-- ░░░░░░ PRIERES ░░░░░░ -->
 <div id="pg-prieres" class="page">
-  <div style="background:#111;padding:50px 20px 0;border-bottom:1px solid #222;">
-    <div style="font-size:18px;font-weight:bold;text-align:center;padding-bottom:16px;">🕌 Prières</div>
-    <div style="display:flex;">
-      <button onclick="setPrieresTab('horaires')" id="ptab-horaires" style="flex:1;background:none;border:none;padding:12px 4px;color:#25a050;border-bottom:2px solid #1e7e3e;cursor:pointer;font-size:12px;font-weight:bold;font-family:Georgia,serif;">⏰ Horaires</button>
-      <button onclick="setPrieresTab('qibla')" id="ptab-qibla" style="flex:1;background:none;border:none;padding:12px 4px;color:#8a8a8a;border-bottom:2px solid transparent;cursor:pointer;font-size:12px;font-weight:bold;font-family:Georgia,serif;">🧭 Qibla</button>
+  <div style="background:var(--surface);padding:56px var(--space-md) 0;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;">
+    <div style="font-size:20px;font-weight:800;text-align:center;padding-bottom:16px;">🕌 Prières</div>
+    <div style="display:flex;gap:4px;background:var(--surface-2);border-radius:var(--radius-md);padding:4px;">
+      <button onclick="setPrieresTab('horaires')" id="ptab-horaires" style="flex:1;background:var(--primary);color:#fff;border:none;padding:10px;border-radius:var(--radius-sm);font-size:12px;font-weight:700;cursor:pointer;transition:all var(--transition-fast);box-shadow:var(--shadow-sm);">⏰ Horaires</button>
+      <button onclick="setPrieresTab('qibla')" id="ptab-qibla" style="flex:1;background:transparent;color:var(--text-secondary);border:none;padding:10px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;cursor:pointer;transition:all var(--transition-fast);">🧭 Qibla</button>
     </div>
+    <div style="height:16px;"></div>
   </div>
-  <div id="prieres-content" style="padding:16px;"></div>
+  <div id="prieres-content" style="padding:var(--space-md);"></div>
 </div>
 
-<!-- CORAN -->
+<!-- ░░░░░░ CORAN ░░░░░░ -->
 <div id="pg-coran" class="page">
-  <div style="background:#fafafa;min-height:100vh;">
-    <div style="background:#fff;padding:50px 16px 16px;border-bottom:1px solid #e0e0e0;">
-      <div style="color:#111;font-size:18px;font-weight:bold;text-align:center;margin-bottom:14px;">📖 Coran</div>
-      <input type="text" id="coran-search" oninput="renderSurahs()" placeholder="🔍 Rechercher une sourate..." style="width:100%;background:#f5f5f5;border:1px solid #e0e0e0;border-radius:12px;padding:12px 16px;color:#111;font-size:14px;outline:none;box-sizing:border-box;font-family:Georgia,serif;"/>
-    </div>
-    <div id="surahs-list" style="padding:16px;"></div>
+  <div style="background:var(--surface);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;">
+    <div style="font-size:20px;font-weight:800;text-align:center;margin-bottom:14px;">📖 Coran</div>
+    <input type="text" id="coran-search" oninput="renderSurahs()" placeholder="🔍 Rechercher une sourate..." class="input"/>
   </div>
+  <div id="surahs-list" style="padding:var(--space-md);"></div>
 </div>
 
-<!-- VERSES -->
+<!-- ░░░░░░ VERSES ░░░░░░ -->
 <div id="pg-verses" class="page">
-  <div style="background:#fafafa;min-height:100vh;">
-    <div style="background:#fff;padding:50px 16px 16px;border-bottom:1px solid #e0e0e0;text-align:center;position:relative;">
-      <button onclick="showPage('coran')" style="position:absolute;left:16px;top:50px;background:none;border:none;color:#1e7e3e;font-size:22px;cursor:pointer;">←</button>
-      <div id="surah-title" style="color:#111;font-size:16px;font-weight:bold;"></div>
-      <div id="surah-ar" style="color:#1e7e3e;font-size:15px;font-family:serif;"></div>
-    </div>
-    <div id="verses-list" style="padding:16px;"></div>
+  <div style="background:var(--surface);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--border);text-align:center;position:relative;">
+    <button onclick="showPage('coran')" style="position:absolute;left:var(--space-md);top:56px;background:var(--primary-soft);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:var(--primary);font-size:13px;font-weight:600;cursor:pointer;">← Retour</button>
+    <div id="surah-title" style="font-size:18px;font-weight:800;color:var(--text-primary);"></div>
+    <div id="surah-ar" style="color:var(--primary);font-size:16px;font-family:var(--font-arabic);margin-top:4px;"></div>
   </div>
+  <div id="verses-list" style="padding:var(--space-md);background:var(--bg);min-height:100vh;"></div>
 </div>
 
-<!-- DHIKR -->
-<div id="pg-dhikr" class="page">
-  <div style="background:#111;padding:50px 16px 16px;border-bottom:1px solid #222;text-align:center;">
-    <div style="font-size:18px;font-weight:bold;">📿 Dhikr & Tasbih</div>
+<!-- ░░░░░░ DHIKR ░░░░░░ -->
+<div id="pg-dhikr" class="page" style="background:var(--dark-bg);">
+  <div style="background:var(--dark-bg);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--dark-border);">
+    <div style="color:var(--dark-text);font-size:20px;font-weight:800;text-align:center;">📿 Dhikr & Tasbih</div>
   </div>
-  <div style="overflow-x:auto;display:flex;gap:8px;padding:14px 16px 0;" id="dhikr-tabs"></div>
-  <div style="display:flex;flex-direction:column;align-items:center;padding:28px 20px;" id="dhikr-body"></div>
+  <div style="overflow-x:auto;display:flex;gap:8px;padding:var(--space-md) var(--space-md) 0;" id="dhikr-tabs"></div>
+  <div style="display:flex;flex-direction:column;align-items:center;padding:var(--space-xl) var(--space-md);" id="dhikr-body"></div>
 </div>
 
-<!-- ESPACE -->
+<!-- ░░░░░░ ESPACE ░░░░░░ -->
 <div id="pg-espace" class="page">
   <div id="espace-login-section"></div>
   <div id="espace-profil-section" style="display:none;"></div>
 </div>
 
-<!-- FORMULAIRE -->
+<!-- ░░░░░░ FORMULAIRE ░░░░░░ -->
 <div id="pg-formulaire" class="page">
-  <div style="background:linear-gradient(135deg,#0a1a0f,#111);padding:50px 20px 16px;">
-    <button onclick="showPage('packages')" style="background:none;border:none;color:#25a050;font-size:22px;cursor:pointer;margin-bottom:8px;">←</button>
-    <div style="font-size:18px;font-weight:bold;">📋 Demande Personnalisée</div>
-    <div style="color:#8a8a8a;font-size:12px;margin-top:4px;">Remplissez le formulaire — on vous rappelle !</div>
+  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
+    <button onclick="showPage('packages')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
+    <div style="color:#fff;font-size:22px;font-weight:800;">📋 Demande Personnalisée</div>
+    <div style="color:rgba(255,255,255,0.7);font-size:13px;margin-top:4px;">Remplissez et on vous rappelle !</div>
   </div>
-  <div style="padding:16px;">
-    <div style="background:#1a1a1a;border-radius:16px;padding:16px;margin-bottom:12px;">
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">TYPE D'OUMRA</div>
-      <select id="f-type" style="width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;margin-bottom:14px;-webkit-appearance:none;">
-        <option value="">Choisir le type...</option>
+  <div style="padding:var(--space-md);">
+    <div class="card">
+      <div class="section-label">Type d'Oumra</div>
+      <select id="f-type" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+        <option value="">Choisir...</option>
         <option>🌟 PROMO Juin 2026 — 990 000 FCFA</option>
         <option>Oumra Standard — 1 850 000 FCFA</option>
         <option>⭐ Oumra VIP — 2 200 000 FCFA</option>
         <option>🌙 Oumra Shawal — 2 850 000 FCFA</option>
         <option>🏦 Tontine Oumra — 200 000 FCFA/mois</option>
       </select>
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">MOIS SOUHAITÉ</div>
-      <select id="f-mois" style="width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;margin-bottom:14px;-webkit-appearance:none;">
-        <option value="">Choisir le mois...</option>
+      <div class="section-label">Mois souhaité</div>
+      <select id="f-mois" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+        <option value="">Choisir...</option>
         <option>Juin 2026</option><option>Juillet 2026</option><option>Août 2026</option>
-        <option>Septembre 2026</option><option>Shawal (après Korité)</option><option>Ramadan 2027</option>
+        <option>Shawal (après Korité)</option><option>Ramadan 2027</option>
       </select>
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">FORMULE</div>
-      <select id="f-formule" style="width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;margin-bottom:14px;-webkit-appearance:none;">
-        <option value="">Choisir la formule...</option>
+      <div class="section-label">Formule</div>
+      <select id="f-formule" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+        <option value="">Choisir...</option>
         <option>Vol + Hôtel + Transport</option><option>Vol + Hôtel uniquement</option>
         <option>Hôtel uniquement</option><option>Package complet tout inclus</option>
       </select>
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">TYPE DE CHAMBRE</div>
-      <select id="f-chambre" style="width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;margin-bottom:14px;-webkit-appearance:none;">
+      <div class="section-label">Type de chambre</div>
+      <select id="f-chambre" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
         <option value="">Choisir...</option>
         <option>Chambre simple</option><option>Chambre double</option>
         <option>Chambre triple</option><option>Chambre quadruple</option><option>Suite VIP</option>
       </select>
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">NOMBRE DE PERSONNES</div>
-      <select id="f-personnes" style="width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;margin-bottom:14px;-webkit-appearance:none;">
-        <option value="">Nombre...</option>
-        <option>1 personne</option><option>2 personnes</option><option>3 personnes</option>
-        <option>4 personnes</option><option>5 personnes</option><option>Groupe +10 personnes</option>
-      </select>
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">NOMBRE DE JOURS</div>
-      <select id="f-jours" style="width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;margin-bottom:14px;-webkit-appearance:none;">
-        <option value="">Durée...</option>
-        <option>7 jours</option><option>10 jours</option><option>14 jours</option>
-        <option>21 jours</option><option>30 jours (Ramadan)</option>
-      </select>
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">VOYAGE COMBINÉ</div>
-      <select id="f-combine" style="width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;margin-bottom:14px;-webkit-appearance:none;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-sm);margin-bottom:var(--space-md);">
+        <div><div class="section-label">Personnes</div>
+        <select id="f-personnes" class="input" style="-webkit-appearance:none;">
+          <option value="">Nombre...</option>
+          <option>1 personne</option><option>2 personnes</option><option>3 personnes</option>
+          <option>4 personnes</option><option>5 personnes</option><option>Groupe +10</option>
+        </select></div>
+        <div><div class="section-label">Jours</div>
+        <select id="f-jours" class="input" style="-webkit-appearance:none;">
+          <option value="">Durée...</option>
+          <option>7 jours</option><option>10 jours</option><option>14 jours</option>
+          <option>21 jours</option><option>30 jours</option>
+        </select></div>
+      </div>
+      <div class="section-label">Voyage combiné</div>
+      <select id="f-combine" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
         <option value="">Combiné ?</option>
         <option>Non — Makkah uniquement</option><option>Oui — Makkah + Médine</option>
-        <option>Oui — Makkah + Médine + Jérusalem</option><option>Oui — Makkah + Médine + Istanbul</option>
+        <option>Oui — Makkah + Médine + Jérusalem</option><option>Oui — Makkah + Istanbul</option>
       </select>
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">BUDGET</div>
-      <select id="f-budget" style="width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;margin-bottom:14px;-webkit-appearance:none;">
+      <div class="section-label">Budget</div>
+      <select id="f-budget" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
         <option value="">Budget...</option>
-        <option>Moins de 1 000 000 FCFA</option><option>1 000 000 — 1 500 000 FCFA</option>
-        <option>1 500 000 — 2 000 000 FCFA</option><option>2 000 000 — 3 000 000 FCFA</option>
-        <option>Plus de 3 000 000 FCFA</option><option>Tontine mensuelle</option>
+        <option>Moins de 1 000 000 FCFA</option><option>1 000 000 — 2 000 000 FCFA</option>
+        <option>2 000 000 — 3 000 000 FCFA</option><option>Plus de 3 000 000 FCFA</option>
+        <option>Tontine mensuelle</option>
       </select>
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">VOTRE NOM</div>
-      <input type="text" id="f-nom" placeholder="Prénom et Nom" style="width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;margin-bottom:14px;box-sizing:border-box;"/>
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">TÉLÉPHONE</div>
-      <div style="display:flex;gap:8px;margin-bottom:14px;">
-        <div style="background:#222;border:1px solid #333;border-radius:12px;padding:13px 12px;font-size:13px;white-space:nowrap;">🇸🇳 +221</div>
-        <input type="tel" id="f-phone" placeholder="77 123 45 67" style="flex:1;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;box-sizing:border-box;"/>
+      <div class="divider"></div>
+      <div class="section-label">Votre nom</div>
+      <input type="text" id="f-nom" placeholder="Prénom et Nom" class="input" style="margin-bottom:var(--space-md);"/>
+      <div class="section-label">Téléphone</div>
+      <div style="display:flex;gap:8px;margin-bottom:var(--space-md);">
+        <div style="background:var(--surface-2);border:1.5px solid transparent;border-radius:var(--radius-md);padding:14px 12px;font-size:13px;white-space:nowrap;color:var(--text-primary);">🇸🇳 +221</div>
+        <input type="tel" id="f-phone" placeholder="77 123 45 67" class="input" style="flex:1;"/>
       </div>
-      <div style="color:#8a8a8a;font-size:11px;margin-bottom:6px;letter-spacing:1px;">REMARQUES</div>
-      <textarea id="f-remarques" placeholder="Besoins spéciaux, questions..." style="width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;margin-bottom:16px;min-height:80px;resize:none;box-sizing:border-box;font-family:Georgia,serif;"></textarea>
-      <button onclick="envoyerFormulaire()" style="width:100%;background:linear-gradient(135deg,#1e7e3e,#25a050);border:none;border-radius:14px;padding:16px;color:#fff;font-size:15px;font-weight:bold;cursor:pointer;">📱 Envoyer via WhatsApp</button>
+      <div class="section-label">Remarques</div>
+      <textarea id="f-remarques" placeholder="Besoins spéciaux, questions..." class="input" style="margin-bottom:var(--space-md);min-height:80px;resize:none;"></textarea>
+      <button onclick="envoyerFormulaire()" class="btn btn-whatsapp">📱 Envoyer via WhatsApp</button>
     </div>
   </div>
 </div>
 
-</div>
+</div><!-- /app -->
 
-<!-- NAV -->
-<div style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#0a0a0a;border-top:1px solid rgba(30,126,62,0.3);display:flex;justify-content:space-around;padding:8px 0 18px;z-index:100;">
-  <button onclick="showPage('home')" class="nb" id="nb-home" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;color:#25a050;"><div style="font-size:20px;">🏠</div><div style="font-size:8px;font-weight:bold;">Accueil</div></button>
-  <button onclick="showPage('packages')" class="nb" id="nb-packages" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;color:#444;"><div style="font-size:20px;">✈️</div><div style="font-size:8px;">Packages</div></button>
-  <button onclick="showPage('boutique')" class="nb" id="nb-boutique" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;color:#444;"><div style="font-size:20px;">🛍️</div><div style="font-size:8px;">Boutique</div></button>
-  <button onclick="showPage('prieres')" class="nb" id="nb-prieres" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;color:#444;"><div style="font-size:20px;">🕌</div><div style="font-size:8px;">Prières</div></button>
-  <button onclick="showPage('coran')" class="nb" id="nb-coran" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;color:#444;"><div style="font-size:20px;">📖</div><div style="font-size:8px;">Coran</div></button>
-  <button onclick="showPage('dhikr')" class="nb" id="nb-dhikr" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;color:#444;"><div style="font-size:20px;">📿</div><div style="font-size:8px;">Dhikr</div></button>
-  <button onclick="showPage('espace')" class="nb" id="nb-espace" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;color:#444;"><div style="font-size:20px;">👤</div><div style="font-size:8px;">Espace</div></button>
+<!-- ░░░░░░ NAVIGATION BAR ░░░░░░ -->
+<div style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding:10px 0 20px;z-index:100;box-shadow:0 -4px 24px rgba(0,0,0,0.06);">
+  <button onclick="showPage('home')" class="nb" id="nb-home" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">🏠</div><div id="nbl-home" style="font-size:9px;font-weight:700;color:var(--primary);">Accueil</div></button>
+  <button onclick="showPage('packages')" class="nb" id="nb-packages" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">✈️</div><div id="nbl-packages" style="font-size:9px;color:var(--text-hint);">Packages</div></button>
+  <button onclick="showPage('boutique')" class="nb" id="nb-boutique" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">🛍️</div><div id="nbl-boutique" style="font-size:9px;color:var(--text-hint);">Boutique</div></button>
+  <button onclick="showPage('prieres')" class="nb" id="nb-prieres" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">🕌</div><div id="nbl-prieres" style="font-size:9px;color:var(--text-hint);">Prières</div></button>
+  <button onclick="showPage('coran')" class="nb" id="nb-coran" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">📖</div><div id="nbl-coran" style="font-size:9px;color:var(--text-hint);">Coran</div></button>
+  <button onclick="showPage('dhikr')" class="nb" id="nb-dhikr" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">📿</div><div id="nbl-dhikr" style="font-size:9px;color:var(--text-hint);">Dhikr</div></button>
+  <button onclick="showPage('espace')" class="nb" id="nb-espace" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">👤</div><div id="nbl-espace" style="font-size:9px;color:var(--text-hint);">Espace</div></button>
 </div>
 
 <script>
-const SB_URL="https://zpgxxqzgqeogupzltrqp.supabase.co";
-const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpwZ3h4cXpncWVvZ3Vwemx0cnFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1MzkxNTUsImV4cCI6MjA1NzExNTE1NX0.qEHBDKb4JKuAHGjqGMBnMBqUolr7VhPkHHBLdM8Trac";
-const G="#1e7e3e",GL="#25a050";
-const fmt=n=>(Number(n)||0).toLocaleString("fr-FR")+" FCFA";
-const PRAYERS=["Fajr","Dhuhr","Asr","Maghrib","Isha"];
-const PICONS={Fajr:"🌅",Dhuhr:"☀️",Asr:"🌤️",Maghrib:"🌆",Isha:"🌙"};
-const DHIKRS=[
-  {ar:"سُبْحَانَ اللَّهِ",fr:"Subhanallah",target:33},
-  {ar:"الْحَمْدُ لِلَّهِ",fr:"Alhamdulillah",target:33},
-  {ar:"اللَّهُ أَكْبَرُ",fr:"Allahu Akbar",target:33},
-  {ar:"لَا إِلَهَ إِلَّا اللَّهُ",fr:"La ilaha illallah",target:100},
-  {ar:"أَسْتَغْفِرُ اللَّهَ",fr:"Astaghfirullah",target:100},
-  {ar:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ",fr:"Salat sur le Prophète ﷺ",target:100},
+/* ═══════════════════════════════════
+   KYSWA APP — JAVASCRIPT CORE
+═══════════════════════════════════ */
+
+const SB_URL = "https://zpgxxqzgqeogupzltrqp.supabase.co";
+const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpwZ3h4cXpncWVvZ3Vwemx0cnFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1MzkxNTUsImV4cCI6MjA1NzExNTE1NX0.qEHBDKb4JKuAHGjqGMBnMBqUolr7VhPkHHBLdM8Trac";
+
+const PRAYERS = ["Fajr","Dhuhr","Asr","Maghrib","Isha"];
+const PICONS  = {Fajr:"🌅",Dhuhr:"☀️",Asr:"🌤️",Maghrib:"🌆",Isha:"🌙"};
+
+const DHIKRS = [
+  {ar:"سُبْحَانَ اللَّهِ",      fr:"Subhanallah",          target:33},
+  {ar:"الْحَمْدُ لِلَّهِ",     fr:"Alhamdulillah",        target:33},
+  {ar:"اللَّهُ أَكْبَرُ",       fr:"Allahu Akbar",         target:33},
+  {ar:"لَا إِلَهَ إِلَّا اللَّهُ", fr:"La ilaha illallah",   target:100},
+  {ar:"أَسْتَغْفِرُ اللَّهَ",   fr:"Astaghfirullah",       target:100},
+  {ar:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ", fr:"Salat sur le Prophète ﷺ", target:100},
 ];
-const SURAHS=[
-  {n:1,name:"Al-Fatiha",ar:"الفاتحة",v:7},{n:2,name:"Al-Baqarah",ar:"البقرة",v:286},
-  {n:3,name:"Al-Imran",ar:"آل عمران",v:200},{n:18,name:"Al-Kahf",ar:"الكهف",v:110},
-  {n:19,name:"Maryam",ar:"مريم",v:98},{n:36,name:"Ya-Sin",ar:"يس",v:83},
-  {n:55,name:"Ar-Rahman",ar:"الرحمن",v:78},{n:67,name:"Al-Mulk",ar:"الملك",v:30},
-  {n:112,name:"Al-Ikhlas",ar:"الإخلاص",v:4},{n:113,name:"Al-Falaq",ar:"الفلق",v:5},
+
+const SURAHS = [
+  {n:1,name:"Al-Fatiha",ar:"الفاتحة",v:7},
+  {n:2,name:"Al-Baqarah",ar:"البقرة",v:286},
+  {n:3,name:"Al-Imran",ar:"آل عمران",v:200},
+  {n:18,name:"Al-Kahf",ar:"الكهف",v:110},
+  {n:19,name:"Maryam",ar:"مريم",v:98},
+  {n:36,name:"Ya-Sin",ar:"يس",v:83},
+  {n:55,name:"Ar-Rahman",ar:"الرحمن",v:78},
+  {n:67,name:"Al-Mulk",ar:"الملك",v:30},
+  {n:112,name:"Al-Ikhlas",ar:"الإخلاص",v:4},
+  {n:113,name:"Al-Falaq",ar:"الفلق",v:5},
   {n:114,name:"An-Nas",ar:"الناس",v:6},
 ];
 
-/* ═══════ BOUTIQUE DATA ═══════ */
-const PRODUITS=[
-  {id:1,nom:"Eau de Zamzam 5L",cat:"zamzam",emoji:"💧",prix:15000,desc:"Eau bénite directement de La Mecque. Bouteille 5 litres scellée.",badge:"🕋 La Mecque",stock:true},
-  {id:2,nom:"Eau de Zamzam 1L",cat:"zamzam",emoji:"💧",prix:5000,desc:"Eau bénite de Zamzam. Bouteille 1 litre idéale pour voyage.",badge:"🕋 La Mecque",stock:true},
-  {id:3,nom:"Dattes Ajwa Premium",cat:"dattes",emoji:"🌴",prix:12000,desc:"Dattes Ajwa de Médine — La meilleure qualité. Boîte 500g.",badge:"🏅 Médine",stock:true},
-  {id:4,nom:"Dattes Medjool 1kg",cat:"dattes",emoji:"🌴",prix:18000,desc:"Dattes Medjool premium d'Arabie Saoudite. 1 kilogramme.",badge:"⭐ Premium",stock:true},
-  {id:5,nom:"Dattes Sukkari 500g",cat:"dattes",emoji:"🌴",prix:8000,desc:"Dattes Sukkari dorées très sucrées. Boîte cadeau 500g.",badge:"🎁 Cadeau",stock:true},
-  {id:6,nom:"Jalaba Homme Blanc",cat:"vetements",emoji:"👘",prix:25000,desc:"Jalaba traditionnelle blanche pour homme. Tailles S à XXL.",badge:"🇸🇦 Arabie",stock:true},
-  {id:7,nom:"Jalaba Homme Beige",cat:"vetements",emoji:"👘",prix:22000,desc:"Jalaba élégante couleur beige. Coton de qualité supérieure.",badge:"🇸🇦 Arabie",stock:true},
-  {id:8,nom:"Abaya Femme Noire",cat:"vetements",emoji:"👗",prix:18000,desc:"Abaya noire élégante pour femme. Broderies dorées. Tailles S-XL.",badge:"✨ Élégant",stock:true},
-  {id:9,nom:"Abaya Femme Bleu Nuit",cat:"vetements",emoji:"👗",prix:20000,desc:"Abaya bleu nuit avec broderies. Style moderne et islamique.",badge:"🌙 Nuit",stock:true},
-  {id:10,nom:"Tenue Ihram Homme",cat:"vetements",emoji:"🤍",prix:15000,desc:"Tenue d'Ihram complète — 2 pièces blanc immaculé. Pèlerinage.",badge:"🕋 Hajj",stock:true},
-  {id:11,nom:"Hijab Luxe Soie",cat:"vetements",emoji:"🧕",prix:8000,desc:"Hijab en soie premium. Plusieurs couleurs disponibles.",badge:"💎 Luxe",stock:true},
-  {id:12,nom:"Robe Femme Islamique",cat:"vetements",emoji:"👗",prix:16000,desc:"Robe longue femme style islamique. Confortable et élégante.",badge:"🌸 Style",stock:true},
-  {id:13,nom:"Oud Al-Madinah",cat:"parfums",emoji:"🌹",prix:20000,desc:"Parfum Oud authentique de Médine. Flacon 30ml. Longue durée.",badge:"🕌 Médine",stock:true},
-  {id:14,nom:"Rose de Taïf",cat:"parfums",emoji:"🌺",prix:15000,desc:"Eau de rose de Taïf — l'une des meilleures au monde. 50ml.",badge:"🌹 Taïf",stock:true},
-  {id:15,nom:"Bakhour Al-Haram",cat:"parfums",emoji:"🌿",prix:12000,desc:"Encens traditionnel Al-Haram. Senteur de la Grande Mosquée.",badge:"🕋 Haram",stock:true},
-  {id:16,nom:"Chapelet Cristal 99",cat:"accessoires",emoji:"📿",prix:5000,desc:"Chapelet 99 grains en cristal naturel. Avec pochette cadeau.",badge:"💎 Cristal",stock:true},
-  {id:17,nom:"Tapis de Prière Luxe",cat:"accessoires",emoji:"🙏",prix:18000,desc:"Tapis de prière premium avec boussole intégrée. Anti-dérapant.",badge:"⭐ Premium",stock:true},
-  {id:18,nom:"Coran Cuir Doré",cat:"accessoires",emoji:"📖",prix:22000,desc:"Saint Coran couverture cuir avec dorure. Lecture et Hafs.",badge:"📖 Édition",stock:true},
-  {id:19,nom:"Miswak Naturel x5",cat:"accessoires",emoji:"🪥",prix:3000,desc:"Bâtons de Miswak naturels d'Arabie. Lot de 5. Sunna.",badge:"🌿 Sunna",stock:true},
-  {id:20,nom:"Coffret Cadeau Pèlerin",cat:"accessoires",emoji:"🎁",prix:45000,desc:"Coffret complet : Zamzam 1L + Dattes + Chapelet + Parfum.",badge:"🎁 Cadeau",stock:true},
+const PRODUITS = [
+  {id:1, nom:"Eau de Zamzam 5L",        cat:"zamzam",      emoji:"💧", prix:15000, desc:"Eau bénite de La Mecque. Bouteille 5L scellée.",       badge:"🕋 La Mecque"},
+  {id:2, nom:"Eau de Zamzam 1L",        cat:"zamzam",      emoji:"💧", prix:5000,  desc:"Eau bénite de Zamzam. Bouteille 1L pour voyage.",      badge:"🕋 La Mecque"},
+  {id:3, nom:"Dattes Ajwa Premium",     cat:"dattes",      emoji:"🌴", prix:12000, desc:"Dattes Ajwa de Médine. Boîte 500g.",                   badge:"🏅 Médine"},
+  {id:4, nom:"Dattes Medjool 1kg",      cat:"dattes",      emoji:"🌴", prix:18000, desc:"Dattes Medjool premium d'Arabie. 1kg.",                badge:"⭐ Premium"},
+  {id:5, nom:"Dattes Sukkari 500g",     cat:"dattes",      emoji:"🌴", prix:8000,  desc:"Dattes Sukkari dorées. Boîte cadeau 500g.",            badge:"🎁 Cadeau"},
+  {id:6, nom:"Jalaba Homme Blanc",      cat:"vetements",   emoji:"👘", prix:25000, desc:"Jalaba blanche homme. Tailles S à XXL.",              badge:"🇸🇦 Arabie"},
+  {id:7, nom:"Jalaba Homme Beige",      cat:"vetements",   emoji:"👘", prix:22000, desc:"Jalaba beige élégante. Coton supérieur.",              badge:"🇸🇦 Arabie"},
+  {id:8, nom:"Abaya Femme Noire",       cat:"vetements",   emoji:"👗", prix:18000, desc:"Abaya noire broderies dorées. Tailles S-XL.",         badge:"✨ Élégant"},
+  {id:9, nom:"Abaya Femme Bleu Nuit",   cat:"vetements",   emoji:"👗", prix:20000, desc:"Abaya bleu nuit style moderne.",                      badge:"🌙 Nuit"},
+  {id:10,nom:"Tenue Ihram Homme",       cat:"vetements",   emoji:"🤍", prix:15000, desc:"Tenue d'Ihram 2 pièces blanc immaculé.",              badge:"🕋 Hajj"},
+  {id:11,nom:"Hijab Luxe Soie",         cat:"vetements",   emoji:"🧕", prix:8000,  desc:"Hijab soie premium. Plusieurs couleurs.",             badge:"💎 Luxe"},
+  {id:12,nom:"Robe Femme Islamique",    cat:"vetements",   emoji:"👗", prix:16000, desc:"Robe longue femme islamique élégante.",               badge:"🌸 Style"},
+  {id:13,nom:"Oud Al-Madinah",          cat:"parfums",     emoji:"🌹", prix:20000, desc:"Parfum Oud authentique de Médine. 30ml.",             badge:"🕌 Médine"},
+  {id:14,nom:"Rose de Taïf",            cat:"parfums",     emoji:"🌺", prix:15000, desc:"Eau de rose de Taïf. 50ml.",                         badge:"🌹 Taïf"},
+  {id:15,nom:"Bakhour Al-Haram",        cat:"parfums",     emoji:"🌿", prix:12000, desc:"Encens Al-Haram. Senteur Grande Mosquée.",           badge:"🕋 Haram"},
+  {id:16,nom:"Chapelet Cristal 99",     cat:"accessoires", emoji:"📿", prix:5000,  desc:"Chapelet 99 grains cristal naturel.",                badge:"💎 Cristal"},
+  {id:17,nom:"Tapis de Prière Luxe",    cat:"accessoires", emoji:"🙏", prix:18000, desc:"Tapis prière premium + boussole intégrée.",          badge:"⭐ Premium"},
+  {id:18,nom:"Coran Cuir Doré",         cat:"accessoires", emoji:"📖", prix:22000, desc:"Coran couverture cuir dorée. Hafs.",                 badge:"📖 Édition"},
+  {id:19,nom:"Miswak Naturel x5",       cat:"accessoires", emoji:"🪥", prix:3000,  desc:"Bâtons Miswak naturels. Lot de 5.",                  badge:"🌿 Sunna"},
+  {id:20,nom:"Coffret Cadeau Pèlerin",  cat:"accessoires", emoji:"🎁", prix:45000, desc:"Coffret : Zamzam + Dattes + Chapelet + Parfum.",     badge:"🎁 Cadeau"},
 ];
 
-let boutiqueFiltre="tout";
+/* ── STATE ── */
+let prayerTimes = null, qiblaDir = null, compassHeading = 0;
+let dhikrSel = 0, dhikrCount = 0, dhikrTotal = 0;
+let pelerin = null, lastAzan = {}, prieresTab = "horaires";
+let boutiqueFiltre = "tout";
 
-function filterBoutique(cat){
-  boutiqueFiltre=cat;
-  document.querySelectorAll("[id^='cat-']").forEach(b=>{
-    b.style.background="rgba(255,255,255,0.15)";
-    b.style.color="#fff";
-    b.style.border="1px solid rgba(255,255,255,0.3)";
+/* ── NAVIGATION ── */
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(p => { p.style.display = "none"; p.classList.remove("page-enter"); });
+  const pg = document.getElementById("pg-"+id);
+  pg.style.display = "block";
+  requestAnimationFrame(() => pg.classList.add("page-enter"));
+
+  // Nav active state
+  document.querySelectorAll(".nb").forEach(b => b.style.opacity = "0.5");
+  const map = {verses:"coran", produit:"boutique", formulaire:"packages"};
+  const navId = map[id] || id;
+  const nav = document.getElementById("nb-"+navId);
+  if (nav) nav.style.opacity = "1";
+
+  // Nav labels
+  document.querySelectorAll("[id^='nbl-']").forEach(l => {
+    l.style.color = "var(--text-hint)";
+    l.style.fontWeight = "500";
   });
-  const active=document.getElementById("cat-"+cat);
-  if(active){active.style.background="rgba(255,255,255,0.9)";active.style.color="#2d1b69";active.style.border="none";}
+  const lbl = document.getElementById("nbl-"+navId);
+  if (lbl) { lbl.style.color = "var(--primary)"; lbl.style.fontWeight = "700"; }
+
+  window.scrollTo(0,0);
+  if (id === "prieres")  renderPrieres();
+  if (id === "coran")    renderSurahs();
+  if (id === "dhikr")    renderDhikr();
+  if (id === "espace")   renderEspace();
+  if (id === "boutique") renderBoutique();
+}
+document.getElementById("pg-home").style.display = "block";
+
+/* ── PRAYER TIMES ── */
+(function initPrayers() {
+  const loc = {lat:14.6937, lng:-17.4441};
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      loc.lat = pos.coords.latitude;
+      loc.lng = pos.coords.longitude;
+      fetch("https://nominatim.openstreetmap.org/reverse?lat="+loc.lat+"&lon="+loc.lng+"&format=json")
+        .then(r=>r.json()).then(d => {
+          const el = document.getElementById("hijri-city");
+          if (el) el.innerHTML = '<span style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;"></span> '+(d.address?.city||d.address?.town||"Dakar");
+        }).catch(()=>{});
+      loadTimes(loc);
+    }, () => loadTimes(loc));
+  } else loadTimes(loc);
+
+  function loadTimes(l) {
+    const d = new Date();
+    fetch(`https://api.aladhan.com/v1/timings/${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}?latitude=${l.lat}&longitude=${l.lng}&method=2`)
+      .then(r=>r.json()).then(data => {
+        prayerTimes = data.data.timings;
+        const lat1=l.lat*Math.PI/180, lat2=21.4225*Math.PI/180, dLng=(39.8262-l.lng)*Math.PI/180;
+        qiblaDir = Math.round((Math.atan2(Math.sin(dLng)*Math.cos(lat2), Math.cos(lat1)*Math.sin(lat2)-Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLng))*180/Math.PI+360)%360);
+        startTicker();
+      }).catch(()=>{});
+  }
+})();
+
+function startTicker() {
+  setInterval(() => {
+    if (!prayerTimes) return;
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,"0");
+    const mm = String(now.getMinutes()).padStart(2,"0");
+
+    // Azan
+    PRAYERS.forEach(p => {
+      const t = prayerTimes[p]?.substring(0,5);
+      if (t === hh+":"+mm && lastAzan[p] !== t) {
+        lastAzan[p] = t;
+        const src = ["Fajr","Isha"].includes(p)
+          ? "https://cdn.islamic.network/mp3/prayer-times/azan/Madinah.mp3"
+          : "https://cdn.islamic.network/mp3/prayer-times/azan/Makkah.mp3";
+        new Audio(src).play().catch(()=>{});
+      }
+    });
+
+    // Countdown
+    const list = PRAYERS.map(p => {
+      const [ph,pm] = (prayerTimes[p]||"00:00").split(":").map(Number);
+      const d = new Date(); d.setHours(ph,pm,0,0);
+      return {name:p, time:prayerTimes[p], diff:d-now};
+    }).filter(p=>p.diff>0).sort((a,b)=>a.diff-b.diff);
+
+    if (list.length) {
+      const nxt = list[0];
+      const hr = Math.floor(nxt.diff/3600000);
+      const mn = Math.floor((nxt.diff%3600000)/60000);
+      const sc = Math.floor((nxt.diff%60000)/1000);
+      const nm = document.getElementById("next-prayer-name");
+      const ct = document.getElementById("countdown-el");
+      if (nm) nm.textContent = PICONS[nxt.name]+" "+nxt.name+" — "+nxt.time;
+      if (ct) ct.textContent = hr+"h "+String(mn).padStart(2,"0")+"m "+String(sc).padStart(2,"0")+"s";
+    }
+  }, 1000);
+}
+
+/* ── PRIERES ── */
+function setPrieresTab(tab) {
+  prieresTab = tab;
+  const ht = document.getElementById("ptab-horaires");
+  const qt = document.getElementById("ptab-qibla");
+  if (tab==="horaires") {
+    ht.style.background="var(--primary)"; ht.style.color="#fff"; ht.style.boxShadow="var(--shadow-sm)";
+    qt.style.background="transparent"; qt.style.color="var(--text-secondary)"; qt.style.boxShadow="none";
+  } else {
+    qt.style.background="var(--primary)"; qt.style.color="#fff"; qt.style.boxShadow="var(--shadow-sm)";
+    ht.style.background="transparent"; ht.style.color="var(--text-secondary)"; ht.style.boxShadow="none";
+  }
+  renderPrieres();
+}
+
+function renderPrieres() {
+  const el = document.getElementById("prieres-content"); if (!el) return;
+  if (prieresTab === "horaires") {
+    const now = new Date();
+    el.innerHTML = PRAYERS.map(p => {
+      if (!prayerTimes) return `<div class="card" style="display:flex;justify-content:space-between;">${PICONS[p]} ${p}<span style="color:var(--text-hint);">Chargement...</span></div>`;
+      const [h,m] = prayerTimes[p].split(":").map(Number);
+      const d = new Date(); d.setHours(h,m,0,0); const passed = d < now;
+      const isNext = !passed && PRAYERS.filter(pp=>{const[ph,pm]=(prayerTimes[pp]||"00:00").split(":").map(Number);const dd=new Date();dd.setHours(ph,pm,0,0);return dd>now;}).sort((a,b)=>{const[ah,am]=(prayerTimes[a]||"00:00").split(":").map(Number);const[bh,bm]=(prayerTimes[b]||"00:00").split(":").map(Number);return(ah*60+am)-(bh*60+bm);})[0]===p;
+      return `<div class="card" style="display:flex;justify-content:space-between;align-items:center;opacity:${passed?0.4:1};${isNext?"border:1.5px solid var(--primary);background:var(--primary-soft);":""}">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:44px;height:44px;border-radius:var(--radius-sm);background:${isNext?"var(--primary)":"var(--surface-2)"};display:flex;align-items:center;justify-content:center;font-size:20px;">${PICONS[p]}</div>
+          <div><div style="font-size:15px;font-weight:700;">${p}</div><div style="color:var(--text-hint);font-size:10px;margin-top:2px;">${["Fajr","Isha"].includes(p)?"🕌 Adhan Madinah":"🕋 Adhan Makkah"}</div></div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:20px;font-weight:800;color:${isNext?"var(--primary)":passed?"var(--text-hint)":"var(--text-primary)"};">${prayerTimes[p]}</div>
+          ${isNext?'<div class="badge badge-primary" style="margin-top:4px;">Prochaine</div>':""}
+        </div>
+      </div>`;
+    }).join("");
+  } else {
+    el.innerHTML = `<div style="text-align:center;padding-bottom:20px;">
+      <div style="color:var(--text-secondary);font-size:13px;margin-bottom:20px;">Direction vers La Mecque</div>
+      <button onclick="activerBoussole()" id="compass-btn" class="btn btn-primary" style="max-width:220px;margin:0 auto 24px;">🧭 Activer la boussole</button>
+      <div style="position:relative;width:240px;height:240px;margin:0 auto 24px;">
+        <div style="width:240px;height:240px;border-radius:50%;border:2px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:var(--shadow-lg);">
+          <div style="position:absolute;top:12px;left:50%;transform:translateX(-50%);color:var(--primary);font-size:13px;font-weight:700;">N</div>
+          <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);color:var(--text-hint);font-size:11px;">S</div>
+          <div style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-hint);font-size:11px;">O</div>
+          <div style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--text-hint);font-size:11px;">E</div>
+          <div id="qibla-arrow" style="position:absolute;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:20px;transform:rotate(${(qiblaDir||0)-compassHeading}deg);transition:transform 0.3s ease;">
+            <div style="font-size:32px;">🕋</div>
+            <div style="width:3px;height:56px;background:linear-gradient(var(--primary),transparent);border-radius:2px;margin-top:4px;"></div>
+          </div>
+          <div style="position:absolute;font-size:16px;">📍</div>
+        </div>
+      </div>
+      ${qiblaDir ? `<div class="card" style="display:inline-block;text-align:center;padding:16px 28px;"><div class="section-label">Direction Qibla</div><div style="color:var(--primary);font-size:36px;font-weight:900;">${qiblaDir}°</div><div style="color:var(--text-hint);font-size:11px;">depuis le Nord</div></div>` : '<div style="color:var(--text-hint);">Chargement GPS...</div>'}
+    </div>`;
+  }
+}
+
+function activerBoussole() {
+  const btn = document.getElementById("compass-btn");
+  if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
+    DeviceOrientationEvent.requestPermission().then(p => { if (p==="granted") { window.addEventListener("deviceorientation",onOrient,true); if(btn)btn.style.display="none"; }}).catch(()=>{});
+  } else { window.addEventListener("deviceorientation",onOrient,true); if(btn)btn.style.display="none"; }
+}
+function onOrient(e) {
+  compassHeading = e.webkitCompassHeading != null ? e.webkitCompassHeading : (360-(e.alpha||0));
+  const el = document.getElementById("qibla-arrow");
+  if (el) el.style.transform = `rotate(${(qiblaDir||0)-compassHeading}deg)`;
+}
+
+/* ── CORAN ── */
+function renderSurahs() {
+  const s = (document.getElementById("coran-search")?.value||"").toLowerCase();
+  const f = SURAHS.filter(x=>x.name.toLowerCase().includes(s)||x.ar.includes(s)||String(x.n).includes(s));
+  const el = document.getElementById("surahs-list"); if (!el) return;
+  el.innerHTML = f.map(x=>`
+    <div onclick="openSurah(${x.n},'${x.name}','${x.ar}')" class="card" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;">${x.n}</div>
+        <div><div style="font-size:14px;font-weight:700;">${x.name}</div><div style="color:var(--text-hint);font-size:11px;margin-top:2px;">${x.v} versets</div></div>
+      </div>
+      <div style="color:var(--primary);font-size:18px;font-family:var(--font-arabic);">${x.ar}</div>
+    </div>`).join("");
+}
+
+function openSurah(n, name, ar) {
+  document.getElementById("surah-title").textContent = name;
+  document.getElementById("surah-ar").textContent = ar;
+  document.getElementById("verses-list").innerHTML = '<div style="text-align:center;color:var(--text-hint);padding:40px;">Chargement...</div>';
+  showPage("verses");
+  fetch(`https://api.alquran.cloud/v1/surah/${n}`).then(r=>r.json()).then(d => {
+    document.getElementById("verses-list").innerHTML =
+      `<div style="color:var(--primary);font-size:22px;text-align:center;font-family:var(--font-arabic);padding:20px;background:var(--surface);border-radius:var(--radius-lg);margin-bottom:12px;box-shadow:var(--shadow-sm);">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>`+
+      d.data.ayahs.map(v=>`
+        <div class="card">
+          <div style="width:26px;height:26px;border-radius:var(--radius-sm);background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;margin-bottom:10px;">${v.numberInSurah}</div>
+          <div style="color:var(--text-primary);font-size:21px;text-align:right;direction:rtl;line-height:2.2;font-family:var(--font-arabic);">${v.text}</div>
+        </div>`).join("");
+  }).catch(()=>{ document.getElementById("verses-list").innerHTML='<div style="text-align:center;color:var(--text-hint);padding:40px;">Erreur de chargement</div>'; });
+}
+
+/* ── DHIKR ── */
+function renderDhikr() {
+  const d = DHIKRS[dhikrSel];
+  const pct = Math.min((dhikrCount/d.target)*100, 100);
+  const done = dhikrCount >= d.target;
+  const circ = 2*Math.PI*98;
+  const C = "var(--primary)";
+
+  document.getElementById("dhikr-tabs").innerHTML = DHIKRS.map((dh,i) =>
+    `<button onclick="selectDhikr(${i})" style="flex-shrink:0;background:${i===dhikrSel?"var(--primary)":"var(--dark-surface-2)"};border:none;border-radius:var(--radius-full);padding:8px 16px;color:${i===dhikrSel?"#fff":"var(--dark-hint)"};font-size:11px;font-weight:${i===dhikrSel?"700":"500"};cursor:pointer;transition:all var(--transition-fast);">${dh.fr.split(" ").slice(0,2).join(" ")}</button>`
+  ).join("");
+
+  document.getElementById("dhikr-body").innerHTML = `
+    <div style="color:${done?"#2ecc71":"var(--primary)"};font-size:28px;text-align:center;direction:rtl;font-family:var(--font-arabic);margin-bottom:6px;line-height:1.8;">${d.ar}</div>
+    <div style="color:var(--dark-hint);font-size:13px;margin-bottom:32px;font-style:italic;">${d.fr}</div>
+    <div style="position:relative;width:220px;height:220px;margin-bottom:24px;" id="dhikr-wrap">
+      <svg width="220" height="220" style="position:absolute;top:0;left:0;transform:rotate(-90deg);">
+        <circle cx="110" cy="110" r="98" fill="none" stroke="var(--dark-surface-2)" stroke-width="12"/>
+        <circle id="dhikr-arc" cx="110" cy="110" r="98" fill="none" stroke="${done?"#2ecc71":"var(--primary)"}" stroke-width="12" stroke-dasharray="${circ}" stroke-dashoffset="${circ*(1-pct/100)}" stroke-linecap="round" style="transition:stroke-dashoffset 0.3s,stroke 0.3s;"/>
+      </svg>
+      <button id="dhikr-btn" onclick="tapDhikr()" style="position:absolute;inset:0;background:${done?"linear-gradient(135deg,#1a5c2a,#2ecc71)":"var(--dark-surface)"};border:2px solid ${done?"#2ecc71":"var(--dark-border)"};border-radius:50%;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform 0.1s,box-shadow 0.1s;">
+        <div id="dhikr-count" style="color:${done?"#2ecc71":"var(--dark-text)"};font-size:64px;font-weight:900;line-height:1;letter-spacing:-2px;">${dhikrCount}</div>
+        <div style="color:var(--dark-hint);font-size:12px;margin-top:4px;">/ ${d.target}</div>
+      </button>
+    </div>
+    ${done?`<div style="color:#2ecc71;font-size:15px;margin-bottom:16px;font-weight:700;animation:pulse 1.5s ease infinite;">✅ Alhamdulillah ! بارك الله فيك</div>`:""}
+    <div style="display:flex;gap:12px;">
+      <button onclick="resetDhikr()" style="background:var(--dark-surface-2);border:1px solid var(--dark-border);border-radius:var(--radius-md);padding:12px 20px;color:var(--dark-hint);font-size:13px;cursor:pointer;">↺ Reset</button>
+      <div style="background:var(--dark-surface-2);border:1px solid var(--dark-border);border-radius:var(--radius-md);padding:12px 20px;color:var(--dark-hint);font-size:13px;">Total: ${dhikrTotal}</div>
+    </div>`;
+}
+
+function selectDhikr(i) { dhikrSel=i; dhikrCount=0; renderDhikr(); }
+function resetDhikr()   { dhikrCount=0; renderDhikr(); }
+
+function tapDhikr() {
+  dhikrCount++; dhikrTotal++;
+  const done = dhikrCount >= DHIKRS[dhikrSel].target;
+  const btn  = document.getElementById("dhikr-btn");
+  const wrap = document.getElementById("dhikr-wrap");
+  const arc  = document.getElementById("dhikr-arc");
+  const cnt  = document.getElementById("dhikr-count");
+
+  // Count update
+  if (cnt) { cnt.textContent = dhikrCount; cnt.style.animation = "countUp 0.2s ease"; setTimeout(()=>{if(cnt)cnt.style.animation="";},200); }
+
+  // Button bounce
+  if (btn) {
+    btn.style.transform = "scale(0.90)";
+    btn.style.boxShadow = "0 0 0 8px rgba(0,129,90,0.15), 0 0 0 16px rgba(0,129,90,0.07)";
+    setTimeout(()=>{ if(btn){btn.style.transform="scale(1)";btn.style.boxShadow="none";} }, 180);
+  }
+
+  // Ripple
+  if (wrap) {
+    for (let i=0; i<2; i++) {
+      setTimeout(()=>{
+        const r = document.createElement("div");
+        r.style.cssText = "position:absolute;inset:0;border-radius:50%;border:2px solid var(--primary);animation:rippleOut 0.7s ease-out forwards;pointer-events:none;";
+        wrap.appendChild(r);
+        setTimeout(()=>r.remove(), 800);
+      }, i*120);
+    }
+  }
+
+  // Arc update
+  if (arc) {
+    const circ = 2*Math.PI*98;
+    const pct  = Math.min((dhikrCount/DHIKRS[dhikrSel].target)*100,100);
+    arc.setAttribute("stroke-dashoffset", circ*(1-pct/100));
+    if (done) arc.setAttribute("stroke","#2ecc71");
+  }
+
+  if (done) setTimeout(()=>renderDhikr(), 300);
+}
+
+/* ── BOUTIQUE ── */
+function filterBoutique(cat) {
+  boutiqueFiltre = cat;
+  document.querySelectorAll("[id^='cat-']").forEach(b => {
+    b.style.background = "rgba(255,255,255,0.15)";
+    b.style.color = "#fff";
+    b.style.border = "1px solid rgba(255,255,255,0.25)";
+  });
+  const a = document.getElementById("cat-"+cat);
+  if (a) { a.style.background="#fff"; a.style.color="#3D1A78"; a.style.border="none"; }
   renderBoutique();
 }
 
-function renderBoutique(){
-  const filtered=boutiqueFiltre==="tout"?PRODUITS:PRODUITS.filter(p=>p.cat===boutiqueFiltre);
-  document.getElementById("boutique-grid").innerHTML=filtered.map(p=>`
-  <div onclick="openProduit(${p.id})" style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;cursor:pointer;transition:transform 0.2s;">
-    <div style="background:linear-gradient(135deg,#1a0a2e,#2d1b69);height:100px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;">
-      ${p.emoji}
-      <div style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.5);border-radius:8px;padding:2px 6px;font-size:8px;color:#ce93d8;">${p.badge}</div>
-    </div>
-    <div style="padding:10px;">
-      <div style="font-size:12px;font-weight:bold;line-height:1.3;margin-bottom:4px;">${p.nom}</div>
-      <div style="color:#ce93d8;font-size:13px;font-weight:bold;">${(p.prix).toLocaleString("fr-FR")} F</div>
-      <div style="background:linear-gradient(135deg,#1a0a2e,#4a1b69);border:none;border-radius:8px;padding:7px;color:#fff;font-size:10px;font-weight:bold;text-align:center;margin-top:8px;cursor:pointer;">🛒 Commander</div>
-    </div>
-  </div>`).join("");
+function renderBoutique() {
+  const filtered = boutiqueFiltre==="tout" ? PRODUITS : PRODUITS.filter(p=>p.cat===boutiqueFiltre);
+  document.getElementById("boutique-grid").innerHTML = filtered.map(p=>`
+    <div onclick="openProduit(${p.id})" style="background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;box-shadow:var(--shadow-md);border:1px solid var(--border);transition:transform var(--transition-fast),box-shadow var(--transition-fast);" ontouchstart="this.style.transform='scale(0.97)'" ontouchend="this.style.transform='scale(1)'">
+      <div style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);height:96px;display:flex;align-items:center;justify-content:center;font-size:46px;position:relative;">
+        ${p.emoji}
+        <div style="position:absolute;top:8px;left:8px;background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:3px 8px;font-size:8px;color:#E9D5FF;font-weight:600;">${p.badge}</div>
+      </div>
+      <div style="padding:12px;">
+        <div style="font-size:12px;font-weight:700;line-height:1.3;margin-bottom:6px;color:var(--text-primary);">${p.nom}</div>
+        <div style="color:#7C3AED;font-size:14px;font-weight:800;">${p.prix.toLocaleString("fr-FR")} <span style="font-size:10px;">FCFA</span></div>
+        <div style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-sm);padding:8px;color:#fff;font-size:10px;font-weight:700;text-align:center;margin-top:10px;">🛒 Commander</div>
+      </div>
+    </div>`).join("");
 }
 
-function openProduit(id){
-  const p=PRODUITS.find(x=>x.id===id);
-  if(!p) return;
-  const msg="Bonjour Kyswa Travel ! 🛍️\n\nJe veux commander :\n\n"+p.emoji+" *"+p.nom+"*\n💰 Prix : "+p.prix.toLocaleString("fr-FR")+" FCFA\n\nMerci de me confirmer la disponibilité !";
-  document.getElementById("produit-content").innerHTML=`
-  <div style="background:#111;min-height:100vh;">
-    <div style="background:linear-gradient(135deg,#1a0a2e,#2d1b69);padding:50px 20px 30px;text-align:center;position:relative;">
-      <button onclick="showPage('boutique')" style="position:absolute;left:16px;top:50px;background:rgba(255,255,255,0.15);border:none;border-radius:20px;padding:6px 14px;color:#fff;cursor:pointer;font-size:13px;font-family:Georgia,serif;">← Retour</button>
+function openProduit(id) {
+  const p = PRODUITS.find(x=>x.id===id); if (!p) return;
+  const msg = `Salam Alaikum ! 🛍️ Je veux commander :\n\n${p.emoji} *${p.nom}*\n💰 Prix : ${p.prix.toLocaleString("fr-FR")} FCFA\n\nMerci de confirmer la disponibilité !`;
+  document.getElementById("produit-content").innerHTML = `
+  <div style="background:var(--bg);min-height:100vh;">
+    <div style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) 32px;text-align:center;position:relative;">
+      <button onclick="showPage('boutique')" style="position:absolute;left:var(--space-md);top:56px;background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-full);padding:8px 16px;color:#fff;cursor:pointer;font-size:13px;">← Retour</button>
       <div style="font-size:80px;margin-bottom:12px;">${p.emoji}</div>
-      <div style="font-size:18px;font-weight:bold;">${p.nom}</div>
-      <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:3px 12px;display:inline-block;margin-top:6px;color:#ce93d8;font-size:11px;">${p.badge}</div>
+      <div style="color:#fff;font-size:20px;font-weight:800;">${p.nom}</div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:4px 14px;display:inline-block;margin-top:8px;color:#E9D5FF;font-size:11px;">${p.badge}</div>
     </div>
-    <div style="padding:20px;">
-      <div style="background:#1a1a1a;border-radius:16px;padding:16px;margin-bottom:14px;">
-        <div style="color:#8a8a8a;font-size:11px;margin-bottom:8px;letter-spacing:1px;">DESCRIPTION</div>
-        <div style="font-size:14px;line-height:1.7;color:#ddd;">${p.desc}</div>
+    <div style="padding:var(--space-md);">
+      <div class="card">
+        <div class="section-label">Description</div>
+        <div style="font-size:14px;line-height:1.7;color:var(--text-primary);">${p.desc}</div>
       </div>
-      <div style="background:#1a1a1a;border-radius:16px;padding:16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;">
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
         <div>
-          <div style="color:#8a8a8a;font-size:11px;">PRIX</div>
-          <div style="color:#ce93d8;font-size:28px;font-weight:bold;">${p.prix.toLocaleString("fr-FR")} <span style="font-size:14px;">FCFA</span></div>
+          <div class="section-label">Prix</div>
+          <div style="color:#7C3AED;font-size:32px;font-weight:900;letter-spacing:-1px;">${p.prix.toLocaleString("fr-FR")} <span style="font-size:14px;">FCFA</span></div>
         </div>
-        <div style="background:#1e3a1a;border:1px solid #25a050;border-radius:10px;padding:6px 12px;color:#25a050;font-size:11px;font-weight:bold;">✓ Disponible</div>
+        <div class="badge badge-primary">✓ Disponible</div>
       </div>
-      <a href="https://wa.me/221787811616?text=${encodeURIComponent(msg)}" target="_blank" style="display:block;background:linear-gradient(135deg,#25a050,#1e7e3e);border-radius:14px;padding:16px;color:#fff;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;margin-bottom:12px;">📱 Commander via WhatsApp</a>
-      <div style="background:#1a1a1a;border-radius:14px;padding:14px;text-align:center;">
-        <div style="color:#8a8a8a;font-size:11px;margin-bottom:4px;">📦 Livraison disponible à Dakar</div>
-        <div style="color:#8a8a8a;font-size:11px;">📍 Retrait : 115 Av. Blaise Diagne, Dakar</div>
+      <a href="https://wa.me/221787811616?text=${encodeURIComponent(msg)}" target="_blank" class="btn btn-whatsapp" style="margin-bottom:var(--space-sm);">📱 Commander via WhatsApp</a>
+      <div class="card" style="text-align:center;background:var(--surface-2);box-shadow:none;">
+        <div style="color:var(--text-secondary);font-size:12px;margin-bottom:4px;">📦 Livraison disponible à Dakar</div>
+        <div style="color:var(--text-hint);font-size:11px;">📍 Retrait : 115 Av. Blaise Diagne, Dakar</div>
       </div>
     </div>
   </div>`;
   showPage("produit");
 }
 
-/* ═══════ NAV ═══════ */
-function showPage(id){
-  document.querySelectorAll(".page").forEach(p=>p.style.display="none");
-  document.getElementById("pg-"+id).style.display="block";
-  document.querySelectorAll(".nb").forEach(b=>b.style.color="#444");
-  const map={verses:"coran",produit:"boutique",formulaire:"packages"};
-  const navId=map[id]||id;
-  const nav=document.getElementById("nb-"+navId);
-  if(nav) nav.style.color=GL;
-  window.scrollTo(0,0);
-  if(id==="prieres") renderPrieres();
-  if(id==="coran") renderSurahs();
-  if(id==="dhikr") renderDhikr();
-  if(id==="espace") renderEspace();
-  if(id==="boutique") renderBoutique();
+/* ── ESPACE PÈLERIN ── */
+function renderEspace() {
+  if (!pelerin) { renderLogin(); return; }
+  document.getElementById("espace-login-section").style.display = "none";
+  document.getElementById("espace-profil-section").style.display = "block";
+  const ins = pelerin.inscriptions?.[0];
+  const pays = ins?.paiements||[];
+  const totalPaye = pays.reduce((s,x)=>s+(x.montant||0),0);
+  const totalDu = ins?.prix_total||0;
+  const reste = totalDu-totalPaye;
+  const pct = totalDu>0 ? Math.round((totalPaye/totalDu)*100) : 0;
+  const dd = ins?.departs?.date_depart ? new Date(ins.departs.date_depart) : null;
+  const daysLeft = dd ? Math.ceil((dd-new Date())/864e5) : null;
+  const fmt = n => (Number(n)||0).toLocaleString("fr-FR")+" FCFA";
+
+  document.getElementById("espace-profil-section").innerHTML = `
+    <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div style="width:60px;height:60px;border-radius:20px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px;border:2px solid rgba(255,255,255,0.3);">${pelerin.genre==="F"?"👩🏾":"👨🏾"}</div>
+        <div>
+          <div style="color:#fff;font-size:20px;font-weight:800;">${pelerin.prenom||""} ${pelerin.nom||""}</div>
+          <div class="badge badge-dark" style="margin-top:6px;">N° KT-${String(pelerin.id||0).padStart(4,"0")}</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:var(--space-md);">
+      ${daysLeft!==null ? `
+      <div class="card" style="text-align:center;background:var(--primary-soft);border:1.5px solid var(--primary-mid);">
+        <div class="section-label">Départ dans</div>
+        <div style="color:var(--primary);font-size:56px;font-weight:900;line-height:1;letter-spacing:-2px;">${daysLeft}</div>
+        <div style="color:var(--text-secondary);font-size:13px;margin-top:4px;">jours ✈️</div>
+      </div>` : ""}
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <div style="font-size:14px;font-weight:700;">💰 Paiements</div>
+          <div class="badge ${reste>0?"badge-danger":"badge-primary"}">${reste>0?"⚠️ "+fmt(reste)+" reste":"✅ Soldé"}</div>
+        </div>
+        <div style="background:var(--surface-2);border-radius:var(--radius-full);height:10px;overflow:hidden;">
+          <div style="width:${pct}%;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-light));border-radius:var(--radius-full);transition:width 0.8s ease;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;">
+          <div style="color:var(--text-hint);font-size:11px;">Payé : ${fmt(totalPaye)}</div>
+          <div style="color:var(--text-hint);font-size:11px;">Total : ${fmt(totalDu)}</div>
+        </div>
+      </div>
+      ${[["🌍","Visa",pelerin.statut_visa||"En traitement"],["💉","Vaccin",pelerin.vaccin_meningite?"✓ Validé":"⚠️ Manquant"],["📞","Téléphone",pelerin.telephone||"—"]].map(([ico,l,v])=>`
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:14px var(--space-md);">
+        <div style="color:var(--text-secondary);font-size:13px;">${ico} ${l}</div>
+        <div class="badge ${v.includes("✓")?"badge-primary":v.includes("⚠️")?"badge-danger":"badge-primary"}">${v}</div>
+      </div>`).join("")}
+      <button onclick="deconnecter()" class="btn btn-ghost" style="margin-top:8px;">Se déconnecter</button>
+    </div>`;
 }
-document.getElementById("pg-home").style.display="block";
 
-/* ═══════ PRAYER TIMES ═══════ */
-(function(){
-  const loc={lat:14.6937,lng:-17.4441};
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(p=>{
-      loc.lat=p.coords.latitude;loc.lng=p.coords.longitude;
-      fetch("https://nominatim.openstreetmap.org/reverse?lat="+loc.lat+"&lon="+loc.lng+"&format=json")
-        .then(r=>r.json()).then(d=>{const el=document.getElementById("hijri-city");if(el)el.textContent="📍 "+(d.address?.city||d.address?.town||"Dakar");}).catch(()=>{});
-      loadTimes(loc);
-    },()=>loadTimes(loc));
-  } else loadTimes(loc);
+function renderLogin() {
+  document.getElementById("espace-login-section").style.display = "block";
+  document.getElementById("espace-profil-section").style.display = "none";
+  document.getElementById("espace-login-section").innerHTML = `
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:85vh;padding:var(--space-lg);">
+      <div style="width:80px;height:80px;border-radius:24px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:var(--space-lg);box-shadow:var(--shadow-primary);">🕌</div>
+      <div style="font-size:24px;font-weight:800;margin-bottom:6px;text-align:center;">Mon Espace Pèlerin</div>
+      <div style="color:var(--text-secondary);font-size:13px;margin-bottom:var(--space-lg);text-align:center;">Entrez votre numéro de téléphone</div>
+      <div id="login-err" style="display:none;background:var(--danger-soft);border:1.5px solid var(--danger);border-radius:var(--radius-md);padding:12px var(--space-md);color:var(--danger);font-size:13px;margin-bottom:var(--space-md);text-align:center;width:100%;max-width:320px;"></div>
+      <div style="display:flex;gap:8px;margin-bottom:var(--space-md);width:100%;max-width:320px;">
+        <div class="input" style="white-space:nowrap;flex-shrink:0;background:var(--surface-2);">🇸🇳 +221</div>
+        <input type="tel" id="login-phone" placeholder="77 123 45 67" oninput="checkBtn()" class="input" style="flex:1;"/>
+      </div>
+      <button id="login-btn" onclick="doLogin()" disabled class="btn" style="width:100%;max-width:320px;background:var(--surface-2);color:var(--text-hint);cursor:not-allowed;">Accéder à mon espace</button>
+    </div>`;
+}
 
-  function loadTimes(l){
-    const d=new Date();
-    fetch("https://api.aladhan.com/v1/timings/"+d.getDate()+"-"+(d.getMonth()+1)+"-"+d.getFullYear()+"?latitude="+l.lat+"&longitude="+l.lng+"&method=2")
-      .then(r=>r.json()).then(data=>{
-        window.prayerTimes=data.data.timings;
-        const lat1=l.lat*Math.PI/180,lat2=21.4225*Math.PI/180,dLng=(39.8262-l.lng)*Math.PI/180;
-        window.qibla=Math.round((Math.atan2(Math.sin(dLng)*Math.cos(lat2),Math.cos(lat1)*Math.sin(lat2)-Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLng))*180/Math.PI+360)%360);
-        startTicker();
-      }).catch(()=>{});
+function checkBtn() {
+  const v = document.getElementById("login-phone")?.value||"";
+  const btn = document.getElementById("login-btn"); if (!btn) return;
+  btn.disabled = v.length < 8;
+  if (v.length >= 8) { btn.className="btn btn-primary"; btn.style.cursor="pointer"; }
+  else { btn.className="btn"; btn.style.background="var(--surface-2)"; btn.style.color="var(--text-hint)"; btn.style.cursor="not-allowed"; btn.style.boxShadow="none"; }
+}
+
+async function doLogin() {
+  const phone = document.getElementById("login-phone")?.value||"";
+  const btn = document.getElementById("login-btn");
+  const err = document.getElementById("login-err");
+  if (btn) { btn.textContent="Recherche..."; btn.disabled=true; }
+  const cleaned = phone.replace(/[^0-9]/g,"");
+  const last9 = cleaned.slice(-9);
+  for (const v of [last9, "+221"+last9, "221"+last9]) {
+    try {
+      const res = await fetch(SB_URL+"/rest/v1/clients?telephone=eq."+encodeURIComponent(v)+"&select=*,inscriptions(*,departs(*),paiements(*))",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
+      const data = await res.json();
+      if (data&&data.length>0) { pelerin=data[0]; renderEspace(); return; }
+    } catch(e) {}
   }
-})();
-
-let lastAzan={},compass=0;
-function startTicker(){
-  setInterval(()=>{
-    if(!window.prayerTimes) return;
-    const now=new Date();
-    const hh=String(now.getHours()).padStart(2,"0"),mm=String(now.getMinutes()).padStart(2,"0");
-    PRAYERS.forEach(p=>{
-      const t=window.prayerTimes[p]?.substring(0,5);
-      if(t===hh+":"+mm&&lastAzan[p]!==t){
-        lastAzan[p]=t;
-        const src=["Fajr","Isha"].includes(p)?"https://cdn.islamic.network/mp3/prayer-times/azan/Madinah.mp3":"https://cdn.islamic.network/mp3/prayer-times/azan/Makkah.mp3";
-        const a=new Audio(src);a.volume=1.0;a.play().catch(()=>{});
-      }
-    });
-    const list=PRAYERS.map(p=>{
-      const[ph,pm]=(window.prayerTimes[p]||"00:00").split(":").map(Number);
-      const d=new Date();d.setHours(ph,pm,0,0);return{name:p,time:window.prayerTimes[p],diff:d-now};
-    }).filter(p=>p.diff>0).sort((a,b)=>a.diff-b.diff);
-    if(list.length){
-      const nxt=list[0];
-      const hr=Math.floor(nxt.diff/3600000),mn=Math.floor((nxt.diff%3600000)/60000),sc=Math.floor((nxt.diff%60000)/1000);
-      const nm=document.getElementById("next-prayer-name");
-      const ct=document.getElementById("countdown-el");
-      if(nm) nm.textContent=PICONS[nxt.name]+" "+nxt.name+" — "+nxt.time;
-      if(ct) ct.textContent=hr+"h "+String(mn).padStart(2,"0")+"m "+String(sc).padStart(2,"0")+"s";
-    }
-  },1000);
+  if (err) { err.style.display="block"; err.textContent="Numéro non trouvé. Contactez +221 78 781 16 16"; }
+  if (btn) { btn.textContent="Accéder à mon espace"; btn.disabled=false; btn.className="btn btn-primary"; btn.style.cursor="pointer"; }
 }
 
-/* ═══════ PRIERES ═══════ */
-let prieresTab="horaires";
-function setPrieresTab(tab){
-  prieresTab=tab;
-  document.getElementById("ptab-horaires").style.color=tab==="horaires"?GL:"#8a8a8a";
-  document.getElementById("ptab-horaires").style.borderBottom=tab==="horaires"?"2px solid "+G:"2px solid transparent";
-  document.getElementById("ptab-qibla").style.color=tab==="qibla"?GL:"#8a8a8a";
-  document.getElementById("ptab-qibla").style.borderBottom=tab==="qibla"?"2px solid "+G:"2px solid transparent";
-  renderPrieres();
-}
-function renderPrieres(){
-  const el=document.getElementById("prieres-content");if(!el) return;
-  if(prieresTab==="horaires"){
-    const now=new Date();
-    el.innerHTML='<div style="background:#1a1a1a;border-radius:14px;padding:10px 16px;margin-bottom:14px;text-align:center;"><div style="color:#8a8a8a;font-size:11px;">🔊 Adhan Makkah — prières du jour • Adhan Madinah — Fajr & Isha</div></div>'+
-    PRAYERS.map(p=>{
-      if(!window.prayerTimes) return'<div style="background:#1a1a1a;border-radius:14px;padding:16px;margin-bottom:10px;display:flex;justify-content:space-between;"><div>'+PICONS[p]+' '+p+'</div><div style="color:#333;">Chargement...</div></div>';
-      const[h,m]=window.prayerTimes[p].split(":").map(Number);const d=new Date();d.setHours(h,m,0,0);const passed=d<now;
-      return'<div style="background:#1a1a1a;border:1px solid '+(passed?"#222":"rgba(30,126,62,0.3)")+'";border-radius:14px;padding:16px 20px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;opacity:'+(passed?0.4:1)+';"><div style="display:flex;align-items:center;gap:12px;"><div style="font-size:24px;">'+PICONS[p]+'</div><div><div style="font-size:15px;font-weight:bold;">'+p+'</div><div style="color:#8a8a8a;font-size:10px;">'+(["Fajr","Isha"].includes(p)?"🕌 Adhan Madinah":"🕋 Adhan Makkah")+'</div></div></div><div style="color:'+(passed?"#8a8a8a":GL)+';font-size:22px;font-weight:bold;">'+window.prayerTimes[p]+'</div></div>';
-    }).join("");
-  } else {
-    el.innerHTML='<div style="text-align:center;padding-bottom:20px;"><div style="color:#8a8a8a;font-size:13px;margin-bottom:20px;">Boussole vers La Mecque</div><button onclick="activerBoussole()" id="compass-btn" style="background:linear-gradient(135deg,'+G+','+GL+');border:none;border-radius:14px;padding:14px 28px;color:#fff;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:24px;font-family:Georgia,serif;">🧭 Activer la boussole</button><div style="position:relative;width:240px;height:240px;margin:0 auto 24px;"><div style="width:240px;height:240px;border-radius:120px;border:3px solid rgba(30,126,62,0.3);background:#1a1a1a;display:flex;align-items:center;justify-content:center;position:relative;"><div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);color:#25a050;font-size:13px;font-weight:bold;">N</div><div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);color:#8a8a8a;font-size:11px;">S</div><div style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#8a8a8a;font-size:11px;">O</div><div style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#8a8a8a;font-size:11px;">E</div><div id="qibla-arrow" style="position:absolute;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:16px;transform:rotate('+((window.qibla||0)-compass)+'deg);transition:transform 0.3s ease;"><div style="font-size:34px;">🕋</div><div style="width:3px;height:60px;background:linear-gradient('+GL+',transparent);border-radius:2px;margin-top:4px;"></div></div><div style="position:absolute;font-size:16px;">📍</div></div></div>'+(window.qibla?'<div style="background:#1a1a1a;border:1px solid rgba(30,126,62,0.3);border-radius:14px;padding:14px 24px;display:inline-block;"><div style="color:#8a8a8a;font-size:11px;">Direction Qibla</div><div style="color:#25a050;font-size:30px;font-weight:bold;">'+window.qibla+'°</div><div style="color:#8a8a8a;font-size:10px;">depuis le Nord</div></div>':'<div style="color:#8a8a8a;">Chargement position GPS...</div>')+'</div>';
-  }
-}
-function activerBoussole(){
-  const btn=document.getElementById("compass-btn");
-  if(typeof DeviceOrientationEvent!=="undefined"&&typeof DeviceOrientationEvent.requestPermission==="function"){
-    DeviceOrientationEvent.requestPermission().then(p=>{if(p==="granted"){window.addEventListener("deviceorientation",onOrient,true);if(btn)btn.style.display="none";}}).catch(()=>{});
-  } else {window.addEventListener("deviceorientation",onOrient,true);if(btn)btn.style.display="none";}
-}
-function onOrient(e){
-  compass=e.webkitCompassHeading!=null?e.webkitCompassHeading:(360-(e.alpha||0));
-  const el=document.getElementById("qibla-arrow");
-  if(el) el.style.transform="rotate("+((window.qibla||0)-compass)+"deg)";
-}
+function deconnecter() { pelerin=null; renderEspace(); }
 
-/* ═══════ CORAN ═══════ */
-function renderSurahs(){
-  const search=(document.getElementById("coran-search")?.value||"").toLowerCase();
-  const filtered=SURAHS.filter(s=>s.name.toLowerCase().includes(search)||s.ar.includes(search)||String(s.n).includes(search));
-  const el=document.getElementById("surahs-list");if(!el) return;
-  el.innerHTML=filtered.map(s=>'<div onclick="openSurah('+s.n+',\''+s.name+'\',\''+s.ar+'\')" style="background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:14px 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><div style="width:34px;height:34px;border-radius:17px;background:linear-gradient(135deg,'+G+','+GL+');display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:bold;">'+s.n+'</div><div><div style="color:#111;font-size:13px;font-weight:bold;">'+s.name+'</div><div style="color:#888;font-size:10px;">'+s.v+' versets</div></div></div><div style="color:'+G+';font-size:16px;font-family:serif;">'+s.ar+'</div></div>').join("");
-}
-function openSurah(n,name,ar){
-  document.getElementById("surah-title").textContent=name;
-  document.getElementById("surah-ar").textContent=ar;
-  document.getElementById("verses-list").innerHTML='<div style="text-align:center;color:#888;padding:40px;">Chargement...</div>';
-  showPage("verses");
-  fetch("https://api.alquran.cloud/v1/surah/"+n).then(r=>r.json()).then(d=>{
-    document.getElementById("verses-list").innerHTML='<div style="color:'+G+';font-size:22px;text-align:center;font-family:serif;padding:16px 0;line-height:2;background:#fff;border-radius:14px;margin-bottom:12px;border:1px solid #e8e8e8;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>'+
-    d.data.ayahs.map(v=>'<div style="background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:16px;margin-bottom:10px;"><div style="background:'+G+';border-radius:10px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:bold;margin-bottom:8px;">'+v.numberInSurah+'</div><div style="color:#1a1a1a;font-size:20px;text-align:right;direction:rtl;line-height:2;font-family:serif;">'+v.text+'</div></div>').join("");
-  }).catch(()=>{document.getElementById("verses-list").innerHTML='<div style="text-align:center;color:#888;padding:40px;">Erreur</div>';});
-}
-
-/* ═══════ DHIKR ═══════ */
-let dhikrSel=0,dhikrCount=0,dhikrTotal=0;
-function renderDhikr(){
-  const d=DHIKRS[dhikrSel];const pct=Math.min((dhikrCount/d.target)*100,100);const done=dhikrCount>=d.target;const circ=2*Math.PI*98;
-  document.getElementById("dhikr-tabs").innerHTML=DHIKRS.map((dh,i)=>'<button onclick="selectDhikr('+i+')" style="flex-shrink:0;background:'+(i===dhikrSel?"linear-gradient(135deg,"+G+","+GL+")":'#1a1a1a')+';border:1px solid '+(i===dhikrSel?G:"#333")+';border-radius:20px;padding:6px 14px;color:#fff;font-size:11px;cursor:pointer;white-space:nowrap;font-family:Georgia,serif;">'+dh.fr.split(" ").slice(0,2).join(" ")+'</button>').join("");
-  document.getElementById("dhikr-body").innerHTML=
-    '<div style="color:'+(done?"#2ecc71":GL)+';font-size:26px;text-align:center;direction:rtl;font-family:serif;margin-bottom:6px;line-height:1.8;">'+d.ar+'</div>'+
-    '<div style="color:#8a8a8a;font-size:13px;margin-bottom:28px;font-style:italic;">'+d.fr+'</div>'+
-    '<div style="position:relative;width:220px;height:220px;margin-bottom:20px;" id="dhikr-wrap">'+
-      '<svg width="220" height="220" style="position:absolute;top:0;left:0;transform:rotate(-90deg);">'+
-        '<circle cx="110" cy="110" r="98" fill="none" stroke="#222" stroke-width="14"/>'+
-        '<circle id="dhikr-arc" cx="110" cy="110" r="98" fill="none" stroke="'+(done?"#2ecc71":GL)+'" stroke-width="14" stroke-dasharray="'+circ+'" stroke-dashoffset="'+(circ*(1-pct/100))+'" stroke-linecap="round" style="transition:stroke-dashoffset 0.3s;"/>'+
-      '</svg>'+
-      '<button id="dhikr-btn" onclick="tapDhikr()" style="position:absolute;inset:0;background:'+(done?"linear-gradient(135deg,#1a5c2a,#2ecc71)":"linear-gradient(135deg,#0d2b1a,#1a4a2a)")+';border:none;border-radius:50%;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform 0.1s,box-shadow 0.1s;">'+
-        '<div id="dhikr-count" style="color:'+(done?"#2ecc71":"#fff")+';font-size:64px;font-weight:bold;line-height:1;">'+dhikrCount+'</div>'+
-        '<div style="color:#8a8a8a;font-size:13px;margin-top:4px;">/ '+d.target+'</div>'+
-      '</button>'+
-    '</div>'+
-    (done?'<div style="color:#2ecc71;font-size:15px;margin-bottom:12px;font-weight:bold;animation:pulse 1.5s ease infinite;">✅ Alhamdulillah ! بارك الله فيك</div>':'')+
-    '<div style="display:flex;gap:12px;"><button onclick="resetDhikr()" style="background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px 20px;color:#8a8a8a;font-size:13px;cursor:pointer;font-family:Georgia,serif;">↺ Reset</button><div style="background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:12px 20px;color:#8a8a8a;font-size:13px;">Total: '+dhikrTotal+'</div></div>';
-}
-function selectDhikr(i){dhikrSel=i;dhikrCount=0;renderDhikr();}
-function resetDhikr(){dhikrCount=0;renderDhikr();}
-function tapDhikr(){
-  dhikrCount++;dhikrTotal++;
-  const done=dhikrCount>=DHIKRS[dhikrSel].target;
-  const btn=document.getElementById("dhikr-btn");
-  const wrap=document.getElementById("dhikr-wrap");
-  const arc=document.getElementById("dhikr-arc");
-  const countEl=document.getElementById("dhikr-count");
-  if(countEl) countEl.textContent=dhikrCount;
-  if(btn){btn.style.transform="scale(0.92)";btn.style.boxShadow="0 0 40px rgba(37,160,80,0.9)";setTimeout(()=>{if(btn){btn.style.transform="scale(1)";btn.style.boxShadow="none";}},200);}
-  if(wrap){for(let i=0;i<2;i++){setTimeout(()=>{const r=document.createElement("div");r.style.cssText="position:absolute;inset:0;border-radius:50%;border:3px solid "+GL+";animation:ripple 0.8s ease-out forwards;pointer-events:none;";wrap.appendChild(r);setTimeout(()=>r.remove(),900);},i*150);}}
-  if(arc){const circ=2*Math.PI*98;const pct=Math.min((dhikrCount/DHIKRS[dhikrSel].target)*100,100);arc.setAttribute("stroke-dashoffset",circ*(1-pct/100));if(done)arc.setAttribute("stroke","#2ecc71");}
-  if(done) setTimeout(()=>renderDhikr(),300);
-}
-
-/* ═══════ ESPACE ═══════ */
-let pelerin=null;
-function renderEspace(){
-  if(!pelerin){renderLogin();return;}
-  document.getElementById("espace-login-section").style.display="none";
-  document.getElementById("espace-profil-section").style.display="block";
-  const ins=pelerin.inscriptions?.[0];const dep=ins?.departs;const pays=ins?.paiements||[];
-  const totalPaye=pays.reduce((s,x)=>s+(x.montant||0),0);const totalDu=ins?.prix_total||0;
-  const reste=totalDu-totalPaye;const pct=totalDu>0?Math.round((totalPaye/totalDu)*100):0;
-  const dd=dep?.date_depart?new Date(dep.date_depart):null;const daysLeft=dd?Math.ceil((dd-new Date())/864e5):null;
-  document.getElementById("espace-profil-section").innerHTML=
-    '<div style="padding:0 16px 16px;">'+
-    '<div style="background:linear-gradient(135deg,'+G+',#0d4a22);padding:50px 20px 20px;margin:0 -16px 16px;display:flex;gap:14px;align-items:center;">'+
-      '<div style="width:58px;height:58px;border-radius:29px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:26px;border:2px solid rgba(255,255,255,0.3);">'+(pelerin.genre==="F"?"👩🏾":"👨🏾")+'</div>'+
-      '<div><div style="color:#fff;font-size:18px;font-weight:bold;">'+(pelerin.prenom||"")+" "+(pelerin.nom||"")+'</div><div style="color:rgba(255,255,255,0.7);font-size:12px;">N° KT-'+String(pelerin.id||0).padStart(4,"0")+'</div></div>'+
-    '</div>'+
-    (daysLeft!==null?'<div style="background:rgba(30,126,62,0.1);border:1px solid rgba(30,126,62,0.3);border-radius:18px;padding:16px;margin-bottom:12px;text-align:center;"><div style="color:#8a8a8a;font-size:10px;">DÉPART DANS</div><div style="color:#25a050;font-size:44px;font-weight:bold;line-height:1;">'+daysLeft+'</div><div style="font-size:13px;margin-top:4px;">jours</div></div>':'')+
-    '<div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;padding:16px;margin-bottom:12px;">'+
-      '<div style="display:flex;justify-content:space-between;margin-bottom:8px;"><div style="font-size:13px;font-weight:bold;">💰 Paiements</div><div style="color:'+(reste>0?"#e74c3c":"#2ecc71")+';">'+fmt(reste)+' reste</div></div>'+
-      '<div style="background:#222;border-radius:99px;height:8px;overflow:hidden;"><div style="width:'+pct+'%;height:100%;background:linear-gradient(90deg,'+G+','+GL+');border-radius:99px;"></div></div>'+
-    '</div>'+
-    [["🌍","Visa",pelerin.statut_visa||"En traitement"],["💉","Vaccin",pelerin.vaccin_meningite?"✓ Validé":"⚠️ Manquant"],["📞","Téléphone",pelerin.telephone||"—"]].map(([ico,l,v])=>'<div style="background:#1a1a1a;border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;justify-content:space-between;"><div style="color:#8a8a8a;font-size:12px;">'+ico+' '+l+'</div><div style="color:'+(v.includes("✓")?"#2ecc71":v.includes("⚠️")?"#ffc107":"#fff")+';">'+v+'</div></div>').join("")+
-    '<button onclick="deconnecter()" style="width:100%;background:none;border:1px solid #333;border-radius:14px;padding:13px;color:#8a8a8a;font-size:12px;cursor:pointer;margin-top:8px;font-family:Georgia,serif;">Se déconnecter</button>'+
-    '</div>';
-}
-function renderLogin(){
-  document.getElementById("espace-login-section").style.display="block";
-  document.getElementById("espace-profil-section").style.display="none";
-  document.getElementById("espace-login-section").innerHTML=
-    '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:75vh;padding:24px;">'+
-    '<div style="width:70px;height:70px;border-radius:35px;background:linear-gradient(135deg,'+G+','+GL+');display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:14px;">🕌</div>'+
-    '<div style="font-size:20px;font-weight:bold;margin-bottom:4px;">Mon Espace Pèlerin</div>'+
-    '<div style="color:#8a8a8a;font-size:12px;margin-bottom:28px;">Entrez votre numéro de téléphone</div>'+
-    '<div id="login-err" style="display:none;background:rgba(200,50,50,0.1);border:1px solid rgba(200,50,50,0.3);border-radius:12px;padding:12px;color:#ff6b6b;font-size:13px;margin-bottom:14px;text-align:center;width:100%;max-width:320px;box-sizing:border-box;"></div>'+
-    '<div style="display:flex;gap:8px;margin-bottom:16px;width:100%;max-width:320px;">'+
-      '<div style="background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:14px 12px;font-size:14px;white-space:nowrap;">🇸🇳 +221</div>'+
-      '<input type="tel" id="login-phone" placeholder="77 123 45 67" oninput="checkBtn()" style="flex:1;background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:14px 16px;color:#fff;font-size:16px;outline:none;font-family:Georgia,serif;"/>'+
-    '</div>'+
-    '<button id="login-btn" onclick="doLogin()" disabled style="width:100%;max-width:320px;background:#222;border:none;border-radius:14px;padding:16px;color:#fff;font-size:15px;font-weight:bold;cursor:not-allowed;font-family:Georgia,serif;">Accéder à mon espace</button>'+
-    '</div>';
-}
-function checkBtn(){const v=document.getElementById("login-phone")?.value||"";const btn=document.getElementById("login-btn");if(!btn)return;btn.disabled=v.length<8;btn.style.background=v.length>=8?"linear-gradient(135deg,"+G+","+GL+")":"#222";btn.style.cursor=v.length>=8?"pointer":"not-allowed";}
-async function doLogin(){
-  const phone=document.getElementById("login-phone")?.value||"";
-  const btn=document.getElementById("login-btn");const err=document.getElementById("login-err");
-  if(btn){btn.textContent="Recherche...";btn.disabled=true;}
-  const cleaned=phone.replace(/[^0-9]/g,"");const last9=cleaned.slice(-9);
-  for(const v of [last9,"+221"+last9,"221"+last9]){
-    try{const res=await fetch(SB_URL+"/rest/v1/clients?telephone=eq."+encodeURIComponent(v)+"&select=*,inscriptions(*,departs(*),paiements(*))",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});const data=await res.json();if(data&&data.length>0){pelerin=data[0];renderEspace();return;}}catch(e){}
-  }
-  if(err){err.style.display="block";err.textContent="Numéro non trouvé. Contactez +221 78 781 16 16";}
-  if(btn){btn.textContent="Accéder à mon espace";btn.disabled=false;btn.style.background="linear-gradient(135deg,"+G+","+GL+")";}
-}
-function deconnecter(){pelerin=null;renderEspace();}
-
-/* ═══════ FORMULAIRE ═══════ */
-function envoyerFormulaire(){
-  const type=document.getElementById("f-type")?.value||"";
-  const mois=document.getElementById("f-mois")?.value||"";
-  const formule=document.getElementById("f-formule")?.value||"";
-  const chambre=document.getElementById("f-chambre")?.value||"";
-  const personnes=document.getElementById("f-personnes")?.value||"";
-  const jours=document.getElementById("f-jours")?.value||"";
-  const combine=document.getElementById("f-combine")?.value||"";
-  const budget=document.getElementById("f-budget")?.value||"";
-  const nom=document.getElementById("f-nom")?.value||"";
-  const phone=document.getElementById("f-phone")?.value||"";
-  const remarques=document.getElementById("f-remarques")?.value||"";
-  if(!nom||!phone){alert("Veuillez entrer votre nom et téléphone !");return;}
-  const msg="Salam Alaikum ! 🕌 Demande Oumra Kyswa Travel\n\n👤 Nom : "+nom+"\n📱 Tél : +221"+phone.replace(/[^0-9]/g,"").slice(-9)+"\n\n✈️ Type : "+type+"\n📅 Mois : "+mois+"\n📋 Formule : "+formule+"\n🏨 Chambre : "+chambre+"\n👥 Personnes : "+personnes+"\n📆 Jours : "+jours+"\n🗺️ Combiné : "+combine+"\n💰 Budget : "+budget+(remarques?"\n\n💬 Remarques : "+remarques:"");
+/* ── FORMULAIRE ── */
+function envoyerFormulaire() {
+  const g = id => document.getElementById(id)?.value||"";
+  const nom=g("f-nom"), phone=g("f-phone");
+  if (!nom||!phone) { alert("Veuillez entrer votre nom et téléphone !"); return; }
+  const msg = "Salam Alaikum ! 🕌 Demande Oumra Kyswa Travel\n\n"
+    +"👤 Nom : "+nom+"\n📱 Tél : +221"+phone.replace(/[^0-9]/g,"").slice(-9)+"\n\n"
+    +"✈️ Type : "+g("f-type")+"\n📅 Mois : "+g("f-mois")+"\n📋 Formule : "+g("f-formule")+"\n"
+    +"🏨 Chambre : "+g("f-chambre")+"\n👥 Personnes : "+g("f-personnes")+"\n📆 Jours : "+g("f-jours")+"\n"
+    +"🗺️ Combiné : "+g("f-combine")+"\n💰 Budget : "+g("f-budget")
+    +(g("f-remarques")?"\n\n💬 Remarques : "+g("f-remarques"):"");
   window.open("https://wa.me/221787811616?text="+encodeURIComponent(msg),"_blank");
 }
 
-/* ═══════ INIT ═══════ */
+/* ── INIT ── */
 renderSurahs();
 renderDhikr();
 renderLogin();
