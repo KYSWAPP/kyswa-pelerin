@@ -64,14 +64,15 @@ function App() {
   const [pelerin,setPelerin] = useState(null);
   const t = T[lang];
 
-  const findPelerin = async(phone) => {
+ const findPelerin = async(phone) => {
     const cleaned = phone.replace(/\s/g,"").replace(/^\+221/,"");
     const variants = [cleaned, `+221${cleaned}`, `221${cleaned}`];
     for(const v of variants){
-      const {data} = await sb.from("clients")
+      const {data,error} = await sb.from("clients")
         .select("*,inscriptions(*,departs(*),paiements(*))")
-        .eq("telephone", v).single();
-      if(data){ setPelerin(data); setScreen("home"); return true; }
+        .eq("telephone", v)
+        .maybeSingle();
+      if(data && !error){ setPelerin(data); setScreen("home"); return true; }
     }
     return false;
   };
