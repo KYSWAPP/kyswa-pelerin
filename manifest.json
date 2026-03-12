@@ -1,0 +1,22 @@
+{
+  "name": "Kyswa Travel",
+  "short_name": "Kyswa",
+  "description": "Espace Pèlerin & Spirituel — Kyswa Travel Dakar",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#1e7e3e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://emojicdn.elk.sh/🕌?style=apple",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://emojicdn.elk.sh/🕌?style=apple",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
