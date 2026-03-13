@@ -1,7 +1,7 @@
 {
   "name": "Kyswa Travel",
   "short_name": "Kyswa",
-  "description": "Application pèlerinage Oumra & Hajj — Elhadji Malick Seye",
+  "description": "Application pelerinage Oumra et Hajj",
   "start_url": "/",
   "id": "/kyswa-travel",
   "display": "standalone",
