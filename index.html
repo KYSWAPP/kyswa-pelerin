@@ -413,15 +413,36 @@ html{scroll-padding-bottom:calc(var(--nav-height)+100px);}
 <div id="pg-sadaqa" class="page">
   <div style="background:linear-gradient(160deg,#0D2B1A,#1A5C36);padding:56px var(--space-md) var(--space-lg);">
     <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
-    <div style="color:#fff;font-size:22px;font-weight:800;">💚 Sadaqa — Donner pour Allah</div>
-    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Wave · Orange Money · Tontine Oumra</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+      <div style="width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:28px;">💚</div>
+      <div>
+        <div style="color:#fff;font-size:20px;font-weight:800;">Sadaqa — Association AHBAB</div>
+        <div style="color:rgba(255,255,255,0.65);font-size:11px;margin-top:2px;">Elhadji Malick Seye — Dakar, Sénégal</div>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,0.1);border-radius:var(--radius-md);padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.85);font-style:italic;">
+      « Qui est-ce qui accordera à Allah un prêt généreux ? » — Al-Baqara 2:245
+    </div>
   </div>
   <div style="padding:var(--space-md);">
     <div class="card" style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);margin-bottom:var(--space-md);">
-      <div style="color:rgba(255,255,255,0.7);font-size:12px;margin-bottom:8px;">Allah dit : 'Qui est-ce qui accordera à Allah un prêt généreux ?' — Al-Baqara 2:245</div>
-      <div style="color:#7FFFD4;font-size:13px;font-weight:700;">Chaque FCFA donné pour Allah revient multiplié !</div>
+      <div style="color:#7FFFD4;font-size:13px;font-weight:800;margin-bottom:8px;">🌿 Association AHBAB Elhadji Malick Seye</div>
+      <div style="color:rgba(255,255,255,0.8);font-size:12px;line-height:1.7;margin-bottom:10px;">Association caritative islamique fondée dans la continuité de l'œuvre spirituelle de Seydi Mouhamad Lamine Seye. Elle œuvre pour l'éducation, la solidarité et la da'wa.</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">🍽️ Iftar Ramadan</span>
+        <span style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">📦 Distributions</span>
+        <span style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">📚 Éducation</span>
+        <span style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">🕌 Da'wa</span>
+      </div>
     </div>
-    <div class="section-label">Montant à donner</div>
+    <div class="card" style="border:1.5px solid var(--gold);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);margin-bottom:var(--space-md);">
+      <div style="font-size:13px;font-weight:800;color:var(--gold);margin-bottom:6px;">🏛️ Projet Daar-Nabi — Ndiakhirat</div>
+      <div style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin-bottom:8px;">Construction d'un complexe islamique de 4 étages dédié à l'enseignement du Coran et des sciences islamiques. Votre Sadaqa est une Sadaqa Jariya — récompense perpétuelle insha'Allah.</div>
+      <div style="background:var(--gold-soft);border-radius:var(--radius-sm);padding:8px 12px;font-size:11px;color:var(--gold);font-weight:700;">
+        📌 Sadaqa Jariya — récompense jannah
+      </div>
+    </div>
+    <div class="section-label">Montant de votre don</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:var(--space-md);">
       <button onclick="setSadaqaMontant(1000)" class="card" style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;"><div style="font-weight:700;">1 000</div><div style="font-size:10px;color:var(--text-hint);">FCFA</div></button>
       <button onclick="setSadaqaMontant(2000)" class="card" style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;"><div style="font-weight:700;">2 000</div><div style="font-size:10px;color:var(--text-hint);">FCFA</div></button>
@@ -434,10 +455,17 @@ html{scroll-padding-bottom:calc(var(--nav-height)+100px);}
       <input type="number" id="sadaqa-montant" placeholder="Ou saisir un montant..." class="input" style="flex:1;"/>
       <div style="background:var(--surface-2);border-radius:var(--radius-md);padding:14px 12px;font-size:13px;color:var(--text-secondary);">FCFA</div>
     </div>
-    <div class="section-label">Choisir le mode de paiement</div>
-    <a id="wave-btn" href="#" target="_blank" class="btn" style="background:#1E90FF;color:#fff;margin-bottom:10px;border-radius:var(--radius-md);">💙 Payer via Wave</a>
-    <a id="orange-btn" href="#" target="_blank" class="btn" style="background:#FF6600;color:#fff;margin-bottom:10px;border-radius:var(--radius-md);">🟠 Payer via Orange Money</a>
-    <a href="https://wa.me/221787811616?text=Je%20souhaite%20donner%20une%20Sadaqa%20via%20Kyswa%20Travel" target="_blank" class="btn btn-whatsapp" style="border-radius:var(--radius-md);">📱 Contacter Kyswa pour don</a>
+    <div class="section-label">Mode de paiement</div>
+    <a id="wave-btn" href="#" target="_blank" class="btn" style="background:#1E90FF;color:#fff;margin-bottom:10px;border-radius:var(--radius-md);">💙 Donner via Wave</a>
+    <a id="orange-btn" href="#" target="_blank" class="btn" style="background:#FF6600;color:#fff;margin-bottom:10px;border-radius:var(--radius-md);">🟠 Donner via Orange Money</a>
+    <a href="https://wa.me/221787811616?text=Salam%20Alaikum%20!%20Je%20souhaite%20faire%20un%20don%20pour%20l%27Association%20AHBAB%20Elhadji%20Malick%20Seye.%20JazakAllah%20khayran." target="_blank" class="btn btn-whatsapp" style="border-radius:var(--radius-md);">📱 Contacter via WhatsApp</a>
+    <div class="card" style="margin-top:var(--space-md);background:var(--surface-2);border:none;text-align:center;">
+      <div style="font-size:11px;color:var(--text-hint);line-height:1.7;">
+        💚 Tous les dons sont remis directement à l'Association AHBAB<br>
+        📍 Dakar, Sénégal — Dirigée par Elhadji Malick Seye<br>
+        📞 +221 78 633 45 45
+      </div>
+    </div>
     <div class="card" style="margin-top:var(--space-md);background:var(--primary-soft);border:1.5px solid var(--primary-mid);">
       <div style="font-size:12px;color:var(--primary);font-weight:700;margin-bottom:4px;">🕋 Tontine Oumra — 200 000 FCFA/mois</div>
       <div style="font-size:11px;color:var(--text-secondary);">Épargnez chaque mois pour votre Oumra. Kyswa Travel gère votre épargne jusqu'au départ.</div>
