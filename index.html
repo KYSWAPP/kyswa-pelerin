@@ -867,7 +867,7 @@ function showPage(id){
   const nb=document.getElementById('nb-'+nid);const nl=document.getElementById('nbl-'+nid);
   if(nb) nb.style.opacity='1';
   if(nl){nl.style.color='var(--primary)';nl.style.fontWeight='700';}
-  window.scrollTo(0,0);
+ window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;
   if(id==='prieres') renderPrieres();
   if(id==='coran') renderSurahs();
   if(id==='dhikr') renderDhikr();
@@ -877,6 +877,7 @@ function showPage(id){
   if(id==='oumra') renderOumra();
   if(id==='sira') renderSira();
   if(id==='infos'){infosTab='climat';renderInfos();}
+  setTimeout(()=>{window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;},80);
 }
 document.getElementById('pg-home').style.display='block';
 
