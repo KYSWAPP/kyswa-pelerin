@@ -1057,9 +1057,10 @@ function validerBaraka(id,pts){
   renderBaraka();
 }
 
+/* ════ PRAYERS ════ */
 (function(){
   const loc={lat:14.6937,lng:-17.4441};
- loadTimes(loc);
+  loadTimes(loc);
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(pos=>{
       loc.lat=pos.coords.latitude;loc.lng=pos.coords.longitude;
@@ -1084,7 +1085,6 @@ function validerBaraka(id,pts){
       }).catch(()=>{});
   }
 })();
-
 function startTicker(){
   setInterval(()=>{
     if(!prayerTimes) return;
