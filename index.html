@@ -41,7 +41,7 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
 .section-label{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--text-hint);text-transform:uppercase;margin-bottom:var(--space-sm);}
 .divider{height:1px;background:var(--border);margin:var(--space-md) 0;}
 #toast-container{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:398px;z-index:9999;pointer-events:none;}
-.toast{background:#1A1A2E;border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,0.4);animation:slideDown 0.4s ease both;pointer-events:all;}
+.toast{background:#1A1A2E;border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,0.4);animation:slideDown 0.4s ease both;pointer-events:all;}
 .toast-icon{font-size:26px;flex-shrink:0;}
 .toast-body{flex:1;}
 .toast-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px;}
@@ -66,50 +66,45 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
 <div id="app" style="max-width:430px;margin:0 auto;">
 <div id="pg-home" class="page">
   <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);position:relative;overflow:hidden;">
-    <div style="position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.05);"></div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;">
-      <div>
-        <div style="color:rgba(255,255,255,0.85);font-size:13px;font-weight:700;margin-bottom:2px;">🙏 Elhadji Malick Seye</div>
-        <div style="color:rgba(255,255,255,0.7);font-size:11px;font-style:italic;margin-bottom:6px;">✨ Meilleur Guide</div>
-        <div style="color:#fff;font-size:22px;font-weight:800;">Kyswa Travel</div>
-        <div style="color:rgba(255,255,255,0.65);font-size:11px;margin-top:4px;display:flex;align-items:center;gap:4px;">
-          <span style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;animation:pulse 2s ease infinite;"></span> Dakar, Sénégal
-        </div>
-      </div>
-      <div style="width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:26px;">🕌</div>
+    <div style="color:rgba(255,255,255,0.85);font-size:13px;font-weight:700;">🙏 Elhadji Malick Seye</div>
+    <div style="color:#fff;font-size:22px;font-weight:800;">Kyswa Travel</div>
+    <div style="color:rgba(255,255,255,0.65);font-size:11px;margin-top:4px;display:flex;align-items:center;gap:4px;">
+      <span style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;animation:pulse 2s ease infinite;"></span> Dakar, Sénégal
     </div>
   </div>
   <div style="padding:0 var(--space-md);margin-top:-16px;">
-    <div id="notif-banner" onclick="demanderPermission()" style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-bottom:var(--space-md);display:flex;align-items:center;gap:12px;cursor:pointer;box-shadow:var(--shadow-md);">
+    <div id="notif-banner" onclick="demanderPermission()" style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-bottom:var(--space-md);display:flex;align-items:center;gap:12px;cursor:pointer;">
       <div style="font-size:28px;">🔔</div>
-      <div style="flex:1;"><div style="color:#fff;font-size:13px;font-weight:700;">Activer les rappels quotidiens</div><div style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:2px;">Azan · Sira 10h · Hadith · Azkar · Salawat</div></div>
+      <div style="flex:1;"><div style="color:#fff;font-size:13px;font-weight:700;">Activer les rappels</div><div style="color:rgba(255,255,255,0.6);font-size:11px;">Azan · Sira · Azkar · Salawat</div></div>
       <div style="background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:6px 14px;color:#fff;font-size:11px;font-weight:700;">Activer</div>
     </div>
-    <div onclick="showPage('prieres')" class="card" style="cursor:pointer;">
+    <div onclick="showPage('prieres')" class="card" style="cursor:pointer;margin-bottom:var(--space-md);">
       <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div><div class="section-label">Prochaine prière</div><div id="next-prayer-name" style="font-size:18px;font-weight:700;margin-top:4px;">⏳ Chargement...</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--primary);display:inline-block;animation:pulse 2s ease infinite;"></span><span style="color:var(--text-secondary);font-size:11px;">Appuyez pour tous les horaires</span></div></div>
-        <div style="text-align:right;"><div id="countdown-el" style="font-size:28px;font-weight:800;color:var(--primary);letter-spacing:-1px;">--:--</div><div style="color:var(--text-hint);font-size:10px;margin-top:2px;">restant</div></div>
+        <div><div class="section-label">Prochaine prière</div><div id="next-prayer-name" style="font-size:18px;font-weight:700;margin-top:4px;">⏳ Chargement...</div></div>
+        <div style="text-align:right;"><div id="countdown-el" style="font-size:28px;font-weight:800;color:var(--primary);">--:--</div><div style="color:var(--text-hint);font-size:10px;">restant</div></div>
       </div>
     </div>
-    <div onclick="showPage('oumra')" style="background:linear-gradient(135deg,#3D1A00,#8B4513);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;box-shadow:0 8px 24px rgba(139,69,19,0.3);position:relative;overflow:hidden;">
-      <div style="position:absolute;right:-20px;top:-20px;font-size:100px;opacity:0.08;">🕋</div>
-      <div class="badge badge-gold" style="margin-bottom:10px;">🕋 GUIDE COMPLET</div>
-      <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Guide de l'Oumra</div>
-      <div style="color:rgba(255,255,255,0.7);font-size:12px;margin-bottom:12px;">Invocations · Tawaf · Sa'i · Ziara Rawda</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🤍 Ihram</span>
-        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🌀 Tawaf</span>
-        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">⛰️ Sa'i</span>
-        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🌿 Rawda</span>
-      </div>
+    <div onclick="showPage('sira')" style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;">
+      <div class="badge" style="background:rgba(255,255,255,0.15);color:#C4B5FD;margin-bottom:10px;">📚 LEÇON DU JOUR</div>
+      <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Vie du Prophète ﷺ</div>
+      <div style="color:rgba(255,255,255,0.7);font-size:12px;">30 leçons · Hadith du jour · Rappels</div>
     </div>
-    <div onclick="showPage('baraka')" style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;box-shadow:0 8px 24px rgba(0,80,40,0.3);position:relative;overflow:hidden;">
-      <div style="position:absolute;right:-20px;top:-20px;font-size:100px;opacity:0.06;">📿</div>
+    <div onclick="showPage('infos')" style="background:linear-gradient(135deg,#004D6E,#006994);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;">
+      <div class="badge" style="background:rgba(255,255,255,0.15);color:#B3E5FC;margin-bottom:10px;">🌡️ PRATIQUE</div>
+      <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Infos Pratiques</div>
+      <div style="color:rgba(255,255,255,0.7);font-size:12px;">Climat · Interdits Ihram · Bagages · Santé</div>
+    </div>
+    <div onclick="showPage('oumra')" style="background:linear-gradient(135deg,#3D1A00,#8B4513);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;">
+      <div class="badge badge-gold" style="margin-bottom:10px;">🕋 GUIDE</div>
+      <div style="color:#fff;font-size:20px;font-weight:800;">Guide de l'Oumra</div>
+      <div style="color:rgba(255,255,255,0.7);font-size:12px;">Invocations · Tawaf · Sa'i · Rawda</div>
+    </div>
+    <div onclick="showPage('baraka')" style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;">
       <div class="badge badge-primary" style="margin-bottom:10px;">🌟 PROGRAMME</div>
-      <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Programme Baraka</div>
-      <div style="color:rgba(255,255,255,0.7);font-size:12px;">Azkar · Post-Oumra 40 jours · Hasanat</div>
+      <div style="color:#fff;font-size:20px;font-weight:800;">Programme Baraka</div>
+      <div style="color:rgba(255,255,255,0.7);font-size:12px;">Azkar · Salawat 12k · Post-Oumra 40j</div>
     </div>
-    <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);position:relative;overflow:hidden;box-shadow:var(--shadow-primary);">
+    <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);box-shadow:var(--shadow-primary);">
       <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;">🔥 OFFRE LIMITÉE</div>
       <div style="color:#fff;font-size:20px;font-weight:800;">Oumra Juin 2026</div>
       <div style="color:rgba(255,255,255,0.75);font-size:12px;margin:4px 0 12px;">Du 20 au 30 Juin · Places limitées</div>
@@ -118,16 +113,36 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
         <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank" style="background:#fff;color:var(--primary);border-radius:var(--radius-md);padding:12px 18px;font-size:13px;font-weight:700;">Réserver →</a>
       </div>
     </div>
-    <div class="section-label">Accès rapide</div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:var(--space-md);">
-      <button onclick="showPage('packages')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">✈️</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Packages</div></button>
-      <button onclick="showPage('boutique')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">🛍️</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Boutique</div></button>
-      <button onclick="showPage('prieres')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">🕌</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Prières</div></button>
-      <button onclick="showPage('coran')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">📖</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Coran</div></button>
-      <button onclick="showPage('dhikr')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">📿</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Dhikr</div></button>
-    </div>
   </div>
 </div>
+<!-- SIRA -->
+<div id="pg-sira" class="page" style="background:linear-gradient(180deg,#1A0A3E 0%,#0D1117 300px);">
+  <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-md);">
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Kyswa Travel</div>
+    <div style="color:#fff;font-size:22px;font-weight:800;">📚 Vie du Prophète ﷺ</div>
+    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Leçon quotidienne · Hadith du jour</div>
+  </div>
+  <div style="overflow-x:auto;display:flex;gap:6px;padding:var(--space-md) var(--space-md) 0;scrollbar-width:none;" id="sira-tabs"></div>
+  <div style="padding:var(--space-md);" id="sira-content"></div>
+</div>
+
+<!-- INFOS -->
+<div id="pg-infos" class="page">
+  <div style="background:linear-gradient(160deg,#004D6E,#006994);padding:56px var(--space-md) var(--space-md);">
+    <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Kyswa Travel</div>
+    <div style="color:#fff;font-size:22px;font-weight:800;">🌡️ Infos Pratiques</div>
+    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Climat · Interdits Ihram · Bagages · Santé</div>
+    <div style="display:flex;gap:6px;margin-top:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
+      <button onclick="setInfosTab('climat')" id="itab-climat" style="flex-shrink:0;background:#fff;color:#004D6E;border:none;border-radius:var(--radius-full);padding:7px 14px;font-size:11px;font-weight:700;cursor:pointer;">🌡️ Climat</button>
+      <button onclick="setInfosTab('interdits')" id="itab-interdits" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:var(--radius-full);padding:7px 14px;font-size:11px;cursor:pointer;">🚫 Interdits</button>
+      <button onclick="setInfosTab('bagages')" id="itab-bagages" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:var(--radius-full);padding:7px 14px;font-size:11px;cursor:pointer;">🎒 Bagages</button>
+      <button onclick="setInfosTab('sante')" id="itab-sante" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:var(--radius-full);padding:7px 14px;font-size:11px;cursor:pointer;">💊 Santé</button>
+    </div>
+  </div>
+  <div style="padding:var(--space-md);" id="infos-content"></div>
+</div>
+
+<!-- OUMRA -->
 <div id="pg-oumra" class="page">
   <div style="background:linear-gradient(160deg,#3D1A00,#8B4513);padding:56px var(--space-md) var(--space-md);">
     <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Elhadji Malick Seye — Kyswa Travel</div>
@@ -137,9 +152,10 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
   <div style="display:flex;overflow-x:auto;gap:6px;padding:var(--space-md) var(--space-md) 0;scrollbar-width:none;" id="oumra-tabs"></div>
   <div id="oumra-content" style="padding:var(--space-md);"></div>
 </div>
+
+<!-- BARAKA -->
 <div id="pg-baraka" class="page" style="background:var(--dark-bg);">
   <div style="background:linear-gradient(160deg,#0A1F10,#1A5C36);padding:56px var(--space-md) var(--space-lg);">
-    <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Elhadji Malick Seye — Kyswa Travel</div>
     <div style="color:#fff;font-size:22px;font-weight:800;">🌟 Programme Baraka</div>
     <div style="background:rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-top:var(--space-md);display:flex;justify-content:space-between;align-items:center;">
       <div><div style="color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:1px;">VOS HASANAT AUJOURD'HUI</div><div id="baraka-score" style="color:#7FFFD4;font-size:32px;font-weight:900;">0</div></div>
@@ -153,12 +169,13 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
   </div>
   <div style="padding:var(--space-md);" id="baraka-content"></div>
 </div>
+
+<!-- PACKAGES -->
 <div id="pg-packages" class="page">
   <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
-    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-bottom:4px;">Kyswa Travel</div>
     <div style="color:#fff;font-size:24px;font-weight:800;">✈️ Nos Packages 2026</div>
   </div>
-  <div style="padding:var(--space-md);margin-top:-8px;">
+  <div style="padding:var(--space-md);">
     <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);box-shadow:var(--shadow-primary);">
       <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;">🔥 PROMO</div>
       <div style="color:#fff;font-size:18px;font-weight:800;">Oumra Juin 2026</div>
@@ -166,17 +183,18 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
       <div style="color:#fff;font-size:28px;font-weight:900;margin-bottom:14px;">990 000 <span style="font-size:13px;">FCFA</span></div>
       <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank" class="btn" style="background:#fff;color:var(--primary);border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a>
     </div>
-    <div class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-primary">Standard</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Standard</div></div><div style="font-size:36px;">🌙</div></div><div style="color:var(--primary);font-size:24px;font-weight:800;margin-bottom:14px;">1 850 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20Standard" target="_blank" class="btn btn-primary" style="border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a></div>
-    <div class="card" style="border:1.5px solid var(--gold-soft);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-gold">⭐ VIP</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra VIP</div></div><div style="font-size:36px;">⭐</div></div><div style="color:var(--gold);font-size:24px;font-weight:800;margin-bottom:14px;">2 200 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20VIP" target="_blank" class="btn btn-gold" style="border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a></div>
-    <div class="card" style="background:linear-gradient(135deg,#F8F4FF,#F0E6FF);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge" style="background:rgba(103,58,183,0.1);color:#673AB7;">🌙 Shawal</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Shawal 2026</div></div><div style="font-size:36px;">🌙</div></div><div style="color:#673AB7;font-size:24px;font-weight:800;margin-bottom:14px;">2 850 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20Shawal" target="_blank" class="btn" style="background:#673AB7;color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a></div>
-    <div class="card" style="background:linear-gradient(135deg,#F0F4FF,#E6EDFF);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-blue">📅 Mensuel</span><div style="font-size:17px;font-weight:700;margin-top:8px;">🏦 Tontine Oumra</div></div><div style="font-size:36px;">🏦</div></div><div style="color:var(--blue);font-size:24px;font-weight:800;margin-bottom:14px;">200 000 <span style="font-size:13px;">FCFA/mois</span></div><a href="https://wa.me/221787811616?text=Tontine%20Oumra" target="_blank" class="btn" style="background:var(--blue);color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 S'inscrire via WhatsApp</a></div>
+    <div class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-primary">Standard</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Standard</div></div><div style="font-size:36px;">🌙</div></div><div style="color:var(--primary);font-size:24px;font-weight:800;margin-bottom:14px;">1 850 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20Standard" target="_blank" class="btn btn-primary" style="font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a></div>
+    <div class="card" style="border:1.5px solid var(--gold-soft);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-gold">⭐ VIP</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra VIP</div></div><div style="font-size:36px;">⭐</div></div><div style="color:var(--gold);font-size:24px;font-weight:800;margin-bottom:14px;">2 200 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20VIP" target="_blank" class="btn btn-gold" style="font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a></div>
+    <div class="card" style="background:linear-gradient(135deg,#F8F4FF,#F0E6FF);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge" style="background:rgba(103,58,183,0.1);color:#673AB7;">🌙 Shawal</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Shawal 2026</div></div><div style="font-size:36px;">🌙</div></div><div style="color:#673AB7;font-size:24px;font-weight:800;margin-bottom:14px;">2 850 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20Shawal" target="_blank" class="btn" style="background:#673AB7;color:#fff;font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a></div>
+    <div class="card" style="background:linear-gradient(135deg,#F0F4FF,#E6EDFF);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-blue">📅 Mensuel</span><div style="font-size:17px;font-weight:700;margin-top:8px;">🏦 Tontine Oumra</div></div><div style="font-size:36px;">🏦</div></div><div style="color:var(--blue);font-size:24px;font-weight:800;margin-bottom:14px;">200 000 <span style="font-size:13px;">FCFA/mois</span></div><a href="https://wa.me/221787811616?text=Tontine%20Oumra" target="_blank" class="btn" style="background:var(--blue);color:#fff;font-size:13px;padding:13px;">📱 S'inscrire via WhatsApp</a></div>
     <button onclick="showPage('formulaire')" class="btn btn-outline" style="margin-top:4px;">📋 Demande personnalisée</button>
   </div>
 </div>
+
+<!-- BOUTIQUE -->
 <div id="pg-boutique" class="page">
   <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-md);">
-    <div style="color:rgba(255,255,255,0.6);font-size:12px;margin-bottom:4px;">🕋 Produits de La Mecque</div>
-    <div style="color:#fff;font-size:24px;font-weight:800;">Boutique Kyswa</div>
+    <div style="color:#fff;font-size:24px;font-weight:800;">🛍️ Boutique Kyswa</div>
     <div style="display:flex;gap:8px;margin-top:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
       <button onclick="filterBoutique('tout')" id="cat-tout" style="flex-shrink:0;background:#fff;border:none;border-radius:var(--radius-full);padding:7px 16px;color:#3D1A78;font-size:11px;font-weight:700;cursor:pointer;">Tout</button>
       <button onclick="filterBoutique('zamzam')" id="cat-zamzam" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">💧 Zamzam</button>
@@ -189,6 +207,8 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
   <div id="boutique-grid" style="padding:var(--space-md);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);"></div>
 </div>
 <div id="pg-produit" class="page"><div id="produit-content"></div></div>
+
+<!-- PRIERES -->
 <div id="pg-prieres" class="page">
   <div style="background:var(--surface);padding:56px var(--space-md) 0;border-bottom:1px solid var(--border);">
     <div style="font-size:20px;font-weight:800;text-align:center;padding-bottom:14px;">🕌 Prières</div>
@@ -199,6 +219,8 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
   </div>
   <div id="prieres-content" style="padding:var(--space-md);"></div>
 </div>
+
+<!-- CORAN -->
 <div id="pg-coran" class="page">
   <div style="background:var(--surface);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--border);">
     <div style="font-size:20px;font-weight:800;text-align:center;margin-bottom:14px;">📖 Coran</div>
@@ -214,6 +236,8 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
   </div>
   <div id="verses-list" style="padding:var(--space-md);background:var(--bg);min-height:100vh;"></div>
 </div>
+
+<!-- DHIKR -->
 <div id="pg-dhikr" class="page" style="background:var(--dark-bg);">
   <div style="background:var(--dark-bg);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--dark-border);">
     <div style="color:var(--dark-text);font-size:20px;font-weight:800;text-align:center;">📿 Dhikr & Tasbih</div>
@@ -221,10 +245,14 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
   <div style="overflow-x:auto;display:flex;gap:8px;padding:var(--space-md) var(--space-md) 0;" id="dhikr-tabs"></div>
   <div style="display:flex;flex-direction:column;align-items:center;padding:var(--space-lg) var(--space-md);" id="dhikr-body"></div>
 </div>
+
+<!-- ESPACE -->
 <div id="pg-espace" class="page">
   <div id="espace-login-section"></div>
   <div id="espace-profil-section" style="display:none;"></div>
 </div>
+
+<!-- FORMULAIRE -->
 <div id="pg-formulaire" class="page">
   <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
     <button onclick="showPage('packages')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
@@ -260,13 +288,14 @@ html{scroll-padding-bottom:calc(var(--nav-height)+56px);}
   </div>
 </div>
 </div>
+
 <!-- NAV -->
-<div style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding:10px 0 20px;z-index:100;box-shadow:0 -4px 24px rgba(0,0,0,0.06);">
+<div style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding:8px 0 18px;z-index:100;box-shadow:0 -4px 24px rgba(0,0,0,0.06);">
   <button onclick="showPage('home')" id="nb-home" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:1;"><div style="font-size:20px;">🏠</div><div id="nbl-home" style="font-size:8px;font-weight:700;color:var(--primary);">Accueil</div></button>
+  <button onclick="showPage('sira')" id="nb-sira" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">📚</div><div id="nbl-sira" style="font-size:8px;color:var(--text-hint);">Sira</div></button>
+  <button onclick="showPage('infos')" id="nb-infos" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">🌡️</div><div id="nbl-infos" style="font-size:8px;color:var(--text-hint);">Infos</div></button>
   <button onclick="showPage('oumra')" id="nb-oumra" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">🕋</div><div id="nbl-oumra" style="font-size:8px;color:var(--text-hint);">Guide</div></button>
   <button onclick="showPage('baraka')" id="nb-baraka" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">🌟</div><div id="nbl-baraka" style="font-size:8px;color:var(--text-hint);">Baraka</div></button>
-  <button onclick="showPage('packages')" id="nb-packages" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">✈️</div><div id="nbl-packages" style="font-size:8px;color:var(--text-hint);">Packages</div></button>
-  <button onclick="showPage('prieres')" id="nb-prieres" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">🕌</div><div id="nbl-prieres" style="font-size:8px;color:var(--text-hint);">Prières</div></button>
   <button onclick="showPage('dhikr')" id="nb-dhikr" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">📿</div><div id="nbl-dhikr" style="font-size:8px;color:var(--text-hint);">Dhikr</div></button>
   <button onclick="showPage('espace')" id="nb-espace" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">👤</div><div id="nbl-espace" style="font-size:8px;color:var(--text-hint);">Espace</div></button>
 </div>
@@ -284,54 +313,54 @@ const OUMRA_STEPS=[
   {id:"fin",icon:"✅",titre:"Fin Oumra"},{id:"rawda",icon:"🌿",titre:"Rawda"},
 ];
 const OUMRA_DATA={
-  ihram:{titre:"🤍 Ihram & Préparation",couleur:"linear-gradient(135deg,#005C40,#00815A)",intro:"Faites le Ghusl, parfumez-vous (corps uniquement), revêtez les deux pièces blanches pour les hommes.",
+  ihram:{titre:"🤍 Ihram & Préparation",couleur:"linear-gradient(135deg,#005C40,#00815A)",intro:"Faites le Ghusl, parfumez-vous (corps uniquement), revêtez les deux pièces blanches.",
     invocations:[
       {titre:"Niyyah — Intention de l'Ihram",ar:"نَوَيْتُ الإِحْرَامَ بِعُمْرَةٍ لِلَّهِ تَعَالَى",translit:"Nawaytu al-ihrâma bi-'Umratin lillâhi ta'âlâ",fr:"J'ai l'intention de revêtir l'Ihram pour accomplir la Omra pour Allah le Très-Haut",note:"Au moment de revêtir les deux pièces blanches"},
-      {titre:"Du'a de départ",ar:"اللَّهُمَّ بِكَ أَصُولُ وَبِكَ أَجُولُ وَبِكَ أَسِيرُ",translit:"Allâhumma bika asûlu wa bika ajûlu wa bika asîru",fr:"Ô Allah, c'est grâce à Toi que j'agis, que je me déplace et que je chemine",note:"Au moment de partir pour La Mecque"},
+      {titre:"Du'a de départ",ar:"اللَّهُمَّ بِكَ أَصُولُ وَبِكَ أَجُولُ وَبِكَ أَسِيرُ",translit:"Allâhumma bika asûlu wa bika ajûlu wa bika asîru",fr:"Ô Allah, c'est grâce à Toi que j'agis, que je me déplace et que je chemine",note:"Au moment de partir"},
     ]},
-  voyage:{titre:"✈️ Invocations de Voyage",couleur:"linear-gradient(135deg,#0D47A1,#1565C0)",intro:"En montant dans le véhicule ou l'avion. Gardez votre cœur connecté à Allah pendant tout le trajet.",
+  voyage:{titre:"✈️ Invocations de Voyage",couleur:"linear-gradient(135deg,#0D47A1,#1565C0)",intro:"En montant dans le véhicule ou l'avion.",
     invocations:[
-      {titre:"En montant dans le transport",ar:"سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ",translit:"Subhânal-ladhî sakhkhara lanâ hâdhâ wa mâ kunnâ lahu muqrinîn wa innâ ilâ rabbinâ la-munqalibûn",fr:"Gloire à Celui qui nous a soumis cela alors que nous n'en étions pas capables",note:"Az-Zukhruf 43:13"},
+      {titre:"En montant dans le transport",ar:"سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا",translit:"Subhânal-ladhî sakhkhara lanâ hâdhâ wa mâ kunnâ lahu muqrinîn wa innâ ilâ rabbinâ la-munqalibûn",fr:"Gloire à Celui qui nous a soumis cela alors que nous n'en étions pas capables",note:"Az-Zukhruf 43:13"},
       {titre:"Du'a du voyageur",ar:"اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا البِرَّ وَالتَّقْوَى",translit:"Allâhumma innâ nas'aluka fî safarinâ hâdhal-birra wat-taqwâ",fr:"Ô Allah, nous Te demandons dans ce voyage la piété et la droiture",note:"Muslim"},
     ]},
   intention:{titre:"🤲 Intention — Miqat",couleur:"linear-gradient(135deg,#4A148C,#6A1B9A)",intro:"Le Miqat est le lieu sacré où l'on prononce l'intention. Pour Dakar : Al-Juhfah (Rabigh).",
     invocations:[
       {titre:"Niyyah officielle — Au Miqat",ar:"لَبَّيْكَ اللَّهُمَّ عُمْرَةً",translit:"Labbayka Allâhumma 'Umratan",fr:"Me voici à Ta disposition ô Allah, pour la Omra",note:"🔑 Moment solennel — marque le début officiel"},
     ]},
-  talbiya:{titre:"📣 Talbiya",couleur:"linear-gradient(135deg,#BF360C,#E64A19)",intro:"Répétez sans cesse depuis le Miqat jusqu'au début du Tawaf. Hommes à voix haute, femmes doucement.",
+  talbiya:{titre:"📣 Talbiya",couleur:"linear-gradient(135deg,#BF360C,#E64A19)",intro:"Répétez sans cesse depuis le Miqat jusqu'au début du Tawaf.",
     invocations:[
-      {titre:"LA TALBIYA 🔁",ar:"لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الحَمْدَ وَالنِّعْمَةَ لَكَ وَالمُلْكَ، لَا شَرِيكَ لَكَ",translit:"Labbayka Allâhumma labbayk. Labbayka lâ sharîka laka labbayk. Innal-hamda wan-ni'mata laka wal-mulk. Lâ sharîka lak.",fr:"Me voici à Ta disposition, ô Allah, me voici ! Tu n'as pas d'associé, me voici ! La louange, la grâce et la souveraineté T'appartiennent.",note:"🔁 Répéter sans cesse jusqu'au 1er tour du Tawaf"},
+      {titre:"LA TALBIYA 🔁",ar:"لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الحَمْدَ وَالنِّعْمَةَ لَكَ وَالمُلْكَ، لَا شَرِيكَ لَكَ",translit:"Labbayka Allâhumma labbayk. Labbayka lâ sharîka laka labbayk. Innal-hamda wan-ni'mata laka wal-mulk. Lâ sharîka lak.",fr:"Me voici à Ta disposition, ô Allah ! La louange, la grâce et la souveraineté T'appartiennent.",note:"🔁 Répéter sans cesse jusqu'au 1er tour du Tawaf"},
     ]},
   makkah:{titre:"🕌 Entrée à Makkah",couleur:"linear-gradient(135deg,#1B5E20,#2E7D32)",intro:"En entrant dans la ville sainte. Allez directement vers Masjid Al-Haram avec humilité.",
     invocations:[
       {titre:"En apercevant Makkah",ar:"اللَّهُمَّ هَذَا حَرَمُكَ وَأَمْنُكَ فَحَرِّمْنِي عَلَى النَّارِ",translit:"Allâhumma hâdhâ haramuka wa amnuka fa-harrimnî 'alan-nâr",fr:"Ô Allah, voici Ton sanctuaire et Ta sécurité, interdis-moi au Feu",note:"En voyant Makkah pour la première fois"},
       {titre:"En voyant la Ka'ba — 1ère fois 🌟",ar:"اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ فَحَيِّنَا رَبَّنَا بِالسَّلَامِ",translit:"Allâhumma anta as-salâmu wa minka as-salâm fa-hayyinâ rabbanâ bis-salâm",fr:"Ô Allah, Tu es la Paix et de Toi vient la paix, accueille-nous avec la paix",note:"🌟 Premier regard — Levez les mains — Faites tous vos du'a !"},
     ]},
-  haram:{titre:"🕋 Entrée dans Masjid Al-Haram",couleur:"linear-gradient(135deg,#1A237E,#283593)",intro:"Pied droit en premier. Ce premier regard sur la Ka'ba est un moment de grâce — les du'a sont exaucés.",
+  haram:{titre:"🕋 Entrée dans Masjid Al-Haram",couleur:"linear-gradient(135deg,#1A237E,#283593)",intro:"Pied droit en premier. Ce premier regard sur la Ka'ba est un moment de grâce.",
     invocations:[
       {titre:"En entrant",ar:"بِسْمِ اللَّهِ وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",translit:"Bismillâhi was-salâtu was-salâmu 'alâ rasûlillâh. Allâhumma aftah lî abwâba rahmatik",fr:"Au nom d'Allah, que la prière et la paix soient sur le Messager d'Allah. Ô Allah, ouvre-moi les portes de Ta miséricorde",note:"Pied droit en premier"},
     ]},
-  tawaf:{titre:"🌀 Tawaf — 7 Tours",couleur:"linear-gradient(135deg,#B71C1C,#C62828)",intro:"Commence à la Pierre Noire. 7 tours anti-horaire. Hommes : Ramal (marche rapide) aux 3 premiers tours.",
+  tawaf:{titre:"🌀 Tawaf — 7 Tours",couleur:"linear-gradient(135deg,#B71C1C,#C62828)",intro:"Commence à la Pierre Noire. 7 tours anti-horaire.",
     invocations:[
       {titre:"À chaque tour — Pierre Noire",ar:"بِسْمِ اللَّهِ وَاللَّهُ أَكْبَرُ",translit:"Bismillâhi wallâhu akbar",fr:"Au nom d'Allah et Allah est le Plus Grand",note:"À chaque passage devant la Pierre Noire"},
       {titre:"Tours 1-2",ar:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",translit:"Rabbanâ âtinâ fid-dunyâ hasanatan wa fil-âkhirati hasanatan wa qinâ 'adhâban-nâr",fr:"Notre Seigneur, accorde-nous le bien ici-bas et dans l'Au-delà",note:"Al-Baqara 2:201"},
-      {titre:"Tours 3-4",ar:"سُبْحَانَ اللَّهِ وَالحَمْدُ لِلَّهِ وَلَا إِلَهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ",translit:"Subhânallâh wal-hamdulillâh wa lâ ilâha illallâh wallâhu akbar",fr:"Gloire à Allah, Louange à Allah, pas de divinité sauf Allah, Allah est le Plus Grand",note:"Dhikr continu en marchant"},
+      {titre:"Tours 3-4",ar:"سُبْحَانَ اللَّهِ وَالحَمْدُ لِلَّهِ وَلَا إِلَهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ",translit:"Subhânallâh wal-hamdulillâh wa lâ ilâha illallâh wallâhu akbar",fr:"Gloire à Allah, Louange à Allah, pas de divinité sauf Allah, Allah est le Plus Grand",note:"Dhikr continu"},
       {titre:"Tour 7 — Fin",ar:"اللَّهُمَّ اجْعَلْهُ حَجًّا مَبْرُورًا وَسَعْيًا مَشْكُورًا وَذَنْبًا مَغْفُورًا",translit:"Allâhumma aj'alhu hajjan mabrûran wa sa'yan mashkûran wa dhanban maghfûrâ",fr:"Ô Allah, fais-en un Hajj accepté, un effort reconnu et un péché pardonné",note:"Dernier tour"},
     ]},
-  rakah:{titre:"🙏 2 Rak'ah — Maqam Ibrahim",couleur:"linear-gradient(135deg,#4A148C,#6A1B9A)",intro:"Après le Tawaf, priez 2 rak'ah derrière Maqam Ibrahim. Obligation après le Tawaf.",
+  rakah:{titre:"🙏 2 Rak'ah — Maqam Ibrahim",couleur:"linear-gradient(135deg,#4A148C,#6A1B9A)",intro:"Après le Tawaf, priez 2 rak'ah derrière Maqam Ibrahim.",
     invocations:[
       {titre:"1ère Rak'ah — Al-Kafirun | 2ème — Al-Ikhlas",ar:"قُلْ يَا أَيُّهَا الْكَافِرُونَ / قُلْ هُوَ اللَّهُ أَحَدٌ",translit:"Al-Kafirun (109) puis Al-Ikhlas (112)",fr:"Sunnah confirmée du Prophète ﷺ",note:"Après Al-Fatiha dans chaque rak'ah"},
     ]},
-  zamzam:{titre:"💧 Eau de Zamzam",couleur:"linear-gradient(135deg,#006064,#00838F)",intro:"Tournez-vous vers la Ka'ba, buvez en 3 fois, debout. Cette eau est pour ce pour quoi on la boit !",
+  zamzam:{titre:"💧 Eau de Zamzam",couleur:"linear-gradient(135deg,#006064,#00838F)",intro:"Tournez-vous vers la Ka'ba, buvez en 3 fois, debout.",
     invocations:[
       {titre:"Avant de boire",ar:"اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا وَاسِعًا وَشِفَاءً مِنْ كُلِّ دَاءٍ",translit:"Allâhumma innî as'aluka 'ilman nâfi'an wa rizqan wâsi'an wa shifâ'an min kulli dâ'",fr:"Ô Allah, je Te demande une science utile, une subsistance abondante et une guérison de toute maladie",note:"Regarder la Ka'ba en buvant"},
     ]},
   safa:{titre:"⛰️ Sa'i — Safa & Marwa",couleur:"linear-gradient(135deg,#33691E,#558B2F)",intro:"7 allers-retours. Safa→Marwa=1. Hommes courent entre les 2 panneaux verts.",
     invocations:[
-      {titre:"Sur Safa — Verset",ar:"إِنَّ الصَّفَا وَالمَرْوَةَ مِن شَعَائِرِ اللَّهِ",translit:"Innas-safâ wal-marwata min sha'â'irillâh",fr:"Certes As-Safa et Al-Marwa font partie des rites d'Allah",note:"Al-Baqara 2:158 — Première montée sur Safa seulement"},
-      {titre:"Sur Safa — Face Ka'ba",ar:"اللَّهُ أَكْبَرُ × 3 — لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ",translit:"Allâhu akbar ×3. Lâ ilâha illallâhu wahdahu lâ sharîka lah, lahul-mulku wa lahul-hamd",fr:"Allah est le Plus Grand 3x. Pas de divinité sauf Allah seul, à Lui la souveraineté et la louange",note:"Répéter 3 fois sur chaque colline"},
+      {titre:"Sur Safa — Verset",ar:"إِنَّ الصَّفَا وَالمَرْوَةَ مِن شَعَائِرِ اللَّهِ",translit:"Innas-safâ wal-marwata min sha'â'irillâh",fr:"Certes As-Safa et Al-Marwa font partie des rites d'Allah",note:"Al-Baqara 2:158"},
+      {titre:"Sur Safa — Face Ka'ba",ar:"اللَّهُ أَكْبَرُ × 3 — لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ",translit:"Allâhu akbar ×3. Lâ ilâha illallâhu wahdahu lâ sharîka lah",fr:"Allah est le Plus Grand 3x. Pas de divinité sauf Allah seul",note:"Répéter 3 fois sur chaque colline"},
     ]},
-  fin:{titre:"✅ Fin de l'Oumra",couleur:"linear-gradient(135deg,#1B5E20,#2E7D32)",intro:"Hommes : se rasent (Halq — mieux) ou coupent. Femmes : coupent l'équivalent d'un bout de doigt.",
+  fin:{titre:"✅ Fin de l'Oumra",couleur:"linear-gradient(135deg,#1B5E20,#2E7D32)",intro:"Hommes : se rasent (Halq) ou coupent. Femmes : coupent l'équivalent d'un bout de doigt.",
     invocations:[
       {titre:"Takbir de joie 🎉",ar:"اللَّهُ أَكْبَرُ — اللَّهُ أَكْبَرُ — اللَّهُ أَكْبَرُ — وَلِلَّهِ الحَمْدُ",translit:"Allâhu akbar × 3 — wa lillâhil-hamd",fr:"Allah est le Plus Grand (3x) et à Allah toute la louange",note:"🎉 Mabrouk ! Votre Oumra est accomplie !"},
     ]},
@@ -342,17 +371,17 @@ const OUMRA_DATA={
     ]},
 };
 const AZKAR_MATIN=[
-  {ar:"الحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",translit:"Alhamdulillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur",fr:"Louange à Allah qui nous a ramenés à la vie",info:"Au réveil"},
-  {ar:"اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ",translit:"Allahumma bika asbahna wa bika amsayna wa bika nahya wa bika namutu",fr:"Ô Allah, c'est grâce à Toi que nous entrons dans le matin",info:"Azkar Sabah principal"},
+  {ar:"الحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا",translit:"Alhamdulillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur",fr:"Louange à Allah qui nous a ramenés à la vie",info:"Au réveil"},
+  {ar:"اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا",translit:"Allahumma bika asbahna wa bika amsayna wa bika nahya wa bika namutu",fr:"Ô Allah, c'est grâce à Toi que nous entrons dans le matin",info:"Azkar Sabah"},
   {ar:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ — 100 مَرَّة",translit:"Subhanallahi wa bihamdihi — 100 fois",fr:"Gloire à Allah et Sa louange — 100 fois le matin",info:"Efface les péchés même s'ils sont comme l'écume de la mer"},
 ];
 const AZKAR_SOIR=[
-  {ar:"اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا",translit:"Allahumma bika amsayna wa bika asbahna",fr:"Ô Allah, c'est grâce à Toi que nous entrons dans le soir",info:"Azkar Massa principal"},
+  {ar:"اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا",translit:"Allahumma bika amsayna wa bika asbahna",fr:"Ô Allah, c'est grâce à Toi que nous entrons dans le soir",info:"Azkar Massa"},
   {ar:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ — 3 مَرَّات",translit:"A'outhu bi-kalimatillahit-tammati min sharri ma khalaq — 3x",fr:"Je me réfugie dans les paroles parfaites d'Allah — 3 fois",info:"Protection du soir"},
 ];
 const AZKAR_SOMMEIL=[
   {ar:"بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",translit:"Bismika Allahumma amutu wa ahya",fr:"En Ton nom ô Allah, je meurs et je vis",info:"Avant de dormir"},
-  {ar:"سُبْحَانَ اللَّهِ ×33 — الْحَمْدُ لِلَّهِ ×33 — اللَّهُ أَكْبَرُ ×34",translit:"Subhanallah 33x · Alhamdulillah 33x · Allahu Akbar 34x",fr:"Tasbih avant le sommeil — Sunnah du Prophète ﷺ",info:"Enseigné par le Prophète ﷺ à Fatima رضي الله عنها"},
+  {ar:"سُبْحَانَ اللَّهِ ×33 — الْحَمْدُ لِلَّهِ ×33 — اللَّهُ أَكْبَرُ ×34",translit:"Subhanallah 33x · Alhamdulillah 33x · Allahu Akbar 34x",fr:"Tasbih avant le sommeil — Sunnah du Prophète ﷺ",info:"Enseigné à Fatima رضي الله عنها"},
 ];
 const DHIKRS=[
   {ar:"سُبْحَانَ اللَّهِ",fr:"Subhanallah",target:33},
@@ -375,7 +404,7 @@ const PRODUITS=[
   {id:3,nom:"Dattes Ajwa Premium",cat:"dattes",emoji:"🌴",prix:12000,desc:"Dattes Ajwa de Médine. 500g.",badge:"🏅 Médine"},
   {id:4,nom:"Dattes Medjool 1kg",cat:"dattes",emoji:"🌴",prix:18000,desc:"Dattes Medjool premium.",badge:"⭐ Premium"},
   {id:5,nom:"Dattes Sukkari 500g",cat:"dattes",emoji:"🌴",prix:8000,desc:"Dattes Sukkari dorées.",badge:"🎁 Cadeau"},
-  {id:6,nom:"Jalaba Homme Blanc",cat:"vetements",emoji:"👘",prix:25000,desc:"Jalaba blanche homme. S à XXL.",badge:"🇸🇦 Arabie"},
+  {id:6,nom:"Jalaba Homme Blanc",cat:"vetements",emoji:"👘",prix:25000,desc:"Jalaba blanche homme.",badge:"🇸🇦 Arabie"},
   {id:7,nom:"Abaya Femme Noire",cat:"vetements",emoji:"👗",prix:18000,desc:"Abaya noire broderies dorées.",badge:"✨ Élégant"},
   {id:8,nom:"Tenue Ihram Homme",cat:"vetements",emoji:"🤍",prix:15000,desc:"Ihram 2 pièces blanc immaculé.",badge:"🕋 Hajj"},
   {id:9,nom:"Hijab Luxe Soie",cat:"vetements",emoji:"🧕",prix:8000,desc:"Hijab soie premium.",badge:"💎 Luxe"},
@@ -416,7 +445,7 @@ const POST_40=[
   {j:25,icon:"🤝",titre:"Aider un musulman",desc:"Qui aide, Allah l'aide.",action:"Aider quelqu'un"},
   {j:26,icon:"🌍",titre:"Du'a pour la Oumma",desc:"Priez pour les musulmans.",action:"Du'a pour la Oumma"},
   {j:27,icon:"🌟",titre:"Nuit précieuse",desc:"Chaque nuit peut valoir mille mois.",action:"Tahajjud + Azkar + Coran"},
-  {j:28,icon:"🏆",titre:"4 Semaines !",desc:"4 semaines complètes ! Extraordinaire !",action:"Bilan 4 semaines"},
+  {j:28,icon:"🏆",titre:"4 Semaines !",desc:"4 semaines complètes !",action:"Bilan 4 semaines"},
   {j:29,icon:"✈️",titre:"Prochain voyage",desc:"Planifiez votre prochaine Oumra !",action:"Contacter Kyswa Travel"},
   {j:30,icon:"🌙",titre:"6 jours de Shawwal",desc:"Planifiez le jeûne des 6 jours.",action:"Planifier Shawwal"},
   {j:31,icon:"🕌",titre:"Don pour une Mosquée",desc:"Sadaqa jariya perpétuelle.",action:"Don pour mosquée"},
@@ -425,19 +454,108 @@ const POST_40=[
   {j:34,icon:"💚",titre:"Revenus halal",desc:"Vérifiez vos gains. Payez la Zakat.",action:"Zakat — Halal"},
   {j:35,icon:"🌺",titre:"La Dawah",desc:"Invitez quelqu'un vers Allah.",action:"Parler d'Islam"},
   {j:36,icon:"👨‍👩‍👦",titre:"Remercier ses parents",desc:"Le Paradis est sous les pieds des mères.",action:"Appeler ses parents"},
-  {j:37,icon:"🌙",titre:"Tahajjud continu",desc:"La prière de nuit illumine le visage.",action:"Tahajjud — Prière des pieux"},
+  {j:37,icon:"🌙",titre:"Tahajjud continu",desc:"La prière de nuit illumine le visage.",action:"Tahajjud"},
   {j:38,icon:"🛡️",titre:"Bonnes fréquentations",desc:"Entourez-vous de personnes pieuses.",action:"Évaluer fréquentations"},
   {j:39,icon:"⭐",titre:"Avant-dernier jour !",desc:"Demain c'est le jour 40 !",action:"Récapituler les acquis"},
   {j:40,icon:"🏆",titre:"JOUR 40 — Alhamdulillah !",desc:"40 jours complets ! Ces habitudes doivent durer toute votre vie !",action:"Engagement pour la vie"},
 ];
+const SIRA_LECONS=[
+  {j:1,icon:"🌹",theme:"Portrait",titre:"Le Portrait du Prophète ﷺ",contenu:"Muhammad ﷺ avait un visage lumineux comme la pleine lune. Sa taille était moyenne. Son sourire illuminait les cœurs. Quand il marchait, il penchait légèrement en avant — plein de vitalité et de détermination.",hadith:"Le Prophète ﷺ était la plus belle des créatures.",source:"Anas ibn Malik — Muslim"},
+  {j:2,icon:"💚",theme:"Caractère",titre:"Son Caractère Noble",contenu:"Allah dit : 'Tu es certes d'une moralité éminente' (68:4). Il ne frappait jamais, ne maltraitait jamais. Aïcha dit : 'Son caractère était le Coran'.",hadith:"Je n'ai jamais vu quelqu'un sourire plus que le Prophète ﷺ.",source:"Jareer — Bukhari"},
+  {j:3,icon:"😊",theme:"Sourire",titre:"Le Sourire — Sadaqa",contenu:"Le Prophète ﷺ souriait souvent. Il disait que sourire à son frère est une Sadaqa. Son sourire mettait les gens à l'aise même dans les moments difficiles.",hadith:"Sourire à ton frère est une Sadaqa.",source:"Tirmidhi"},
+  {j:4,icon:"👦",theme:"Enfants",titre:"Son Amour pour les Enfants",contenu:"Il jouait avec les enfants, les portait sur ses épaules, les embrassait. Il raccourcissait parfois la prière pour ne pas faire pleurer un bébé.",hadith:"Ce n'est pas de nous celui qui n'est pas doux avec nos enfants.",source:"Bukhari"},
+  {j:5,icon:"🎁",theme:"Générosité",titre:"Sa Générosité Sans Limite",contenu:"Il ne refusait jamais une demande. Jabir dit qu'il n'a jamais dit non. Il mourut sans laisser un dirham, un dinar, un esclave ou une servante.",hadith:"Il était plus généreux que le vent porteur de pluie.",source:"Bukhari"},
+  {j:6,icon:"🛡️",theme:"Patience",titre:"Sa Patience Face aux Épreuves",contenu:"À Taïf, lapidé jusqu'au sang, il refusa que l'ange détruise la ville. Il dit : 'Peut-être leurs descendants croiront.' La patience est sa Sunnah la plus profonde.",hadith:"La patience est lumière.",source:"Muslim"},
+  {j:7,icon:"🌿",theme:"Humilité",titre:"Son Humilité Extraordinaire",contenu:"Il réparait ses sandales, cousait ses vêtements, trayait sa chèvre. Il aidait sa famille dans les tâches ménagères.",hadith:"Ne me louez pas à l'excès. Je suis seulement Son serviteur.",source:"Bukhari"},
+  {j:8,icon:"💕",theme:"Femmes",titre:"Son Respect pour les Femmes",contenu:"Il disait : 'Le meilleur d'entre vous est celui qui est le meilleur avec sa famille.' Il consultait Khadija, Aïcha, Umm Salama.",hadith:"Traitez bien les femmes.",source:"Bukhari"},
+  {j:9,icon:"🍽️",theme:"Alimentation",titre:"Ses Habitudes Alimentaires",contenu:"Il mangeait avec trois doigts, léchait ses doigts après le repas. Il aimait le miel, les dattes, le lait. Il ne critiquait jamais la nourriture.",hadith:"Le ventre est la maison de tout mal.",source:"Hakim"},
+  {j:10,icon:"😴",theme:"Sommeil",titre:"Son Sommeil et Son Réveil",contenu:"Il dormait sur le côté droit, la main droite sous la joue. Il récitait Al-Ikhlas, Al-Falaq et An-Nas 3 fois avant de dormir. Il se réveillait pour le Tahajjud.",hadith:"Le meilleur sommeil est le Qaylula (sieste de midi).",source:"Bukhari"},
+  {j:11,icon:"🪥",theme:"Propreté",titre:"Sa Pureté et Propreté",contenu:"Il utilisait le Miswak très souvent — avant la prière, au réveil, en entrant à la maison. Il aimait les bonnes odeurs et l'eau de rose.",hadith:"La propreté est la moitié de la foi.",source:"Muslim"},
+  {j:12,icon:"🚶",theme:"Marche",titre:"Sa Façon de Marcher",contenu:"Il marchait d'un pas ferme et léger. Sa démarche avait de la dignité sans arrogance. Quand il se retournait, il se retournait entièrement.",hadith:"Il marchait avec humilité sur Terre.",source:"Al-Furqan 25:63"},
+  {j:13,icon:"🏠",theme:"Maison",titre:"Le Prophète ﷺ à la Maison",contenu:"À la maison, il était au service de sa famille. Aïcha a dit : 'Il cousait ses vêtements, réparait ses sandales.' Il entrait avec le pied droit.",hadith:"Le meilleur d'entre vous est le meilleur pour sa famille.",source:"Tirmidhi"},
+  {j:14,icon:"🌙",theme:"Ramadan",titre:"Le Prophète ﷺ et le Ramadan",contenu:"En Ramadan, il intensifiait les adorations. Il faisait l'I'tikaf les 10 derniers jours. Jibril lui récitait le Coran entier chaque Ramadan.",hadith:"Quand Ramadan entre, les portes du Paradis s'ouvrent.",source:"Bukhari"},
+  {j:15,icon:"❤️",theme:"Amour Oumma",titre:"Son Amour pour sa Communauté",contenu:"Il pleurait pour sa communauté. Sa dernière invocation était pour sa communauté. Il disait : 'Ummati, Ummati !'",hadith:"Ma prière, mon sacrifice, ma vie, ma mort sont pour Allah.",source:"Al-An'am 6:162"},
+  {j:16,icon:"🙏",theme:"Amour Allah",titre:"Son Amour pour Allah",contenu:"Sa prière nocturne était si longue que ses pieds enflaient. Aïcha dit : 'Allah t'a pardonné.' Il répondit : 'Ne devrais-je pas être un serviteur reconnaissant ?'",hadith:"La meilleure invocation est celle du jour d'Arafat.",source:"Tirmidhi"},
+  {j:17,icon:"🤝",theme:"Serviteurs",titre:"Sa Douceur avec les Serviteurs",contenu:"Anas a servi le Prophète ﷺ pendant 10 ans. Il dit : 'Il ne m'a jamais dit ouf.' Il libérait des esclaves et encourageait leur libération.",hadith:"Celui qui maltraite son serviteur n'entrera pas au Paradis.",source:"Abu Dawud"},
+  {j:18,icon:"🗣️",theme:"Parole",titre:"Sa Parole et Son Silence",contenu:"Il parlait lentement, distinctement. On pouvait compter ses mots. Son silence était réflexion, sa parole était sagesse.",hadith:"Que celui qui croit en Allah dise du bien ou se taise.",source:"Bukhari"},
+  {j:19,icon:"😄",theme:"Humour",titre:"Son Humour Léger et Vrai",contenu:"Il plaisantait parfois mais ne disait que la vérité même en plaisantant. À une vieille femme : 'Les vieilles femmes n'entrent pas au Paradis — vous serez tous jeunes.'",hadith:"Je plaisante, mais je ne dis que la vérité.",source:"Tirmidhi"},
+  {j:20,icon:"😢",theme:"Pleurs",titre:"Ses Larmes Sincères",contenu:"Il pleurait par crainte d'Allah, lors de la récitation du Coran, lors de la prière. Quand Abdullah ibn Masoud lui récita An-Nisa verset 41, il dit : 'Suffit.' Il pleurait.",hadith:"Pleurez, et si vous ne pouvez pas, faites semblant de pleurer.",source:"Ibn Majah"},
+  {j:21,icon:"🌿",theme:"Nature",titre:"Son Amour pour la Nature",contenu:"Il plantait des arbres, encourageait l'agriculture. Il disait : 'Si la dernière heure vient et que tu tiens une plante, plante-la.'",hadith:"Planter un arbre est une Sadaqa Jariya.",source:"Bukhari"},
+  {j:22,icon:"🕌",theme:"Prière",titre:"Sa Relation avec la Prière",contenu:"Il disait : 'La fraîcheur de mes yeux est dans la prière.' Il disait à Bilal : 'Donne-nous du repos avec la prière.'",hadith:"La prière est la colonne de la religion.",source:"Tirmidhi"},
+  {j:23,icon:"🐾",theme:"Animaux",titre:"Sa Miséricorde envers les Animaux",contenu:"Il dit qu'une femme est entrée en Enfer à cause d'un chat enfermé. Et qu'une prostituée est entrée au Paradis pour avoir donné à boire à un chien.",hadith:"Il y a une récompense pour tout être vivant auquel tu fais du bien.",source:"Bukhari"},
+  {j:24,icon:"⚖️",theme:"Justice",titre:"Sa Justice Absolue",contenu:"Il dit : 'Si Fatima fille de Muhammad volait, je lui couperais la main.' La justice ne connaissait pas de favoritisme.",hadith:"Soyez justes, c'est plus proche de la piété.",source:"Al-Maïda 5:8"},
+  {j:25,icon:"🤲",theme:"Du'a",titre:"Ses Du'a Préférés",contenu:"'Ô Retourneur des cœurs, affermis mon cœur dans Ta religion.' Il faisait beaucoup du'a dans le Sujud.",hadith:"La meilleure invocation est celle faite dans le Sujud.",source:"Muslim"},
+  {j:26,icon:"💪",theme:"Courage",titre:"Son Courage Face aux Épreuves",contenu:"Il était le plus courageux des hommes. Ali dit : 'Quand les combats s'intensifiaient, nous nous cachions derrière le Prophète ﷺ.'",hadith:"Le croyant fort est meilleur qu'un croyant faible.",source:"Muslim"},
+  {j:27,icon:"🌅",theme:"Mort",titre:"Ses Derniers Moments",contenu:"Il mourut un lundi 12 Rabi Al-Awwal. Ses dernières paroles : 'Avec Al-Rafîq Al-A'lâ'. Il entra dans l'éternité en ayant transmis le message dans sa totalité.",hadith:"Chaque âme goûtera la mort.",source:"Al-Imran 3:185"},
+  {j:28,icon:"🌍",theme:"Changement",titre:"Comment Il a Changé le Monde",contenu:"En 23 ans, il transforma une société de barbarie en civilisation de lumière. Son message a touché plus de 2 milliards d'êtres humains.",hadith:"Nous t'avons envoyé en miséricorde pour les mondes.",source:"Al-Anbiya 21:107"},
+  {j:29,icon:"📿",theme:"Sunnah",titre:"Appliquer la Sunnah au Quotidien",contenu:"Chaque geste du Prophète ﷺ est une opportunité de récompense. Manger avec la main droite, dormir sur le côté droit, sourire, saluer — chacun est une Sunnah.",hadith:"Celui qui revivifie ma Sunnah m'aime.",source:"Tirmidhi"},
+  {j:30,icon:"🌟",theme:"Paradis",titre:"Le Voir au Paradis",contenu:"Le plus grand bonheur au Paradis sera de voir le visage d'Allah et d'être proche du Prophète ﷺ. Rabi'a demanda sa compagnie au Paradis. Il répondit : 'Aide-toi par beaucoup de prosternations.'",hadith:"Je serai le premier à frapper à la porte du Paradis.",source:"Muslim"},
+];
+const CLIMAT_DATA=[
+  {mois:"Janvier",makkah:"24°/32°",medine:"14°/26°",conseil:"Idéal — Frais la nuit. Prévoir une veste légère."},
+  {mois:"Février",makkah:"24°/33°",medine:"16°/28°",conseil:"Très agréable. Bonne saison pour l'Oumra."},
+  {mois:"Mars",makkah:"26°/36°",medine:"18°/32°",conseil:"Encore confortable. Prévoir chapeau et crème."},
+  {mois:"Avril",makkah:"29°/39°",medine:"22°/36°",conseil:"Chaud. Boire beaucoup d'eau. Éviter le milieu de journée."},
+  {mois:"Mai",makkah:"32°/42°",medine:"26°/40°",conseil:"Très chaud. Parapluie anti-UV obligatoire."},
+  {mois:"Juin",makkah:"34°/44°",medine:"29°/43°",conseil:"Caniculaire. Sortir tôt le matin ou le soir."},
+  {mois:"Juillet",makkah:"35°/45°",medine:"30°/44°",conseil:"⚠️ Très dangereux. Ventilateur de brumisation essentiel."},
+  {mois:"Août",makkah:"35°/44°",medine:"29°/43°",conseil:"Chaleur + humidité. Vêtements légers."},
+  {mois:"Septembre",makkah:"32°/42°",medine:"27°/40°",conseil:"Encore chaud. Début d'amélioration."},
+  {mois:"Octobre",makkah:"30°/38°",medine:"24°/36°",conseil:"Agréable. Bonne période pour Oumra."},
+  {mois:"Novembre",makkah:"26°/34°",medine:"18°/30°",conseil:"Très bien. Nuits fraîches à Médine."},
+  {mois:"Décembre",makkah:"22°/30°",medine:"14°/26°",conseil:"Excellent. Prévoir veste chaude pour la nuit."},
+];
+const INTERDITS_DATA={
+  hommes:[
+    {interdit:"🧵 Vêtements cousus",explication:"Pas de chemises, pantalons. Uniquement les 2 pièces blanches (Izar + Rida)."},
+    {interdit:"🧢 Couvrir la tête",explication:"La tête doit rester découverte. Pas de chapeau ni casquette."},
+    {interdit:"✂️ Se couper les cheveux ou les ongles",explication:"Interdit jusqu'à la fin de l'Oumra."},
+    {interdit:"🌹 Parfum sur le corps",explication:"Après l'Ihram, aucun parfum. Se parfumer avant est Sunnah."},
+    {interdit:"💏 Relations conjugales",explication:"Interdit jusqu'à la fin complète de l'Oumra."},
+    {interdit:"💬 Paroles grossières ou disputes",explication:"'Pas de rapport conjugal, pas de perversité, pas de dispute.' (2:197)"},
+  ],
+  femmes:[
+    {interdit:"✂️ Se couper les cheveux ou les ongles",explication:"Même interdiction jusqu'à la fin de l'Oumra."},
+    {interdit:"🌹 Parfum sur le corps",explication:"Interdit en état d'Ihram."},
+    {interdit:"💏 Relations conjugales",explication:"Interdites jusqu'à la fin de l'Oumra."},
+    {interdit:"😡 Disputes et grossièretés",explication:"Garder le cœur pur, la langue propre."},
+  ],
+  permis:[
+    "✅ Porter des lunettes de soleil",
+    "✅ Utiliser une ceinture pour tenir l'Izar",
+    "✅ Changer les pièces de l'Ihram si elles sont sales",
+    "✅ Se laver (sans parfum)",
+    "✅ Porter une montre ou un sac",
+    "✅ Utiliser un parapluie",
+    "✅ Manger, boire, dormir",
+    "✅ Femme : couvrir tout le corps sauf le visage et les mains",
+  ]
+};
+const BAGAGES_DATA=[
+  {cat:"👘 Ihram & Vêtements",items:["2 pièces Ihram (Izar + Rida) + 1 de rechange","Ceinture pour tenir l'Izar","Vêtements légers pour Médine","Chaussures ouvertes (sandales)","Veste légère pour les nuits"]},
+  {cat:"💊 Santé & Hygiène",items:["Médicaments personnels","Paracétamol, Ibuprofène","Crème solaire SPF 50+","Pommade anti-ampoules","Sérum de réhydratation orale","Masque anti-poussière"]},
+  {cat:"📿 Spirituel",items:["Coran de poche","Ce guide Kyswa Travel","Chapelet (Tasbih)","Carnet de du'a personnels","Argent en liquide (Riyals)"]},
+  {cat:"🎒 Pratique",items:["Sac à dos léger pour le Haram","Ventilateur de brumisation","Bouteille d'eau isotherme","Parapluie anti-UV","Sac hermétique pour documents"]},
+  {cat:"📋 Documents",items:["Passeport (valide 6 mois minimum)","Visa Oumra","Billets avion imprimés","Carnet de vaccination","Numéro urgence Kyswa : +221 78 781 16 16"]},
+  {cat:"🚫 À NE PAS EMPORTER",items:["Parfums (interdit en Ihram)","Médicaments non déclarés","Trop de valises (préférer 1 valise + 1 sac cabine)"]},
+];
+const SANTE_DATA=[
+  {icon:"☀️",titre:"Coup de chaleur",desc:"Boire minimum 3L d'eau par jour. Éviter le soleil 11h-15h. Parapluie obligatoire."},
+  {icon:"👟",titre:"Ampoules aux pieds",desc:"Porter vos sandales plusieurs semaines avant. Emporter pansements hydrocolloïdes."},
+  {icon:"🦠",titre:"Infections respiratoires",desc:"Porter un masque dans les foules. Se laver les mains régulièrement."},
+  {icon:"🍽️",titre:"Alimentation",desc:"Éviter les aliments exposés à la chaleur. Dattes + eau Zamzam conseillés."},
+  {icon:"💊",titre:"Médicaments",desc:"Emporter votre stock + 3 jours de réserve. Ordonnance traduite en arabe."},
+  {icon:"🧴",titre:"Peau",desc:"Crème solaire SPF 50+ obligatoire. Hydrater la peau (air très sec)."},
+  {icon:"🏥",titre:"Urgences",desc:"Hôpitaux autour du Haram gratuits pour les pèlerins. Kyswa : +221 78 781 16 16"},
+];
 let salawatCount=parseInt(localStorage.getItem('salawat-count')||'0');
 let salawatWeek=parseInt(localStorage.getItem('salawat-week')||'0');
 const SALAWAT_GOAL=12000;
-let prayerTimes=null,qiblaDir=null,compassHeading=0;
+let prayerTimes=null,qiblaDir=null;
 let dhikrSel=0,dhikrCount=0,dhikrTotal=0;
-let pelerin=null,lastAzan={},prieresTabState="horaires";
+let pelerin=null,prieresTabState="horaires";
 let boutiqueFiltre="tout",barakaScore=0,notifPermission=false,sw=null;
-let oumraStepId="ihram",barakaTab="quotidien";
+let oumraStepId="ihram",barakaTab="quotidien",infosTab="climat";
 async function initSW(){
   if(!('serviceWorker' in navigator))return;
   try{const r=await navigator.serviceWorker.register('/sw.js');await navigator.serviceWorker.ready;sw=r;}catch(e){}
@@ -466,13 +584,13 @@ function programmerToutesNotifications(){
     const[h,m]=prayerTimes[p].split(':').map(Number);
     const t=new Date();t.setHours(h,m,0,0);
     const d=t-now;
-    if(d>0)envoyerNotif(PICONS[p]+' '+p+' — '+prayerTimes[p],'🕌 Adhan — Il est l\'heure de la prière','azan-'+p,d);
+    if(d>0)envoyerNotif(PICONS[p]+' '+p+' — '+prayerTimes[p],'🕌 Il est l\'heure de la prière','azan-'+p,d);
   });
   const timers=[
     {h:6,m:0,t:'🌅 Azkar Sabah',b:'Invocations du matin — Baraka fi sabahikoum !',g:'azkar-matin'},
-    {h:10,m:0,t:'📚 Leçon du jour — Vie du Prophète ﷺ',b:'Ouvrez l\'app pour la leçon du jour sur la vie du Prophète ﷺ',g:'lecon-jour'},
+    {h:10,m:0,t:'📚 Leçon du jour — Vie du Prophète ﷺ',b:'Ouvrez la Sira pour la leçon du jour !',g:'lecon-jour'},
     {h:18,m:0,t:'🌙 Azkar Massa',b:'Invocations du soir — Que Allah vous protège !',g:'azkar-soir'},
-    {h:22,m:0,t:'✅ Bilan du jour',b:'Avez-vous accompli vos 5 prières ? Ouvrez Baraka !',g:'bilan'},
+    {h:22,m:0,t:'✅ Bilan du jour',b:'Avez-vous accompli vos 5 prières ?',g:'bilan'},
     {h:23,m:0,t:'📿 Witr',b:"N'oubliez pas votre Witr avant de dormir.",g:'witr'},
   ];
   const jour=new Date().getDay();
@@ -499,12 +617,12 @@ function showPage(id){
   if(!pg)return;
   pg.style.display='block';
   requestAnimationFrame(()=>pg.classList.add('page-enter'));
-  ['home','oumra','baraka','packages','prieres','dhikr','espace'].forEach(n=>{
-    const btn=document.getElementById('nb-'+n),lbl=document.getElementById('nbl-'+n);
+  ['home','sira','infos','oumra','baraka','dhikr','espace'].forEach(n=>{
+    const btn=document.getElementById('nb-'+n);const lbl=document.getElementById('nbl-'+n);
     if(btn)btn.style.opacity='0.5';
     if(lbl){lbl.style.color='var(--text-hint)';lbl.style.fontWeight='500';}
   });
-  const navMap={verses:'coran',produit:'boutique',formulaire:'packages'};
+  const navMap={verses:'coran',produit:'boutique',formulaire:'oumra',packages:'oumra',boutique:'oumra',prieres:'oumra',coran:'oumra'};
   const nid=navMap[id]||id;
   const nb=document.getElementById('nb-'+nid),nl=document.getElementById('nbl-'+nid);
   if(nb)nb.style.opacity='1';
@@ -517,6 +635,8 @@ function showPage(id){
   if(id==='boutique')renderBoutique();
   if(id==='baraka')renderBaraka();
   if(id==='oumra')renderOumra();
+  if(id==='sira')renderSira();
+  if(id==='infos'){infosTab='climat';renderInfos();}
 }
 document.getElementById('pg-home').style.display='block';
 function renderOumra(){
@@ -542,8 +662,8 @@ function renderOumra(){
       </div>
     </div>`).join('')}
     <div style="display:flex;gap:10px;margin-top:var(--space-md);">
-      ${OUMRA_STEPS.findIndex(s=>s.id===oumraStepId)>0?`<button onclick="prevOumraStep()" class="btn btn-ghost" style="flex:1;padding:14px;">← Étape précédente</button>`:''}
-      ${OUMRA_STEPS.findIndex(s=>s.id===oumraStepId)<OUMRA_STEPS.length-1?`<button onclick="nextOumraStep()" class="btn btn-primary" style="flex:1;padding:14px;">Étape suivante →</button>`:'<div style="background:var(--primary-soft);border-radius:var(--radius-md);padding:14px;text-align:center;flex:1;color:var(--primary);font-weight:700;">🕋 Guide complet terminé — Mabrouk !</div>'}
+      ${OUMRA_STEPS.findIndex(s=>s.id===oumraStepId)>0?`<button onclick="prevOumraStep()" class="btn btn-ghost" style="flex:1;">← Précédente</button>`:''}
+      ${OUMRA_STEPS.findIndex(s=>s.id===oumraStepId)<OUMRA_STEPS.length-1?`<button onclick="nextOumraStep()" class="btn btn-primary" style="flex:1;">Suivante →</button>`:`<div style="background:var(--primary-soft);border-radius:var(--radius-md);padding:14px;text-align:center;flex:1;color:var(--primary);font-weight:700;">🕋 Guide terminé — Mabrouk !</div>`}
     </div>`;
 }
 function setOumraStep(id){oumraStepId=id;renderOumra();window.scrollTo(0,100);}
@@ -568,7 +688,6 @@ function renderSalawat(el){
   const pct=Math.min((salawatWeek/SALAWAT_GOAL)*100,100);
   el.innerHTML=`
     <div style="background:linear-gradient(135deg,#3D0022,#880E4F);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);text-align:center;">
-      <div class="badge" style="background:rgba(255,255,255,0.15);color:#F8BBD0;margin-bottom:12px;">🌹 OBJECTIF SEMAINE — 12 000</div>
       <div style="color:#fff;font-size:48px;font-weight:900;">${salawatWeek.toLocaleString('fr-FR')}</div>
       <div style="color:rgba(255,255,255,0.6);font-size:12px;">/ 12 000 Salawat cette semaine</div>
       <div style="background:rgba(255,255,255,0.15);border-radius:var(--radius-full);height:10px;margin:12px 0;overflow:hidden;">
@@ -589,8 +708,8 @@ function renderSalawat(el){
     </div>
     <div class="card">
       <div class="section-label">Pourquoi 12 000 ?</div>
-      <div style="color:var(--text-secondary);font-size:12px;line-height:1.7;">Les savants recommandent 12 000 Salawat/semaine. Chaque Salawat est récompensée 10 fois par Allah.</div>
-      <div style="background:var(--gold-soft);border-radius:var(--radius-sm);padding:8px 12px;margin-top:10px;font-size:11px;color:var(--gold);">📜 Allah envoie 10 bénédictions sur celui qui en envoie 1 sur le Prophète ﷺ — Muslim</div>
+      <div style="color:var(--text-secondary);font-size:12px;line-height:1.7;">Les savants recommandent 12 000 Salawat/semaine. Chaque Salawat est récompensée 10 fois.</div>
+      <div style="background:var(--gold-soft);border-radius:var(--radius-sm);padding:8px 12px;margin-top:10px;font-size:11px;color:var(--gold);">📜 Allah envoie 10 bénédictions sur celui qui en envoie 1 — Muslim</div>
     </div>`;
 }
 function tapSalawat(){
@@ -602,7 +721,7 @@ function tapSalawat(){
   if(cnt)cnt.textContent=salawatCount;
   if(btn){btn.style.transform='scale(0.85)';setTimeout(()=>{if(btn)btn.style.transform='scale(1)';},150);}
   if(salawatWeek===SALAWAT_GOAL)showToast('🏆','12 000 Salawat !','MashaAllah ! Objectif atteint !','#880E4F');
-  else if(salawatWeek%1000===0)showToast('🌹',salawatWeek.toLocaleString('fr-FR')+' Salawat !','Continue ! Il en reste '+(SALAWAT_GOAL-salawatWeek).toLocaleString('fr-FR'),'#E91E63');
+  else if(salawatWeek%1000===0)showToast('🌹',salawatWeek.toLocaleString('fr-FR')+' Salawat !','Continue ! Reste '+(SALAWAT_GOAL-salawatWeek).toLocaleString('fr-FR'),'#E91E63');
 }
 function addSalawat(n){salawatCount+=n;salawatWeek+=n;localStorage.setItem('salawat-count',salawatCount);localStorage.setItem('salawat-week',salawatWeek);showToast('🌹','+'+n+' Salawat','Total semaine : '+salawatWeek.toLocaleString('fr-FR'),'#880E4F');renderBaraka();}
 function resetSalawatWeek(){salawatWeek=0;localStorage.setItem('salawat-week',0);showToast('↺','Semaine réinitialisée','Nouvel objectif 12 000 !','#880E4F');renderBaraka();}
@@ -626,7 +745,7 @@ function renderBarakaQuotidien(el){
           <div style="width:48px;height:48px;border-radius:14px;background:${done[item.id]?'var(--primary)':item.highlight?'var(--gold)':'var(--surface-2)'};display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">${done[item.id]?'✅':item.icon}</div>
           <div><div style="font-size:14px;font-weight:700;color:${done[item.id]?'var(--primary)':'var(--text-primary)'};">${item.titre}</div><div style="color:var(--text-secondary);font-size:11px;">${item.desc}</div><div style="color:var(--text-hint);font-size:10px;">⏰ ${item.heure}</div></div>
         </div>
-        <div style="text-align:right;flex-shrink:0;"><div style="background:${done[item.id]?'var(--primary-soft)':'var(--gold-soft)'};color:${done[item.id]?'var(--primary)':'var(--gold)'};border-radius:var(--radius-full);padding:4px 10px;font-size:11px;font-weight:700;">+${item.pts}</div></div>
+        <div style="background:${done[item.id]?'var(--primary-soft)':'var(--gold-soft)'};color:${done[item.id]?'var(--primary)':'var(--gold)'};border-radius:var(--radius-full);padding:4px 10px;font-size:11px;font-weight:700;flex-shrink:0;">+${item.pts}</div>
       </div>
     </div>`).join('')+
     `<div class="card" style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);text-align:center;cursor:pointer;" onclick="openBilanPrieres()">
@@ -687,14 +806,13 @@ function openAzkar(type){
   document.getElementById('modal-overlay').classList.add('show');
 }
 function openBilanPrieres(){
-  const PRAYS=['Fajr','Dhuhr','Asr','Maghrib','Isha'];
   const done=JSON.parse(localStorage.getItem('prieres-done-'+new Date().toDateString())||'{}');
   document.getElementById('modal-content').innerHTML=`
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-lg);">
       <div style="font-size:17px;font-weight:800;">🕌 Mes 5 prières du jour</div>
       <button onclick="closeModal()" style="background:var(--surface-2);border:none;border-radius:var(--radius-full);width:32px;height:32px;font-size:18px;cursor:pointer;">×</button>
     </div>
-    ${PRAYS.map(p=>`
+    ${PRAYERS.map(p=>`
     <div onclick="togglePriere('${p}')" id="priere-item-${p}" style="background:${done[p]?'var(--primary-soft)':'var(--surface-2)'};border:1.5px solid ${done[p]?'var(--primary)':'transparent'};border-radius:var(--radius-md);padding:14px var(--space-md);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
       <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">${PICONS[p]}</span><span style="font-weight:700;">${p}</span><span style="color:var(--text-hint);font-size:11px;">${prayerTimes&&prayerTimes[p]?prayerTimes[p]:''}</span></div>
       <div style="width:24px;height:24px;border-radius:50%;background:${done[p]?'var(--primary)':'var(--border)'};display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;">${done[p]?'✓':''}</div>
@@ -709,8 +827,7 @@ function togglePriere(p){
 }
 function validerToutesPrieres(){
   const today=new Date().toDateString();
-  const done={'Fajr':true,'Dhuhr':true,'Asr':true,'Maghrib':true,'Isha':true};
-  localStorage.setItem('prieres-done-'+today,JSON.stringify(done));
+  localStorage.setItem('prieres-done-'+today,JSON.stringify({Fajr:true,Dhuhr:true,Asr:true,Maghrib:true,Isha:true}));
   barakaScore+=500;closeModal();
   showToast('🕌','MashaAllah !','5 prières accomplies — +500 Hasanat','#00815A');
   renderBaraka();
@@ -728,7 +845,7 @@ function renderPrieres(){
   if(prieresTabState==='qibla'){
     el.innerHTML=`
       <div class="card" style="text-align:center;">
-        <div style="font-size:64px;margin:var(--space-md) 0;" id="qibla-arrow">🧭</div>
+        <div style="font-size:64px;margin:var(--space-md) 0;transition:transform 0.5s;" id="qibla-arrow">🧭</div>
         <div style="font-size:16px;font-weight:700;" id="qibla-dir">Chargement...</div>
         <div style="color:var(--text-hint);font-size:12px;margin-top:8px;">Direction de la Qibla depuis votre position</div>
       </div>`;
@@ -746,14 +863,13 @@ function renderPrieres(){
     </div>
     ${PRAYERS.map(p=>{
       const isNext=prayerTimes.next===p;
-      return`<div class="card" style="${isNext?'border:2px solid var(--primary);background:var(--primary-soft);':''}">
+      return`<div class="card" style="${isNext?'border:2px solid var(--primary);background:var(--primary-soft);':''}margin-bottom:8px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <div style="display:flex;align-items:center;gap:12px;">
             <div style="font-size:28px;">${PICONS[p]}</div>
             <div><div style="font-size:16px;font-weight:700;color:${isNext?'var(--primary)':'var(--text-primary)'};">${p}</div>${isNext?'<div style="color:var(--primary);font-size:11px;font-weight:600;">⏰ Prochaine</div>':''}</div>
           </div>
-          <div style="font-size:22px;font-weight:800;color:${isNext?'var(--primary)':'var(--text-primary)'};">${prayerTimes[p]||'​​​​​​​​​​​​​​​​
---'}</div>
+          <div style="font-size:22px;font-weight:800;color:${isNext?'var(--primary)':'var(--text-primary)'};">${prayerTimes[p]||'--:--'}</div>
         </div>
       </div>`;
     }).join('')}
@@ -781,8 +897,8 @@ async function getPrayerTimes(){
     updateHomeCountdown();
     renderPrieres();
   }catch(e){
-    if(document.getElementById('prieres-content'))
-      document.getElementById('prieres-content').innerHTML='<div class="card"><div style="text-align:center;"><div style="font-size:32px;">📍</div><div style="margin-top:8px;font-size:14px;">Autorisez la géolocalisation</div><div style="color:var(--text-hint);font-size:12px;margin-top:4px;">Pour les horaires de prière précis</div><button onclick="getPrayerTimes()" class="btn btn-primary" style="margin-top:var(--space-md);">Réessayer</button></div></div>';
+    const el=document.getElementById('prieres-content');
+    if(el)el.innerHTML='<div class="card"><div style="text-align:center;"><div style="font-size:32px;">📍</div><div style="margin-top:8px;font-size:14px;">Autorisez la géolocalisation</div><button onclick="getPrayerTimes()" class="btn btn-primary" style="margin-top:var(--space-md);">Réessayer</button></div></div>';
   }
 }
 async function getQibla(){
@@ -837,14 +953,12 @@ async function openSurah(n,name,ar){
     const ar2=data.data[0].ayahs,fr=data.data[1].ayahs;
     document.getElementById('verses-list').innerHTML=ar2.map((a,i)=>`
       <div style="background:var(--surface);border-radius:var(--radius-lg);padding:var(--space-md);margin-bottom:10px;border:1px solid var(--border);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div style="width:28px;height:28px;border-radius:50%;background:var(--primary-soft);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);">${a.numberInSurah}</div>
-        </div>
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--primary-soft);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--primary);margin-bottom:8px;">${a.numberInSurah}</div>
         <div style="font-family:var(--font-arabic);font-size:22px;text-align:right;direction:rtl;line-height:2.2;color:var(--text-primary);margin-bottom:10px;">${a.text}</div>
         <div style="font-size:12px;color:var(--text-secondary);line-height:1.7;border-top:1px solid var(--border);padding-top:8px;">${fr[i]?.text||''}</div>
       </div>`).join('');
   }catch(e){
-    document.getElementById('verses-list').innerHTML='<div class="card" style="text-align:center;"><div style="font-size:32px;">⚠️</div><div style="margin-top:8px;">Erreur de chargement</div><div style="color:var(--text-hint);font-size:12px;">Vérifiez votre connexion</div></div>';
+    document.getElementById('verses-list').innerHTML='<div class="card" style="text-align:center;"><div style="font-size:32px;">⚠️</div><div style="margin-top:8px;">Erreur de chargement</div></div>';
   }
 }
 function renderDhikr(){
@@ -857,7 +971,7 @@ function renderDhikr(){
   document.getElementById('dhikr-body').innerHTML=`
     <div style="font-family:var(--font-arabic);font-size:32px;color:var(--dark-text);text-align:center;line-height:1.8;margin-bottom:var(--space-md);">${d.ar}</div>
     <div style="color:var(--dark-hint);font-size:13px;margin-bottom:var(--space-lg);">${d.fr}</div>
-    <button onclick="tapDhikr()" style="width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,var(--primary-dark),var(--primary));border:none;cursor:pointer;box-shadow:0 0 40px rgba(0,129,90,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;margin-bottom:var(--space-lg);transition:transform 0.1s;" id="dhikr-btn">
+    <button onclick="tapDhikr()" id="dhikr-btn" style="width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,var(--primary-dark),var(--primary));border:none;cursor:pointer;box-shadow:0 0 40px rgba(0,129,90,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;margin-bottom:var(--space-lg);transition:transform 0.1s;">
       <div style="color:#fff;font-size:42px;font-weight:900;" id="dhikr-num">${dhikrCount}</div>
       <div style="color:rgba(255,255,255,0.6);font-size:11px;">/ ${d.target}</div>
     </button>
@@ -876,7 +990,6 @@ function tapDhikr(){
   if(btn){btn.style.transform='scale(0.9)';setTimeout(()=>{if(btn)btn.style.transform='scale(1)';},100);}
   const d=DHIKRS[dhikrSel];
   if(dhikrCount===d.target){showToast('✅',d.fr+' — '+d.target+'x','Barakallahu fik ! Objectif atteint !','#00815A');dhikrCount=0;renderDhikr();}
-  else{const num=document.getElementById('dhikr-num');if(num)num.textContent=dhikrCount;}
 }
 function resetDhikr(){dhikrCount=0;renderDhikr();}
 function filterBoutique(cat){
@@ -921,8 +1034,7 @@ function openProduit(id){
 }
 function commanderProduit(id){
   const p=PRODUITS.find(x=>x.id===id);if(!p)return;
-  const msg=encodeURIComponent(`Bonjour Kyswa Travel ! Je souhaite commander : ${p.nom} — ${p.prix.toLocaleString('fr-FR')} FCFA`);
-  window.open(`https://wa.me/221787811616?text=${msg}`,'_blank');
+  window.open(`https://wa.me/221787811616?text=${encodeURIComponent('Bonjour Kyswa Travel ! Je souhaite commander : '+p.nom+' — '+p.prix.toLocaleString('fr-FR')+' FCFA')}`,'_blank');
 }
 function renderEspace(){
   if(pelerin){
@@ -930,6 +1042,8 @@ function renderEspace(){
     document.getElementById('espace-profil-section').style.display='block';
     renderProfil();
   }else{
+    document.getElementById('espace-profil-section').style.display='none';
+    document.getElementById('espace-login-section').style.display='block';
     renderLogin();
   }
 }
@@ -1011,17 +1125,134 @@ function envoyerFormulaire(){
     `📦 Type : ${type}\n📅 Mois : ${mois}\n✈️ Formule : ${formule}\n`+
     `🛏️ Chambre : ${chambre}\n👥 Personnes : ${personnes}\n⏳ Durée : ${jours}\n`+
     `🌍 Combiné : ${combine}\n💰 Budget : ${budget}\n\n`+
-    `📝 Remarques : ${remarques||'Aucune'}\n\n`+
-    `Merci de me contacter ! Barakallahu fik 🤲`
+    `📝 Remarques : ${remarques||'Aucune'}\n\nMerci ! Barakallahu fik 🤲`
   );
   window.open(`https://wa.me/221787811616?text=${msg}`,'_blank');
 }
+function setInfosTab(tab){
+  infosTab=tab;
+  ['climat','interdits','bagages','sante'].forEach(t=>{
+    const b=document.getElementById('itab-'+t);
+    if(!b)return;
+    b.style.background=t===tab?'#fff':'rgba(255,255,255,0.15)';
+    b.style.color=t===tab?'#004D6E':'#fff';
+    b.style.fontWeight=t===tab?'700':'400';
+    b.style.border=t===tab?'none':'1px solid rgba(255,255,255,0.3)';
+  });
+  renderInfos();
+}
+function renderInfos(){
+  const el=document.getElementById('infos-content');
+  if(!el)return;
+  if(infosTab==='climat'){
+    const now=new Date();
+    const moisActuel=CLIMAT_DATA[now.getMonth()];
+    el.innerHTML=`
+      <div class="card" style="background:linear-gradient(135deg,#004D6E,#006994);color:#fff;margin-bottom:var(--space-md);">
+        <div style="font-size:10px;letter-spacing:1px;opacity:0.7;margin-bottom:6px;">MOIS ACTUEL — ${moisActuel.mois.toUpperCase()}</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px;">
+          <div style="background:rgba(255,255,255,0.1);border-radius:var(--radius-md);padding:12px;text-align:center;">
+            <div style="font-size:10px;opacity:0.7;">🕋 Makkah</div>
+            <div style="font-size:18px;font-weight:800;">${moisActuel.makkah}</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.1);border-radius:var(--radius-md);padding:12px;text-align:center;">
+            <div style="font-size:10px;opacity:0.7;">🌿 Médine</div>
+            <div style="font-size:18px;font-weight:800;">${moisActuel.medine}</div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:var(--radius-sm);padding:10px;font-size:12px;">💡 ${moisActuel.conseil}</div>
+      </div>
+      ${CLIMAT_DATA.map((m,i)=>`
+      <div class="card" style="${i===now.getMonth()?'border:2px solid #006994;':''}margin-bottom:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-weight:700;font-size:13px;">${m.mois} ${i===now.getMonth()?'📍':''}</div>
+          <div style="display:flex;gap:8px;font-size:11px;">
+            <span style="background:var(--primary-soft);color:var(--primary);border-radius:var(--radius-full);padding:3px 8px;">🕋 ${m.makkah}</span>
+            <span style="background:var(--gold-soft);color:var(--gold);border-radius:var(--radius-full);padding:3px 8px;">🌿 ${m.medine}</span>
+          </div>
+        </div>
+      </div>`).join('')}`;
+  }else if(infosTab==='interdits'){
+    el.innerHTML=`
+      <div class="card" style="background:linear-gradient(135deg,#B71C1C,#C62828);margin-bottom:var(--space-md);">
+        <div style="color:#fff;font-size:14px;font-weight:800;margin-bottom:6px;">⚠️ Lire avant de partir !</div>
+        <div style="color:rgba(255,255,255,0.8);font-size:12px;">Dès que vous prononcez l'intention au Miqat, ces interdictions s'appliquent immédiatement.</div>
+      </div>
+      <div class="section-label">🧔 INTERDITS HOMMES</div>
+      ${INTERDITS_DATA.hommes.map(i=>`
+      <div class="card" style="border-left:3px solid var(--danger);margin-bottom:8px;">
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;">${i.interdit}</div>
+        <div style="color:var(--text-secondary);font-size:11px;">${i.explication}</div>
+      </div>`).join('')}
+      <div class="section-label" style="margin-top:var(--space-md);">🧕 INTERDITS FEMMES</div>
+      ${INTERDITS_DATA.femmes.map(i=>`
+      <div class="card" style="border-left:3px solid #E91E63;margin-bottom:8px;">
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;">${i.interdit}</div>
+        <div style="color:var(--text-secondary);font-size:11px;">${i.explication}</div>
+      </div>`).join('')}
+      <div class="section-label" style="margin-top:var(--space-md);">✅ CE QUI EST PERMIS</div>
+      <div class="card" style="border:1.5px solid var(--primary-mid);">
+        ${INTERDITS_DATA.permis.map(p=>`<div style="padding:6px 0;font-size:12px;border-bottom:1px solid var(--border);">${p}</div>`).join('')}
+      </div>`;
+  }else if(infosTab==='bagages'){
+    el.innerHTML=BAGAGES_DATA.map(cat=>`
+      <div class="card" style="margin-bottom:var(--space-md);">
+        <div style="font-weight:800;font-size:14px;margin-bottom:10px;">${cat.cat}</div>
+        ${cat.items.map(item=>`<div style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;"><span style="color:var(--primary);flex-shrink:0;">•</span>${item}</div>`).join('')}
+      </div>`).join('');
+  }else{
+    el.innerHTML=SANTE_DATA.map(s=>`
+      <div class="card" style="display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;">
+        <div style="font-size:32px;flex-shrink:0;">${s.icon}</div>
+        <div><div style="font-weight:700;font-size:13px;margin-bottom:4px;">${s.titre}</div><div style="color:var(--text-secondary);font-size:12px;line-height:1.6;">${s.desc}</div></div>
+      </div>`).join('');
+  }
+}
+function renderSira(){
+  const tabs=document.getElementById('sira-tabs');
+  if(!tabs)return;
+  const todayIdx=(new Date().getDate()-1)%30;
+  tabs.innerHTML=SIRA_LECONS.map((s,i)=>`
+    <button onclick="openSiraLecon(${i})" style="flex-shrink:0;background:${i===todayIdx?'#3D1A78':'rgba(61,26,120,0.2)'};border:none;border-radius:var(--radius-full);padding:7px 13px;color:${i===todayIdx?'#fff':'rgba(255,255,255,0.6)'};font-size:11px;cursor:pointer;white-space:nowrap;">${s.icon} J${s.j}</button>`).join('');
+  openSiraLecon(todayIdx);
+}
+function openSiraLecon(idx){
+  const l=SIRA_LECONS[idx];
+  const el=document.getElementById('sira-content');
+  if(!el)return;
+  document.querySelectorAll('#sira-tabs button').forEach((b,i)=>{
+    b.style.background=i===idx?'#3D1A78':'rgba(61,26,120,0.2)';
+    b.style.color=i===idx?'#fff':'rgba(255,255,255,0.6)';
+  });
+  el.innerHTML=`
+    <div style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:4px 12px;color:#C4B5FD;font-size:10px;font-weight:700;">📚 LEÇON ${l.j}/30</div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:3px 10px;color:rgba(255,255,255,0.7);font-size:10px;">${l.icon} ${l.theme}</div>
+      </div>
+      <div style="color:#fff;font-size:18px;font-weight:800;margin-bottom:10px;">${l.titre}</div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:var(--radius-md);padding:var(--space-md);color:rgba(255,255,255,0.85);font-size:13px;line-height:1.8;">${l.contenu}</div>
+    </div>
+    <div class="card" style="border:1.5px solid var(--gold-soft);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:var(--gold);margin-bottom:6px;">📜 HADITH — ${l.source}</div>
+      <div style="font-size:13px;font-style:italic;color:var(--text-primary);line-height:1.7;">"${l.hadith}"</div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:var(--space-md);">
+      ${idx>0?`<button onclick="openSiraLecon(${idx-1})" class="btn btn-ghost" style="flex:1;">← Précédente</button>`:''}
+      ${idx<SIRA_LECONS.length-1?`<button onclick="openSiraLecon(${idx+1})" class="btn btn-primary" style="flex:1;">Suivante →</button>`:`<div style="background:var(--primary-soft);border-radius:var(--radius-md);padding:14px;text-align:center;flex:1;color:var(--primary);font-weight:700;">🌟 30 leçons terminées !</div>`}
+    </div>`;
+}
 async function init(){
   await initSW();
-  renderSurahs();renderDhikr();renderLogin();renderBoutique();
+  renderSurahs();
+  renderDhikr();
+  renderLogin();
+  renderBoutique();
+  renderSira();
   if(Notification.permission==='granted'){
     notifPermission=true;
-    document.getElementById('notif-banner').style.display='none';
+    const banner=document.getElementById('notif-banner');
+    if(banner)banner.style.display='none';
   }
   try{
     const pos=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{timeout:6000}));
