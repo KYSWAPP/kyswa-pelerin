@@ -1059,6 +1059,7 @@ function validerBaraka(id,pts){
 
 (function(){
   const loc={lat:14.6937,lng:-17.4441};
+ loadTimes(loc);
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(pos=>{
       loc.lat=pos.coords.latitude;loc.lng=pos.coords.longitude;
@@ -1068,8 +1069,8 @@ function validerBaraka(id,pts){
           if(el) el.innerHTML='<span style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;animation:pulse 2s ease infinite;"></span> '+(d.address?.city||d.address?.town||'Dakar');
         }).catch(()=>{});
       loadTimes(loc);
-    },()=>loadTimes(loc));
-  } else loadTimes(loc);
+    },()=>{},{timeout:5000,maximumAge:600000});
+  }
 
   function loadTimes(l){
     const d=new Date();
