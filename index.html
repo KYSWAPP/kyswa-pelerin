@@ -10,210 +10,124 @@
 <meta name="apple-mobile-web-app-title" content="Kyswa Travel"/>
 <title>Kyswa Travel</title>
 <style>
-
-/* ╔══════════════════════════════════════════╗
-   ║        KYSWA DESIGN SYSTEM v2.0          ║
-   ║   Changez tout ici en une seule ligne    ║
-   ╚══════════════════════════════════════════╝ */
 :root {
-  /* 🎨 COULEURS PRIMAIRES */
-  --primary:        #00815A;
-  --primary-light:  #00A572;
-  --primary-dark:   #005C40;
-  --primary-soft:   rgba(0,129,90,0.08);
-  --primary-mid:    rgba(0,129,90,0.18);
-
-  /* 🟡 ACCENT */
-  --gold:           #C9A84C;
-  --gold-light:     #E8C96A;
-  --gold-soft:      rgba(201,168,76,0.12);
-
-  /* 🔴 DANGER / PROMO */
-  --danger:         #E53935;
-  --danger-soft:    rgba(229,57,53,0.10);
-
-  /* 🔵 INFO */
-  --blue:           #1565C0;
-  --blue-soft:      rgba(21,101,192,0.10);
-
-  /* ✅ SUCCESS */
-  --success:        #2E7D32;
-  --success-soft:   rgba(46,125,50,0.10);
-
-  /* ⬛ NEUTRES */
-  --bg:             #F5F6F7;
-  --surface:        #FFFFFF;
-  --surface-2:      #F0F1F2;
-  --border:         rgba(0,0,0,0.07);
-  --text-primary:   #1A1A2E;
-  --text-secondary: #6B7280;
-  --text-hint:      #9CA3AF;
-
-  /* 🌙 DARK SURFACES (Dhikr, pages sombres) */
-  --dark-bg:        #0D1117;
-  --dark-surface:   #161B22;
-  --dark-surface-2: #21262D;
-  --dark-border:    rgba(255,255,255,0.08);
-  --dark-text:      #E6EDF3;
-  --dark-hint:      #8B949E;
-
-  /* 📐 SPACING */
-  --space-xs:  4px;
-  --space-sm:  8px;
-  --space-md:  16px;
-  --space-lg:  24px;
-  --space-xl:  32px;
-
-  /* 🔲 RADIUS */
-  --radius-sm:  10px;
-  --radius-md:  16px;
-  --radius-lg:  24px;
-  --radius-xl:  32px;
-  --radius-full: 999px;
-
-  /* 🌫️ OMBRES */
-  --shadow-sm:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md:  0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
-  --shadow-lg:  0 8px 32px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
-  --shadow-primary: 0 8px 24px rgba(0,129,90,0.22);
-  --shadow-gold:    0 8px 24px rgba(201,168,76,0.22);
-
-  /* ⚡ TRANSITIONS */
-  --transition-fast:   0.15s cubic-bezier(0.4,0,0.2,1);
-  --transition-normal: 0.25s cubic-bezier(0.4,0,0.2,1);
-  --transition-slow:   0.4s cubic-bezier(0.4,0,0.2,1);
-
-  /* 🔤 TYPOGRAPHIE */
-  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-arabic: 'Amiri', 'Traditional Arabic', Georgia, serif;
-
-  /* 📏 NAV HEIGHT */
-  --nav-height: 72px;
+  --primary:#00815A; --primary-light:#00A572; --primary-dark:#005C40;
+  --primary-soft:rgba(0,129,90,0.08); --primary-mid:rgba(0,129,90,0.18);
+  --gold:#C9A84C; --gold-soft:rgba(201,168,76,0.12);
+  --danger:#E53935; --danger-soft:rgba(229,57,53,0.10);
+  --blue:#1565C0; --blue-soft:rgba(21,101,192,0.10);
+  --bg:#F5F6F7; --surface:#FFFFFF; --surface-2:#F0F1F2;
+  --border:rgba(0,0,0,0.07); --text-primary:#1A1A2E;
+  --text-secondary:#6B7280; --text-hint:#9CA3AF;
+  --dark-bg:#0D1117; --dark-surface:#161B22; --dark-surface-2:#21262D;
+  --dark-border:rgba(255,255,255,0.08); --dark-text:#E6EDF3; --dark-hint:#8B949E;
+  --radius-sm:10px; --radius-md:16px; --radius-lg:24px; --radius-xl:32px; --radius-full:999px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.06); --shadow-md:0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.10); --shadow-primary:0 8px 24px rgba(0,129,90,0.22);
+  --shadow-gold:0 8px 24px rgba(201,168,76,0.22);
+  --transition-fast:0.15s cubic-bezier(0.4,0,0.2,1);
+  --transition-slow:0.4s cubic-bezier(0.4,0,0.2,1);
+  --font-main:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --font-arabic:'Amiri','Traditional Arabic',Georgia,serif;
+  --nav-height:72px;
+  --space-sm:8px; --space-md:16px; --space-lg:24px;
 }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{background:var(--bg);font-family:var(--font-main);color:var(--text-primary);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+button,input,select,textarea{font-family:var(--font-main);outline:none;}
+::-webkit-scrollbar{display:none;}
+a{text-decoration:none;}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+@keyframes rippleOut{0%{transform:scale(1);opacity:0.6;}100%{transform:scale(3.5);opacity:0;}}
+@keyframes countUp{from{transform:scale(1.3);opacity:0.5;}to{transform:scale(1);opacity:1;}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeOut{from{opacity:1;}to{opacity:0;transform:translateY(-10px);}}
+.page{display:none;padding-bottom:calc(var(--nav-height) + 12px);min-height:100vh;}
+.page-enter{animation:fadeSlideUp 0.4s cubic-bezier(0.4,0,0.2,1) both;}
+.card{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:var(--space-md);margin-bottom:var(--space-md);border:1px solid var(--border);}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--radius-full);font-size:10px;font-weight:700;}
+.badge-primary{background:var(--primary-soft);color:var(--primary);}
+.badge-gold{background:var(--gold-soft);color:var(--gold);}
+.badge-danger{background:var(--danger-soft);color:var(--danger);}
+.badge-blue{background:var(--blue-soft);color:var(--blue);}
+.badge-dark{background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;border:none;border-radius:var(--radius-md);font-size:15px;font-weight:700;cursor:pointer;transition:transform var(--transition-fast),box-shadow var(--transition-fast);}
+.btn:active{transform:scale(0.97);}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:var(--shadow-primary);}
+.btn-outline{background:transparent;color:var(--primary);border:1.5px solid var(--primary);}
+.btn-ghost{background:var(--surface-2);color:var(--text-secondary);}
+.btn-whatsapp{background:#25D366;color:#fff;box-shadow:0 8px 24px rgba(37,211,102,0.25);}
+.input{width:100%;padding:14px 16px;background:var(--surface-2);border:1.5px solid transparent;border-radius:var(--radius-md);font-size:14px;color:var(--text-primary);transition:border-color var(--transition-fast);}
+.input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft);}
+.section-label{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--text-hint);text-transform:uppercase;margin-bottom:var(--space-sm);}
+.divider{height:1px;background:var(--border);margin:var(--space-md) 0;}
 
-/* ══ RESET & BASE ══ */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-body { background:var(--bg); font-family:var(--font-main); color:var(--text-primary); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
-button, input, select, textarea { font-family:var(--font-main); outline:none; }
-::-webkit-scrollbar { display:none; }
-a { text-decoration:none; }
+/* TOAST */
+#toast-container{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:398px;z-index:9999;pointer-events:none;}
+.toast{background:#1A1A2E;border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,0.4);animation:slideDown 0.4s ease both;pointer-events:all;}
+.toast-icon{font-size:26px;flex-shrink:0;}
+.toast-body{flex:1;}
+.toast-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px;}
+.toast-msg{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5;}
+.toast-close{color:rgba(255,255,255,0.4);font-size:18px;cursor:pointer;background:none;border:none;padding:0;}
 
-/* ══ ANIMATIONS ══ */
-@keyframes fadeSlideUp   { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-@keyframes fadeSlideDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
-@keyframes scaleIn       { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
-@keyframes pulse         { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
-@keyframes rippleOut     { 0%{transform:scale(1);opacity:0.6;} 100%{transform:scale(3.5);opacity:0;} }
-@keyframes shimmer       { 0%{background-position:-200% 0;} 100%{background-position:200% 0;} }
-@keyframes bounceIn      { 0%{transform:scale(0.3);opacity:0;} 60%{transform:scale(1.08);} 100%{transform:scale(1);opacity:1;} }
-@keyframes countUp       { from{transform:scale(1.3);opacity:0.5;} to{transform:scale(1);opacity:1;} }
-
-/* ══ PAGES ══ */
-.page { display:none; padding-bottom:calc(var(--nav-height) + 12px); min-height:100vh; }
-.page.active { display:block; }
-.page-enter { animation: fadeSlideUp var(--transition-slow) both; }
-
-/* ══ CARDS ══ */
-.card {
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  padding: var(--space-md);
-  margin-bottom: var(--space-md);
-  border: 1px solid var(--border);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-.card:active { transform: scale(0.99); }
-.card-dark {
-  background: var(--dark-surface);
-  border: 1px solid var(--dark-border);
-  box-shadow: none;
-}
-
-/* ══ PASTILLES (badges Nusuk) ══ */
-.badge {
-  display: inline-flex; align-items:center; gap:4px;
-  padding: 4px 10px; border-radius: var(--radius-full);
-  font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
-}
-.badge-primary { background:var(--primary-soft); color:var(--primary); }
-.badge-gold    { background:var(--gold-soft); color:var(--gold); }
-.badge-danger  { background:var(--danger-soft); color:var(--danger); }
-.badge-blue    { background:var(--blue-soft); color:var(--blue); }
-.badge-dark    { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.8); }
-
-/* ══ BOUTONS ══ */
-.btn {
-  display:flex; align-items:center; justify-content:center; gap:8px;
-  width:100%; padding:16px; border:none; border-radius: var(--radius-md);
-  font-size:15px; font-weight:700; cursor:pointer;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
-}
-.btn:active { transform:scale(0.97); }
-.btn-primary { background:var(--primary); color:#fff; box-shadow:var(--shadow-primary); }
-.btn-primary:active { box-shadow:none; }
-.btn-outline { background:transparent; color:var(--primary); border:1.5px solid var(--primary); }
-.btn-ghost   { background:var(--surface-2); color:var(--text-secondary); }
-.btn-whatsapp { background:#25D366; color:#fff; box-shadow:0 8px 24px rgba(37,211,102,0.25); }
-
-/* ══ INPUTS ══ */
-.input {
-  width:100%; padding:14px 16px;
-  background:var(--surface-2); border:1.5px solid transparent;
-  border-radius: var(--radius-md); font-size:14px; color:var(--text-primary);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-.input:focus { border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
-.input-dark {
-  background:var(--dark-surface-2); border-color:var(--dark-border);
-  color:var(--dark-text);
-}
-.input-dark:focus { border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-soft); }
-
-/* ══ SECTION LABEL ══ */
-.section-label {
-  font-size:11px; font-weight:700; letter-spacing:1px;
-  color:var(--text-hint); text-transform:uppercase;
-  margin-bottom: var(--space-sm);
-}
-
-/* ══ DIVIDER ══ */
-.divider { height:1px; background:var(--border); margin: var(--space-md) 0; }
-
+/* MODAL */
+#modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:8888;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);}
+#modal-overlay.show{display:flex;}
+#modal-box{background:var(--surface);border-radius:var(--radius-xl) var(--radius-xl) 0 0;padding:var(--space-lg);width:100%;max-width:430px;animation:fadeSlideUp 0.35s ease both;max-height:85vh;overflow-y:auto;}
 </style>
 </head>
 <body>
+
+<div id="toast-container"></div>
+
+<!-- MODAL -->
+<div id="modal-overlay" onclick="closeModal()">
+  <div id="modal-box" onclick="event.stopPropagation()">
+    <div id="modal-content"></div>
+  </div>
+</div>
+
 <div id="app" style="max-width:430px;margin:0 auto;">
 
-<!-- ░░░░░░ HOME ░░░░░░ -->
-<div id="pg-home" class="page active">
-  <!-- HERO -->
-  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-xl);position:relative;overflow:hidden;">
+<!-- ░░ HOME ░░ -->
+<div id="pg-home" class="page">
+  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);position:relative;overflow:hidden;">
     <div style="position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.05);"></div>
-    <div style="position:absolute;right:20px;bottom:-40px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.04);"></div>
     <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;">
       <div>
         <div style="color:rgba(255,255,255,0.65);font-size:12px;font-weight:500;margin-bottom:4px;">🙏 Assalamu Alaikum</div>
         <div style="color:#fff;font-size:26px;font-weight:800;letter-spacing:-0.5px;">Kyswa Travel</div>
         <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:6px;display:flex;align-items:center;gap:4px;" id="hijri-city">
-          <span style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;"></span>
-          Dakar, Sénégal
+          <span style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;animation:pulse 2s ease infinite;"></span> Dakar, Sénégal
         </div>
       </div>
-      <div style="width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:26px;backdrop-filter:blur(10px);">🕌</div>
+      <div style="width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:26px;">🕌</div>
     </div>
   </div>
 
-  <!-- NEXT PRAYER CARD -->
-  <div style="padding:0 var(--space-md);margin-top:-20px;">
-    <div id="next-prayer-box" onclick="showPage('prieres')" style="background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:var(--space-md) var(--space-lg);cursor:pointer;border:1px solid var(--border);margin-bottom:var(--space-md);">
+  <div style="padding:0 var(--space-md);margin-top:-16px;">
+
+    <!-- NOTIF BANNER -->
+    <div id="notif-banner" onclick="demanderPermission()" style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-bottom:var(--space-md);display:flex;align-items:center;gap:12px;cursor:pointer;box-shadow:var(--shadow-md);">
+      <div style="font-size:28px;">🔔</div>
+      <div style="flex:1;">
+        <div style="color:#fff;font-size:13px;font-weight:700;">Activer le Programme Baraka</div>
+        <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:2px;">Azan · Azkar · Rappels spirituels</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:6px 14px;color:#fff;font-size:11px;font-weight:700;">Activer</div>
+    </div>
+
+    <!-- NEXT PRAYER -->
+    <div onclick="showPage('prieres')" class="card" style="cursor:pointer;margin-bottom:var(--space-md);">
       <div style="display:flex;justify-content:space-between;align-items:center;">
         <div>
           <div class="section-label">Prochaine prière</div>
-          <div id="next-prayer-name" style="font-size:18px;font-weight:700;color:var(--text-primary);margin-top:4px;">⏳ Chargement...</div>
+          <div id="next-prayer-name" style="font-size:18px;font-weight:700;margin-top:4px;">⏳ Chargement...</div>
           <div style="display:flex;align-items:center;gap:6px;margin-top:6px;">
-            <span style="width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block;animation:pulse 2s ease infinite;"></span>
-            <span style="color:var(--text-secondary);font-size:12px;">Appuyez pour les horaires</span>
+            <span style="width:7px;height:7px;border-radius:50%;background:var(--primary);display:inline-block;animation:pulse 2s ease infinite;"></span>
+            <span style="color:var(--text-secondary);font-size:11px;">Appuyez pour tous les horaires</span>
           </div>
         </div>
         <div style="text-align:right;">
@@ -223,25 +137,36 @@ a { text-decoration:none; }
       </div>
     </div>
 
-    <!-- PROMO CARD -->
-    <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);position:relative;overflow:hidden;box-shadow:var(--shadow-primary);">
-      <div style="position:absolute;right:-20px;bottom:-20px;font-size:100px;opacity:0.07;">🕋</div>
-      <div class="badge badge-danger" style="margin-bottom:var(--space-sm);animation:pulse 2s ease infinite;">🔥 OFFRE LIMITÉE</div>
-      <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Oumra Juin 2026</div>
-      <div style="color:rgba(255,255,255,0.75);font-size:13px;margin-bottom:var(--space-md);">Du 20 au 30 Juin · Places limitées</div>
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;">
-        <div>
-          <div style="color:rgba(255,255,255,0.6);font-size:11px;">À partir de</div>
-          <div style="color:#fff;font-size:32px;font-weight:900;line-height:1;letter-spacing:-1px;">990 000<span style="font-size:14px;font-weight:600;"> FCFA</span></div>
-        </div>
-        <a href="https://wa.me/221787811616?text=Bonjour%2C%20Promo%20Oumra%20Juin%202026" target="_blank" style="background:#fff;color:var(--primary);border-radius:var(--radius-md);padding:12px 18px;font-size:13px;font-weight:700;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,0.15);">Réserver →</a>
+    <!-- BARAKA CARD -->
+    <div onclick="showPage('baraka')" style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;box-shadow:0 8px 24px rgba(0,80,40,0.3);position:relative;overflow:hidden;">
+      <div style="position:absolute;right:-20px;top:-20px;font-size:100px;opacity:0.06;">📿</div>
+      <div class="badge badge-primary" style="margin-bottom:10px;">🌟 NOUVEAU</div>
+      <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Programme Baraka</div>
+      <div style="color:rgba(255,255,255,0.7);font-size:12px;margin-bottom:var(--space-md);">Azkar · Rappels · Récompenses spirituelles</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🌅 Azkar Matin</span>
+        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🌙 Azkar Soir</span>
+        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">📖 Al-Kahf</span>
+        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🤍 Jeûne</span>
       </div>
     </div>
 
-    <!-- TONTINE CARD -->
+    <!-- PROMO -->
+    <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);position:relative;overflow:hidden;box-shadow:var(--shadow-primary);">
+      <div style="position:absolute;right:-15px;top:-15px;font-size:90px;opacity:0.07;">🕋</div>
+      <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;">🔥 OFFRE LIMITÉE</div>
+      <div style="color:#fff;font-size:20px;font-weight:800;">Oumra Juin 2026</div>
+      <div style="color:rgba(255,255,255,0.75);font-size:12px;margin:4px 0 12px;">Du 20 au 30 Juin · Places limitées</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+        <div style="color:#fff;font-size:30px;font-weight:900;letter-spacing:-1px;">990 000<span style="font-size:14px;font-weight:500;"> FCFA</span></div>
+        <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank" style="background:#fff;color:var(--primary);border-radius:var(--radius-md);padding:12px 18px;font-size:13px;font-weight:700;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,0.15);">Réserver →</a>
+      </div>
+    </div>
+
+    <!-- TONTINE -->
     <div style="background:linear-gradient(135deg,#0D1B6E,var(--blue));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-lg);box-shadow:0 8px 24px rgba(21,101,192,0.22);">
-      <div class="badge badge-dark" style="margin-bottom:var(--space-sm);">📅 Paiement mensuel</div>
-      <div style="color:#fff;font-size:18px;font-weight:700;margin-bottom:4px;">🏦 Tontine Oumra</div>
+      <div class="badge badge-dark" style="margin-bottom:10px;">📅 Paiement mensuel</div>
+      <div style="color:#fff;font-size:18px;font-weight:700;margin-bottom:8px;">🏦 Tontine Oumra</div>
       <div style="display:flex;justify-content:space-between;align-items:center;">
         <div style="color:#fff;font-size:24px;font-weight:800;">200 000 <span style="font-size:13px;font-weight:500;opacity:0.7;">FCFA</span></div>
         <a href="https://wa.me/221787811616?text=Tontine%20Oumra" target="_blank" style="background:rgba(255,255,255,0.18);color:#fff;border-radius:var(--radius-md);padding:10px 16px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,0.25);">S'inscrire →</a>
@@ -251,84 +176,62 @@ a { text-decoration:none; }
     <!-- QUICK ACCESS -->
     <div class="section-label">Accès rapide</div>
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-sm);margin-bottom:var(--space-md);">
-      <button onclick="showPage('packages')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 4px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);transition:all var(--transition-fast);"><div style="font-size:22px;">✈️</div><div style="font-size:9px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Packages</div></button>
-      <button onclick="showPage('boutique')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 4px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);"><div style="font-size:22px;">🛍️</div><div style="font-size:9px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Boutique</div></button>
-      <button onclick="showPage('prieres')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 4px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);"><div style="font-size:22px;">🕌</div><div style="font-size:9px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Prières</div></button>
-      <button onclick="showPage('coran')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 4px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);"><div style="font-size:22px;">📖</div><div style="font-size:9px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Coran</div></button>
-      <button onclick="showPage('dhikr')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 4px;cursor:pointer;text-align:center;box-shadow:var(--shadow-sm);"><div style="font-size:22px;">📿</div><div style="font-size:9px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Dhikr</div></button>
+      <button onclick="showPage('packages')" class="card" style="padding:14px 4px;text-align:center;margin-bottom:0;box-shadow:var(--shadow-sm);"><div style="font-size:22px;">✈️</div><div style="font-size:8px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Packages</div></button>
+      <button onclick="showPage('boutique')" class="card" style="padding:14px 4px;text-align:center;margin-bottom:0;box-shadow:var(--shadow-sm);border:none;cursor:pointer;"><div style="font-size:22px;">🛍️</div><div style="font-size:8px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Boutique</div></button>
+      <button onclick="showPage('prieres')" class="card" style="padding:14px 4px;text-align:center;margin-bottom:0;box-shadow:var(--shadow-sm);border:none;cursor:pointer;"><div style="font-size:22px;">🕌</div><div style="font-size:8px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Prières</div></button>
+      <button onclick="showPage('coran')" class="card" style="padding:14px 4px;text-align:center;margin-bottom:0;box-shadow:var(--shadow-sm);border:none;cursor:pointer;"><div style="font-size:22px;">📖</div><div style="font-size:8px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Coran</div></button>
+      <button onclick="showPage('dhikr')" class="card" style="padding:14px 4px;text-align:center;margin-bottom:0;box-shadow:var(--shadow-sm);border:none;cursor:pointer;"><div style="font-size:22px;">📿</div><div style="font-size:8px;margin-top:4px;font-weight:600;color:var(--text-secondary);">Dhikr</div></button>
     </div>
   </div>
 </div>
 
-<!-- ░░░░░░ PACKAGES ░░░░░░ -->
+<!-- ░░ BARAKA ░░ -->
+<div id="pg-baraka" class="page" style="background:var(--dark-bg);">
+  <div style="background:linear-gradient(160deg,#0A1F10,#1A5C36);padding:56px var(--space-md) var(--space-lg);">
+    <div style="color:rgba(255,255,255,0.6);font-size:12px;margin-bottom:4px;">Kyswa Travel</div>
+    <div style="color:#fff;font-size:24px;font-weight:800;">🌟 Programme Baraka</div>
+    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:6px;">Votre compagnon spirituel quotidien</div>
+    <!-- SCORE -->
+    <div style="background:rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-top:var(--space-md);display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:1px;">VOS HASANÂT AUJOURD'HUI</div>
+        <div id="baraka-score" style="color:#7FFFD4;font-size:32px;font-weight:900;letter-spacing:-1px;">0</div>
+      </div>
+      <div style="font-size:48px;">🏆</div>
+    </div>
+  </div>
+  <div style="padding:var(--space-md);" id="baraka-content"></div>
+</div>
+
+<!-- ░░ PACKAGES ░░ -->
 <div id="pg-packages" class="page">
-  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-xl);">
+  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
     <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-bottom:4px;">Kyswa Travel</div>
     <div style="color:#fff;font-size:24px;font-weight:800;">✈️ Nos Packages 2026</div>
   </div>
-  <div style="padding:var(--space-md);margin-top:-16px;">
-
-    <!-- PROMO -->
+  <div style="padding:var(--space-md);margin-top:-8px;">
     <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);box-shadow:var(--shadow-primary);position:relative;overflow:hidden;">
       <div style="position:absolute;right:-15px;top:-15px;font-size:90px;opacity:0.07;">🕋</div>
       <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;">🔥 PROMO</div>
       <div style="color:#fff;font-size:18px;font-weight:800;">Oumra Juin 2026</div>
-      <div style="color:rgba(255,255,255,0.7);font-size:12px;margin:4px 0 12px;">Du 20 au 30 Juin 2026</div>
-      <div style="color:#fff;font-size:30px;font-weight:900;letter-spacing:-1px;margin-bottom:14px;">990 000 <span style="font-size:14px;font-weight:500;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank" class="btn" style="background:#fff;color:var(--primary);border-radius:var(--radius-md);font-weight:700;font-size:13px;padding:13px;box-shadow:0 4px 12px rgba(0,0,0,0.12);">📱 Réserver via WhatsApp</a>
+      <div style="color:rgba(255,255,255,0.75);font-size:12px;margin:4px 0 10px;">Du 20 au 30 Juin 2026</div>
+      <div style="color:#fff;font-size:28px;font-weight:900;letter-spacing:-1px;margin-bottom:14px;">990 000 <span style="font-size:13px;font-weight:500;">FCFA</span></div>
+      <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank" class="btn" style="background:#fff;color:var(--primary);border-radius:var(--radius-md);font-size:13px;padding:13px;box-shadow:0 4px 12px rgba(0,0,0,0.12);">📱 Réserver via WhatsApp</a>
     </div>
-
-    <!-- STANDARD -->
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-        <div><span class="badge badge-primary">Standard</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Standard</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Du 20 au 30 Juin 2026</div></div>
-        <div style="font-size:36px;">🌙</div>
-      </div>
-      <div style="color:var(--primary);font-size:24px;font-weight:800;margin-bottom:14px;">1 850 000 <span style="font-size:13px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Oumra%20Standard" target="_blank" class="btn btn-primary" style="border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a>
-    </div>
-
-    <!-- VIP -->
-    <div class="card" style="border:1.5px solid var(--gold-soft);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-        <div><span class="badge badge-gold">⭐ VIP</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra VIP</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Du 20 au 30 Juin · Service premium</div></div>
-        <div style="font-size:36px;">⭐</div>
-      </div>
-      <div style="color:var(--gold);font-size:24px;font-weight:800;margin-bottom:14px;">2 200 000 <span style="font-size:13px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Oumra%20VIP" target="_blank" class="btn" style="background:var(--gold);color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;box-shadow:var(--shadow-gold);">📱 Réserver via WhatsApp</a>
-    </div>
-
-    <!-- SHAWAL -->
-    <div class="card" style="background:linear-gradient(135deg,#F8F4FF,#F0E6FF);border:1.5px solid rgba(103,58,183,0.1);">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-        <div><span class="badge" style="background:rgba(103,58,183,0.1);color:#673AB7;">🌙 Shawal</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Shawal 2026</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Après Korité — Voyage béni</div></div>
-        <div style="font-size:36px;">🌙</div>
-      </div>
-      <div style="color:#673AB7;font-size:24px;font-weight:800;margin-bottom:14px;">2 850 000 <span style="font-size:13px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Oumra%20Shawal" target="_blank" class="btn" style="background:#673AB7;color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;box-shadow:0 8px 24px rgba(103,58,183,0.22);">📱 Réserver via WhatsApp</a>
-    </div>
-
-    <!-- TONTINE -->
-    <div class="card" style="background:linear-gradient(135deg,#F0F4FF,#E6EDFF);border:1.5px solid rgba(21,101,192,0.1);">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-        <div><span class="badge badge-blue">📅 Mensuel</span><div style="font-size:17px;font-weight:700;margin-top:8px;">🏦 Tontine Oumra</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Versement mensuel — Partez sans stress !</div></div>
-        <div style="font-size:36px;">🏦</div>
-      </div>
-      <div style="color:var(--blue);font-size:24px;font-weight:800;margin-bottom:14px;">200 000 <span style="font-size:13px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Tontine%20Oumra" target="_blank" class="btn" style="background:var(--blue);color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;box-shadow:0 8px 24px rgba(21,101,192,0.22);">📱 S'inscrire via WhatsApp</a>
-    </div>
-
+    <div class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-primary">Standard</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Standard</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Du 20 au 30 Juin 2026</div></div><div style="font-size:36px;">🌙</div></div><div style="color:var(--primary);font-size:24px;font-weight:800;margin-bottom:14px;">1 850 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20Standard" target="_blank" class="btn btn-primary" style="border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a></div>
+    <div class="card" style="border:1.5px solid var(--gold-soft);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-gold">⭐ VIP</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra VIP</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Du 20 au 30 Juin · Service premium</div></div><div style="font-size:36px;">⭐</div></div><div style="color:var(--gold);font-size:24px;font-weight:800;margin-bottom:14px;">2 200 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20VIP" target="_blank" class="btn" style="background:var(--gold);color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;box-shadow:var(--shadow-gold);">📱 Réserver via WhatsApp</a></div>
+    <div class="card" style="background:linear-gradient(135deg,#F8F4FF,#F0E6FF);border:1.5px solid rgba(103,58,183,0.1);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge" style="background:rgba(103,58,183,0.1);color:#673AB7;">🌙 Shawal</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Shawal 2026</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Après Korité — Voyage béni</div></div><div style="font-size:36px;">🌙</div></div><div style="color:#673AB7;font-size:24px;font-weight:800;margin-bottom:14px;">2 850 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20Shawal" target="_blank" class="btn" style="background:#673AB7;color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;box-shadow:0 8px 24px rgba(103,58,183,0.22);">📱 Réserver via WhatsApp</a></div>
+    <div class="card" style="background:linear-gradient(135deg,#F0F4FF,#E6EDFF);border:1.5px solid rgba(21,101,192,0.1);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-blue">📅 Mensuel</span><div style="font-size:17px;font-weight:700;margin-top:8px;">🏦 Tontine Oumra</div><div style="color:var(--text-secondary);font-size:12px;margin-top:3px;">Versement mensuel — Partez sans stress !</div></div><div style="font-size:36px;">🏦</div></div><div style="color:var(--blue);font-size:24px;font-weight:800;margin-bottom:14px;">200 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Tontine%20Oumra" target="_blank" class="btn" style="background:var(--blue);color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 S'inscrire via WhatsApp</a></div>
     <button onclick="showPage('formulaire')" class="btn btn-outline" style="margin-top:4px;">📋 Demande personnalisée</button>
   </div>
 </div>
 
-<!-- ░░░░░░ BOUTIQUE ░░░░░░ -->
+<!-- ░░ BOUTIQUE ░░ -->
 <div id="pg-boutique" class="page">
   <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-md);">
     <div style="color:rgba(255,255,255,0.6);font-size:12px;margin-bottom:4px;">🕋 Produits de La Mecque</div>
     <div style="color:#fff;font-size:24px;font-weight:800;">Boutique Kyswa</div>
-    <div style="color:rgba(255,255,255,0.6);font-size:12px;margin-top:4px;">📦 Livraison à Dakar disponible</div>
-    <div style="display:flex;gap:8px;margin-top:16px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
+    <div style="display:flex;gap:8px;margin-top:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
       <button onclick="filterBoutique('tout')" id="cat-tout" style="flex-shrink:0;background:#fff;border:none;border-radius:var(--radius-full);padding:7px 16px;color:#3D1A78;font-size:11px;font-weight:700;cursor:pointer;">Tout</button>
       <button onclick="filterBoutique('zamzam')" id="cat-zamzam" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">💧 Zamzam</button>
       <button onclick="filterBoutique('dattes')" id="cat-dattes" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">🌴 Dattes</button>
@@ -340,59 +243,56 @@ a { text-decoration:none; }
   <div id="boutique-grid" style="padding:var(--space-md);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);"></div>
 </div>
 
-<!-- ░░░░░░ DETAIL PRODUIT ░░░░░░ -->
-<div id="pg-produit" class="page">
-  <div id="produit-content"></div>
-</div>
+<!-- ░░ DETAIL PRODUIT ░░ -->
+<div id="pg-produit" class="page"><div id="produit-content"></div></div>
 
-<!-- ░░░░░░ PRIERES ░░░░░░ -->
+<!-- ░░ PRIERES ░░ -->
 <div id="pg-prieres" class="page">
-  <div style="background:var(--surface);padding:56px var(--space-md) 0;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;">
-    <div style="font-size:20px;font-weight:800;text-align:center;padding-bottom:16px;">🕌 Prières</div>
-    <div style="display:flex;gap:4px;background:var(--surface-2);border-radius:var(--radius-md);padding:4px;">
-      <button onclick="setPrieresTab('horaires')" id="ptab-horaires" style="flex:1;background:var(--primary);color:#fff;border:none;padding:10px;border-radius:var(--radius-sm);font-size:12px;font-weight:700;cursor:pointer;transition:all var(--transition-fast);box-shadow:var(--shadow-sm);">⏰ Horaires</button>
+  <div style="background:var(--surface);padding:56px var(--space-md) 0;border-bottom:1px solid var(--border);">
+    <div style="font-size:20px;font-weight:800;text-align:center;padding-bottom:14px;">🕌 Prières</div>
+    <div style="display:flex;gap:4px;background:var(--surface-2);border-radius:var(--radius-md);padding:4px;margin-bottom:16px;">
+      <button onclick="setPrieresTab('horaires')" id="ptab-horaires" style="flex:1;background:var(--primary);color:#fff;border:none;padding:10px;border-radius:var(--radius-sm);font-size:12px;font-weight:700;cursor:pointer;transition:all var(--transition-fast);">⏰ Horaires</button>
       <button onclick="setPrieresTab('qibla')" id="ptab-qibla" style="flex:1;background:transparent;color:var(--text-secondary);border:none;padding:10px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;cursor:pointer;transition:all var(--transition-fast);">🧭 Qibla</button>
     </div>
-    <div style="height:16px;"></div>
   </div>
   <div id="prieres-content" style="padding:var(--space-md);"></div>
 </div>
 
-<!-- ░░░░░░ CORAN ░░░░░░ -->
+<!-- ░░ CORAN ░░ -->
 <div id="pg-coran" class="page">
-  <div style="background:var(--surface);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;">
+  <div style="background:var(--surface);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--border);">
     <div style="font-size:20px;font-weight:800;text-align:center;margin-bottom:14px;">📖 Coran</div>
     <input type="text" id="coran-search" oninput="renderSurahs()" placeholder="🔍 Rechercher une sourate..." class="input"/>
   </div>
   <div id="surahs-list" style="padding:var(--space-md);"></div>
 </div>
 
-<!-- ░░░░░░ VERSES ░░░░░░ -->
+<!-- ░░ VERSES ░░ -->
 <div id="pg-verses" class="page">
   <div style="background:var(--surface);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--border);text-align:center;position:relative;">
     <button onclick="showPage('coran')" style="position:absolute;left:var(--space-md);top:56px;background:var(--primary-soft);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:var(--primary);font-size:13px;font-weight:600;cursor:pointer;">← Retour</button>
-    <div id="surah-title" style="font-size:18px;font-weight:800;color:var(--text-primary);"></div>
+    <div id="surah-title" style="font-size:18px;font-weight:800;"></div>
     <div id="surah-ar" style="color:var(--primary);font-size:16px;font-family:var(--font-arabic);margin-top:4px;"></div>
   </div>
   <div id="verses-list" style="padding:var(--space-md);background:var(--bg);min-height:100vh;"></div>
 </div>
 
-<!-- ░░░░░░ DHIKR ░░░░░░ -->
+<!-- ░░ DHIKR ░░ -->
 <div id="pg-dhikr" class="page" style="background:var(--dark-bg);">
   <div style="background:var(--dark-bg);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--dark-border);">
     <div style="color:var(--dark-text);font-size:20px;font-weight:800;text-align:center;">📿 Dhikr & Tasbih</div>
   </div>
   <div style="overflow-x:auto;display:flex;gap:8px;padding:var(--space-md) var(--space-md) 0;" id="dhikr-tabs"></div>
-  <div style="display:flex;flex-direction:column;align-items:center;padding:var(--space-xl) var(--space-md);" id="dhikr-body"></div>
+  <div style="display:flex;flex-direction:column;align-items:center;padding:var(--space-lg) var(--space-md);" id="dhikr-body"></div>
 </div>
 
-<!-- ░░░░░░ ESPACE ░░░░░░ -->
+<!-- ░░ ESPACE ░░ -->
 <div id="pg-espace" class="page">
   <div id="espace-login-section"></div>
   <div id="espace-profil-section" style="display:none;"></div>
 </div>
 
-<!-- ░░░░░░ FORMULAIRE ░░░░░░ -->
+<!-- ░░ FORMULAIRE ░░ -->
 <div id="pg-formulaire" class="page">
   <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
     <button onclick="showPage('packages')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
@@ -402,69 +302,28 @@ a { text-decoration:none; }
   <div style="padding:var(--space-md);">
     <div class="card">
       <div class="section-label">Type d'Oumra</div>
-      <select id="f-type" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
-        <option value="">Choisir...</option>
-        <option>🌟 PROMO Juin 2026 — 990 000 FCFA</option>
-        <option>Oumra Standard — 1 850 000 FCFA</option>
-        <option>⭐ Oumra VIP — 2 200 000 FCFA</option>
-        <option>🌙 Oumra Shawal — 2 850 000 FCFA</option>
-        <option>🏦 Tontine Oumra — 200 000 FCFA/mois</option>
-      </select>
+      <select id="f-type" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option value="">Choisir...</option><option>🌟 PROMO Juin 2026 — 990 000 FCFA</option><option>Oumra Standard — 1 850 000 FCFA</option><option>⭐ Oumra VIP — 2 200 000 FCFA</option><option>🌙 Oumra Shawal — 2 850 000 FCFA</option><option>🏦 Tontine — 200 000 FCFA/mois</option></select>
       <div class="section-label">Mois souhaité</div>
-      <select id="f-mois" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
-        <option value="">Choisir...</option>
-        <option>Juin 2026</option><option>Juillet 2026</option><option>Août 2026</option>
-        <option>Shawal (après Korité)</option><option>Ramadan 2027</option>
-      </select>
+      <select id="f-mois" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option value="">Choisir...</option><option>Juin 2026</option><option>Juillet 2026</option><option>Août 2026</option><option>Shawal</option><option>Ramadan 2027</option></select>
       <div class="section-label">Formule</div>
-      <select id="f-formule" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
-        <option value="">Choisir...</option>
-        <option>Vol + Hôtel + Transport</option><option>Vol + Hôtel uniquement</option>
-        <option>Hôtel uniquement</option><option>Package complet tout inclus</option>
-      </select>
-      <div class="section-label">Type de chambre</div>
-      <select id="f-chambre" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
-        <option value="">Choisir...</option>
-        <option>Chambre simple</option><option>Chambre double</option>
-        <option>Chambre triple</option><option>Chambre quadruple</option><option>Suite VIP</option>
-      </select>
+      <select id="f-formule" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option value="">Choisir...</option><option>Vol + Hôtel + Transport</option><option>Vol + Hôtel</option><option>Hôtel uniquement</option><option>Package tout inclus</option></select>
+      <div class="section-label">Chambre</div>
+      <select id="f-chambre" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option value="">Choisir...</option><option>Simple</option><option>Double</option><option>Triple</option><option>Quadruple</option><option>Suite VIP</option></select>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-sm);margin-bottom:var(--space-md);">
-        <div><div class="section-label">Personnes</div>
-        <select id="f-personnes" class="input" style="-webkit-appearance:none;">
-          <option value="">Nombre...</option>
-          <option>1 personne</option><option>2 personnes</option><option>3 personnes</option>
-          <option>4 personnes</option><option>5 personnes</option><option>Groupe +10</option>
-        </select></div>
-        <div><div class="section-label">Jours</div>
-        <select id="f-jours" class="input" style="-webkit-appearance:none;">
-          <option value="">Durée...</option>
-          <option>7 jours</option><option>10 jours</option><option>14 jours</option>
-          <option>21 jours</option><option>30 jours</option>
-        </select></div>
+        <div><div class="section-label">Personnes</div><select id="f-personnes" class="input" style="-webkit-appearance:none;"><option value="">Nombre...</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>Groupe +10</option></select></div>
+        <div><div class="section-label">Jours</div><select id="f-jours" class="input" style="-webkit-appearance:none;"><option value="">Durée...</option><option>7 jours</option><option>10 jours</option><option>14 jours</option><option>21 jours</option><option>30 jours</option></select></div>
       </div>
       <div class="section-label">Voyage combiné</div>
-      <select id="f-combine" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
-        <option value="">Combiné ?</option>
-        <option>Non — Makkah uniquement</option><option>Oui — Makkah + Médine</option>
-        <option>Oui — Makkah + Médine + Jérusalem</option><option>Oui — Makkah + Istanbul</option>
-      </select>
+      <select id="f-combine" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option value="">Combiné ?</option><option>Makkah uniquement</option><option>Makkah + Médine</option><option>Makkah + Médine + Jérusalem</option><option>Makkah + Istanbul</option></select>
       <div class="section-label">Budget</div>
-      <select id="f-budget" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
-        <option value="">Budget...</option>
-        <option>Moins de 1 000 000 FCFA</option><option>1 000 000 — 2 000 000 FCFA</option>
-        <option>2 000 000 — 3 000 000 FCFA</option><option>Plus de 3 000 000 FCFA</option>
-        <option>Tontine mensuelle</option>
-      </select>
+      <select id="f-budget" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option value="">Budget...</option><option>Moins de 1 000 000 FCFA</option><option>1 000 000 — 2 000 000 FCFA</option><option>2 000 000 — 3 000 000 FCFA</option><option>Plus de 3 000 000 FCFA</option><option>Tontine mensuelle</option></select>
       <div class="divider"></div>
       <div class="section-label">Votre nom</div>
       <input type="text" id="f-nom" placeholder="Prénom et Nom" class="input" style="margin-bottom:var(--space-md);"/>
       <div class="section-label">Téléphone</div>
-      <div style="display:flex;gap:8px;margin-bottom:var(--space-md);">
-        <div style="background:var(--surface-2);border:1.5px solid transparent;border-radius:var(--radius-md);padding:14px 12px;font-size:13px;white-space:nowrap;color:var(--text-primary);">🇸🇳 +221</div>
-        <input type="tel" id="f-phone" placeholder="77 123 45 67" class="input" style="flex:1;"/>
-      </div>
+      <div style="display:flex;gap:8px;margin-bottom:var(--space-md);"><div class="input" style="white-space:nowrap;flex-shrink:0;background:var(--surface-2);">🇸🇳 +221</div><input type="tel" id="f-phone" placeholder="77 123 45 67" class="input" style="flex:1;"/></div>
       <div class="section-label">Remarques</div>
-      <textarea id="f-remarques" placeholder="Besoins spéciaux, questions..." class="input" style="margin-bottom:var(--space-md);min-height:80px;resize:none;"></textarea>
+      <textarea id="f-remarques" placeholder="Besoins spéciaux..." class="input" style="margin-bottom:var(--space-md);min-height:80px;resize:none;"></textarea>
       <button onclick="envoyerFormulaire()" class="btn btn-whatsapp">📱 Envoyer via WhatsApp</button>
     </div>
   </div>
@@ -472,215 +331,443 @@ a { text-decoration:none; }
 
 </div><!-- /app -->
 
-<!-- ░░░░░░ NAVIGATION BAR ░░░░░░ -->
+<!-- NAV -->
 <div style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding:10px 0 20px;z-index:100;box-shadow:0 -4px 24px rgba(0,0,0,0.06);">
-  <button onclick="showPage('home')" class="nb" id="nb-home" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">🏠</div><div id="nbl-home" style="font-size:9px;font-weight:700;color:var(--primary);">Accueil</div></button>
-  <button onclick="showPage('packages')" class="nb" id="nb-packages" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">✈️</div><div id="nbl-packages" style="font-size:9px;color:var(--text-hint);">Packages</div></button>
-  <button onclick="showPage('boutique')" class="nb" id="nb-boutique" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">🛍️</div><div id="nbl-boutique" style="font-size:9px;color:var(--text-hint);">Boutique</div></button>
-  <button onclick="showPage('prieres')" class="nb" id="nb-prieres" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">🕌</div><div id="nbl-prieres" style="font-size:9px;color:var(--text-hint);">Prières</div></button>
-  <button onclick="showPage('coran')" class="nb" id="nb-coran" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">📖</div><div id="nbl-coran" style="font-size:9px;color:var(--text-hint);">Coran</div></button>
-  <button onclick="showPage('dhikr')" class="nb" id="nb-dhikr" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">📿</div><div id="nbl-dhikr" style="font-size:9px;color:var(--text-hint);">Dhikr</div></button>
-  <button onclick="showPage('espace')" class="nb" id="nb-espace" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;"><div style="font-size:22px;">👤</div><div id="nbl-espace" style="font-size:9px;color:var(--text-hint);">Espace</div></button>
+  <button onclick="showPage('home')" class="nb" id="nb-home" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;opacity:1;"><div style="font-size:20px;">🏠</div><div id="nbl-home" style="font-size:9px;font-weight:700;color:var(--primary);">Accueil</div></button>
+  <button onclick="showPage('baraka')" class="nb" id="nb-baraka" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">🌟</div><div id="nbl-baraka" style="font-size:9px;color:var(--text-hint);">Baraka</div></button>
+  <button onclick="showPage('packages')" class="nb" id="nb-packages" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">✈️</div><div id="nbl-packages" style="font-size:9px;color:var(--text-hint);">Packages</div></button>
+  <button onclick="showPage('boutique')" class="nb" id="nb-boutique" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">🛍️</div><div id="nbl-boutique" style="font-size:9px;color:var(--text-hint);">Boutique</div></button>
+  <button onclick="showPage('prieres')" class="nb" id="nb-prieres" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">🕌</div><div id="nbl-prieres" style="font-size:9px;color:var(--text-hint);">Prières</div></button>
+  <button onclick="showPage('dhikr')" class="nb" id="nb-dhikr" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">📿</div><div id="nbl-dhikr" style="font-size:9px;color:var(--text-hint);">Dhikr</div></button>
+  <button onclick="showPage('espace')" class="nb" id="nb-espace" style="display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">👤</div><div id="nbl-espace" style="font-size:9px;color:var(--text-hint);">Espace</div></button>
 </div>
 
 <script>
-/* ═══════════════════════════════════
-   KYSWA APP — JAVASCRIPT CORE
-═══════════════════════════════════ */
+/* ═══════════ KYSWA APP ═══════════ */
+const SB_URL="https://zpgxxqzgqeogupzltrqp.supabase.co";
+const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpwZ3h4cXpncWVvZ3Vwemx0cnFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1MzkxNTUsImV4cCI6MjA1NzExNTE1NX0.qEHBDKb4JKuAHGjqGMBnMBqUolr7VhPkHHBLdM8Trac";
+const PRAYERS=["Fajr","Dhuhr","Asr","Maghrib","Isha"];
+const PICONS={Fajr:"🌅",Dhuhr:"☀️",Asr:"🌤️",Maghrib:"🌆",Isha:"🌙"};
 
-const SB_URL = "https://zpgxxqzgqeogupzltrqp.supabase.co";
-const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpwZ3h4cXpncWVvZ3Vwemx0cnFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1MzkxNTUsImV4cCI6MjA1NzExNTE1NX0.qEHBDKb4JKuAHGjqGMBnMBqUolr7VhPkHHBLdM8Trac";
-
-const PRAYERS = ["Fajr","Dhuhr","Asr","Maghrib","Isha"];
-const PICONS  = {Fajr:"🌅",Dhuhr:"☀️",Asr:"🌤️",Maghrib:"🌆",Isha:"🌙"};
-
-const DHIKRS = [
-  {ar:"سُبْحَانَ اللَّهِ",      fr:"Subhanallah",          target:33},
-  {ar:"الْحَمْدُ لِلَّهِ",     fr:"Alhamdulillah",        target:33},
-  {ar:"اللَّهُ أَكْبَرُ",       fr:"Allahu Akbar",         target:33},
-  {ar:"لَا إِلَهَ إِلَّا اللَّهُ", fr:"La ilaha illallah",   target:100},
-  {ar:"أَسْتَغْفِرُ اللَّهَ",   fr:"Astaghfirullah",       target:100},
-  {ar:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ", fr:"Salat sur le Prophète ﷺ", target:100},
+/* ── AZKAR DATA ── */
+const AZKAR_MATIN=[
+  {ar:"أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",fr:"A'outhou billahi mina shaytani rajim",info:"Au réveil — Protection"},
+  {ar:"الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",fr:"Alhamdulillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur",info:"Louange à Allah qui nous a ramenés à la vie"},
+  {ar:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",fr:"Subhanallahi wa bihamdihi — 100x",info:"100 fois le matin"},
+  {ar:"اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ",fr:"Allahumma bika asbahna wa bika amsayna",info:"Invocation du matin"},
+  {ar:"آيَةُ الْكُرْسِيِّ",fr:"Ayat Al-Kursi (2:255)",info:"1 fois — Protection complète"},
+];
+const AZKAR_SOIR=[
+  {ar:"اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ",fr:"Allahumma bika amsayna wa bika asbahna",info:"Invocation du soir"},
+  {ar:"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ",fr:"Amsayna wa amsal-mulku lillah",info:"Le soir appartient à Allah"},
+  {ar:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",fr:"Subhanallahi wa bihamdihi — 100x",info:"100 fois le soir"},
+];
+const AZKAR_SOMMEIL=[
+  {ar:"بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",fr:"Bismika Allahumma amutu wa ahya",info:"Avant de dormir"},
+  {ar:"اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ",fr:"Allahumma qini adhabaka yawma tab'athu ibadak — 3x",info:"3 fois avant de dormir"},
+  {ar:"سُبْحَانَ اللَّهِ — الْحَمْدُ لِلَّهِ — اللَّهُ أَكْبَرُ",fr:"Subhanallah 33x · Alhamdulillah 33x · Allahu Akbar 34x",info:"Tasbih avant le sommeil"},
 ];
 
-const SURAHS = [
-  {n:1,name:"Al-Fatiha",ar:"الفاتحة",v:7},
-  {n:2,name:"Al-Baqarah",ar:"البقرة",v:286},
-  {n:3,name:"Al-Imran",ar:"آل عمران",v:200},
-  {n:18,name:"Al-Kahf",ar:"الكهف",v:110},
-  {n:19,name:"Maryam",ar:"مريم",v:98},
-  {n:36,name:"Ya-Sin",ar:"يس",v:83},
-  {n:55,name:"Ar-Rahman",ar:"الرحمن",v:78},
-  {n:67,name:"Al-Mulk",ar:"الملك",v:30},
-  {n:112,name:"Al-Ikhlas",ar:"الإخلاص",v:4},
-  {n:113,name:"Al-Falaq",ar:"الفلق",v:5},
+const DHIKRS=[
+  {ar:"سُبْحَانَ اللَّهِ",fr:"Subhanallah",target:33},
+  {ar:"الْحَمْدُ لِلَّهِ",fr:"Alhamdulillah",target:33},
+  {ar:"اللَّهُ أَكْبَرُ",fr:"Allahu Akbar",target:33},
+  {ar:"لَا إِلَهَ إِلَّا اللَّهُ",fr:"La ilaha illallah",target:100},
+  {ar:"أَسْتَغْفِرُ اللَّهَ",fr:"Astaghfirullah",target:100},
+  {ar:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ",fr:"Salat sur le Prophète ﷺ",target:100},
+];
+
+const SURAHS=[
+  {n:1,name:"Al-Fatiha",ar:"الفاتحة",v:7},{n:2,name:"Al-Baqarah",ar:"البقرة",v:286},
+  {n:3,name:"Al-Imran",ar:"آل عمران",v:200},{n:18,name:"Al-Kahf",ar:"الكهف",v:110},
+  {n:19,name:"Maryam",ar:"مريم",v:98},{n:36,name:"Ya-Sin",ar:"يس",v:83},
+  {n:55,name:"Ar-Rahman",ar:"الرحمن",v:78},{n:67,name:"Al-Mulk",ar:"الملك",v:30},
+  {n:112,name:"Al-Ikhlas",ar:"الإخلاص",v:4},{n:113,name:"Al-Falaq",ar:"الفلق",v:5},
   {n:114,name:"An-Nas",ar:"الناس",v:6},
 ];
 
-const PRODUITS = [
-  {id:1, nom:"Eau de Zamzam 5L",        cat:"zamzam",      emoji:"💧", prix:15000, desc:"Eau bénite de La Mecque. Bouteille 5L scellée.",       badge:"🕋 La Mecque"},
-  {id:2, nom:"Eau de Zamzam 1L",        cat:"zamzam",      emoji:"💧", prix:5000,  desc:"Eau bénite de Zamzam. Bouteille 1L pour voyage.",      badge:"🕋 La Mecque"},
-  {id:3, nom:"Dattes Ajwa Premium",     cat:"dattes",      emoji:"🌴", prix:12000, desc:"Dattes Ajwa de Médine. Boîte 500g.",                   badge:"🏅 Médine"},
-  {id:4, nom:"Dattes Medjool 1kg",      cat:"dattes",      emoji:"🌴", prix:18000, desc:"Dattes Medjool premium d'Arabie. 1kg.",                badge:"⭐ Premium"},
-  {id:5, nom:"Dattes Sukkari 500g",     cat:"dattes",      emoji:"🌴", prix:8000,  desc:"Dattes Sukkari dorées. Boîte cadeau 500g.",            badge:"🎁 Cadeau"},
-  {id:6, nom:"Jalaba Homme Blanc",      cat:"vetements",   emoji:"👘", prix:25000, desc:"Jalaba blanche homme. Tailles S à XXL.",              badge:"🇸🇦 Arabie"},
-  {id:7, nom:"Jalaba Homme Beige",      cat:"vetements",   emoji:"👘", prix:22000, desc:"Jalaba beige élégante. Coton supérieur.",              badge:"🇸🇦 Arabie"},
-  {id:8, nom:"Abaya Femme Noire",       cat:"vetements",   emoji:"👗", prix:18000, desc:"Abaya noire broderies dorées. Tailles S-XL.",         badge:"✨ Élégant"},
-  {id:9, nom:"Abaya Femme Bleu Nuit",   cat:"vetements",   emoji:"👗", prix:20000, desc:"Abaya bleu nuit style moderne.",                      badge:"🌙 Nuit"},
-  {id:10,nom:"Tenue Ihram Homme",       cat:"vetements",   emoji:"🤍", prix:15000, desc:"Tenue d'Ihram 2 pièces blanc immaculé.",              badge:"🕋 Hajj"},
-  {id:11,nom:"Hijab Luxe Soie",         cat:"vetements",   emoji:"🧕", prix:8000,  desc:"Hijab soie premium. Plusieurs couleurs.",             badge:"💎 Luxe"},
-  {id:12,nom:"Robe Femme Islamique",    cat:"vetements",   emoji:"👗", prix:16000, desc:"Robe longue femme islamique élégante.",               badge:"🌸 Style"},
-  {id:13,nom:"Oud Al-Madinah",          cat:"parfums",     emoji:"🌹", prix:20000, desc:"Parfum Oud authentique de Médine. 30ml.",             badge:"🕌 Médine"},
-  {id:14,nom:"Rose de Taïf",            cat:"parfums",     emoji:"🌺", prix:15000, desc:"Eau de rose de Taïf. 50ml.",                         badge:"🌹 Taïf"},
-  {id:15,nom:"Bakhour Al-Haram",        cat:"parfums",     emoji:"🌿", prix:12000, desc:"Encens Al-Haram. Senteur Grande Mosquée.",           badge:"🕋 Haram"},
-  {id:16,nom:"Chapelet Cristal 99",     cat:"accessoires", emoji:"📿", prix:5000,  desc:"Chapelet 99 grains cristal naturel.",                badge:"💎 Cristal"},
-  {id:17,nom:"Tapis de Prière Luxe",    cat:"accessoires", emoji:"🙏", prix:18000, desc:"Tapis prière premium + boussole intégrée.",          badge:"⭐ Premium"},
-  {id:18,nom:"Coran Cuir Doré",         cat:"accessoires", emoji:"📖", prix:22000, desc:"Coran couverture cuir dorée. Hafs.",                 badge:"📖 Édition"},
-  {id:19,nom:"Miswak Naturel x5",       cat:"accessoires", emoji:"🪥", prix:3000,  desc:"Bâtons Miswak naturels. Lot de 5.",                  badge:"🌿 Sunna"},
-  {id:20,nom:"Coffret Cadeau Pèlerin",  cat:"accessoires", emoji:"🎁", prix:45000, desc:"Coffret : Zamzam + Dattes + Chapelet + Parfum.",     badge:"🎁 Cadeau"},
+const PRODUITS=[
+  {id:1,nom:"Eau de Zamzam 5L",cat:"zamzam",emoji:"💧",prix:15000,desc:"Eau bénite de La Mecque. 5L scellée.",badge:"🕋 La Mecque"},
+  {id:2,nom:"Eau de Zamzam 1L",cat:"zamzam",emoji:"💧",prix:5000,desc:"Eau de Zamzam. 1L idéale voyage.",badge:"🕋 La Mecque"},
+  {id:3,nom:"Dattes Ajwa Premium",cat:"dattes",emoji:"🌴",prix:12000,desc:"Dattes Ajwa de Médine. Boîte 500g.",badge:"🏅 Médine"},
+  {id:4,nom:"Dattes Medjool 1kg",cat:"dattes",emoji:"🌴",prix:18000,desc:"Dattes Medjool premium. 1kg.",badge:"⭐ Premium"},
+  {id:5,nom:"Dattes Sukkari 500g",cat:"dattes",emoji:"🌴",prix:8000,desc:"Dattes Sukkari dorées. Boîte cadeau.",badge:"🎁 Cadeau"},
+  {id:6,nom:"Jalaba Homme Blanc",cat:"vetements",emoji:"👘",prix:25000,desc:"Jalaba blanche homme. S à XXL.",badge:"🇸🇦 Arabie"},
+  {id:7,nom:"Jalaba Homme Beige",cat:"vetements",emoji:"👘",prix:22000,desc:"Jalaba beige élégante.",badge:"🇸🇦 Arabie"},
+  {id:8,nom:"Abaya Femme Noire",cat:"vetements",emoji:"👗",prix:18000,desc:"Abaya noire broderies dorées.",badge:"✨ Élégant"},
+  {id:9,nom:"Abaya Bleu Nuit",cat:"vetements",emoji:"👗",prix:20000,desc:"Abaya bleu nuit style moderne.",badge:"🌙 Nuit"},
+  {id:10,nom:"Tenue Ihram Homme",cat:"vetements",emoji:"🤍",prix:15000,desc:"Ihram 2 pièces blanc immaculé.",badge:"🕋 Hajj"},
+  {id:11,nom:"Hijab Luxe Soie",cat:"vetements",emoji:"🧕",prix:8000,desc:"Hijab soie premium.",badge:"💎 Luxe"},
+  {id:12,nom:"Robe Islamique",cat:"vetements",emoji:"👗",prix:16000,desc:"Robe longue femme élégante.",badge:"🌸 Style"},
+  {id:13,nom:"Oud Al-Madinah",cat:"parfums",emoji:"🌹",prix:20000,desc:"Oud authentique Médine. 30ml.",badge:"🕌 Médine"},
+  {id:14,nom:"Rose de Taïf",cat:"parfums",emoji:"🌺",prix:15000,desc:"Eau de rose de Taïf. 50ml.",badge:"🌹 Taïf"},
+  {id:15,nom:"Bakhour Al-Haram",cat:"parfums",emoji:"🌿",prix:12000,desc:"Encens Al-Haram.",badge:"🕋 Haram"},
+  {id:16,nom:"Chapelet Cristal 99",cat:"accessoires",emoji:"📿",prix:5000,desc:"Chapelet 99 grains cristal.",badge:"💎 Cristal"},
+  {id:17,nom:"Tapis de Prière Luxe",cat:"accessoires",emoji:"🙏",prix:18000,desc:"Tapis + boussole intégrée.",badge:"⭐ Premium"},
+  {id:18,nom:"Coran Cuir Doré",cat:"accessoires",emoji:"📖",prix:22000,desc:"Coran couverture cuir doré.",badge:"📖 Édition"},
+  {id:19,nom:"Miswak Naturel x5",cat:"accessoires",emoji:"🪥",prix:3000,desc:"Miswak naturels. Lot de 5.",badge:"🌿 Sunna"},
+  {id:20,nom:"Coffret Cadeau",cat:"accessoires",emoji:"🎁",prix:45000,desc:"Zamzam + Dattes + Chapelet + Parfum.",badge:"🎁 Cadeau"},
 ];
 
 /* ── STATE ── */
-let prayerTimes = null, qiblaDir = null, compassHeading = 0;
-let dhikrSel = 0, dhikrCount = 0, dhikrTotal = 0;
-let pelerin = null, lastAzan = {}, prieresTab = "horaires";
-let boutiqueFiltre = "tout";
+let prayerTimes=null, qiblaDir=null, compassHeading=0;
+let dhikrSel=0, dhikrCount=0, dhikrTotal=0;
+let pelerin=null, lastAzan={}, prieresTab="horaires";
+let boutiqueFiltre="tout";
+let barakaScore=0, notifPermission=false;
+let sw=null;
 
-/* ── NAVIGATION ── */
-function showPage(id) {
-  document.querySelectorAll(".page").forEach(p => { p.style.display = "none"; p.classList.remove("page-enter"); });
-  const pg = document.getElementById("pg-"+id);
-  pg.style.display = "block";
-  requestAnimationFrame(() => pg.classList.add("page-enter"));
-
-  // Nav active state
-  document.querySelectorAll(".nb").forEach(b => b.style.opacity = "0.5");
-  const map = {verses:"coran", produit:"boutique", formulaire:"packages"};
-  const navId = map[id] || id;
-  const nav = document.getElementById("nb-"+navId);
-  if (nav) nav.style.opacity = "1";
-
-  // Nav labels
-  document.querySelectorAll("[id^='nbl-']").forEach(l => {
-    l.style.color = "var(--text-hint)";
-    l.style.fontWeight = "500";
-  });
-  const lbl = document.getElementById("nbl-"+navId);
-  if (lbl) { lbl.style.color = "var(--primary)"; lbl.style.fontWeight = "700"; }
-
-  window.scrollTo(0,0);
-  if (id === "prieres")  renderPrieres();
-  if (id === "coran")    renderSurahs();
-  if (id === "dhikr")    renderDhikr();
-  if (id === "espace")   renderEspace();
-  if (id === "boutique") renderBoutique();
+/* ═══════ SERVICE WORKER ═══════ */
+async function initSW() {
+  if (!('serviceWorker' in navigator)) return;
+  try {
+    const reg = await navigator.serviceWorker.register('/sw.js');
+    await navigator.serviceWorker.ready;
+    sw = reg;
+    console.log('[Kyswa] SW prêt');
+  } catch(e) {
+    console.log('[Kyswa] SW non disponible:', e);
+  }
 }
-document.getElementById("pg-home").style.display = "block";
 
-/* ── PRAYER TIMES ── */
-(function initPrayers() {
-  const loc = {lat:14.6937, lng:-17.4441};
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(pos => {
-      loc.lat = pos.coords.latitude;
-      loc.lng = pos.coords.longitude;
-      fetch("https://nominatim.openstreetmap.org/reverse?lat="+loc.lat+"&lon="+loc.lng+"&format=json")
-        .then(r=>r.json()).then(d => {
-          const el = document.getElementById("hijri-city");
-          if (el) el.innerHTML = '<span style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;"></span> '+(d.address?.city||d.address?.town||"Dakar");
+/* ═══════ NOTIFICATIONS ═══════ */
+async function demanderPermission() {
+  if (!('Notification' in window)) {
+    showToast('📵','Notifications','Non supporté sur ce navigateur. Installez l\'app sur l\'écran d\'accueil !','#E53935'); return;
+  }
+  const perm = await Notification.requestPermission();
+  if (perm === 'granted') {
+    notifPermission = true;
+    document.getElementById('notif-banner').style.display = 'none';
+    showToast('✅','Programme Baraka activé !','Vous recevrez l\'azan, les azkar et les rappels spirituels.','#00815A');
+    programmerToutesNotifications();
+    sauvegarderPreference('notif', 'true');
+  } else {
+    showToast('🔕','Permission refusée','Allez dans Réglages > Notifications pour activer.','#E53935');
+  }
+}
+
+function envoyerNotif(titre, corps, tag, delai=0) {
+  if (Notification.permission !== 'granted') return;
+  if (sw && sw.active) {
+    sw.active.postMessage({ type:'SCHEDULE_NOTIF', title:titre, body:corps, tag:tag, delay:delai });
+  } else {
+    setTimeout(() => {
+      try { new Notification(titre, { body:corps, icon:'/icon-192.png', tag:tag, vibrate:[300,100,300] }); } catch(e) {}
+    }, delai);
+  }
+}
+
+function programmerToutesNotifications() {
+  if (!prayerTimes) { setTimeout(programmerToutesNotifications, 3000); return; }
+  programmerAzan();
+  programmerBaraka();
+}
+
+function programmerAzan() {
+  const now = new Date();
+  PRAYERS.forEach(p => {
+    if (!prayerTimes[p]) return;
+    const [h,m] = prayerTimes[p].split(':').map(Number);
+    const t = new Date(); t.setHours(h,m,0,0);
+    const diff = t - now;
+    if (diff > 0) {
+      envoyerNotif(
+        PICONS[p]+' '+p+' — '+prayerTimes[p],
+        ['Fajr','Isha'].includes(p) ? '🕌 Adhan de Madinah — Il est l\'heure de prier !' : '🕋 Adhan de Makkah — Il est l\'heure de prier !',
+        'azan-'+p, diff
+      );
+    }
+  });
+}
+
+function programmerBaraka() {
+  const now = new Date();
+
+  // 🌅 Azkar Matin — 6h00
+  const matin = new Date(); matin.setHours(6,0,0,0);
+  const diffMatin = matin - now;
+  if (diffMatin > 0) envoyerNotif('🌅 Azkar Sabah','Il est temps de faire vos invocations du matin. Baraka fi sabahikoum !','azkar-matin', diffMatin);
+
+  // 🌙 Azkar Soir — 18h00
+  const soir = new Date(); soir.setHours(18,0,0,0);
+  const diffSoir = soir - now;
+  if (diffSoir > 0) envoyerNotif('🌙 Azkar Massa','Il est temps de faire vos invocations du soir. Que Allah vous protège !','azkar-soir', diffSoir);
+
+  // 📿 Shaf'a & Witr — 23h00
+  const witr = new Date(); witr.setHours(23,0,0,0);
+  const diffWitr = witr - now;
+  if (diffWitr > 0) envoyerNotif('📿 Shaf\'a & Witr','N\'oubliez pas votre prière de Witr avant de dormir. Qu\'Allah vous accepte !','witr', diffWitr);
+
+  // ✅ Bilan 5 prières — 22h00
+  const bilan = new Date(); bilan.setHours(22,0,0,0);
+  const diffBilan = bilan - now;
+  if (diffBilan > 0) envoyerNotif('✅ Bilan du jour','Avez-vous accompli vos 5 prières aujourd\'hui ? Ouvrez l\'app pour valider et recevoir vos Hasanât !','bilan', diffBilan);
+
+  // 📖 Al-Kahf vendredi — 9h00
+  const jourSemaine = now.getDay(); // 5 = vendredi
+  if (jourSemaine === 5) {
+    const kahf = new Date(); kahf.setHours(9,0,0,0);
+    const diffKahf = kahf - now;
+    if (diffKahf > 0) envoyerNotif('📖 Yawm Al-Jumu\'ah','Rappel : Récitez Sourate Al-Kahf aujourd\'hui. Lumière entre les deux vendredis !','kahf', diffKahf);
+  }
+
+  // 🤍 Jeûne lundi/jeudi
+  if (jourSemaine === 1 || jourSemaine === 4) { // 1=lundi, 4=jeudi
+    const jeune = new Date(); jeune.setHours(5,30,0,0);
+    const diffJeune = jeune - now;
+    if (diffJeune > 0) envoyerNotif('🤍 Jeûne Sunnah','Aujourd\'hui est un jour de jeûne sunnah. Que Allah accepte votre jeûne !','jeune', diffJeune);
+  }
+}
+
+/* ═══════ BARAKA PAGE ═══════ */
+function renderBaraka() {
+  const today = new Date();
+  const jour = today.getDay();
+  const isVendredi = jour === 5;
+  const isLundiJeudi = jour === 1 || jour === 4;
+
+  document.getElementById('baraka-score').textContent = barakaScore;
+
+  const items = [
+    { id:'matin', icon:'🌅', titre:'Azkar Sabah', desc:'Invocations du matin', heure:'Après Fajr', azkar:AZKAR_MATIN, hasanat:50 },
+    { id:'soir', icon:'🌙', titre:'Azkar Massa', desc:'Invocations du soir', heure:'Après Asr', azkar:AZKAR_SOIR, hasanat:50 },
+    { id:'sommeil', icon:'😴', titre:'Invocations du coucher', desc:'Avant de dormir', heure:'Avant Witr', azkar:AZKAR_SOMMEIL, hasanat:30 },
+    { id:'witr', icon:'📿', titre:"Shaf'a & Witr", desc:'Prière de la nuit', heure:'Avant de dormir', hasanat:100 },
+    { id:'kahf', icon:'📖', titre:'Sourate Al-Kahf', desc:isVendredi?'📅 AUJOURD\'HUI — Vendredi !':'Chaque vendredi', heure:'Vendredi', hasanat:200, highlight:isVendredi },
+    { id:'jeune', icon:'🤍', titre:'Jeûne Sunnah', desc:isLundiJeudi?'📅 AUJOURD\'HUI — Lundi/Jeudi !':'Lundi et Jeudi', heure:'Niyyah la veille', hasanat:150, highlight:isLundiJeudi },
+    { id:'prieres5', icon:'✅', titre:'5 Prières du jour', desc:'Avez-vous tout accompli ?', heure:'Chaque soir', hasanat:500 },
+  ];
+
+  const done = JSON.parse(localStorage.getItem('baraka-done-'+today.toDateString())||'{}');
+
+  document.getElementById('baraka-content').innerHTML = items.map(item => `
+    <div class="card" style="${item.highlight?'border:1.5px solid var(--gold);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);':''}" onclick="${item.azkar?`openAzkar('${item.id}')`:`validerBaraka('${item.id}',${item.hasanat})`}">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div style="display:flex;align-items:center;gap:12px;flex:1;">
+          <div style="width:48px;height:48px;border-radius:14px;background:${done[item.id]?'var(--primary)':item.highlight?'var(--gold)':'var(--surface-2)'};display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">${done[item.id]?'✅':item.icon}</div>
+          <div style="flex:1;">
+            <div style="font-size:14px;font-weight:700;color:${done[item.id]?'var(--primary)':'var(--text-primary)'};">${item.titre}</div>
+            <div style="color:var(--text-secondary);font-size:11px;margin-top:2px;">${item.desc}</div>
+            <div style="color:var(--text-hint);font-size:10px;margin-top:2px;">⏰ ${item.heure}</div>
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="background:${done[item.id]?'var(--primary-soft)':'var(--gold-soft)'};color:${done[item.id]?'var(--primary)':'var(--gold)'};border-radius:var(--radius-full);padding:4px 10px;font-size:11px;font-weight:700;">+${item.hasanat} ح</div>
+          ${item.azkar?'<div style="color:var(--text-hint);font-size:10px;margin-top:4px;">Voir ›</div>':''}
+        </div>
+      </div>
+    </div>`).join('') +
+    `<div class="card" style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);text-align:center;cursor:pointer;" onclick="openBilanPrieres()">
+      <div style="font-size:32px;margin-bottom:8px;">🕌</div>
+      <div style="color:#fff;font-size:16px;font-weight:800;">Bilan des 5 prières</div>
+      <div style="color:rgba(255,255,255,0.7);font-size:12px;margin-top:4px;">Confirmez vos prières du jour</div>
+    </div>`;
+}
+
+function openAzkar(type) {
+  const map = {matin:AZKAR_MATIN, soir:AZKAR_SOIR, sommeil:AZKAR_SOMMEIL};
+  const titres = {matin:'🌅 Azkar Sabah', soir:'🌙 Azkar Massa', sommeil:'😴 Invocations du coucher'};
+  const azkar = map[type]; if (!azkar) return;
+  document.getElementById('modal-content').innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-lg);">
+      <div style="font-size:18px;font-weight:800;">${titres[type]}</div>
+      <button onclick="closeModal()" style="background:var(--surface-2);border:none;border-radius:var(--radius-full);width:32px;height:32px;font-size:18px;cursor:pointer;">×</button>
+    </div>
+    ${azkar.map((z,i) => `
+    <div style="background:var(--surface-2);border-radius:var(--radius-lg);padding:var(--space-md);margin-bottom:10px;">
+      <div style="font-size:9px;font-weight:700;color:var(--text-hint);letter-spacing:1px;margin-bottom:6px;">${i+1}. ${z.info}</div>
+      <div style="color:var(--primary-dark);font-size:20px;text-align:right;direction:rtl;line-height:2;font-family:var(--font-arabic);">${z.ar}</div>
+      <div style="color:var(--text-secondary);font-size:11px;font-style:italic;margin-top:6px;">${z.fr}</div>
+    </div>`).join('')}
+    <button onclick="validerBaraka('${type}',50);closeModal()" class="btn btn-primary" style="margin-top:var(--space-md);">✅ J'ai récité — +50 Hasanât</button>`;
+  document.getElementById('modal-overlay').classList.add('show');
+}
+
+function openBilanPrieres() {
+  const prieres = ['Fajr','Dhuhr','Asr','Maghrib','Isha'];
+  const done = JSON.parse(localStorage.getItem('prieres-done-'+new Date().toDateString())||'{}');
+  document.getElementById('modal-content').innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-lg);">
+      <div style="font-size:18px;font-weight:800;">🕌 Mes 5 prières</div>
+      <button onclick="closeModal()" style="background:var(--surface-2);border:none;border-radius:var(--radius-full);width:32px;height:32px;font-size:18px;cursor:pointer;">×</button>
+    </div>
+    <div style="color:var(--text-secondary);font-size:13px;margin-bottom:var(--space-lg);">Cochez les prières accomplies aujourd'hui :</div>
+    ${prieres.map(p => `
+    <div onclick="togglePriere('${p}')" id="priere-item-${p}" style="background:${done[p]?'var(--primary-soft)':'var(--surface-2)'};border:1.5px solid ${done[p]?'var(--primary)':'transparent'};border-radius:var(--radius-md);padding:14px var(--space-md);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="font-size:22px;">${PICONS[p]}</div>
+        <div style="font-size:15px;font-weight:700;">${p}</div>
+      </div>
+      <div id="check-${p}" style="width:24px;height:24px;border-radius:var(--radius-full);background:${done[p]?'var(--primary)':'var(--border)'};display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;">${done[p]?'✓':''}</div>
+    </div>`).join('')}
+    <button onclick="validerPrieres()" class="btn btn-primary" style="margin-top:var(--space-md);">Valider mon bilan</button>`;
+  document.getElementById('modal-overlay').classList.add('show');
+}
+
+function togglePriere(p) {
+  const key = 'prieres-done-'+new Date().toDateString();
+  const done = JSON.parse(localStorage.getItem(key)||'{}');
+  done[p] = !done[p];
+  localStorage.setItem(key, JSON.stringify(done));
+  const item = document.getElementById('priere-item-'+p);
+  const check = document.getElementById('check-'+p);
+  if (item) { item.style.background = done[p]?'var(--primary-soft)':'var(--surface-2)'; item.style.border = done[p]?'1.5px solid var(--primary)':'1.5px solid transparent'; }
+  if (check) { check.style.background = done[p]?'var(--primary)':'var(--border)'; check.textContent = done[p]?'✓':''; }
+}
+
+function validerPrieres() {
+  const key = 'prieres-done-'+new Date().toDateString();
+  const done = JSON.parse(localStorage.getItem(key)||'{}');
+  const nb = Object.values(done).filter(Boolean).length;
+  closeModal();
+  if (nb === 5) {
+    barakaScore += 500;
+    showToast('🏆','MashaAllah ! 5/5 prières !','بارك الله فيك — Qu\'Allah vous récompense abondamment ! +500 Hasanât','#00815A');
+  } else if (nb >= 3) {
+    barakaScore += nb * 80;
+    showToast('🌟',nb+'/5 prières accomplies','Continuez ! Rattrapez les prières manquées. +'+nb*80+' Hasanât','#C9A84C');
+  } else {
+    showToast('🤲','N\'oubliez pas vos prières','La prière est le pilier de la religion. Qu\'Allah vous facilite !','#E53935');
+  }
+  validerBaraka('prieres5', 0);
+}
+
+function validerBaraka(id, pts) {
+  const key = 'baraka-done-'+new Date().toDateString();
+  const done = JSON.parse(localStorage.getItem(key)||'{}');
+  if (!done[id]) {
+    done[id] = true;
+    localStorage.setItem(key, JSON.stringify(done));
+    barakaScore += pts;
+    if (pts > 0) showToast('✨','Baraka !','+'+ pts+' Hasanât ajoutés — بارك الله فيك !','#00815A');
+  }
+  renderBaraka();
+}
+
+function closeModal() { document.getElementById('modal-overlay').classList.remove('show'); }
+
+/* ═══════ TOAST ═══════ */
+function showToast(icon, titre, msg, couleur='#00815A') {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.style.borderLeft = '3px solid '+couleur;
+  t.innerHTML = `<div class="toast-icon">${icon}</div><div class="toast-body"><div class="toast-title">${titre}</div><div class="toast-msg">${msg}</div></div><button class="toast-close" onclick="this.closest('.toast').remove()">×</button>`;
+  c.appendChild(t);
+  setTimeout(()=>{ t.style.animation='fadeOut 0.3s ease forwards'; setTimeout(()=>t.remove(),300); }, 5000);
+}
+
+/* ═══════ NAV ═══════ */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p=>{ p.style.display='none'; p.classList.remove('page-enter'); });
+  const pg = document.getElementById('pg-'+id);
+  pg.style.display = 'block';
+  requestAnimationFrame(()=>pg.classList.add('page-enter'));
+  document.querySelectorAll('.nb').forEach(b=>b.style.opacity='0.5');
+  document.querySelectorAll('[id^="nbl-"]').forEach(l=>{ l.style.color='var(--text-hint)'; l.style.fontWeight='500'; });
+  const map={verses:'coran',produit:'boutique',formulaire:'packages'};
+  const navId = map[id]||id;
+  const nav = document.getElementById('nb-'+navId);
+  if (nav) nav.style.opacity='1';
+  const lbl = document.getElementById('nbl-'+navId);
+  if (lbl) { lbl.style.color='var(--primary)'; lbl.style.fontWeight='700'; }
+  window.scrollTo(0,0);
+  if (id==='prieres') renderPrieres();
+  if (id==='coran') renderSurahs();
+  if (id==='dhikr') renderDhikr();
+  if (id==='espace') renderEspace();
+  if (id==='boutique') renderBoutique();
+  if (id==='baraka') renderBaraka();
+}
+document.getElementById('pg-home').style.display='block';
+
+/* ═══════ PRAYER TIMES ═══════ */
+(function(){
+  const loc={lat:14.6937,lng:-17.4441};
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(p=>{
+      loc.lat=p.coords.latitude; loc.lng=p.coords.longitude;
+      fetch('https://nominatim.openstreetmap.org/reverse?lat='+loc.lat+'&lon='+loc.lng+'&format=json')
+        .then(r=>r.json()).then(d=>{
+          const el=document.getElementById('hijri-city');
+          if(el) el.innerHTML='<span style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;animation:pulse 2s ease infinite;"></span> '+(d.address?.city||d.address?.town||'Dakar');
         }).catch(()=>{});
       loadTimes(loc);
-    }, () => loadTimes(loc));
+    },()=>loadTimes(loc));
   } else loadTimes(loc);
 
-  function loadTimes(l) {
-    const d = new Date();
+  function loadTimes(l){
+    const d=new Date();
     fetch(`https://api.aladhan.com/v1/timings/${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}?latitude=${l.lat}&longitude=${l.lng}&method=2`)
-      .then(r=>r.json()).then(data => {
-        prayerTimes = data.data.timings;
-        const lat1=l.lat*Math.PI/180, lat2=21.4225*Math.PI/180, dLng=(39.8262-l.lng)*Math.PI/180;
-        qiblaDir = Math.round((Math.atan2(Math.sin(dLng)*Math.cos(lat2), Math.cos(lat1)*Math.sin(lat2)-Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLng))*180/Math.PI+360)%360);
+      .then(r=>r.json()).then(data=>{
+        prayerTimes=data.data.timings;
+        const lat1=l.lat*Math.PI/180,lat2=21.4225*Math.PI/180,dLng=(39.8262-l.lng)*Math.PI/180;
+        qiblaDir=Math.round((Math.atan2(Math.sin(dLng)*Math.cos(lat2),Math.cos(lat1)*Math.sin(lat2)-Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLng))*180/Math.PI+360)%360);
         startTicker();
+        if(notifPermission) programmerToutesNotifications();
       }).catch(()=>{});
   }
 })();
 
-function startTicker() {
-  setInterval(() => {
-    if (!prayerTimes) return;
-    const now = new Date();
-    const hh = String(now.getHours()).padStart(2,"0");
-    const mm = String(now.getMinutes()).padStart(2,"0");
-
-    // Azan
-    PRAYERS.forEach(p => {
-      const t = prayerTimes[p]?.substring(0,5);
-      if (t === hh+":"+mm && lastAzan[p] !== t) {
-        lastAzan[p] = t;
-        const src = ["Fajr","Isha"].includes(p)
-          ? "https://cdn.islamic.network/mp3/prayer-times/azan/Madinah.mp3"
-          : "https://cdn.islamic.network/mp3/prayer-times/azan/Makkah.mp3";
+function startTicker(){
+  setInterval(()=>{
+    if(!prayerTimes) return;
+    const now=new Date();
+    const hh=String(now.getHours()).padStart(2,'0'),mm=String(now.getMinutes()).padStart(2,'0');
+    PRAYERS.forEach(p=>{
+      const t=prayerTimes[p]?.substring(0,5);
+      if(t===hh+':'+mm&&lastAzan[p]!==t){
+        lastAzan[p]=t;
+        const src=['Fajr','Isha'].includes(p)?'https://cdn.islamic.network/mp3/prayer-times/azan/Madinah.mp3':'https://cdn.islamic.network/mp3/prayer-times/azan/Makkah.mp3';
         new Audio(src).play().catch(()=>{});
+        showToast(PICONS[p],'Heure de '+p,'Il est '+t+' — '+(['Fajr','Isha'].includes(p)?'Adhan de Madinah':'Adhan de Makkah'),'#00815A');
       }
     });
-
-    // Countdown
-    const list = PRAYERS.map(p => {
-      const [ph,pm] = (prayerTimes[p]||"00:00").split(":").map(Number);
-      const d = new Date(); d.setHours(ph,pm,0,0);
-      return {name:p, time:prayerTimes[p], diff:d-now};
+    const list=PRAYERS.map(p=>{
+      const[ph,pm]=(prayerTimes[p]||'00:00').split(':').map(Number);
+      const d=new Date();d.setHours(ph,pm,0,0);return{name:p,time:prayerTimes[p],diff:d-now};
     }).filter(p=>p.diff>0).sort((a,b)=>a.diff-b.diff);
-
-    if (list.length) {
-      const nxt = list[0];
-      const hr = Math.floor(nxt.diff/3600000);
-      const mn = Math.floor((nxt.diff%3600000)/60000);
-      const sc = Math.floor((nxt.diff%60000)/1000);
-      const nm = document.getElementById("next-prayer-name");
-      const ct = document.getElementById("countdown-el");
-      if (nm) nm.textContent = PICONS[nxt.name]+" "+nxt.name+" — "+nxt.time;
-      if (ct) ct.textContent = hr+"h "+String(mn).padStart(2,"0")+"m "+String(sc).padStart(2,"0")+"s";
+    if(list.length){
+      const nxt=list[0];
+      const hr=Math.floor(nxt.diff/3600000),mn=Math.floor((nxt.diff%3600000)/60000),sc=Math.floor((nxt.diff%60000)/1000);
+      const nm=document.getElementById('next-prayer-name');
+      const ct=document.getElementById('countdown-el');
+      if(nm) nm.textContent=PICONS[nxt.name]+' '+nxt.name+' — '+nxt.time;
+      if(ct) ct.textContent=hr+'h '+String(mn).padStart(2,'0')+'m '+String(sc).padStart(2,'0')+'s';
     }
-  }, 1000);
+  },1000);
 }
 
-/* ── PRIERES ── */
-function setPrieresTab(tab) {
-  prieresTab = tab;
-  const ht = document.getElementById("ptab-horaires");
-  const qt = document.getElementById("ptab-qibla");
-  if (tab==="horaires") {
-    ht.style.background="var(--primary)"; ht.style.color="#fff"; ht.style.boxShadow="var(--shadow-sm)";
-    qt.style.background="transparent"; qt.style.color="var(--text-secondary)"; qt.style.boxShadow="none";
-  } else {
-    qt.style.background="var(--primary)"; qt.style.color="#fff"; qt.style.boxShadow="var(--shadow-sm)";
-    ht.style.background="transparent"; ht.style.color="var(--text-secondary)"; ht.style.boxShadow="none";
-  }
+/* ═══════ PRIERES ═══════ */
+let prieresTabState='horaires';
+function setPrieresTab(tab){
+  prieresTabState=tab;
+  const ht=document.getElementById('ptab-horaires'),qt=document.getElementById('ptab-qibla');
+  if(tab==='horaires'){ht.style.background='var(--primary)';ht.style.color='#fff';qt.style.background='transparent';qt.style.color='var(--text-secondary)';}
+  else{qt.style.background='var(--primary)';qt.style.color='#fff';ht.style.background='transparent';ht.style.color='var(--text-secondary)';}
   renderPrieres();
 }
-
-function renderPrieres() {
-  const el = document.getElementById("prieres-content"); if (!el) return;
-  if (prieresTab === "horaires") {
-    const now = new Date();
-    el.innerHTML = PRAYERS.map(p => {
-      if (!prayerTimes) return `<div class="card" style="display:flex;justify-content:space-between;">${PICONS[p]} ${p}<span style="color:var(--text-hint);">Chargement...</span></div>`;
-      const [h,m] = prayerTimes[p].split(":").map(Number);
-      const d = new Date(); d.setHours(h,m,0,0); const passed = d < now;
-      const isNext = !passed && PRAYERS.filter(pp=>{const[ph,pm]=(prayerTimes[pp]||"00:00").split(":").map(Number);const dd=new Date();dd.setHours(ph,pm,0,0);return dd>now;}).sort((a,b)=>{const[ah,am]=(prayerTimes[a]||"00:00").split(":").map(Number);const[bh,bm]=(prayerTimes[b]||"00:00").split(":").map(Number);return(ah*60+am)-(bh*60+bm);})[0]===p;
-      return `<div class="card" style="display:flex;justify-content:space-between;align-items:center;opacity:${passed?0.4:1};${isNext?"border:1.5px solid var(--primary);background:var(--primary-soft);":""}">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:44px;height:44px;border-radius:var(--radius-sm);background:${isNext?"var(--primary)":"var(--surface-2)"};display:flex;align-items:center;justify-content:center;font-size:20px;">${PICONS[p]}</div>
-          <div><div style="font-size:15px;font-weight:700;">${p}</div><div style="color:var(--text-hint);font-size:10px;margin-top:2px;">${["Fajr","Isha"].includes(p)?"🕌 Adhan Madinah":"🕋 Adhan Makkah"}</div></div>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-size:20px;font-weight:800;color:${isNext?"var(--primary)":passed?"var(--text-hint)":"var(--text-primary)"};">${prayerTimes[p]}</div>
-          ${isNext?'<div class="badge badge-primary" style="margin-top:4px;">Prochaine</div>':""}
-        </div>
-      </div>`;
-    }).join("");
+function renderPrieres(){
+  const el=document.getElementById('prieres-content');if(!el)return;
+  if(prieresTabState==='horaires'){
+    const now=new Date();
+    el.innerHTML=PRAYERS.map(p=>{
+      if(!prayerTimes) return`<div class="card">${PICONS[p]} ${p} <span style="color:var(--text-hint);">Chargement...</span></div>`;
+      const[h,m]=prayerTimes[p].split(':').map(Number);const d=new Date();d.setHours(h,m,0,0);const passed=d<now;
+      const nextList=PRAYERS.filter(pp=>{const[ph,pm]=(prayerTimes[pp]||'00:00').split(':').map(Number);const dd=new Date();dd.setHours(ph,pm,0,0);return dd>now;});
+      const isNext=nextList.sort((a,b)=>{const[ah,am]=(prayerTimes[a]||'00:00').split(':').map(Number);const[bh,bm]=(prayerTimes[b]||'00:00').split(':').map(Number);return(ah*60+am)-(bh*60+bm);})[0]===p;
+      return`<div class="card" style="opacity:${passed?0.4:1};${isNext?'border:1.5px solid var(--primary);background:var(--primary-soft);':''}">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:44px;height:44px;border-radius:var(--radius-sm);background:${isNext?'var(--primary)':'var(--surface-2)'};display:flex;align-items:center;justify-content:center;font-size:20px;">${PICONS[p]}</div>
+            <div><div style="font-size:15px;font-weight:700;">${p}</div><div style="color:var(--text-hint);font-size:10px;margin-top:2px;">${['Fajr','Isha'].includes(p)?'🕌 Adhan Madinah':'🕋 Adhan Makkah'}</div></div>
+          </div>
+          <div style="text-align:right;"><div style="font-size:20px;font-weight:800;color:${isNext?'var(--primary)':passed?'var(--text-hint)':'var(--text-primary)'};">${prayerTimes[p]}</div>${isNext?'<div class="badge badge-primary" style="margin-top:4px;">Prochaine</div>':''}</div>
+        </div></div>`;
+    }).join('');
   } else {
-    el.innerHTML = `<div style="text-align:center;padding-bottom:20px;">
+    el.innerHTML=`<div style="text-align:center;padding-bottom:20px;">
       <div style="color:var(--text-secondary);font-size:13px;margin-bottom:20px;">Direction vers La Mecque</div>
       <button onclick="activerBoussole()" id="compass-btn" class="btn btn-primary" style="max-width:220px;margin:0 auto 24px;">🧭 Activer la boussole</button>
       <div style="position:relative;width:240px;height:240px;margin:0 auto 24px;">
@@ -696,310 +783,207 @@ function renderPrieres() {
           <div style="position:absolute;font-size:16px;">📍</div>
         </div>
       </div>
-      ${qiblaDir ? `<div class="card" style="display:inline-block;text-align:center;padding:16px 28px;"><div class="section-label">Direction Qibla</div><div style="color:var(--primary);font-size:36px;font-weight:900;">${qiblaDir}°</div><div style="color:var(--text-hint);font-size:11px;">depuis le Nord</div></div>` : '<div style="color:var(--text-hint);">Chargement GPS...</div>'}
+      ${qiblaDir?`<div class="card" style="display:inline-block;text-align:center;padding:16px 28px;"><div class="section-label">Direction Qibla</div><div style="color:var(--primary);font-size:36px;font-weight:900;">${qiblaDir}°</div></div>`:'<div style="color:var(--text-hint);">Chargement GPS...</div>'}
     </div>`;
   }
 }
-
-function activerBoussole() {
-  const btn = document.getElementById("compass-btn");
-  if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
-    DeviceOrientationEvent.requestPermission().then(p => { if (p==="granted") { window.addEventListener("deviceorientation",onOrient,true); if(btn)btn.style.display="none"; }}).catch(()=>{});
-  } else { window.addEventListener("deviceorientation",onOrient,true); if(btn)btn.style.display="none"; }
+function activerBoussole(){
+  const btn=document.getElementById('compass-btn');
+  if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function'){
+    DeviceOrientationEvent.requestPermission().then(p=>{if(p==='granted'){window.addEventListener('deviceorientation',onOrient,true);if(btn)btn.style.display='none';}}).catch(()=>{});
+  } else {window.addEventListener('deviceorientation',onOrient,true);if(btn)btn.style.display='none';}
 }
-function onOrient(e) {
-  compassHeading = e.webkitCompassHeading != null ? e.webkitCompassHeading : (360-(e.alpha||0));
-  const el = document.getElementById("qibla-arrow");
-  if (el) el.style.transform = `rotate(${(qiblaDir||0)-compassHeading}deg)`;
-}
-
-/* ── CORAN ── */
-function renderSurahs() {
-  const s = (document.getElementById("coran-search")?.value||"").toLowerCase();
-  const f = SURAHS.filter(x=>x.name.toLowerCase().includes(s)||x.ar.includes(s)||String(x.n).includes(s));
-  const el = document.getElementById("surahs-list"); if (!el) return;
-  el.innerHTML = f.map(x=>`
-    <div onclick="openSurah(${x.n},'${x.name}','${x.ar}')" class="card" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;">${x.n}</div>
-        <div><div style="font-size:14px;font-weight:700;">${x.name}</div><div style="color:var(--text-hint);font-size:11px;margin-top:2px;">${x.v} versets</div></div>
-      </div>
-      <div style="color:var(--primary);font-size:18px;font-family:var(--font-arabic);">${x.ar}</div>
-    </div>`).join("");
+function onOrient(e){
+  compassHeading=e.webkitCompassHeading!=null?e.webkitCompassHeading:(360-(e.alpha||0));
+  const el=document.getElementById('qibla-arrow');
+  if(el) el.style.transform=`rotate(${(qiblaDir||0)-compassHeading}deg)`;
 }
 
-function openSurah(n, name, ar) {
-  document.getElementById("surah-title").textContent = name;
-  document.getElementById("surah-ar").textContent = ar;
-  document.getElementById("verses-list").innerHTML = '<div style="text-align:center;color:var(--text-hint);padding:40px;">Chargement...</div>';
-  showPage("verses");
-  fetch(`https://api.alquran.cloud/v1/surah/${n}`).then(r=>r.json()).then(d => {
-    document.getElementById("verses-list").innerHTML =
+/* ═══════ CORAN ═══════ */
+function renderSurahs(){
+  const s=(document.getElementById('coran-search')?.value||'').toLowerCase();
+  const f=SURAHS.filter(x=>x.name.toLowerCase().includes(s)||x.ar.includes(s)||String(x.n).includes(s));
+  const el=document.getElementById('surahs-list');if(!el)return;
+  el.innerHTML=f.map(x=>`<div onclick="openSurah(${x.n},'${x.name}','${x.ar}')" class="card" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;">${x.n}</div><div><div style="font-size:14px;font-weight:700;">${x.name}</div><div style="color:var(--text-hint);font-size:11px;">${x.v} versets</div></div></div><div style="color:var(--primary);font-size:18px;font-family:var(--font-arabic);">${x.ar}</div></div>`).join('');
+}
+function openSurah(n,name,ar){
+  document.getElementById('surah-title').textContent=name;
+  document.getElementById('surah-ar').textContent=ar;
+  document.getElementById('verses-list').innerHTML='<div style="text-align:center;color:var(--text-hint);padding:40px;">Chargement...</div>';
+  showPage('verses');
+  fetch(`https://api.alquran.cloud/v1/surah/${n}`).then(r=>r.json()).then(d=>{
+    document.getElementById('verses-list').innerHTML=
       `<div style="color:var(--primary);font-size:22px;text-align:center;font-family:var(--font-arabic);padding:20px;background:var(--surface);border-radius:var(--radius-lg);margin-bottom:12px;box-shadow:var(--shadow-sm);">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>`+
-      d.data.ayahs.map(v=>`
-        <div class="card">
-          <div style="width:26px;height:26px;border-radius:var(--radius-sm);background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;margin-bottom:10px;">${v.numberInSurah}</div>
-          <div style="color:var(--text-primary);font-size:21px;text-align:right;direction:rtl;line-height:2.2;font-family:var(--font-arabic);">${v.text}</div>
-        </div>`).join("");
-  }).catch(()=>{ document.getElementById("verses-list").innerHTML='<div style="text-align:center;color:var(--text-hint);padding:40px;">Erreur de chargement</div>'; });
+      d.data.ayahs.map(v=>`<div class="card"><div style="width:26px;height:26px;border-radius:var(--radius-sm);background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;margin-bottom:10px;">${v.numberInSurah}</div><div style="font-size:21px;text-align:right;direction:rtl;line-height:2.2;font-family:var(--font-arabic);">${v.text}</div></div>`).join('');
+  }).catch(()=>{document.getElementById('verses-list').innerHTML='<div style="text-align:center;color:var(--text-hint);padding:40px;">Erreur</div>';});
 }
 
-/* ── DHIKR ── */
-function renderDhikr() {
-  const d = DHIKRS[dhikrSel];
-  const pct = Math.min((dhikrCount/d.target)*100, 100);
-  const done = dhikrCount >= d.target;
-  const circ = 2*Math.PI*98;
-  const C = "var(--primary)";
-
-  document.getElementById("dhikr-tabs").innerHTML = DHIKRS.map((dh,i) =>
-    `<button onclick="selectDhikr(${i})" style="flex-shrink:0;background:${i===dhikrSel?"var(--primary)":"var(--dark-surface-2)"};border:none;border-radius:var(--radius-full);padding:8px 16px;color:${i===dhikrSel?"#fff":"var(--dark-hint)"};font-size:11px;font-weight:${i===dhikrSel?"700":"500"};cursor:pointer;transition:all var(--transition-fast);">${dh.fr.split(" ").slice(0,2).join(" ")}</button>`
-  ).join("");
-
-  document.getElementById("dhikr-body").innerHTML = `
-    <div style="color:${done?"#2ecc71":"var(--primary)"};font-size:28px;text-align:center;direction:rtl;font-family:var(--font-arabic);margin-bottom:6px;line-height:1.8;">${d.ar}</div>
+/* ═══════ DHIKR ═══════ */
+function renderDhikr(){
+  const d=DHIKRS[dhikrSel],pct=Math.min((dhikrCount/d.target)*100,100),done=dhikrCount>=d.target,circ=2*Math.PI*98;
+  document.getElementById('dhikr-tabs').innerHTML=DHIKRS.map((dh,i)=>`<button onclick="selectDhikr(${i})" style="flex-shrink:0;background:${i===dhikrSel?'var(--primary)':'var(--dark-surface-2)'};border:none;border-radius:var(--radius-full);padding:8px 16px;color:${i===dhikrSel?'#fff':'var(--dark-hint)'};font-size:11px;font-weight:${i===dhikrSel?700:500};cursor:pointer;transition:all var(--transition-fast);">${dh.fr.split(' ').slice(0,2).join(' ')}</button>`).join('');
+  document.getElementById('dhikr-body').innerHTML=`
+    <div style="color:${done?'#2ecc71':'var(--primary)'};font-size:28px;text-align:center;direction:rtl;font-family:var(--font-arabic);margin-bottom:6px;line-height:1.8;">${d.ar}</div>
     <div style="color:var(--dark-hint);font-size:13px;margin-bottom:32px;font-style:italic;">${d.fr}</div>
     <div style="position:relative;width:220px;height:220px;margin-bottom:24px;" id="dhikr-wrap">
       <svg width="220" height="220" style="position:absolute;top:0;left:0;transform:rotate(-90deg);">
         <circle cx="110" cy="110" r="98" fill="none" stroke="var(--dark-surface-2)" stroke-width="12"/>
-        <circle id="dhikr-arc" cx="110" cy="110" r="98" fill="none" stroke="${done?"#2ecc71":"var(--primary)"}" stroke-width="12" stroke-dasharray="${circ}" stroke-dashoffset="${circ*(1-pct/100)}" stroke-linecap="round" style="transition:stroke-dashoffset 0.3s,stroke 0.3s;"/>
+        <circle id="dhikr-arc" cx="110" cy="110" r="98" fill="none" stroke="${done?'#2ecc71':'var(--primary)'}" stroke-width="12" stroke-dasharray="${circ}" stroke-dashoffset="${circ*(1-pct/100)}" stroke-linecap="round" style="transition:stroke-dashoffset 0.3s,stroke 0.3s;"/>
       </svg>
-      <button id="dhikr-btn" onclick="tapDhikr()" style="position:absolute;inset:0;background:${done?"linear-gradient(135deg,#1a5c2a,#2ecc71)":"var(--dark-surface)"};border:2px solid ${done?"#2ecc71":"var(--dark-border)"};border-radius:50%;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform 0.1s,box-shadow 0.1s;">
-        <div id="dhikr-count" style="color:${done?"#2ecc71":"var(--dark-text)"};font-size:64px;font-weight:900;line-height:1;letter-spacing:-2px;">${dhikrCount}</div>
+      <button id="dhikr-btn" onclick="tapDhikr()" style="position:absolute;inset:0;background:${done?'linear-gradient(135deg,#1a5c2a,#2ecc71)':'var(--dark-surface)'};border:2px solid ${done?'#2ecc71':'var(--dark-border)'};border-radius:50%;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform 0.1s,box-shadow 0.1s;">
+        <div id="dhikr-count" style="color:${done?'#2ecc71':'var(--dark-text)'};font-size:64px;font-weight:900;line-height:1;letter-spacing:-2px;">${dhikrCount}</div>
         <div style="color:var(--dark-hint);font-size:12px;margin-top:4px;">/ ${d.target}</div>
       </button>
     </div>
-    ${done?`<div style="color:#2ecc71;font-size:15px;margin-bottom:16px;font-weight:700;animation:pulse 1.5s ease infinite;">✅ Alhamdulillah ! بارك الله فيك</div>`:""}
+    ${done?`<div style="color:#2ecc71;font-size:15px;margin-bottom:16px;font-weight:700;animation:pulse 1.5s ease infinite;">✅ Alhamdulillah ! بارك الله فيك</div>`:''}
     <div style="display:flex;gap:12px;">
       <button onclick="resetDhikr()" style="background:var(--dark-surface-2);border:1px solid var(--dark-border);border-radius:var(--radius-md);padding:12px 20px;color:var(--dark-hint);font-size:13px;cursor:pointer;">↺ Reset</button>
       <div style="background:var(--dark-surface-2);border:1px solid var(--dark-border);border-radius:var(--radius-md);padding:12px 20px;color:var(--dark-hint);font-size:13px;">Total: ${dhikrTotal}</div>
     </div>`;
 }
-
-function selectDhikr(i) { dhikrSel=i; dhikrCount=0; renderDhikr(); }
-function resetDhikr()   { dhikrCount=0; renderDhikr(); }
-
-function tapDhikr() {
-  dhikrCount++; dhikrTotal++;
-  const done = dhikrCount >= DHIKRS[dhikrSel].target;
-  const btn  = document.getElementById("dhikr-btn");
-  const wrap = document.getElementById("dhikr-wrap");
-  const arc  = document.getElementById("dhikr-arc");
-  const cnt  = document.getElementById("dhikr-count");
-
-  // Count update
-  if (cnt) { cnt.textContent = dhikrCount; cnt.style.animation = "countUp 0.2s ease"; setTimeout(()=>{if(cnt)cnt.style.animation="";},200); }
-
-  // Button bounce
-  if (btn) {
-    btn.style.transform = "scale(0.90)";
-    btn.style.boxShadow = "0 0 0 8px rgba(0,129,90,0.15), 0 0 0 16px rgba(0,129,90,0.07)";
-    setTimeout(()=>{ if(btn){btn.style.transform="scale(1)";btn.style.boxShadow="none";} }, 180);
-  }
-
-  // Ripple
-  if (wrap) {
-    for (let i=0; i<2; i++) {
-      setTimeout(()=>{
-        const r = document.createElement("div");
-        r.style.cssText = "position:absolute;inset:0;border-radius:50%;border:2px solid var(--primary);animation:rippleOut 0.7s ease-out forwards;pointer-events:none;";
-        wrap.appendChild(r);
-        setTimeout(()=>r.remove(), 800);
-      }, i*120);
-    }
-  }
-
-  // Arc update
-  if (arc) {
-    const circ = 2*Math.PI*98;
-    const pct  = Math.min((dhikrCount/DHIKRS[dhikrSel].target)*100,100);
-    arc.setAttribute("stroke-dashoffset", circ*(1-pct/100));
-    if (done) arc.setAttribute("stroke","#2ecc71");
-  }
-
-  if (done) setTimeout(()=>renderDhikr(), 300);
+function selectDhikr(i){dhikrSel=i;dhikrCount=0;renderDhikr();}
+function resetDhikr(){dhikrCount=0;renderDhikr();}
+function tapDhikr(){
+  dhikrCount++;dhikrTotal++;
+  const done=dhikrCount>=DHIKRS[dhikrSel].target;
+  const btn=document.getElementById('dhikr-btn'),wrap=document.getElementById('dhikr-wrap'),arc=document.getElementById('dhikr-arc'),cnt=document.getElementById('dhikr-count');
+  if(cnt){cnt.textContent=dhikrCount;cnt.style.animation='countUp 0.2s ease';setTimeout(()=>{if(cnt)cnt.style.animation='';},200);}
+  if(btn){btn.style.transform='scale(0.90)';btn.style.boxShadow='0 0 0 8px rgba(0,129,90,0.15)';setTimeout(()=>{if(btn){btn.style.transform='scale(1)';btn.style.boxShadow='none';}},180);}
+  if(wrap){for(let i=0;i<2;i++){setTimeout(()=>{const r=document.createElement('div');r.style.cssText='position:absolute;inset:0;border-radius:50%;border:2px solid var(--primary);animation:rippleOut 0.7s ease-out forwards;pointer-events:none;';wrap.appendChild(r);setTimeout(()=>r.remove(),800);},i*120);}}
+  if(arc){const c=2*Math.PI*98,p=Math.min((dhikrCount/DHIKRS[dhikrSel].target)*100,100);arc.setAttribute('stroke-dashoffset',c*(1-p/100));if(done)arc.setAttribute('stroke','#2ecc71');}
+  if(done)setTimeout(()=>renderDhikr(),300);
 }
 
-/* ── BOUTIQUE ── */
-function filterBoutique(cat) {
-  boutiqueFiltre = cat;
-  document.querySelectorAll("[id^='cat-']").forEach(b => {
-    b.style.background = "rgba(255,255,255,0.15)";
-    b.style.color = "#fff";
-    b.style.border = "1px solid rgba(255,255,255,0.25)";
-  });
-  const a = document.getElementById("cat-"+cat);
-  if (a) { a.style.background="#fff"; a.style.color="#3D1A78"; a.style.border="none"; }
+/* ═══════ BOUTIQUE ═══════ */
+function filterBoutique(cat){
+  boutiqueFiltre=cat;
+  document.querySelectorAll('[id^="cat-"]').forEach(b=>{b.style.background='rgba(255,255,255,0.15)';b.style.color='#fff';b.style.border='1px solid rgba(255,255,255,0.25)';});
+  const a=document.getElementById('cat-'+cat);
+  if(a){a.style.background='#fff';a.style.color='#3D1A78';a.style.border='none';}
   renderBoutique();
 }
-
-function renderBoutique() {
-  const filtered = boutiqueFiltre==="tout" ? PRODUITS : PRODUITS.filter(p=>p.cat===boutiqueFiltre);
-  document.getElementById("boutique-grid").innerHTML = filtered.map(p=>`
-    <div onclick="openProduit(${p.id})" style="background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;box-shadow:var(--shadow-md);border:1px solid var(--border);transition:transform var(--transition-fast),box-shadow var(--transition-fast);" ontouchstart="this.style.transform='scale(0.97)'" ontouchend="this.style.transform='scale(1)'">
-      <div style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);height:96px;display:flex;align-items:center;justify-content:center;font-size:46px;position:relative;">
-        ${p.emoji}
-        <div style="position:absolute;top:8px;left:8px;background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:3px 8px;font-size:8px;color:#E9D5FF;font-weight:600;">${p.badge}</div>
-      </div>
-      <div style="padding:12px;">
-        <div style="font-size:12px;font-weight:700;line-height:1.3;margin-bottom:6px;color:var(--text-primary);">${p.nom}</div>
-        <div style="color:#7C3AED;font-size:14px;font-weight:800;">${p.prix.toLocaleString("fr-FR")} <span style="font-size:10px;">FCFA</span></div>
-        <div style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-sm);padding:8px;color:#fff;font-size:10px;font-weight:700;text-align:center;margin-top:10px;">🛒 Commander</div>
-      </div>
-    </div>`).join("");
+function renderBoutique(){
+  const f=boutiqueFiltre==='tout'?PRODUITS:PRODUITS.filter(p=>p.cat===boutiqueFiltre);
+  document.getElementById('boutique-grid').innerHTML=f.map(p=>`
+  <div onclick="openProduit(${p.id})" style="background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;box-shadow:var(--shadow-md);border:1px solid var(--border);" ontouchstart="this.style.transform='scale(0.97)'" ontouchend="this.style.transform='scale(1)'">
+    <div style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);height:96px;display:flex;align-items:center;justify-content:center;font-size:46px;position:relative;">${p.emoji}<div style="position:absolute;top:8px;left:8px;background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:3px 8px;font-size:8px;color:#E9D5FF;font-weight:600;">${p.badge}</div></div>
+    <div style="padding:12px;"><div style="font-size:12px;font-weight:700;line-height:1.3;margin-bottom:6px;">${p.nom}</div><div style="color:#7C3AED;font-size:14px;font-weight:800;">${p.prix.toLocaleString('fr-FR')} <span style="font-size:10px;">FCFA</span></div><div style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-sm);padding:8px;color:#fff;font-size:10px;font-weight:700;text-align:center;margin-top:10px;">🛒 Commander</div></div>
+  </div>`).join('');
 }
-
-function openProduit(id) {
-  const p = PRODUITS.find(x=>x.id===id); if (!p) return;
-  const msg = `Salam Alaikum ! 🛍️ Je veux commander :\n\n${p.emoji} *${p.nom}*\n💰 Prix : ${p.prix.toLocaleString("fr-FR")} FCFA\n\nMerci de confirmer la disponibilité !`;
-  document.getElementById("produit-content").innerHTML = `
+function openProduit(id){
+  const p=PRODUITS.find(x=>x.id===id);if(!p)return;
+  const msg=`Salam Alaikum ! 🛍️ Je veux commander :\n\n${p.emoji} *${p.nom}*\n💰 Prix : ${p.prix.toLocaleString('fr-FR')} FCFA\n\nMerci de confirmer la disponibilité !`;
+  document.getElementById('produit-content').innerHTML=`
   <div style="background:var(--bg);min-height:100vh;">
     <div style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) 32px;text-align:center;position:relative;">
       <button onclick="showPage('boutique')" style="position:absolute;left:var(--space-md);top:56px;background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-full);padding:8px 16px;color:#fff;cursor:pointer;font-size:13px;">← Retour</button>
       <div style="font-size:80px;margin-bottom:12px;">${p.emoji}</div>
       <div style="color:#fff;font-size:20px;font-weight:800;">${p.nom}</div>
-      <div style="background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:4px 14px;display:inline-block;margin-top:8px;color:#E9D5FF;font-size:11px;">${p.badge}</div>
     </div>
     <div style="padding:var(--space-md);">
-      <div class="card">
-        <div class="section-label">Description</div>
-        <div style="font-size:14px;line-height:1.7;color:var(--text-primary);">${p.desc}</div>
-      </div>
-      <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <div class="section-label">Prix</div>
-          <div style="color:#7C3AED;font-size:32px;font-weight:900;letter-spacing:-1px;">${p.prix.toLocaleString("fr-FR")} <span style="font-size:14px;">FCFA</span></div>
-        </div>
-        <div class="badge badge-primary">✓ Disponible</div>
-      </div>
+      <div class="card"><div class="section-label">Description</div><div style="font-size:14px;line-height:1.7;">${p.desc}</div></div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;"><div><div class="section-label">Prix</div><div style="color:#7C3AED;font-size:32px;font-weight:900;">${p.prix.toLocaleString('fr-FR')} <span style="font-size:14px;">FCFA</span></div></div><div class="badge badge-primary">✓ Disponible</div></div>
       <a href="https://wa.me/221787811616?text=${encodeURIComponent(msg)}" target="_blank" class="btn btn-whatsapp" style="margin-bottom:var(--space-sm);">📱 Commander via WhatsApp</a>
-      <div class="card" style="text-align:center;background:var(--surface-2);box-shadow:none;">
-        <div style="color:var(--text-secondary);font-size:12px;margin-bottom:4px;">📦 Livraison disponible à Dakar</div>
-        <div style="color:var(--text-hint);font-size:11px;">📍 Retrait : 115 Av. Blaise Diagne, Dakar</div>
-      </div>
+      <div class="card" style="text-align:center;background:var(--surface-2);box-shadow:none;"><div style="color:var(--text-secondary);font-size:12px;">📦 Livraison disponible à Dakar</div><div style="color:var(--text-hint);font-size:11px;margin-top:4px;">📍 115 Av. Blaise Diagne, Dakar</div></div>
     </div>
   </div>`;
-  showPage("produit");
+  showPage('produit');
 }
 
-/* ── ESPACE PÈLERIN ── */
-function renderEspace() {
-  if (!pelerin) { renderLogin(); return; }
-  document.getElementById("espace-login-section").style.display = "none";
-  document.getElementById("espace-profil-section").style.display = "block";
-  const ins = pelerin.inscriptions?.[0];
-  const pays = ins?.paiements||[];
-  const totalPaye = pays.reduce((s,x)=>s+(x.montant||0),0);
-  const totalDu = ins?.prix_total||0;
-  const reste = totalDu-totalPaye;
-  const pct = totalDu>0 ? Math.round((totalPaye/totalDu)*100) : 0;
-  const dd = ins?.departs?.date_depart ? new Date(ins.departs.date_depart) : null;
-  const daysLeft = dd ? Math.ceil((dd-new Date())/864e5) : null;
-  const fmt = n => (Number(n)||0).toLocaleString("fr-FR")+" FCFA";
-
-  document.getElementById("espace-profil-section").innerHTML = `
+/* ═══════ ESPACE ═══════ */
+function renderEspace(){
+  if(!pelerin){renderLogin();return;}
+  document.getElementById('espace-login-section').style.display='none';
+  document.getElementById('espace-profil-section').style.display='block';
+  const ins=pelerin.inscriptions?.[0],pays=ins?.paiements||[];
+  const totalPaye=pays.reduce((s,x)=>s+(x.montant||0),0),totalDu=ins?.prix_total||0;
+  const reste=totalDu-totalPaye,pct=totalDu>0?Math.round((totalPaye/totalDu)*100):0;
+  const dd=ins?.departs?.date_depart?new Date(ins.departs.date_depart):null;
+  const daysLeft=dd?Math.ceil((dd-new Date())/864e5):null;
+  const fmt=n=>(Number(n)||0).toLocaleString('fr-FR')+' FCFA';
+  document.getElementById('espace-profil-section').innerHTML=`
     <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
       <div style="display:flex;align-items:center;gap:16px;">
-        <div style="width:60px;height:60px;border-radius:20px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px;border:2px solid rgba(255,255,255,0.3);">${pelerin.genre==="F"?"👩🏾":"👨🏾"}</div>
-        <div>
-          <div style="color:#fff;font-size:20px;font-weight:800;">${pelerin.prenom||""} ${pelerin.nom||""}</div>
-          <div class="badge badge-dark" style="margin-top:6px;">N° KT-${String(pelerin.id||0).padStart(4,"0")}</div>
-        </div>
+        <div style="width:60px;height:60px;border-radius:20px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px;border:2px solid rgba(255,255,255,0.3);">${pelerin.genre==='F'?'👩🏾':'👨🏾'}</div>
+        <div><div style="color:#fff;font-size:20px;font-weight:800;">${pelerin.prenom||''} ${pelerin.nom||''}</div><div class="badge badge-dark" style="margin-top:6px;">N° KT-${String(pelerin.id||0).padStart(4,'0')}</div></div>
       </div>
     </div>
     <div style="padding:var(--space-md);">
-      ${daysLeft!==null ? `
-      <div class="card" style="text-align:center;background:var(--primary-soft);border:1.5px solid var(--primary-mid);">
-        <div class="section-label">Départ dans</div>
-        <div style="color:var(--primary);font-size:56px;font-weight:900;line-height:1;letter-spacing:-2px;">${daysLeft}</div>
-        <div style="color:var(--text-secondary);font-size:13px;margin-top:4px;">jours ✈️</div>
-      </div>` : ""}
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-          <div style="font-size:14px;font-weight:700;">💰 Paiements</div>
-          <div class="badge ${reste>0?"badge-danger":"badge-primary"}">${reste>0?"⚠️ "+fmt(reste)+" reste":"✅ Soldé"}</div>
-        </div>
-        <div style="background:var(--surface-2);border-radius:var(--radius-full);height:10px;overflow:hidden;">
-          <div style="width:${pct}%;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-light));border-radius:var(--radius-full);transition:width 0.8s ease;"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-top:8px;">
-          <div style="color:var(--text-hint);font-size:11px;">Payé : ${fmt(totalPaye)}</div>
-          <div style="color:var(--text-hint);font-size:11px;">Total : ${fmt(totalDu)}</div>
-        </div>
-      </div>
-      ${[["🌍","Visa",pelerin.statut_visa||"En traitement"],["💉","Vaccin",pelerin.vaccin_meningite?"✓ Validé":"⚠️ Manquant"],["📞","Téléphone",pelerin.telephone||"—"]].map(([ico,l,v])=>`
-      <div class="card" style="display:flex;justify-content:space-between;align-items:center;padding:14px var(--space-md);">
-        <div style="color:var(--text-secondary);font-size:13px;">${ico} ${l}</div>
-        <div class="badge ${v.includes("✓")?"badge-primary":v.includes("⚠️")?"badge-danger":"badge-primary"}">${v}</div>
-      </div>`).join("")}
+      ${daysLeft!==null?`<div class="card" style="text-align:center;background:var(--primary-soft);border:1.5px solid var(--primary-mid);"><div class="section-label">Départ dans</div><div style="color:var(--primary);font-size:56px;font-weight:900;letter-spacing:-2px;">${daysLeft}</div><div style="color:var(--text-secondary);font-size:13px;">jours ✈️</div></div>`:''}
+      <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><div style="font-size:14px;font-weight:700;">💰 Paiements</div><div class="badge ${reste>0?'badge-danger':'badge-primary'}">${reste>0?'⚠️ '+fmt(reste)+' reste':'✅ Soldé'}</div></div><div style="background:var(--surface-2);border-radius:var(--radius-full);height:10px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-light));border-radius:var(--radius-full);"></div></div></div>
       <button onclick="deconnecter()" class="btn btn-ghost" style="margin-top:8px;">Se déconnecter</button>
     </div>`;
 }
-
-function renderLogin() {
-  document.getElementById("espace-login-section").style.display = "block";
-  document.getElementById("espace-profil-section").style.display = "none";
-  document.getElementById("espace-login-section").innerHTML = `
+function renderLogin(){
+  document.getElementById('espace-login-section').style.display='block';
+  document.getElementById('espace-profil-section').style.display='none';
+  document.getElementById('espace-login-section').innerHTML=`
     <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:85vh;padding:var(--space-lg);">
       <div style="width:80px;height:80px;border-radius:24px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:var(--space-lg);box-shadow:var(--shadow-primary);">🕌</div>
-      <div style="font-size:24px;font-weight:800;margin-bottom:6px;text-align:center;">Mon Espace Pèlerin</div>
+      <div style="font-size:24px;font-weight:800;margin-bottom:6px;">Mon Espace Pèlerin</div>
       <div style="color:var(--text-secondary);font-size:13px;margin-bottom:var(--space-lg);text-align:center;">Entrez votre numéro de téléphone</div>
-      <div id="login-err" style="display:none;background:var(--danger-soft);border:1.5px solid var(--danger);border-radius:var(--radius-md);padding:12px var(--space-md);color:var(--danger);font-size:13px;margin-bottom:var(--space-md);text-align:center;width:100%;max-width:320px;"></div>
-      <div style="display:flex;gap:8px;margin-bottom:var(--space-md);width:100%;max-width:320px;">
-        <div class="input" style="white-space:nowrap;flex-shrink:0;background:var(--surface-2);">🇸🇳 +221</div>
-        <input type="tel" id="login-phone" placeholder="77 123 45 67" oninput="checkBtn()" class="input" style="flex:1;"/>
-      </div>
+      <div id="login-err" style="display:none;background:var(--danger-soft);border:1.5px solid var(--danger);border-radius:var(--radius-md);padding:12px;color:var(--danger);font-size:13px;margin-bottom:var(--space-md);text-align:center;width:100%;max-width:320px;"></div>
+      <div style="display:flex;gap:8px;margin-bottom:var(--space-md);width:100%;max-width:320px;"><div class="input" style="white-space:nowrap;flex-shrink:0;background:var(--surface-2);">🇸🇳 +221</div><input type="tel" id="login-phone" placeholder="77 123 45 67" oninput="checkBtn()" class="input" style="flex:1;"/></div>
       <button id="login-btn" onclick="doLogin()" disabled class="btn" style="width:100%;max-width:320px;background:var(--surface-2);color:var(--text-hint);cursor:not-allowed;">Accéder à mon espace</button>
     </div>`;
 }
-
-function checkBtn() {
-  const v = document.getElementById("login-phone")?.value||"";
-  const btn = document.getElementById("login-btn"); if (!btn) return;
-  btn.disabled = v.length < 8;
-  if (v.length >= 8) { btn.className="btn btn-primary"; btn.style.cursor="pointer"; }
-  else { btn.className="btn"; btn.style.background="var(--surface-2)"; btn.style.color="var(--text-hint)"; btn.style.cursor="not-allowed"; btn.style.boxShadow="none"; }
+function checkBtn(){
+  const v=document.getElementById('login-phone')?.value||'',btn=document.getElementById('login-btn');if(!btn)return;
+  btn.disabled=v.length<8;
+  if(v.length>=8){btn.className='btn btn-primary';btn.style.cursor='pointer';}
+  else{btn.className='btn';btn.style.background='var(--surface-2)';btn.style.color='var(--text-hint)';btn.style.cursor='not-allowed';btn.style.boxShadow='none';}
 }
-
-async function doLogin() {
-  const phone = document.getElementById("login-phone")?.value||"";
-  const btn = document.getElementById("login-btn");
-  const err = document.getElementById("login-err");
-  if (btn) { btn.textContent="Recherche..."; btn.disabled=true; }
-  const cleaned = phone.replace(/[^0-9]/g,"");
-  const last9 = cleaned.slice(-9);
-  for (const v of [last9, "+221"+last9, "221"+last9]) {
-    try {
-      const res = await fetch(SB_URL+"/rest/v1/clients?telephone=eq."+encodeURIComponent(v)+"&select=*,inscriptions(*,departs(*),paiements(*))",{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
-      const data = await res.json();
-      if (data&&data.length>0) { pelerin=data[0]; renderEspace(); return; }
-    } catch(e) {}
+async function doLogin(){
+  const phone=document.getElementById('login-phone')?.value||'';
+  const btn=document.getElementById('login-btn'),err=document.getElementById('login-err');
+  if(btn){btn.textContent='Recherche...';btn.disabled=true;}
+  const cleaned=phone.replace(/[^0-9]/g,''),last9=cleaned.slice(-9);
+  for(const v of[last9,'+221'+last9,'221'+last9]){
+    try{const res=await fetch(SB_URL+'/rest/v1/clients?telephone=eq.'+encodeURIComponent(v)+'&select=*,inscriptions(*,departs(*),paiements(*))',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});const data=await res.json();if(data&&data.length>0){pelerin=data[0];renderEspace();return;}}catch(e){}
   }
-  if (err) { err.style.display="block"; err.textContent="Numéro non trouvé. Contactez +221 78 781 16 16"; }
-  if (btn) { btn.textContent="Accéder à mon espace"; btn.disabled=false; btn.className="btn btn-primary"; btn.style.cursor="pointer"; }
+  if(err){err.style.display='block';err.textContent='Numéro non trouvé. Contactez +221 78 781 16 16';}
+  if(btn){btn.textContent='Accéder à mon espace';btn.disabled=false;btn.className='btn btn-primary';btn.style.cursor='pointer';}
+}
+function deconnecter(){pelerin=null;renderEspace();}
+
+/* ═══════ FORMULAIRE ═══════ */
+function envoyerFormulaire(){
+  const g=id=>document.getElementById(id)?.value||'';
+  const nom=g('f-nom'),phone=g('f-phone');
+  if(!nom||!phone){alert('Veuillez entrer votre nom et téléphone !');return;}
+  const msg='Salam Alaikum ! 🕌 Demande Oumra Kyswa Travel\n\n'+'👤 Nom : '+nom+'\n📱 Tél : +221'+phone.replace(/[^0-9]/g,'').slice(-9)+'\n\n'+'✈️ Type : '+g('f-type')+'\n📅 Mois : '+g('f-mois')+'\n📋 Formule : '+g('f-formule')+'\n'+'🏨 Chambre : '+g('f-chambre')+'\n👥 Personnes : '+g('f-personnes')+'\n📆 Jours : '+g('f-jours')+'\n'+'🗺️ Combiné : '+g('f-combine')+'\n💰 Budget : '+g('f-budget')+(g('f-remarques')?'\n\n💬 Remarques : '+g('f-remarques'):'');
+  window.open('https://wa.me/221787811616?text='+encodeURIComponent(msg),'_blank');
 }
 
-function deconnecter() { pelerin=null; renderEspace(); }
+/* ═══════ LOCAL STORAGE HELPERS ═══════ */
+function sauvegarderPreference(cle,val){try{localStorage.setItem('kyswa-'+cle,val);}catch(e){}}
+function lirePreference(cle){try{return localStorage.getItem('kyswa-'+cle);}catch(e){return null;}}
 
-/* ── FORMULAIRE ── */
-function envoyerFormulaire() {
-  const g = id => document.getElementById(id)?.value||"";
-  const nom=g("f-nom"), phone=g("f-phone");
-  if (!nom||!phone) { alert("Veuillez entrer votre nom et téléphone !"); return; }
-  const msg = "Salam Alaikum ! 🕌 Demande Oumra Kyswa Travel\n\n"
-    +"👤 Nom : "+nom+"\n📱 Tél : +221"+phone.replace(/[^0-9]/g,"").slice(-9)+"\n\n"
-    +"✈️ Type : "+g("f-type")+"\n📅 Mois : "+g("f-mois")+"\n📋 Formule : "+g("f-formule")+"\n"
-    +"🏨 Chambre : "+g("f-chambre")+"\n👥 Personnes : "+g("f-personnes")+"\n📆 Jours : "+g("f-jours")+"\n"
-    +"🗺️ Combiné : "+g("f-combine")+"\n💰 Budget : "+g("f-budget")
-    +(g("f-remarques")?"\n\n💬 Remarques : "+g("f-remarques"):"");
-  window.open("https://wa.me/221787811616?text="+encodeURIComponent(msg),"_blank");
+/* ═══════ INIT ═══════ */
+async function init(){
+  await initSW();
+  renderSurahs();
+  renderDhikr();
+  renderLogin();
+  renderBoutique();
+  // Vérifier si notif déjà accordée
+  if(Notification.permission==='granted'){
+    notifPermission=true;
+    document.getElementById('notif-banner').style.display='none';
+  }
+  // Score du jour
+  const scoreSauve=lirePreference('score-'+new Date().toDateString());
+  if(scoreSauve) barakaScore=parseInt(scoreSauve)||0;
+  // Message de bienvenue
+  setTimeout(()=>{
+    const h=new Date().getHours();
+    if(h>=5&&h<12) showToast('🌅','Sabah Al-Khair !','Bonne matinée bénie — N\'oubliez pas vos Azkar Sabah 🤲','#00815A');
+    else if(h>=12&&h<18) showToast('☀️','Assalamu Alaikum !','Bonne après-midi — Pensez à votre Dhikr 📿','#C9A84C');
+    else showToast('🌙','Masa Al-Khair !','Bonne soirée — Avez-vous fait vos Azkar Massa ? 🌿','#1565C0');
+  }, 1500);
 }
 
-/* ── INIT ── */
-renderSurahs();
-renderDhikr();
-renderLogin();
-renderBoutique();
+init();
 </script>
 </body>
 </html>
