@@ -1115,7 +1115,103 @@ function openSiraLecon(idx){
       <div style="color:var(--text-hint);font-size:11px;margin-top:6px;">— ${l.source}</div>
     </div>`;
 }
-
+   const SIRA_LECONS=[
+  {j:1,icon:"🌹",theme:"Portrait",titre:"Le Portrait du Prophète ﷺ",contenu:"Muhammad ﷺ avait un visage lumineux comme la pleine lune. Sa taille était moyenne. Ses cheveux, ni trop lisses ni trop bouclés. Son sourire illuminait les cœurs. Quand il marchait, il penchait légèrement en avant comme quelqu'un qui descend une pente — plein de vitalité et de détermination.",hadith:"Le Prophète ﷺ était la plus belle des créatures.",source:"Anas ibn Malik — Muslim"},
+  {j:2,icon:"💚",theme:"Caractère",titre:"Son Caractère Noble",contenu:"Allah dit : 'Tu es certes d'une moralité éminente' (68:4). Il ne frappait jamais, ne maltraitait jamais. Il ne répondait pas au mal par le mal mais pardonnait et passait outre. Aïcha dit : 'Son caractère était le Coran'.",hadith:"Je n'ai jamais vu quelqu'un sourire plus que le Prophète ﷺ.",source:"Jareer — Bukhari"},
+  {j:3,icon:"😊",theme:"Sourire",titre:"Le Sourire — Sadaqa",contenu:"Le Prophète ﷺ souriait souvent. Il disait que sourire à son frère est une Sadaqa. Son sourire mettait les gens à l'aise. Même dans les moments difficiles, il gardait la sérénité sur son visage.",hadith:"Sourire à ton frère est une Sadaqa.",source:"Tirmidhi"},
+  {j:4,icon:"👦",theme:"Enfants",titre:"Son Amour pour les Enfants",contenu:"Il jouait avec les enfants, les portait sur ses épaules, les embrassait. Il raccourcissait parfois la prière en jamaah pour ne pas faire pleurer un bébé.",hadith:"Il embrassa Al-Hassan. Al-Aqra dit : 'J'ai 10 enfants et je n'en ai jamais embrassé un.' Il répondit : 'Que puis-je pour toi si Allah a retiré la miséricorde de ton cœur ?'",source:"Bukhari"},
+  {j:5,icon:"🎁",theme:"Générosité",titre:"Sa Générosité Sans Limite",contenu:"Il ne refusait jamais une demande. Jabir dit qu'il n'a jamais dit 'non' à une demande. Il donnait tout ce qu'il avait. Il mourut sans laisser un dirham, un dinar, un esclave ou une servante.",hadith:"Il était plus généreux que le vent porteur de pluie.",source:"Bukhari"},
+  {j:6,icon:"🛡️",theme:"Patience",titre:"Sa Patience Face aux Épreuves",contenu:"À Taïf, lapidé jusqu'au sang, il refusa que l'ange détruise la ville. Il dit : 'Peut-être leurs descendants croiront.' Après la mort de Khadija et d'Abu Talib, il continua. La patience est sa Sunnah la plus profonde.",hadith:"La patience est lumière.",source:"Muslim"},
+  {j:7,icon:"🌿",theme:"Humilité",titre:"Son Humilité Extraordinaire",contenu:"Il réparait ses sandales, cousait ses vêtements, trayait sa chèvre. Il aidait sa famille dans les tâches ménagères. Quand quelqu'un tremblait d'émotion, il disait : 'Calme-toi, je ne suis que le fils d'une femme qui mangeait de la viande séchée à La Mecque'.",hadith:"Ne me louez pas à l'excès. Je suis seulement Son serviteur.",source:"Bukhari"},
+  {j:8,icon:"💕",theme:"Femmes",titre:"Son Respect pour les Femmes",contenu:"Il disait : 'Le meilleur d'entre vous est celui qui est le meilleur avec sa famille, et je suis le meilleur avec ma famille.' Il consultait Khadija, Aïcha, Umm Salama. Il interdisait de frapper les femmes.",hadith:"Traitez bien les femmes.",source:"Bukhari"},
+  {j:9,icon:"🍽️",theme:"Alimentation",titre:"Ses Habitudes Alimentaires",contenu:"Il mangeait avec trois doigts, léchait ses doigts après le repas. Il ne mangeait jamais allongé. Il aimait le miel, les dattes, le lait. Il ne critiquait jamais la nourriture.",hadith:"Le ventre est la maison de tout mal.",source:"Hakim"},
+  {j:10,icon:"😴",theme:"Sommeil",titre:"Son Sommeil et Son Réveil",contenu:"Il dormait sur le côté droit, la main droite sous la joue. Il récitait Al-Ikhlas, Al-Falaq et An-Nas 3 fois avant de dormir. Il se réveillait pour le Tahajjud.",hadith:"Le meilleur sommeil est le Qaylula (sieste de midi).",source:"Bukhari"},
+  {j:11,icon:"🪥",theme:"Propreté",titre:"Sa Pureté et Propreté",contenu:"Il utilisait le Miswak très souvent — avant la prière, au réveil, en entrant à la maison. Il disait : 'Si je ne craignais pas d'alourdir mes fidèles, je leur aurais ordonné le Miswak à chaque prière.'",hadith:"La propreté est la moitié de la foi.",source:"Muslim"},
+  {j:12,icon:"🚶",theme:"Marche",titre:"Sa Façon de Marcher",contenu:"Il marchait d'un pas ferme et léger, comme s'il descendait une pente. Il ne regardait pas à droite et à gauche inutilement. Sa démarche avait de la dignité sans arrogance.",hadith:"Il marchait avec humilité sur Terre.",source:"Al-Furqan 25:63"},
+  {j:13,icon:"🏠",theme:"Maison",titre:"Le Prophète ﷺ à la Maison",contenu:"À la maison, il était au service de sa famille. Aïcha a dit : 'Il cousait ses vêtements, réparait ses sandales, faisait ce que les hommes font chez eux.' Il entrait avec le pied droit.",hadith:"Le meilleur d'entre vous est le meilleur pour sa famille.",source:"Tirmidhi"},
+  {j:14,icon:"🌙",theme:"Ramadan",titre:"Le Prophète ﷺ et le Ramadan",contenu:"En Ramadan, il intensifiait les adorations. Il faisait l'I'tikaf les 10 derniers jours. Il distribuait davantage en sadaqa. Jibril lui récitait le Coran entier chaque Ramadan.",hadith:"Quand Ramadan entre, les portes du Paradis s'ouvrent.",source:"Bukhari"},
+  {j:15,icon:"❤️",theme:"Amour",titre:"Son Amour pour sa Communauté",contenu:"Il pleurait pour sa communauté. Il dit : 'Mon exemple et le vôtre est comme un homme qui allume un feu et des papillons y tombent, il essaie de les protéger.' Sa dernière invocation était pour sa communauté.",hadith:"Ma prière, mon sacrifice, ma vie, ma mort sont pour Allah.",source:"Al-An'am 6:162"},
+  {j:16,icon:"🙏",theme:"Amour Allah",titre:"Son Amour pour Allah",contenu:"Sa prière nocturne était si longue que ses pieds enflaient. Aïcha lui dit : 'Allah t'a pardonné tes péchés.' Il répondit : 'Ne devrais-je pas être un serviteur reconnaissant ?'",hadith:"La meilleure invocation est celle du jour d'Arafat.",source:"Tirmidhi"},
+  {j:17,icon:"🤝",theme:"Serviteurs",titre:"Sa Douceur avec les Serviteurs",contenu:"Anas a servi le Prophète ﷺ pendant 10 ans. Il dit : 'Il ne m'a jamais dit ouf, jamais dit pourquoi as-tu fait ça.' Il libérait des esclaves, encourageait leur libération.",hadith:"Celui qui maltraite son serviteur n'entrera pas au Paradis.",source:"Abu Dawud"},
+  {j:18,icon:"🗣️",theme:"Parole",titre:"Sa Parole et Son Silence",contenu:"Il parlait lentement, distinctement. On pouvait compter ses mots. Il ne parlait pas en l'air. Son silence était réflexion, sa parole était sagesse. Il n'interrompait jamais quelqu'un.",hadith:"Que celui qui croit en Allah dise du bien ou se taise.",source:"Bukhari"},
+  {j:19,icon:"😄",theme:"Humour",titre:"Son Humour Léger et Vrai",contenu:"Il plaisantait parfois mais ne disait que la vérité même en plaisantant. À une vieille femme : 'Les vieilles femmes n'entrent pas au Paradis.' Elle pleura. Il expliqua : 'Vous serez tous jeunes au Paradis.'",hadith:"Je plaisante, mais je ne dis que la vérité.",source:"Tirmidhi"},
+  {j:20,icon:"😢",theme:"Pleurs",titre:"Ses Larmes Sincères",contenu:"Il pleurait par crainte d'Allah, lors de la récitation du Coran, lors de la prière. Quand Abdullah ibn Masoud lui récita la Sourate An-Nisa et arriva au verset 41, il dit : 'Suffit.' Il pleurait.",hadith:"Pleurez, et si vous ne pouvez pas, faites semblant de pleurer.",source:"Ibn Majah"},
+  {j:21,icon:"🌿",theme:"Nature",titre:"Son Amour pour la Nature",contenu:"Il plantait des arbres, encourageait l'agriculture. Il disait : 'Si la dernière heure vient et que l'un de vous tient une plante, qu'il la plante.' Il aimait les jardins, les fleurs, la verdure.",hadith:"Planter un arbre est une Sadaqa Jariya.",source:"Bukhari"},
+  {j:22,icon:"🕌",theme:"Prière",titre:"Sa Relation avec la Prière",contenu:"Il disait : 'La fraîcheur de mes yeux est dans la prière.' La prière était son refuge, sa joie. Quand un problème survenait, il se précipitait vers la prière. Il disait à Bilal : 'Donne-nous du repos avec la prière.'",hadith:"La prière est la colonne de la religion.",source:"Tirmidhi"},
+  {j:23,icon:"🐾",theme:"Animaux",titre:"Sa Miséricorde envers les Animaux",contenu:"Il interdisait de maltraiter les animaux. Une femme est entrée en Enfer à cause d'un chat enfermé. Une prostituée est entrée au Paradis pour avoir donné à boire à un chien assoiffé.",hadith:"Il y a une récompense pour tout être vivant auquel tu fais du bien.",source:"Bukhari"},
+  {j:24,icon:"⚖️",theme:"Justice",titre:"Sa Justice Absolue",contenu:"Il dit : 'Si Fatima fille de Muhammad volait, je lui couperais la main.' La justice ne connaissait pas de favoritisme. Il ne s'accordait aucun privilège.",hadith:"Soyez justes, c'est plus proche de la piété.",source:"Al-Maïda 5:8"},
+  {j:25,icon:"🤲",theme:"Du'a",titre:"Ses Du'a Préférés",contenu:"'Ô Retourneur des cœurs, affermis mon cœur dans Ta religion.' 'Ô Allah, améliore ma religion qui est la protection de mes affaires.' Il faisait beaucoup du'a dans le Sujud.",hadith:"La meilleure invocation est celle faite dans le Sujud.",source:"Muslim"},
+  {j:26,icon:"💪",theme:"Courage",titre:"Son Courage Face aux Épreuves",contenu:"Il était le plus courageux des hommes. Ali dit : 'Quand les combats s'intensifiaient, nous nous cachions derrière le Prophète ﷺ.' Il était le premier au front, jamais le dernier.",hadith:"Le croyant fort est meilleur qu'un croyant faible.",source:"Muslim"},
+  {j:27,icon:"🌅",theme:"Mort",titre:"Ses Derniers Moments",contenu:"Il mourut un lundi 12 Rabi Al-Awwal. Ses dernières paroles : 'Avec Al-Rafîq Al-A'lâ.' Il entra dans l'éternité en ayant transmis le message dans sa totalité.",hadith:"Chaque âme goûtera la mort.",source:"Al-Imran 3:185"},
+  {j:28,icon:"🌍",theme:"Changement",titre:"Comment Il a Changé le Monde",contenu:"En 23 ans, il transforma une société de barbarie en civilisation de lumière. Son message a touché plus de 2 milliards d'êtres humains.",hadith:"Nous t'avons envoyé en miséricorde pour les mondes.",source:"Al-Anbiya 21:107"},
+  {j:29,icon:"📿",theme:"Sunnah",titre:"Appliquer la Sunnah au Quotidien",contenu:"Chaque geste du Prophète ﷺ est une opportunité de récompense. Manger avec la main droite, dormir sur le côté droit, entrer avec le pied droit, sourire, saluer — chacun est une Sunnah.",hadith:"Celui qui revivifie ma Sunnah m'aime.",source:"Tirmidhi"},
+  {j:30,icon:"🌟",theme:"Paradis",titre:"Le Voir au Paradis",contenu:"Le plus grand bonheur au Paradis sera de voir le visage d'Allah et d'être proche du Prophète ﷺ. Rabi'a Al-Aslami demanda la compagnie du Prophète au Paradis. Il répondit : 'Aide-toi par beaucoup de prosternations.'",hadith:"Je serai le premier à frapper à la porte du Paradis.",source:"Muslim"},
+];
+const CLIMAT_DATA=[
+  {mois:"Janvier",makkah:"24°/32°",medine:"14°/26°",conseil:"Idéal — Frais la nuit, chaud le jour. Prévoir une veste légère."},
+  {mois:"Février",makkah:"24°/33°",medine:"16°/28°",conseil:"Très agréable. Bonne saison pour l'Oumra."},
+  {mois:"Mars",makkah:"26°/36°",medine:"18°/32°",conseil:"Encore confortable. Commencer à prévoir chapeau et crème."},
+  {mois:"Avril",makkah:"29°/39°",medine:"22°/36°",conseil:"Chaud. Boire beaucoup d'eau. Éviter le milieu de journée."},
+  {mois:"Mai",makkah:"32°/42°",medine:"26°/40°",conseil:"Très chaud. Parapluie anti-UV obligatoire. Eau Zamzam constante."},
+  {mois:"Juin",makkah:"34°/44°",medine:"29°/43°",conseil:"Caniculaire. Chaussures ouvertes. Sortir tôt le matin ou le soir."},
+  {mois:"Juillet",makkah:"35°/45°",medine:"30°/44°",conseil:"⚠️ Très dangereux. Ventilateur de brumisation essentiel."},
+  {mois:"Août",makkah:"35°/44°",medine:"29°/43°",conseil:"Chaleur + humidité. Vêtements légers. Vigilance coup de chaleur."},
+  {mois:"Septembre",makkah:"32°/42°",medine:"27°/40°",conseil:"Encore chaud. Début d'amélioration progressive."},
+  {mois:"Octobre",makkah:"30°/38°",medine:"24°/36°",conseil:"Agréable. Bonne période pour Oumra."},
+  {mois:"Novembre",makkah:"26°/34°",medine:"18°/30°",conseil:"Très bien. Nuits fraîches à Médine."},
+  {mois:"Décembre",makkah:"22°/30°",medine:"14°/26°",conseil:"Excellent. Prévoir veste chaude pour la nuit."},
+];
+const INTERDITS_DATA={
+  hommes:[
+    {interdit:"🧵 Vêtements cousus",explication:"Pas de chemises, pantalons, sous-vêtements. Uniquement les 2 pièces blanches (Izar + Rida)."},
+    {interdit:"🧢 Couvrir la tête",explication:"La tête doit rester découverte. Pas de chapeau, casquette, bonnet — même sous la pluie."},
+    {interdit:"✂️ Se couper les cheveux ou les ongles",explication:"Interdit jusqu'à la fin de l'Oumra (rasage ou coupe après le Sa'i)."},
+    {interdit:"🌹 Parfum sur le corps ou les vêtements",explication:"Après l'Ihram, aucun parfum. Le parfumer avant est Sunnah."},
+    {interdit:"💍 Chasse et gibier",explication:"Interdit de chasser ou d'aider à chasser pendant l'état d'Ihram."},
+    {interdit:"💏 Relations conjugales",explication:"Interdit jusqu'à la fin complète de l'Oumra (rasage inclus)."},
+    {interdit:"💬 Paroles grossières ou disputes",explication:"'Pas de rapport conjugal, pas de perversité, pas de dispute.' (Al-Baqara 2:197)"},
+  ],
+  femmes:[
+    {interdit:"✂️ Se couper les cheveux ou les ongles",explication:"Même interdiction que les hommes jusqu'à la fin de l'Oumra."},
+    {interdit:"🌹 Parfum sur le corps",explication:"Interdit en état d'Ihram, même dans les vêtements."},
+    {interdit:"💍 Chasse et gibier",explication:"Même interdiction."},
+    {interdit:"💏 Relations conjugales",explication:"Interdites jusqu'à la fin de l'Oumra."},
+    {interdit:"😡 Disputes et grossièretés",explication:"Garder le cœur pur, la langue propre."},
+  ],
+  permis:[
+    "✅ Porter des lunettes de soleil",
+    "✅ Utiliser une ceinture pour tenir l'Izar",
+    "✅ Changer les pièces de l'Ihram si elles sont sales",
+    "✅ Se laver (sans parfum)",
+    "✅ Gratter la tête doucement",
+    "✅ Porter une montre ou un sac",
+    "✅ Utiliser un parapluie",
+    "✅ Manger, boire, dormir",
+    "✅ Femme : couvrir tout le corps sauf le visage et les mains",
+  ]
+};
+const BAGAGES_DATA=[
+  {cat:"👘 Ihram & Vêtements",items:["2 pièces Ihram (Izar + Rida) — + 1 de rechange","Ceinture pour tenir l'Izar","Vêtements légers pour Médine","Chaussures ouvertes (sandales)","Chaussettes légères","Veste légère pour les nuits"]},
+  {cat:"💊 Santé & Hygiène",items:["Médicaments personnels (ordonnance en arabe conseillée)","Paracétamol, Ibuprofène","Crème solaire SPF 50+","Pommade anti-ampoules","Sérum de réhydratation orale","Masque anti-poussière"]},
+  {cat:"📿 Spirituel",items:["Coran de poche","Ce guide Kyswa Travel","Chapelet (Tasbih)","Carnet de du'a personnels","Argent en liquide (Riyals)"]},
+  {cat:"🎒 Pratique",items:["Sac à dos léger pour le Haram","Ventilateur de brumisation","Bouteille d'eau isotherme","Parapluie anti-UV","Lampe frontale légère","Sac hermétique pour documents"]},
+  {cat:"📋 Documents",items:["Passeport (valide 6 mois minimum)","Visa Oumra","Billets avion imprimés","Carnet de vaccination","Numéro urgence Kyswa : +221 78 781 16 16"]},
+  {cat:"🚫 À NE PAS EMPORTER",items:["Parfums (interdit en Ihram)","Médicaments non déclarés","Drones ou appareils électroniques interdits","Trop de valises (préférer 1 valise + 1 sac cabine)"]},
+];
+const SANTE_DATA=[
+  {icon:"☀️",titre:"Coup de chaleur",desc:"Boire minimum 3L d'eau par jour. Éviter le soleil 11h-15h. Chapeau ou parapluie obligatoire."},
+  {icon:"👟",titre:"Ampoules aux pieds",desc:"Acheter vos sandales AVANT et les porter plusieurs semaines. Emporter pansements hydrocolloïdes."},
+  {icon:"🦠",titre:"Infections respiratoires",desc:"Porter un masque dans les foules denses. Se laver les mains régulièrement."},
+  {icon:"🍽️",titre:"Alimentation",desc:"Éviter les aliments exposés à la chaleur. Préférer les repas dans les hôtels. Dattes + eau Zamzam."},
+  {icon:"💊",titre:"Médicaments",desc:"Emporter votre stock pour toute la durée + 3 jours de réserve. Ordonnance traduite en arabe."},
+  {icon:"🧴",titre:"Peau",desc:"Crème solaire SPF 50+ obligatoire. Hydrater la peau (air très sec). Lèvres gercées fréquentes."},
+  {icon:"🏥",titre:"Urgences",desc:"Hôpitaux autour du Haram gratuits pour les pèlerins. Numéro urgence Kyswa : +221 78 781 16 16"},
+];
+let prayerTimes=null,qiblaDir=null,compassHeading=0;
+let dhikrSel=0,dhikrCount=0,dhikrTotal=0;
+let pelerin=null,lastAzan={},prieresTabState="horaires";
+let boutiqueFiltre="tout",barakaScore=0,notifPermission=false,sw=null;
+let oumraStepId="ihram",barakaTab="quotidien";
 async function init(){
   await initSW();
   const savedLang=localStorage.getItem('kyswa-lang');
