@@ -3,6 +3,7 @@
   "short_name": "Kyswa",
   "description": "Application pèlerinage Oumra & Hajj — Elhadji Malick Seye",
   "start_url": "/",
+  "id": "/kyswa-travel",
   "display": "standalone",
   "background_color": "#005C40",
   "theme_color": "#00815A",
@@ -13,13 +14,25 @@
       "src": "/IMG_2081.PNG",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/IMG_2081.PNG",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/IMG_2080.PNG",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/IMG_2080.PNG",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
