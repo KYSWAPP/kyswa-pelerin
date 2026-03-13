@@ -876,7 +876,7 @@ function showPage(id){
   if(id==='baraka') renderBaraka();
   if(id==='oumra') renderOumra();
   if(id==='sira') renderSira();
-  if(id==='infos'){infosTab='climat';renderInfos();}
+  if(id==='infos'){infosTab='climat';renderInfos();setTimeout(()=>{window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;},80);}
   setTimeout(()=>{window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;},80);
 }
 document.getElementById('pg-home').style.display='block';
