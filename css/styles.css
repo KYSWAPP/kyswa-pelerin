@@ -29,7 +29,16 @@ button,input,select,textarea{font-family:var(--font-main);outline:none;}
 a{text-decoration:none;}
 
 /* ── Layout: app container ── */
-html{background:#DCDFE3;}
+html {
+  background: #DCDFE3;
+  /* Prevent bounce effect causing white/grey glitch on top/bottom */
+  overscroll-behavior-y: none;
+}
+@media (max-width: 430px) {
+  html {
+    background: var(--bg);
+  }
+}
 body{
   background:var(--bg);
   font-family:var(--font-main);
@@ -43,6 +52,8 @@ body{
   margin:0 auto;
   position:relative;
   box-shadow:0 0 60px rgba(0,0,0,0.12);
+  /* Prevent scroll chaining on mobile */
+  overscroll-behavior-y: none;
 }
 
 /* ── Pages ── */
