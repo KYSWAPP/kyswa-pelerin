@@ -286,8 +286,25 @@ async function activerBoussole(){
 }
 function onOrient(e){
   compassHeading = e.webkitCompassHeading != null ? e.webkitCompassHeading : (360 - (e.alpha || 0));
-  const el=document.getElementById('qibla-arrow');
-  if(el) el.style.transform=`rotate(${(qiblaDir||0)-compassHeading}deg)`;
+  const el = document.getElementById('qibla-arrow');
+  const msg = document.getElementById('compass-msg');
+  
+  let diff = (qiblaDir || 0) - compassHeading;
+  diff = (diff + 540) % 360 - 180; // Normalize between -180 and +180
+
+  if(el) el.style.transform=`rotate(${diff}deg)`;
+  
+  if(msg) {
+    if(Math.abs(diff) < 5) {
+      msg.innerHTML = `<span style="color:#10b981;font-weight:800;font-size:16px;">🕋 Vous êtes face à la Qibla !</span>`;
+      if(el) el.style.filter = "drop-shadow(0 0 15px #10b981)";
+      if(navigator.vibrate && Math.abs(diff) < 1) navigator.vibrate(20); // soft bump
+    } else {
+      const direction = diff > 0 ? "Tournez à droite ➔" : "← Tournez à gauche";
+      msg.innerHTML = `<strong style="color:var(--primary);font-size:14px;">${direction}</strong><br><span style="font-size:12px;color:var(--text-hint);">Écart : ${Math.abs(Math.round(diff))}°</span>`;
+      if(el) el.style.filter = "none";
+    }
+  }
 }
 
 function renderSurahs(){
@@ -330,7 +347,9 @@ function renderDhikr(){
         user-select:none;-webkit-tap-highlight-color:transparent;
       "
       onpointerdown="this.style.transform='scale(0.9)';this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)';"
-      onpointerup="this.style.transform='scale(1)';this.style.boxShadow='0 15px 35px ${done?'rgba(212,175,55,0.4)':'rgba(0,129,90,0.4)'}';"
+      onpointerup="this.style.transform='scale(1.05)';this.style.boxShadow='0 15px 35px ${done?'rgba(212,175,55,0.4)':'rgba(0,129,90,0.4)'}';"
+      onpointerenter="this.style.transform='scale(1.05)';"
+      onpointerleave="this.style.transform='scale(1)';this.style.boxShadow='0 15px 35px ${done?'rgba(212,175,55,0.4)':'rgba(0,129,90,0.4)'}';"
       onpointercancel="this.style.transform='scale(1)';"
       >${count}</button>
       <div style="height:30px;margin-bottom:10px;">
@@ -374,7 +393,9 @@ function renderSalawat(){
       user-select:none;-webkit-tap-highlight-color:transparent;
     "
     onpointerdown="this.style.transform='scale(0.9)';this.style.boxShadow='0 5px 15px rgba(233,30,99,0.2)';"
-    onpointerup="this.style.transform='scale(1)';this.style.boxShadow='0 15px 35px rgba(233,30,99,0.4)';"
+    onpointerup="this.style.transform='scale(1.05)';this.style.boxShadow='0 15px 35px rgba(233,30,99,0.4)';"
+    onpointerenter="this.style.transform='scale(1.05)';"
+    onpointerleave="this.style.transform='scale(1)';this.style.boxShadow='0 15px 35px rgba(233,30,99,0.4)';"
     onpointercancel="this.style.transform='scale(1)';"
     >🤲</button>
     <div style="margin-top:20px;font-size:14px;color:var(--text-hint);font-weight:600;margin-bottom:20px;">Appuyez pour envoyer vos bénédictions</div>
