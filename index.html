@@ -1,448 +1,1222 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
-<meta name="theme-color" content="#00815A"/>
-<meta name="mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="Kyswa Travel"/>
-<title>Kyswa Travel</title><link rel="manifest" href="/manifest.json"/>
- 
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" />
+  <meta name="theme-color" content="#00815A" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Kyswa Travel" />
+  <title>Kyswa Travel</title>
+  <link rel="manifest" href="/manifest.json" />
 
-<link rel=stylesheet href="css/styles.css">
+
+  <link rel=stylesheet href="css/styles.css">
 </head>
+
 <body>
-<div id="toast-container"></div>
-<div id="lang-fab" onclick="toggleLangMenu()">🌐</div>
-<div id="lang-menu">
-  <button class="lang-opt active" id="lopt-fr" onclick="setLang('fr')">🇫🇷 Français</button>
-  <button class="lang-opt" id="lopt-en" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-opt" id="lopt-ar" onclick="setLang('ar')">🇸🇦 العربية</button>
-  <button class="lang-opt" id="lopt-wo" onclick="setLang('wo')">🌍 Wolof</button>
-  <button class="lang-opt" id="lopt-es" onclick="setLang('es')">🇪🇸 Español</button>
-  <button class="lang-opt" id="lopt-it" onclick="setLang('it')">🇮🇹 Italiano</button>
-</div>
-<div id="modal-overlay" onclick="closeModal()">
-  <div id="modal-box" onclick="event.stopPropagation()"><div id="modal-content"></div></div>
-</div>
-<!-- SPLASH SCREEN -->
-<div id="splash-screen">
-  <div style="font-size:72px;margin-bottom:16px;animation:pulse 1.5s ease infinite;">🕌</div>
-  <div style="color:#fff;font-size:24px;font-weight:900;letter-spacing:-0.5px;">Kyswa Travel</div>
-  <div style="color:rgba(255,255,255,0.7);font-size:13px;margin-top:6px;font-style:italic;">Elhadji Malick Seye</div>
-  <div style="margin-top:32px;display:flex;gap:6px;">
-    <div style="width:8px;height:8px;border-radius:50%;background:#7FFFD4;animation:pulse 1s ease infinite;"></div>
-    <div style="width:8px;height:8px;border-radius:50%;background:#7FFFD4;animation:pulse 1s 0.2s ease infinite;"></div>
-    <div style="width:8px;height:8px;border-radius:50%;background:#7FFFD4;animation:pulse 1s 0.4s ease infinite;"></div>
+  <div id="toast-container"></div>
+  <div id="lang-fab" onclick="toggleLangMenu()">🌐</div>
+  <div id="lang-menu">
+    <button class="lang-opt active" id="lopt-fr" onclick="setLang('fr')">🇫🇷 Français</button>
+    <button class="lang-opt" id="lopt-en" onclick="setLang('en')">🇬🇧 English</button>
+    <button class="lang-opt" id="lopt-ar" onclick="setLang('ar')">🇸🇦 العربية</button>
+    <button class="lang-opt" id="lopt-wo" onclick="setLang('wo')">🌍 Wolof</button>
+    <button class="lang-opt" id="lopt-es" onclick="setLang('es')">🇪🇸 Español</button>
+    <button class="lang-opt" id="lopt-it" onclick="setLang('it')">🇮🇹 Italiano</button>
   </div>
-</div>
-
-
-
-<!-- ░░ HOME ░░ -->
-<div id="pg-home" class="page">
-  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);position:relative;overflow:hidden;">
-    <div style="position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.05);"></div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;">
-      <div>
-        <div style="color:rgba(255,255,255,0.85);font-size:13px;font-weight:700;margin-bottom:2px;">🙏 Elhadji Malick Seye</div>
-        <div style="color:rgba(255,255,255,0.7);font-size:11px;font-style:italic;margin-bottom:6px;">✨ Meilleur Guide</div>
-        <div style="color:#fff;font-size:22px;font-weight:800;letter-spacing:-0.5px;">Kyswa Travel</div>
-        <div style="color:rgba(255,255,255,0.65);font-size:11px;margin-top:4px;display:flex;align-items:center;gap:4px;" id="hijri-city">
-          <span style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;animation:pulse 2s ease infinite;"></span> Dakar, Sénégal
-        </div>
+  <div id="modal-overlay" onclick="closeModal()">
+    <div id="modal-box" onclick="event.stopPropagation()">
+      <div id="modal-content"></div>
+    </div>
+  </div>
+  <!-- SPLASH SCREEN -->
+  <div id="splash-screen">
+    <div style="font-size:72px;margin-bottom:16px;animation:pulse 1.5s ease infinite;">🕌</div>
+    <div style="color:#fff;font-size:24px;font-weight:900;letter-spacing:-0.5px;">Kyswa Travel</div>
+    <div style="color:rgba(255,255,255,0.7);font-size:13px;margin-top:6px;font-style:italic;">Elhadji Malick Seye</div>
+    <div style="margin-top:32px;display:flex;gap:6px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:#7FFFD4;animation:pulse 1s ease infinite;"></div>
+      <div style="width:8px;height:8px;border-radius:50%;background:#7FFFD4;animation:pulse 1s 0.2s ease infinite;">
       </div>
-      <div style="width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:26px;">🕌</div>
+      <div style="width:8px;height:8px;border-radius:50%;background:#7FFFD4;animation:pulse 1s 0.4s ease infinite;">
+      </div>
     </div>
   </div>
-  <div style="padding:0 var(--space-md);margin-top:-16px;">
-    <div id="notif-banner" onclick="demanderPermission()" style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-bottom:var(--space-md);display:flex;align-items:center;gap:12px;cursor:pointer;box-shadow:var(--shadow-md);">
-      <div style="font-size:28px;">🔔</div>
-      <div style="flex:1;"><div style="color:#fff;font-size:13px;font-weight:700;">Activer le Programme Baraka</div><div style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:2px;">Azan · Azkar · Rappels spirituels</div></div>
-      <div style="background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:6px 14px;color:#fff;font-size:11px;font-weight:700;">Activer</div>
-    </div>
-    <div onclick="showPage('prieres')" class="card" style="cursor:pointer;margin-bottom:var(--space-md);">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
+
+
+
+  <!-- ░░ HOME ░░ -->
+  <div id="pg-home" class="page">
+    <div
+      style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);position:relative;overflow:hidden;">
+      <div
+        style="position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.05);">
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;">
         <div>
-          <div class="section-label">Prochaine prière</div>
-          <div id="next-prayer-name" style="font-size:18px;font-weight:700;margin-top:4px;">⏳ Chargement...</div>
-          <div style="display:flex;align-items:center;gap:6px;margin-top:6px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--primary);display:inline-block;animation:pulse 2s ease infinite;"></span><span style="color:var(--text-secondary);font-size:11px;">Appuyez pour tous les horaires</span></div>
+          <div style="color:rgba(255,255,255,0.85);font-size:13px;font-weight:700;margin-bottom:2px;">🙏 Elhadji Malick
+            Seye</div>
+          <div style="color:rgba(255,255,255,0.7);font-size:11px;font-style:italic;margin-bottom:6px;">✨ Meilleur Guide
+          </div>
+          <div style="color:#fff;font-size:22px;font-weight:800;letter-spacing:-0.5px;">Kyswa Travel</div>
+          <div
+            style="color:rgba(255,255,255,0.65);font-size:11px;margin-top:4px;display:flex;align-items:center;gap:4px;"
+            id="hijri-city">
+            <span
+              style="width:6px;height:6px;border-radius:50%;background:#7FFFD4;display:inline-block;animation:pulse 2s ease infinite;"></span>
+            Dakar, Sénégal
+          </div>
         </div>
-        <div style="text-align:right;"><div id="countdown-el" style="font-size:28px;font-weight:800;color:var(--primary);letter-spacing:-1px;">--:--</div><div style="color:var(--text-hint);font-size:10px;margin-top:2px;">restant</div></div>
+        <div
+          style="width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:26px;">
+          🕌</div>
       </div>
     </div>
-    <div onclick="showPage('oumra')" style="background:linear-gradient(135deg,#3D1A00,#8B4513);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;box-shadow:0 8px 24px rgba(139,69,19,0.3);position:relative;overflow:hidden;">
-      <div style="position:absolute;right:-20px;top:-20px;font-size:100px;opacity:0.08;">🕋</div>
-      <div class="badge badge-gold" style="margin-bottom:10px;">🕋 GUIDE COMPLET</div>
-      <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Guide de l'Oumra</div>
-      <div style="color:rgba(255,255,255,0.7);font-size:12px;margin-bottom:12px;">Invocations · Tawaf · Sa'i · Ziara Rawda</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🤍 Ihram</span>
-        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🌀 Tawaf</span>
-        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">⛰️ Sa'i</span>
-        <span style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🌿 Rawda</span>
+    <div style="padding:0 var(--space-md);margin-top:5px;">
+      <div id="notif-banner" onclick="demanderPermission()"
+        style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-bottom:var(--space-md);display:flex;align-items:center;gap:12px;cursor:pointer;box-shadow:var(--shadow-md);">
+        <div style="font-size:28px;">🔔</div>
+        <div style="flex:1;">
+          <div style="color:#fff;font-size:13px;font-weight:700;">Activer le Programme Baraka</div>
+          <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:2px;">Azan · Azkar · Rappels spirituels
+          </div>
+        </div>
+        <div
+          style="background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:6px 14px;color:#fff;font-size:11px;font-weight:700;">
+          Activer</div>
+      </div>
+      <div onclick="showPage('prieres')" class="card" style="cursor:pointer;margin-bottom:var(--space-md);">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div class="section-label">Prochaine prière</div>
+            <div id="next-prayer-name" style="font-size:18px;font-weight:700;margin-top:4px;">⏳ Chargement...</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:6px;"><span
+                style="width:7px;height:7px;border-radius:50%;background:var(--primary);display:inline-block;animation:pulse 2s ease infinite;"></span><span
+                style="color:var(--text-secondary);font-size:11px;">Appuyez pour tous les horaires</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div id="countdown-el" style="font-size:28px;font-weight:800;color:var(--primary);letter-spacing:-1px;">
+              --:--</div>
+            <div style="color:var(--text-hint);font-size:10px;margin-top:2px;">restant</div>
+          </div>
+        </div>
+      </div>
+      <div onclick="showPage('oumra')"
+        style="background:linear-gradient(135deg,#3D1A00,#8B4513);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;box-shadow:0 8px 24px rgba(139,69,19,0.3);position:relative;overflow:hidden;">
+        <div style="position:absolute;right:-20px;top:-20px;font-size:100px;opacity:0.08;">🕋</div>
+        <div class="badge badge-gold" style="margin-bottom:10px;">🕋 GUIDE COMPLET</div>
+        <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Guide de l'Oumra</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:12px;margin-bottom:12px;">Invocations · Tawaf · Sa'i · Ziara
+          Rawda</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span
+            style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🤍
+            Ihram</span>
+          <span
+            style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🌀
+            Tawaf</span>
+          <span
+            style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">⛰️
+            Sa'i</span>
+          <span
+            style="background:rgba(255,255,255,0.1);border-radius:var(--radius-full);padding:4px 10px;color:rgba(255,255,255,0.8);font-size:10px;">🌿
+            Rawda</span>
+        </div>
+      </div>
+      <div onclick="showPage('baraka')"
+        style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;box-shadow:0 8px 24px rgba(0,80,40,0.3);position:relative;overflow:hidden;">
+        <div style="position:absolute;right:-20px;top:-20px;font-size:100px;opacity:0.06;">📿</div>
+        <div class="badge badge-primary" style="margin-bottom:10px;">🌟 PROGRAMME</div>
+        <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Programme Baraka</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:12px;">Azkar · Post-Oumra 40 jours · Hasanat</div>
+      </div>
+      <div
+        style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);position:relative;overflow:hidden;box-shadow:var(--shadow-primary);">
+        <div style="position:absolute;right:-15px;top:-15px;font-size:90px;opacity:0.07;">🕋</div>
+        <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;">🔥 OFFRE LIMITÉE
+        </div>
+        <div style="color:#fff;font-size:20px;font-weight:800;">Oumra Juin 2026</div>
+        <div style="color:rgba(255,255,255,0.75);font-size:12px;margin:4px 0 12px;">Du 20 au 30 Juin · Places limitées
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <div style="color:#fff;font-size:30px;font-weight:900;">990 000<span style="font-size:14px;"> FCFA</span>
+          </div>
+          <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank"
+            style="background:#fff;color:var(--primary);border-radius:var(--radius-md);padding:12px 18px;font-size:13px;font-weight:700;">Réserver
+            →</a>
+        </div>
+      </div>
+      <div class="section-label">Accès rapide</div>
+      <div id="depart-countdown" style="display:none;" class="card" onclick="showPage('espace')">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="color:rgba(255,255,255,0.6);font-size:10px;">DÉPART DANS</div>
+            <div id="depart-days" style="color:#fff;font-size:32px;font-weight:900;"></div>
+            <div style="color:rgba(255,255,255,0.6);font-size:11px;">jours ✈️</div>
+          </div>
+          <div style="font-size:48px;">🕋</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px 6px;margin-bottom:var(--space-md);">
+        <button onclick="showPage('packages')" class="card"
+          style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
+          <div style="font-size:20px;">✈️</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Packages</div>
+        </button>
+        <button onclick="showPage('boutique')" class="card"
+          style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
+          <div style="font-size:20px;">🛍️</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Boutique</div>
+        </button>
+        <button onclick="showPage('prieres')" class="card"
+          style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
+          <div style="font-size:20px;">🕌</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Prières</div>
+        </button>
+        <button onclick="showPage('coran')" class="card"
+          style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
+          <div style="font-size:20px;">📖</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Coran</div>
+        </button>
+        <button onclick="setDhikrTabAndShow()" class="card"
+          style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
+          <div style="font-size:20px;">🌹</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Salawat</div>
+        </button>
+        <button onclick="showPage('dua')" class="card"
+          style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
+          <div style="font-size:20px;">🤲</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Du'a Perso</div>
+        </button>
+        <button onclick="showPage('quiz')" class="card"
+          style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
+          <div style="font-size:20px;">🧠</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Quiz</div>
+        </button>
+        <button onclick="showPage('sadaqa')" class="card"
+          style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
+          <div style="font-size:20px;">💚</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Sadaqa</div>
+        </button>
+        <button onclick="showPage('zakat')" class="card"
+          style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
+          <div style="font-size:20px;">⚖️</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Zakat</div>
+        </button>
+        <button onclick="showPage('miras')" class="card"
+          style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
+          <div style="font-size:20px;">📜</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Miras</div>
+        </button>
       </div>
     </div>
-    <div onclick="showPage('baraka')" style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;box-shadow:0 8px 24px rgba(0,80,40,0.3);position:relative;overflow:hidden;">
-      <div style="position:absolute;right:-20px;top:-20px;font-size:100px;opacity:0.06;">📿</div>
-      <div class="badge badge-primary" style="margin-bottom:10px;">🌟 PROGRAMME</div>
-      <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Programme Baraka</div>
-      <div style="color:rgba(255,255,255,0.7);font-size:12px;">Azkar · Post-Oumra 40 jours · Hasanat</div>
+  </div>
+  <!-- ░░ GUIDE OUMRA ░░ -->
+  <div id="pg-oumra" class="page">
+    <div style="background:linear-gradient(160deg,#3D1A00,#8B4513);padding:56px var(--space-md) var(--space-md);">
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
+      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Elhadji Malick Seye — Kyswa Travel
+      </div>
+      <div style="color:#fff;font-size:22px;font-weight:800;">🕋 Guide Complet Oumra</div>
+      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Invocations étape par étape</div>
     </div>
-    <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);position:relative;overflow:hidden;box-shadow:var(--shadow-primary);">
-      <div style="position:absolute;right:-15px;top:-15px;font-size:90px;opacity:0.07;">🕋</div>
-      <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;">🔥 OFFRE LIMITÉE</div>
-      <div style="color:#fff;font-size:20px;font-weight:800;">Oumra Juin 2026</div>
-      <div style="color:rgba(255,255,255,0.75);font-size:12px;margin:4px 0 12px;">Du 20 au 30 Juin · Places limitées</div>
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;">
-        <div style="color:#fff;font-size:30px;font-weight:900;">990 000<span style="font-size:14px;"> FCFA</span></div>
-        <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank" style="background:#fff;color:var(--primary);border-radius:var(--radius-md);padding:12px 18px;font-size:13px;font-weight:700;">Réserver →</a>
+    <div style="display:flex;overflow-x:auto;gap:6px;padding:var(--space-md) var(--space-md) 0;scrollbar-width:none;"
+      id="oumra-tabs"></div>
+    <div id="oumra-content" style="padding:var(--space-md);"></div>
+  </div>
+
+  <!-- ░░ BARAKA ░░ -->
+  <div id="pg-baraka" class="page" style="background:var(--dark-bg);">
+    <div style="background:linear-gradient(160deg,#0A1F10,#1A5C36);padding:56px var(--space-md) var(--space-lg);">
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
+      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Elhadji Malick Seye — Kyswa Travel
+      </div>
+      <div style="color:#fff;font-size:22px;font-weight:800;">🌟 Programme Baraka</div>
+      <div
+        style="background:rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-top:var(--space-md);display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div style="color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:1px;">VOS HASANAT AUJOURD'HUI</div>
+          <div id="baraka-score" style="color:#7FFFD4;font-size:32px;font-weight:900;letter-spacing:-1px;">0</div>
+        </div>
+        <div style="font-size:48px;">🏆</div>
       </div>
     </div>
-    <div class="section-label">Accès rapide</div>
-    <div id="depart-countdown" style="display:none;" class="card" onclick="showPage('espace')">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div><div style="color:rgba(255,255,255,0.6);font-size:10px;">DÉPART DANS</div><div id="depart-days" style="color:#fff;font-size:32px;font-weight:900;"></div><div style="color:rgba(255,255,255,0.6);font-size:11px;">jours ✈️</div></div>
-        <div style="font-size:48px;">🕋</div>
+    <div style="display:flex;gap:6px;padding:var(--space-md) var(--space-md) 0;overflow-x:auto;">
+      <button onclick="setBarakaTab('quotidien')" id="btab-quotidien"
+        style="flex-shrink:0;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-full);padding:8px 16px;font-size:11px;font-weight:700;cursor:pointer;">📿
+        Quotidien</button>
+      <button onclick="setBarakaTab('postoumra')" id="btab-postoumra"
+        style="flex-shrink:0;background:var(--dark-surface-2);color:var(--dark-hint);border:none;border-radius:var(--radius-full);padding:8px 16px;font-size:11px;cursor:pointer;">🕋
+        Post-Oumra 40j</button>
+    </div>
+    <div style="padding:var(--space-md);" id="baraka-content"></div>
+  </div>
+
+  <!-- ░░ PACKAGES ░░ -->
+  <div id="pg-packages" class="page">
+    <div
+      style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
+      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-bottom:4px;">Kyswa Travel</div>
+      <div style="color:#fff;font-size:24px;font-weight:800;">✈️ Nos Packages 2026</div>
+    </div>
+    <div style="padding:var(--space-md);margin-top:-8px;">
+      <div
+        style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);box-shadow:var(--shadow-primary);position:relative;overflow:hidden;">
+        <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;">🔥 PROMO</div>
+        <div style="color:#fff;font-size:18px;font-weight:800;">Oumra Juin 2026</div>
+        <div style="color:rgba(255,255,255,0.75);font-size:12px;margin:4px 0 10px;">Du 20 au 30 Juin 2026</div>
+        <div style="color:#fff;font-size:28px;font-weight:900;margin-bottom:14px;">990 000 <span
+            style="font-size:13px;">FCFA</span></div>
+        <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank" class="btn"
+          style="background:#fff;color:var(--primary);border-radius:var(--radius-md);font-size:13px;padding:13px;">📱
+          Réserver via WhatsApp</a>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+          <div><span class="badge badge-primary">Standard</span>
+            <div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Standard</div>
+            <div style="color:var(--text-secondary);font-size:12px;">Du 20 au 30 Juin 2026</div>
+          </div>
+          <div style="font-size:36px;">🌙</div>
+        </div>
+        <div style="color:var(--primary);font-size:24px;font-weight:800;margin-bottom:14px;">1 850 000 <span
+            style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20Standard"
+          target="_blank" class="btn btn-primary" style="border-radius:var(--radius-md);font-size:13px;padding:13px;">📱
+          Réserver via WhatsApp</a>
+      </div>
+      <div class="card" style="border:1.5px solid var(--gold-soft);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+          <div><span class="badge badge-gold">⭐ VIP</span>
+            <div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra VIP</div>
+            <div style="color:var(--text-secondary);font-size:12px;">Du 20 au 30 Juin · Premium</div>
+          </div>
+          <div style="font-size:36px;">⭐</div>
+        </div>
+        <div style="color:var(--gold);font-size:24px;font-weight:800;margin-bottom:14px;">2 200 000 <span
+            style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20VIP"
+          target="_blank" class="btn btn-gold" style="border-radius:var(--radius-md);font-size:13px;padding:13px;">📱
+          Réserver via WhatsApp</a>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,#F8F4FF,#F0E6FF);">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+          <div><span class="badge" style="background:rgba(103,58,183,0.1);color:#673AB7;">🌙 Shawal</span>
+            <div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Shawal 2026</div>
+            <div style="color:var(--text-secondary);font-size:12px;">Après Korité</div>
+          </div>
+          <div style="font-size:36px;">🌙</div>
+        </div>
+        <div style="color:#673AB7;font-size:24px;font-weight:800;margin-bottom:14px;">2 850 000 <span
+            style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20Shawal"
+          target="_blank" class="btn"
+          style="background:#673AB7;color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver
+          via WhatsApp</a>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,#F0F4FF,#E6EDFF);">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+          <div><span class="badge badge-blue">📅 Mensuel</span>
+            <div style="font-size:17px;font-weight:700;margin-top:8px;">🏦 Tontine Oumra</div>
+            <div style="color:var(--text-secondary);font-size:12px;">Versement mensuel</div>
+          </div>
+          <div style="font-size:36px;">🏦</div>
+        </div>
+        <div style="color:var(--blue);font-size:24px;font-weight:800;margin-bottom:14px;">200 000 <span
+            style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Tontine%20Oumra"
+          target="_blank" class="btn"
+          style="background:var(--blue);color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;">📱
+          S'inscrire via WhatsApp</a>
+      </div>
+      <button onclick="showPage('formulaire')" class="btn btn-outline" style="margin-top:4px;">📋 Demande
+        personnalisée</button>
+    </div>
+  </div>
+
+  <!-- ░░ BOUTIQUE ░░ -->
+  <div id="pg-boutique" class="page">
+    <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-md);">
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
+      <div style="color:rgba(255,255,255,0.6);font-size:12px;margin-bottom:4px;">🕋 Produits de La Mecque</div>
+      <div style="color:#fff;font-size:24px;font-weight:800;">Boutique Kyswa</div>
+      <div style="display:flex;gap:8px;margin-top:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
+        <button onclick="filterBoutique('tout')" id="cat-tout"
+          style="flex-shrink:0;background:#fff;border:none;border-radius:var(--radius-full);padding:7px 16px;color:#3D1A78;font-size:11px;font-weight:700;cursor:pointer;">Tout</button>
+        <button onclick="filterBoutique('zamzam')" id="cat-zamzam"
+          style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">💧
+          Zamzam</button>
+        <button onclick="filterBoutique('dattes')" id="cat-dattes"
+          style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">🌴
+          Dattes</button>
+        <button onclick="filterBoutique('vetements')" id="cat-vetements"
+          style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">👘
+          Vêtements</button>
+        <button onclick="filterBoutique('parfums')" id="cat-parfums"
+          style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">🌹
+          Parfums</button>
+        <button onclick="filterBoutique('accessoires')" id="cat-accessoires"
+          style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">📿
+          Accessoires</button>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px;">
-      <button onclick="showPage('packages')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">✈️</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Packages</div></button>
-      <button onclick="showPage('boutique')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">🛍️</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Boutique</div></button>
-      <button onclick="showPage('prieres')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">🕌</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Prières</div></button>
-      <button onclick="showPage('coran')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">📖</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Coran</div></button>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:var(--space-md);">
-      <button onclick="setDhikrTabAndShow()" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">🌹</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Salawat</div></button>
-      <button onclick="showPage('dua')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">🤲</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Du'a Perso</div></button>
-      <button onclick="showPage('quiz')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">🧠</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Quiz</div></button>
-      <button onclick="showPage('sadaqa')" class="card" style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;"><div style="font-size:20px;">💚</div><div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Sadaqa</div></button>
-    </div>
+    <div id="boutique-grid"
+      style="padding:var(--space-md);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);"></div>
   </div>
-</div>
-<!-- ░░ GUIDE OUMRA ░░ -->
-<div id="pg-oumra" class="page">
-  <div style="background:linear-gradient(160deg,#3D1A00,#8B4513);padding:56px var(--space-md) var(--space-md);">
-    <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Elhadji Malick Seye — Kyswa Travel</div>
-    <div style="color:#fff;font-size:22px;font-weight:800;">🕋 Guide Complet Oumra</div>
-    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Invocations étape par étape</div>
+  <div id="pg-produit" class="page">
+    <div id="produit-content"></div>
   </div>
-  <div style="display:flex;overflow-x:auto;gap:6px;padding:var(--space-md) var(--space-md) 0;scrollbar-width:none;" id="oumra-tabs"></div>
-  <div id="oumra-content" style="padding:var(--space-md);"></div>
-</div>
 
-<!-- ░░ BARAKA ░░ -->
-<div id="pg-baraka" class="page" style="background:var(--dark-bg);">
-  <div style="background:linear-gradient(160deg,#0A1F10,#1A5C36);padding:56px var(--space-md) var(--space-lg);">
-    <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Elhadji Malick Seye — Kyswa Travel</div>
-    <div style="color:#fff;font-size:22px;font-weight:800;">🌟 Programme Baraka</div>
-    <div style="background:rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-top:var(--space-md);display:flex;justify-content:space-between;align-items:center;">
-      <div><div style="color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:1px;">VOS HASANAT AUJOURD'HUI</div><div id="baraka-score" style="color:#7FFFD4;font-size:32px;font-weight:900;letter-spacing:-1px;">0</div></div>
-      <div style="font-size:48px;">🏆</div>
-    </div>
-  </div>
-  <div style="display:flex;gap:6px;padding:var(--space-md) var(--space-md) 0;overflow-x:auto;">
-    <button onclick="setBarakaTab('quotidien')" id="btab-quotidien" style="flex-shrink:0;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-full);padding:8px 16px;font-size:11px;font-weight:700;cursor:pointer;">📿 Quotidien</button>
-    <button onclick="setBarakaTab('postoumra')" id="btab-postoumra" style="flex-shrink:0;background:var(--dark-surface-2);color:var(--dark-hint);border:none;border-radius:var(--radius-full);padding:8px 16px;font-size:11px;cursor:pointer;">🕋 Post-Oumra 40j</button>
-  </div>
-  <div style="padding:var(--space-md);" id="baraka-content"></div>
-</div>
-
-<!-- ░░ PACKAGES ░░ -->
-<div id="pg-packages" class="page">
-  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
-    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-bottom:4px;">Kyswa Travel</div>
-    <div style="color:#fff;font-size:24px;font-weight:800;">✈️ Nos Packages 2026</div>
-  </div>
-  <div style="padding:var(--space-md);margin-top:-8px;">
-    <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);box-shadow:var(--shadow-primary);position:relative;overflow:hidden;">
-      <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;">🔥 PROMO</div>
-      <div style="color:#fff;font-size:18px;font-weight:800;">Oumra Juin 2026</div>
-      <div style="color:rgba(255,255,255,0.75);font-size:12px;margin:4px 0 10px;">Du 20 au 30 Juin 2026</div>
-      <div style="color:#fff;font-size:28px;font-weight:900;margin-bottom:14px;">990 000 <span style="font-size:13px;">FCFA</span></div>
-      <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank" class="btn" style="background:#fff;color:var(--primary);border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a>
-    </div>
-    <div class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-primary">Standard</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Standard</div><div style="color:var(--text-secondary);font-size:12px;">Du 20 au 30 Juin 2026</div></div><div style="font-size:36px;">🌙</div></div><div style="color:var(--primary);font-size:24px;font-weight:800;margin-bottom:14px;">1 850 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20Standard" target="_blank" class="btn btn-primary" style="border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a></div>
-    <div class="card" style="border:1.5px solid var(--gold-soft);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-gold">⭐ VIP</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra VIP</div><div style="color:var(--text-secondary);font-size:12px;">Du 20 au 30 Juin · Premium</div></div><div style="font-size:36px;">⭐</div></div><div style="color:var(--gold);font-size:24px;font-weight:800;margin-bottom:14px;">2 200 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20VIP" target="_blank" class="btn btn-gold" style="border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a></div>
-    <div class="card" style="background:linear-gradient(135deg,#F8F4FF,#F0E6FF);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge" style="background:rgba(103,58,183,0.1);color:#673AB7;">🌙 Shawal</span><div style="font-size:17px;font-weight:700;margin-top:8px;">Oumra Shawal 2026</div><div style="color:var(--text-secondary);font-size:12px;">Après Korité</div></div><div style="font-size:36px;">🌙</div></div><div style="color:#673AB7;font-size:24px;font-weight:800;margin-bottom:14px;">2 850 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Oumra%20Shawal" target="_blank" class="btn" style="background:#673AB7;color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 Réserver via WhatsApp</a></div>
-    <div class="card" style="background:linear-gradient(135deg,#F0F4FF,#E6EDFF);"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;"><div><span class="badge badge-blue">📅 Mensuel</span><div style="font-size:17px;font-weight:700;margin-top:8px;">🏦 Tontine Oumra</div><div style="color:var(--text-secondary);font-size:12px;">Versement mensuel</div></div><div style="font-size:36px;">🏦</div></div><div style="color:var(--blue);font-size:24px;font-weight:800;margin-bottom:14px;">200 000 <span style="font-size:13px;">FCFA</span></div><a href="https://wa.me/221787811616?text=Tontine%20Oumra" target="_blank" class="btn" style="background:var(--blue);color:#fff;border-radius:var(--radius-md);font-size:13px;padding:13px;">📱 S'inscrire via WhatsApp</a></div>
-    <button onclick="showPage('formulaire')" class="btn btn-outline" style="margin-top:4px;">📋 Demande personnalisée</button>
-  </div>
-</div>
-
-<!-- ░░ BOUTIQUE ░░ -->
-<div id="pg-boutique" class="page">
-  <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-md);">
-    <div style="color:rgba(255,255,255,0.6);font-size:12px;margin-bottom:4px;">🕋 Produits de La Mecque</div>
-    <div style="color:#fff;font-size:24px;font-weight:800;">Boutique Kyswa</div>
-    <div style="display:flex;gap:8px;margin-top:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
-      <button onclick="filterBoutique('tout')" id="cat-tout" style="flex-shrink:0;background:#fff;border:none;border-radius:var(--radius-full);padding:7px 16px;color:#3D1A78;font-size:11px;font-weight:700;cursor:pointer;">Tout</button>
-      <button onclick="filterBoutique('zamzam')" id="cat-zamzam" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">💧 Zamzam</button>
-      <button onclick="filterBoutique('dattes')" id="cat-dattes" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">🌴 Dattes</button>
-      <button onclick="filterBoutique('vetements')" id="cat-vetements" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">👘 Vêtements</button>
-      <button onclick="filterBoutique('parfums')" id="cat-parfums" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">🌹 Parfums</button>
-      <button onclick="filterBoutique('accessoires')" id="cat-accessoires" style="flex-shrink:0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-full);padding:7px 16px;color:#fff;font-size:11px;cursor:pointer;">📿 Accessoires</button>
-    </div>
-  </div>
-  <div id="boutique-grid" style="padding:var(--space-md);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);"></div>
-</div>
-<div id="pg-produit" class="page"><div id="produit-content"></div></div>
-
-<!-- ░░ PRIERES ░░ -->
-<div id="pg-prieres" class="page">
-  <div style="background:var(--surface);padding:56px var(--space-md) 0;border-bottom:1px solid var(--border);">
-    <div style="font-size:20px;font-weight:800;text-align:center;padding-bottom:14px;">🕌 Prières</div>
-    <div style="display:flex;gap:4px;background:var(--surface-2);border-radius:var(--radius-md);padding:4px;margin-bottom:16px;">
-      <button onclick="setPrieresTab('horaires')" id="ptab-horaires" style="flex:1;background:var(--primary);color:#fff;border:none;padding:10px;border-radius:var(--radius-sm);font-size:12px;font-weight:700;cursor:pointer;">⏰ Horaires</button>
-      <button onclick="setPrieresTab('qibla')" id="ptab-qibla" style="flex:1;background:transparent;color:var(--text-secondary);border:none;padding:10px;border-radius:var(--radius-sm);font-size:12px;cursor:pointer;">🧭 Qibla</button>
-    </div>
-  </div>
-  <div id="prieres-content" style="padding:var(--space-md);"></div>
-</div>
-
-<!-- ░░ CORAN ░░ -->
-<div id="pg-coran" class="page">
-  <div style="background:var(--surface);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--border);">
-    <div style="font-size:20px;font-weight:800;text-align:center;margin-bottom:14px;">📖 Coran</div>
-    <input type="text" id="coran-search" oninput="renderSurahs()" placeholder="🔍 Rechercher une sourate..." class="input"/>
-  </div>
-  <div id="surahs-list" style="padding:var(--space-md);"></div>
-</div>
-<div id="pg-verses" class="page">
-  <div style="background:var(--surface);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--border);text-align:center;position:relative;">
-    <button onclick="showPage('coran')" style="position:absolute;left:var(--space-md);top:56px;background:var(--primary-soft);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:var(--primary);font-size:13px;cursor:pointer;">← Retour</button>
-    <div id="surah-title" style="font-size:18px;font-weight:800;"></div>
-    <div id="surah-ar" style="color:var(--primary);font-size:16px;font-family:var(--font-arabic);margin-top:4px;"></div>
-  </div>
-  <div id="verses-list" style="padding:var(--space-md);background:var(--bg);min-height:100vh;"></div>
-</div>
-
-<!-- ░░ DHIKR ░░ -->
-<div id="pg-dhikr" class="page" style="background:var(--dark-bg);">
-  <div style="background:var(--dark-bg);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--dark-border);">
-    <div style="color:var(--dark-text);font-size:20px;font-weight:800;text-align:center;">📿 Dhikr & Tasbih</div>
-  </div>
-  <div style="display:flex;gap:6px;padding:var(--space-md) var(--space-md) 0;">
-    <button onclick="setDhikrTab('dhikr')" id="dtab-dhikr" style="flex:1;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-full);padding:8px 14px;font-size:11px;font-weight:700;cursor:pointer;">📿 Dhikr</button>
-    <button onclick="setDhikrTab('salawat')" id="dtab-salawat" style="flex:1;background:var(--dark-surface-2);color:var(--dark-hint);border:none;border-radius:var(--radius-full);padding:8px 14px;font-size:11px;cursor:pointer;">🌹 Salawat 12k</button>
-  </div>
-  <div id="dhikr-tab-content">
-    <div style="overflow-x:auto;display:flex;gap:8px;padding:var(--space-md) var(--space-md) 0;" id="dhikr-tabs"></div>
-    <div style="display:flex;flex-direction:column;align-items:center;padding:var(--space-lg) var(--space-md);" id="dhikr-body"></div>
-  </div>
-  <div id="salawat-tab-content" style="display:none;padding:var(--space-md);"></div>
-</div>
-
-<!-- ░░ ESPACE ░░ -->
-<div id="pg-espace" class="page">
-  <div id="espace-login-section"></div>
-  <div id="espace-profil-section" style="display:none;"></div>
-</div>
-
-<!-- ░░ FORMULAIRE ░░ -->
-<div id="pg-formulaire" class="page">
-  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
-    <button onclick="showPage('packages')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
-    <div style="color:#fff;font-size:22px;font-weight:800;">📋 Demande Personnalisée</div>
-  </div>
-  <div style="padding:var(--space-md);">
-    <div class="card">
-      <div class="section-label">Type d'Oumra</div>
-      <select id="f-type" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option value="">Choisir...</option><option>🌟 PROMO Juin 2026 — 990 000 FCFA</option><option>Oumra Standard — 1 850 000 FCFA</option><option>⭐ Oumra VIP — 2 200 000 FCFA</option><option>🌙 Oumra Shawal — 2 850 000 FCFA</option><option>🏦 Tontine — 200 000 FCFA/mois</option></select>
-      <div class="section-label">Mois</div>
-      <select id="f-mois" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option value="">Choisir...</option><option>Juin 2026</option><option>Juillet 2026</option><option>Août 2026</option><option>Shawal</option><option>Ramadan 2027</option></select>
-      <div class="section-label">Formule</div>
-      <select id="f-formule" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option value="">Choisir...</option><option>Vol + Hôtel + Transport</option><option>Vol + Hôtel</option><option>Hôtel uniquement</option><option>Package tout inclus</option></select>
-      <div class="section-label">Chambre</div>
-      <select id="f-chambre" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option value="">Choisir...</option><option>Simple</option><option>Double</option><option>Triple</option><option>Quadruple</option><option>Suite VIP</option></select>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:var(--space-md);">
-        <div><div class="section-label">Personnes</div><select id="f-personnes" class="input" style="-webkit-appearance:none;"><option>1</option><option>2</option><option>3</option><option>4</option><option>Groupe +10</option></select></div>
-        <div><div class="section-label">Jours</div><select id="f-jours" class="input" style="-webkit-appearance:none;"><option>7 jours</option><option>10 jours</option><option>14 jours</option><option>21 jours</option><option>30 jours</option></select></div>
-      </div>
-      <div class="section-label">Combiné</div>
-      <select id="f-combine" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option>Makkah uniquement</option><option>Makkah + Médine</option><option>Makkah + Médine + Jérusalem</option><option>Makkah + Istanbul</option></select>
-      <div class="section-label">Budget</div>
-      <select id="f-budget" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;"><option>Moins de 1 000 000 FCFA</option><option>1 000 000 — 2 000 000 FCFA</option><option>2 000 000 — 3 000 000 FCFA</option><option>Plus de 3 000 000 FCFA</option><option>Tontine mensuelle</option></select>
-      <div class="divider"></div>
-      <div class="section-label">Votre nom</div>
-      <input type="text" id="f-nom" placeholder="Prénom et Nom" class="input" style="margin-bottom:var(--space-md);"/>
-      <div class="section-label">Téléphone</div>
-      <div style="display:flex;gap:8px;margin-bottom:var(--space-md);"><div class="input" style="white-space:nowrap;flex-shrink:0;">🇸🇳 +221</div><input type="tel" id="f-phone" placeholder="77 123 45 67" class="input" style="flex:1;"/></div>
-      <div class="section-label">Remarques</div>
-      <textarea id="f-remarques" placeholder="Besoins spéciaux..." class="input" style="margin-bottom:var(--space-md);min-height:80px;resize:none;"></textarea>
-      <button onclick="envoyerFormulaire()" class="btn btn-whatsapp">📱 Envoyer via WhatsApp</button>
-    </div>
-  </div>
-</div>
-<!-- ░░ SIRA ░░ -->
-<div id="pg-sira" class="page" style="background:linear-gradient(180deg,#1A0A3E 0%,#0D1117 300px);">
-  <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-md);">
-    <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Kyswa Travel — Elhadji Malick Seye</div>
-    <div style="color:#fff;font-size:22px;font-weight:800;">📚 Vie du Prophète ﷺ</div>
-    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Leçon quotidienne · Hadith du jour</div>
-  </div>
-  <div style="overflow-x:auto;display:flex;gap:6px;padding:var(--space-md) var(--space-md) 0;scrollbar-width:none;" id="sira-tabs"></div>
-  <div style="padding:var(--space-md);" id="sira-content"></div>
-</div>
-
-<!-- ░░ INFOS PRATIQUES ░░ -->
-<div id="pg-infos" class="page">
-  <div style="background:linear-gradient(160deg,#004D6E,#006994);padding:56px var(--space-md) var(--space-md);">
-    <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Kyswa Travel</div>
-    <div style="color:#fff;font-size:22px;font-weight:800;">🌡️ Infos Pratiques</div>
-    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Climat · Interdits Ihram · Bagages · Santé</div>
-    <div style="display:flex;gap:6px;margin-top:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
-      <button onclick="setInfosTab('climat')" id="itab-climat" style="flex-shrink:0;background:#fff;color:#004D6E;border:none;border-radius:var(--radius-full);padding:7px 14px;font-size:11px;font-weight:700;cursor:pointer;">🌡️ Climat</button>
-    </div>
-  </div>
-  <div style="padding:var(--space-md);" id="infos-content"></div>
-</div>
-
-</div>
-
-<!-- ░░ DU'A PERSO ░░ -->
-<div id="pg-dua" class="page">
-  <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-lg);">
-    <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
-    <div style="color:#fff;font-size:22px;font-weight:800;">🤲 Mes Du'a Personnels</div>
-    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Écrivez vos supplications avant de partir</div>
-  </div>
-  <div style="padding:var(--space-md);">
-    <div class="card">
-      <div class="section-label">Ajouter un Du'a</div>
-      <input type="text" id="dua-titre" placeholder="Titre (ex: Pour ma famille)" class="input" style="margin-bottom:8px;"/>
-      <textarea id="dua-texte" placeholder="Écrivez votre supplication ici..." class="input" style="min-height:100px;resize:none;margin-bottom:var(--space-md);"></textarea>
-      <button onclick="ajouterDua()" class="btn btn-primary">🤲 Sauvegarder ce Du'a</button>
-    </div>
-    <div id="dua-list"></div>
-  </div>
-</div>
-
-<!-- ░░ QUIZ OUMRA ░░ -->
-<div id="pg-quiz" class="page">
-  <div style="background:linear-gradient(160deg,#3D1A00,#8B4513);padding:56px var(--space-md) var(--space-lg);">
-    <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
-    <div style="color:#fff;font-size:22px;font-weight:800;">🧠 Quiz Oumra</div>
-    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Testez vos connaissances sur les rites</div>
-  </div>
-  <div id="quiz-content" style="padding:var(--space-md);"></div>
-</div>
-
-<!-- ░░ SADAQA ░░ -->
-<div id="pg-sadaqa" class="page">
-  <div style="background:linear-gradient(160deg,#0D2B1A,#1A5C36);padding:56px var(--space-md) var(--space-lg);">
-    <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
-      <div style="width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:28px;">💚</div>
-      <div>
-        <div style="color:#fff;font-size:20px;font-weight:800;">Sadaqa — Association AHBAB</div>
-        <div style="color:rgba(255,255,255,0.65);font-size:11px;margin-top:2px;">Elhadji Malick Seye — Dakar, Sénégal</div>
+  <!-- ░░ PRIERES ░░ -->
+  <div id="pg-prieres" class="page">
+    <div style="background:var(--surface);padding:56px var(--space-md) 0;border-bottom:1px solid var(--border);">
+      <button onclick="showPage('home')" style="background:var(--primary-soft);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:var(--primary);font-size:13px;cursor:pointer;margin-bottom:8px;">← Retour</button>
+      <div style="font-size:20px;font-weight:800;text-align:center;padding-bottom:14px;">🕌 Prières</div>
+      <div
+        style="display:flex;gap:4px;background:var(--surface-2);border-radius:var(--radius-md);padding:4px;margin-bottom:16px;">
+        <button onclick="setPrieresTab('horaires')" id="ptab-horaires"
+          style="flex:1;background:var(--primary);color:#fff;border:none;padding:10px;border-radius:var(--radius-sm);font-size:12px;font-weight:700;cursor:pointer;">⏰
+          Horaires</button>
+        <button onclick="setPrieresTab('qibla')" id="ptab-qibla"
+          style="flex:1;background:transparent;color:var(--text-secondary);border:none;padding:10px;border-radius:var(--radius-sm);font-size:12px;cursor:pointer;">🧭
+          Qibla</button>
       </div>
     </div>
-    <div style="background:rgba(255,255,255,0.1);border-radius:var(--radius-md);padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.85);font-style:italic;">
-      « Qui est-ce qui accordera à Allah un prêt généreux ? » — Al-Baqara 2:245
-    </div>
+    <div id="prieres-content" style="padding:var(--space-md);"></div>
   </div>
-  <div style="padding:var(--space-md);">
-    <div class="card" style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);margin-bottom:var(--space-md);">
-      <div style="color:#7FFFD4;font-size:13px;font-weight:800;margin-bottom:8px;">🌿 Association AHBAB Elhadji Malick Seye</div>
-      <div style="color:rgba(255,255,255,0.8);font-size:12px;line-height:1.7;margin-bottom:10px;">Association caritative islamique fondée dans la continuité de l'œuvre spirituelle de Seydi Mouhamad Lamine Seye. Elle œuvre pour l'éducation, la solidarité et la da'wa.</div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;">
-        <span style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">🍽️ Iftar Ramadan</span>
-        <span style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">📦 Distributions</span>
-        <span style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">📚 Éducation</span>
-        <span style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">🕌 Da'wa</span>
+
+  <!-- ░░ CORAN ░░ -->
+  <div id="pg-coran" class="page">
+    <div
+      style="background:var(--surface);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--border);">
+      <button onclick="showPage('home')" style="background:var(--primary-soft);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:var(--primary);font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
+      <div style="font-size:20px;font-weight:800;text-align:center;margin-bottom:14px;">📖 Coran</div>
+      <input type="text" id="coran-search" oninput="renderSurahs()" placeholder="🔍 Rechercher une sourate..."
+        class="input" />
+    </div>
+    <div id="surahs-list" style="padding:var(--space-md);"></div>
+  </div>
+  <div id="pg-verses" class="page">
+    <div
+      style="background:var(--surface);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--border);text-align:center;position:relative;">
+      <button onclick="showPage('coran')"
+        style="position:absolute;left:var(--space-md);top:56px;background:var(--primary-soft);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:var(--primary);font-size:13px;cursor:pointer;">←
+        Retour</button>
+      <div id="surah-title" style="font-size:18px;font-weight:800;"></div>
+      <div id="surah-ar" style="color:var(--primary);font-size:16px;font-family:var(--font-arabic);margin-top:4px;">
       </div>
     </div>
-    <div class="card" style="border:1.5px solid var(--gold);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);margin-bottom:var(--space-md);">
-      <div style="font-size:13px;font-weight:800;color:var(--gold);margin-bottom:6px;">🏛️ Projet Daar-Nabi — Ndiakhirat</div>
-      <div style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin-bottom:8px;">Construction d'un complexe islamique de 4 étages dédié à l'enseignement du Coran et des sciences islamiques. Votre Sadaqa est une Sadaqa Jariya — récompense perpétuelle insha'Allah.</div>
-      <div style="background:var(--gold-soft);border-radius:var(--radius-sm);padding:8px 12px;font-size:11px;color:var(--gold);font-weight:700;">
-        📌 Sadaqa Jariya — récompense jannah
+    <div id="verses-list" style="padding:var(--space-md);background:var(--bg);min-height:100vh;"></div>
+  </div>
+
+  <!-- ░░ DHIKR ░░ -->
+  <div id="pg-dhikr" class="page" style="background:var(--dark-bg);">
+    <div
+      style="background:var(--dark-bg);padding:56px var(--space-md) var(--space-md);border-bottom:1px solid var(--dark-border);">
+      <button onclick="showPage('home')" style="background:var(--dark-surface-2);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:var(--dark-text);font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
+      <div style="color:var(--dark-text);font-size:20px;font-weight:800;text-align:center;">📿 Dhikr & Tasbih</div>
+    </div>
+    <div style="display:flex;gap:6px;padding:var(--space-md) var(--space-md) 0;">
+      <button onclick="setDhikrTab('dhikr')" id="dtab-dhikr"
+        style="flex:1;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-full);padding:8px 14px;font-size:11px;font-weight:700;cursor:pointer;">📿
+        Dhikr</button>
+      <button onclick="setDhikrTab('salawat')" id="dtab-salawat"
+        style="flex:1;background:var(--dark-surface-2);color:var(--dark-hint);border:none;border-radius:var(--radius-full);padding:8px 14px;font-size:11px;cursor:pointer;">🌹
+        Salawat 12k</button>
+    </div>
+    <div id="dhikr-tab-content">
+      <div style="overflow-x:auto;display:flex;gap:8px;padding:var(--space-md) var(--space-md) 0;" id="dhikr-tabs">
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding:var(--space-lg) var(--space-md);"
+        id="dhikr-body"></div>
+    </div>
+    <div id="salawat-tab-content" style="display:none;padding:var(--space-md);"></div>
+  </div>
+
+  <!-- ░░ ESPACE ░░ -->
+  <div id="pg-espace" class="page">
+    <div id="espace-login-section"></div>
+    <div id="espace-profil-section" style="display:none;"></div>
+  </div>
+
+  <!-- ░░ FORMULAIRE ░░ -->
+  <div id="pg-formulaire" class="page">
+    <div
+      style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
+      <button onclick="showPage('home')"
+        style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">←
+        Retour</button>
+      <div style="color:#fff;font-size:22px;font-weight:800;">📋 Demande Personnalisée</div>
+    </div>
+    <div style="padding:var(--space-md);">
+      <div class="card">
+        <div class="section-label">Type d'Oumra</div>
+        <select id="f-type" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+          <option value="">Choisir...</option>
+          <option>🌟 PROMO Juin 2026 — 990 000 FCFA</option>
+          <option>Oumra Standard — 1 850 000 FCFA</option>
+          <option>⭐ Oumra VIP — 2 200 000 FCFA</option>
+          <option>🌙 Oumra Shawal — 2 850 000 FCFA</option>
+          <option>🏦 Tontine — 200 000 FCFA/mois</option>
+        </select>
+        <div class="section-label">Mois</div>
+        <select id="f-mois" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+          <option value="">Choisir...</option>
+          <option>Juin 2026</option>
+          <option>Juillet 2026</option>
+          <option>Août 2026</option>
+          <option>Shawal</option>
+          <option>Ramadan 2027</option>
+        </select>
+        <div class="section-label">Formule</div>
+        <select id="f-formule" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+          <option value="">Choisir...</option>
+          <option>Vol + Hôtel + Transport</option>
+          <option>Vol + Hôtel</option>
+          <option>Hôtel uniquement</option>
+          <option>Package tout inclus</option>
+        </select>
+        <div class="section-label">Chambre</div>
+        <select id="f-chambre" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+          <option value="">Choisir...</option>
+          <option>Simple</option>
+          <option>Double</option>
+          <option>Triple</option>
+          <option>Quadruple</option>
+          <option>Suite VIP</option>
+        </select>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:var(--space-md);">
+          <div>
+            <div class="section-label">Personnes</div><select id="f-personnes" class="input"
+              style="-webkit-appearance:none;">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>Groupe +10</option>
+            </select>
+          </div>
+          <div>
+            <div class="section-label">Jours</div><select id="f-jours" class="input" style="-webkit-appearance:none;">
+              <option>7 jours</option>
+              <option>10 jours</option>
+              <option>14 jours</option>
+              <option>21 jours</option>
+              <option>30 jours</option>
+            </select>
+          </div>
+        </div>
+        <div class="section-label">Combiné</div>
+        <select id="f-combine" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+          <option>Makkah uniquement</option>
+          <option>Makkah + Médine</option>
+          <option>Makkah + Médine + Jérusalem</option>
+          <option>Makkah + Istanbul</option>
+        </select>
+        <div class="section-label">Budget</div>
+        <select id="f-budget" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+          <option>Moins de 1 000 000 FCFA</option>
+          <option>1 000 000 — 2 000 000 FCFA</option>
+          <option>2 000 000 — 3 000 000 FCFA</option>
+          <option>Plus de 3 000 000 FCFA</option>
+          <option>Tontine mensuelle</option>
+        </select>
+        <div class="divider"></div>
+        <div class="section-label">Votre nom</div>
+        <input type="text" id="f-nom" placeholder="Prénom et Nom" class="input"
+          style="margin-bottom:var(--space-md);" />
+        <div class="section-label">Téléphone</div>
+        <div style="display:flex;gap:8px;margin-bottom:var(--space-md);">
+          <div class="input" style="white-space:nowrap;flex-shrink:0;">🇸🇳 +221</div><input type="tel" id="f-phone"
+            placeholder="77 123 45 67" class="input" style="flex:1;" />
+        </div>
+        <div class="section-label">Remarques</div>
+        <textarea id="f-remarques" placeholder="Besoins spéciaux..." class="input"
+          style="margin-bottom:var(--space-md);min-height:80px;resize:none;"></textarea>
+        <button onclick="envoyerFormulaire()" class="btn btn-whatsapp">📱 Envoyer via WhatsApp</button>
       </div>
     </div>
-    <div class="section-label">Montant de votre don</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:var(--space-md);">
-      <button onclick="setSadaqaMontant(1000)" class="card" style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;"><div style="font-weight:700;">1 000</div><div style="font-size:10px;color:var(--text-hint);">FCFA</div></button>
-      <button onclick="setSadaqaMontant(2000)" class="card" style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;"><div style="font-weight:700;">2 000</div><div style="font-size:10px;color:var(--text-hint);">FCFA</div></button>
-      <button onclick="setSadaqaMontant(5000)" class="card" style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;"><div style="font-weight:700;">5 000</div><div style="font-size:10px;color:var(--text-hint);">FCFA</div></button>
-      <button onclick="setSadaqaMontant(10000)" class="card" style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;"><div style="font-weight:700;">10 000</div><div style="font-size:10px;color:var(--text-hint);">FCFA</div></button>
-      <button onclick="setSadaqaMontant(25000)" class="card" style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;"><div style="font-weight:700;">25 000</div><div style="font-size:10px;color:var(--text-hint);">FCFA</div></button>
-      <button onclick="setSadaqaMontant(50000)" class="card" style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;"><div style="font-weight:700;">50 000</div><div style="font-size:10px;color:var(--text-hint);">FCFA</div></button>
+  </div>
+  <!-- ░░ SIRA ░░ -->
+  <div id="pg-sira" class="page" style="background:linear-gradient(180deg,#1A0A3E 0%,#0D1117 300px);">
+    <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-md);">
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
+      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Kyswa Travel — Elhadji Malick Seye
+      </div>
+      <div style="color:#fff;font-size:22px;font-weight:800;">📚 Vie du Prophète ﷺ</div>
+      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Leçon quotidienne · Hadith du jour</div>
     </div>
-    <div style="display:flex;gap:8px;margin-bottom:var(--space-md);">
-      <input type="number" id="sadaqa-montant" placeholder="Ou saisir un montant..." class="input" style="flex:1;"/>
-      <div style="background:var(--surface-2);border-radius:var(--radius-md);padding:14px 12px;font-size:13px;color:var(--text-secondary);">FCFA</div>
-    </div>
-    <div class="section-label">Mode de paiement</div>
-    <a id="wave-btn" href="#" target="_blank" class="btn" style="background:#1E90FF;color:#fff;margin-bottom:10px;border-radius:var(--radius-md);">💙 Donner via Wave</a>
-    <a id="orange-btn" href="#" target="_blank" class="btn" style="background:#FF6600;color:#fff;margin-bottom:10px;border-radius:var(--radius-md);">🟠 Donner via Orange Money</a>
-    <a href="https://wa.me/221787811616?text=Salam%20Alaikum%20!%20Je%20souhaite%20faire%20un%20don%20pour%20l%27Association%20AHBAB%20Elhadji%20Malick%20Seye.%20JazakAllah%20khayran." target="_blank" class="btn btn-whatsapp" style="border-radius:var(--radius-md);">📱 Contacter via WhatsApp</a>
-    <div class="card" style="margin-top:var(--space-md);background:var(--surface-2);border:none;text-align:center;">
-      <div style="font-size:11px;color:var(--text-hint);line-height:1.7;">
-        💚 Tous les dons sont remis directement à l'Association AHBAB<br>
-        📍 Dakar, Sénégal — Dirigée par Elhadji Malick Seye<br>
-        📞 +221 78 633 45 45
+    <div style="overflow-x:auto;display:flex;gap:6px;padding:var(--space-md) var(--space-md) 0;scrollbar-width:none;"
+      id="sira-tabs"></div>
+    <div style="padding:var(--space-md);" id="sira-content"></div>
+  </div>
+
+  <!-- ░░ INFOS PRATIQUES ░░ -->
+  <div id="pg-infos" class="page">
+    <div style="background:linear-gradient(160deg,#004D6E,#006994);padding:56px var(--space-md) var(--space-md);">
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
+      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Kyswa Travel</div>
+      <div style="color:#fff;font-size:22px;font-weight:800;">🌡️ Infos Pratiques</div>
+      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Climat · Interdits Ihram · Bagages ·
+        Santé</div>
+      <div style="display:flex;gap:6px;margin-top:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
+        <button onclick="setInfosTab('climat')" id="itab-climat"
+          style="flex-shrink:0;background:#fff;color:#004D6E;border:none;border-radius:var(--radius-full);padding:7px 14px;font-size:11px;font-weight:700;cursor:pointer;">🌡️
+          Climat</button>
       </div>
     </div>
-    <div class="card" style="margin-top:var(--space-md);background:var(--primary-soft);border:1.5px solid var(--primary-mid);">
-      <div style="font-size:12px;color:var(--primary);font-weight:700;margin-bottom:4px;">🕋 Tontine Oumra — 200 000 FCFA/mois</div>
-      <div style="font-size:11px;color:var(--text-secondary);">Épargnez chaque mois pour votre Oumra. Kyswa Travel gère votre épargne jusqu'au départ.</div>
-      <a href="https://wa.me/221787811616?text=Je%20veux%20rejoindre%20la%20Tontine%20Oumra" target="_blank" class="btn btn-primary" style="margin-top:10px;padding:12px;font-size:12px;border-radius:var(--radius-md);">S'inscrire à la Tontine</a>
+    <div style="padding:var(--space-md);" id="infos-content"></div>
+  </div>
+
+  </div>
+
+  <!-- ░░ DU'A PERSO ░░ -->
+  <div id="pg-dua" class="page">
+    <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-lg);">
+      <button onclick="showPage('home')"
+        style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">←
+        Retour</button>
+      <div style="color:#fff;font-size:22px;font-weight:800;">🤲 Mes Du'a Personnels</div>
+      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Écrivez vos supplications avant de partir
+      </div>
+    </div>
+    <div style="padding:var(--space-md);">
+      <div class="card">
+        <div class="section-label">Ajouter un Du'a</div>
+        <input type="text" id="dua-titre" placeholder="Titre (ex: Pour ma famille)" class="input"
+          style="margin-bottom:8px;" />
+        <textarea id="dua-texte" placeholder="Écrivez votre supplication ici..." class="input"
+          style="min-height:100px;resize:none;margin-bottom:var(--space-md);"></textarea>
+        <button onclick="ajouterDua()" class="btn btn-primary">🤲 Sauvegarder ce Du'a</button>
+      </div>
+      <div id="dua-list"></div>
     </div>
   </div>
-</div>
 
-<!-- ░░ MESSAGERIE ░░ -->
-<div id="pg-contact" class="page">
-  <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
-    <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
-    <div style="color:#fff;font-size:22px;font-weight:800;">📞 Contacter Kyswa Travel</div>
-    <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">115 Av. Blaise Diagne, Dakar</div>
-  </div>
-  <div style="padding:var(--space-md);">
-    <a href="https://wa.me/221787811616" target="_blank" class="btn btn-whatsapp" style="margin-bottom:10px;border-radius:var(--radius-md);">📱 WhatsApp — +221 78 781 16 16</a>
-    <a href="tel:+221787811616" class="btn btn-primary" style="margin-bottom:10px;border-radius:var(--radius-md);">📞 Appeler directement</a>
-    <a href="mailto:kyswatravel@gmail.com" class="btn btn-outline" style="margin-bottom:var(--space-md);border-radius:var(--radius-md);">✉️ Email — kyswatravel@gmail.com</a>
-    <div class="card">
-      <div class="section-label">Envoyer un message</div>
-      <input type="text" id="msg-nom" placeholder="Votre nom" class="input" style="margin-bottom:8px;"/>
-      <input type="tel" id="msg-phone" placeholder="Votre téléphone" class="input" style="margin-bottom:8px;"/>
-      <select id="msg-sujet" class="input" style="margin-bottom:8px;-webkit-appearance:none;">
-        <option>Demande de renseignement Oumra</option>
-        <option>Réservation package</option>
-        <option>Tontine Oumra</option>
-        <option>Boutique Kyswa</option>
-        <option>Urgence pèlerin</option>
-        <option>Autre</option>
-      </select>
-      <textarea id="msg-texte" placeholder="Votre message..." class="input" style="min-height:80px;resize:none;margin-bottom:var(--space-md);"></textarea>
-      <button onclick="envoyerMessage()" class="btn btn-whatsapp">📱 Envoyer via WhatsApp</button>
+  <!-- ░░ QUIZ OUMRA ░░ -->
+  <div id="pg-quiz" class="page">
+    <div style="background:linear-gradient(160deg,#3D1A00,#8B4513);padding:56px var(--space-md) var(--space-lg);">
+      <button onclick="showPage('home')"
+        style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">←
+        Retour</button>
+      <div style="color:#fff;font-size:22px;font-weight:800;">🧠 Quiz Oumra</div>
+      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Testez vos connaissances sur les rites
+      </div>
     </div>
-    <div class="card" style="text-align:center;margin-top:var(--space-md);">
-      <div style="font-size:32px;margin-bottom:8px;">🕌</div>
-      <div style="font-weight:700;margin-bottom:4px;">Kyswa Travel</div>
-      <div style="font-size:12px;color:var(--text-secondary);">115 Avenue Blaise Diagne, Dakar</div>
-      <div style="font-size:12px;color:var(--text-secondary);">Lun–Sam : 8h–20h</div>
+    <div id="quiz-content" style="padding:var(--space-md);"></div>
+  </div>
+
+  <!-- ░░ SADAQA ░░ -->
+  <div id="pg-sadaqa" class="page">
+    <div style="background:linear-gradient(160deg,#0D2B1A,#1A5C36);padding:56px var(--space-md) var(--space-lg);">
+      <button onclick="showPage('home')"
+        style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">←
+        Retour</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+        <div
+          style="width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:28px;">
+          💚</div>
+        <div>
+          <div style="color:#fff;font-size:20px;font-weight:800;">Sadaqa — Association AHBAB</div>
+          <div style="color:rgba(255,255,255,0.65);font-size:11px;margin-top:2px;">Elhadji Malick Seye — Dakar, Sénégal
+          </div>
+        </div>
+      </div>
+      <div
+        style="background:rgba(255,255,255,0.1);border-radius:var(--radius-md);padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.85);font-style:italic;">
+        « Qui est-ce qui accordera à Allah un prêt généreux ? » — Al-Baqara 2:245
+      </div>
+    </div>
+    <div style="padding:var(--space-md);">
+      <div class="card" style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);margin-bottom:var(--space-md);">
+        <div style="color:#7FFFD4;font-size:13px;font-weight:800;margin-bottom:8px;">🌿 Association AHBAB Elhadji Malick
+          Seye</div>
+        <div style="color:rgba(255,255,255,0.8);font-size:12px;line-height:1.7;margin-bottom:10px;">Association
+          caritative islamique fondée dans la continuité de l'œuvre spirituelle de Seydi Mouhamad Lamine Seye. Elle
+          œuvre pour l'éducation, la solidarité et la da'wa.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span
+            style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">🍽️
+            Iftar Ramadan</span>
+          <span
+            style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">📦
+            Distributions</span>
+          <span
+            style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">📚
+            Éducation</span>
+          <span
+            style="background:rgba(127,255,212,0.15);color:#7FFFD4;border-radius:var(--radius-full);padding:4px 10px;font-size:10px;font-weight:700;">🕌
+            Da'wa</span>
+        </div>
+      </div>
+      <div class="card"
+        style="border:1.5px solid var(--gold);background:linear-gradient(135deg,#FFFDF5,#FFF9E6);margin-bottom:var(--space-md);">
+        <div style="font-size:13px;font-weight:800;color:var(--gold);margin-bottom:6px;">🏛️ Projet Daar-Nabi —
+          Ndiakhirat</div>
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin-bottom:8px;">Construction d'un
+          complexe islamique de 4 étages dédié à l'enseignement du Coran et des sciences islamiques. Votre Sadaqa est
+          une Sadaqa Jariya — récompense perpétuelle insha'Allah.</div>
+        <div
+          style="background:var(--gold-soft);border-radius:var(--radius-sm);padding:8px 12px;font-size:11px;color:var(--gold);font-weight:700;">
+          📌 Sadaqa Jariya — récompense jannah
+        </div>
+      </div>
+      <div class="section-label">Montant de votre don</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:var(--space-md);">
+        <button onclick="setSadaqaMontant(1000)" class="card"
+          style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;">
+          <div style="font-weight:700;">1 000</div>
+          <div style="font-size:10px;color:var(--text-hint);">FCFA</div>
+        </button>
+        <button onclick="setSadaqaMontant(2000)" class="card"
+          style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;">
+          <div style="font-weight:700;">2 000</div>
+          <div style="font-size:10px;color:var(--text-hint);">FCFA</div>
+        </button>
+        <button onclick="setSadaqaMontant(5000)" class="card"
+          style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;">
+          <div style="font-weight:700;">5 000</div>
+          <div style="font-size:10px;color:var(--text-hint);">FCFA</div>
+        </button>
+        <button onclick="setSadaqaMontant(10000)" class="card"
+          style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;">
+          <div style="font-weight:700;">10 000</div>
+          <div style="font-size:10px;color:var(--text-hint);">FCFA</div>
+        </button>
+        <button onclick="setSadaqaMontant(25000)" class="card"
+          style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;">
+          <div style="font-weight:700;">25 000</div>
+          <div style="font-size:10px;color:var(--text-hint);">FCFA</div>
+        </button>
+        <button onclick="setSadaqaMontant(50000)" class="card"
+          style="text-align:center;margin-bottom:0;cursor:pointer;padding:12px 4px;border:none;">
+          <div style="font-weight:700;">50 000</div>
+          <div style="font-size:10px;color:var(--text-hint);">FCFA</div>
+        </button>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:var(--space-md);">
+        <input type="number" id="sadaqa-montant" placeholder="Ou saisir un montant..." class="input" style="flex:1;" />
+        <div
+          style="background:var(--surface-2);border-radius:var(--radius-md);padding:14px 12px;font-size:13px;color:var(--text-secondary);">
+          FCFA</div>
+      </div>
+      <div class="section-label">Mode de paiement</div>
+      <a id="wave-btn" href="#" target="_blank" class="btn"
+        style="background:#1E90FF;color:#fff;margin-bottom:10px;border-radius:var(--radius-md);">💙 Donner via Wave</a>
+      <a id="orange-btn" href="#" target="_blank" class="btn"
+        style="background:#FF6600;color:#fff;margin-bottom:10px;border-radius:var(--radius-md);">🟠 Donner via Orange
+        Money</a>
+      <a href="https://wa.me/221787811616?text=Salam%20Alaikum%20!%20Je%20souhaite%20faire%20un%20don%20pour%20l%27Association%20AHBAB%20Elhadji%20Malick%20Seye.%20JazakAllah%20khayran."
+        target="_blank" class="btn btn-whatsapp" style="border-radius:var(--radius-md);">📱 Contacter via WhatsApp</a>
+      <div class="card" style="margin-top:var(--space-md);background:var(--surface-2);border:none;text-align:center;">
+        <div style="font-size:11px;color:var(--text-hint);line-height:1.7;">
+          💚 Tous les dons sont remis directement à l'Association AHBAB<br>
+          📍 Dakar, Sénégal — Dirigée par Elhadji Malick Seye<br>
+          📞 +221 78 633 45 45
+        </div>
+      </div>
+      <div class="card"
+        style="margin-top:var(--space-md);background:var(--primary-soft);border:1.5px solid var(--primary-mid);">
+        <div style="font-size:12px;color:var(--primary);font-weight:700;margin-bottom:4px;">🕋 Tontine Oumra — 200 000
+          FCFA/mois</div>
+        <div style="font-size:11px;color:var(--text-secondary);">Épargnez chaque mois pour votre Oumra. Kyswa Travel
+          gère votre épargne jusqu'au départ.</div>
+        <a href="https://wa.me/221787811616?text=Je%20veux%20rejoindre%20la%20Tontine%20Oumra" target="_blank"
+          class="btn btn-primary"
+          style="margin-top:10px;padding:12px;font-size:12px;border-radius:var(--radius-md);">S'inscrire à la
+          Tontine</a>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- NAV — 7 onglets -->
-<div id="bottom-nav" style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding:8px 0 18px;z-index:100;box-shadow:0 -4px 24px rgba(0,0,0,0.06);">
-  <button onclick="showPage('home')" id="nb-home" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:1;"><div style="font-size:20px;">🏠</div><div id="nbl-home" style="font-size:8px;font-weight:700;color:var(--primary);">Accueil</div></button>
-  <button onclick="showPage('sira')" id="nb-sira" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">📚</div><div id="nbl-sira" style="font-size:8px;color:var(--text-hint);">Sira</div></button>
-  <button onclick="showPage('infos')" id="nb-infos" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">🌡️</div><div id="nbl-infos" style="font-size:8px;color:var(--text-hint);">Infos</div></button>
-  <button onclick="showPage('oumra')" id="nb-oumra" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">🕋</div><div id="nbl-oumra" style="font-size:8px;color:var(--text-hint);">Guide</div></button>
-  <button onclick="showPage('baraka')" id="nb-baraka" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">🌟</div><div id="nbl-baraka" style="font-size:8px;color:var(--text-hint);">Baraka</div></button>
-  <button onclick="showPage('dhikr')" id="nb-dhikr" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">📿</div><div id="nbl-dhikr" style="font-size:8px;color:var(--text-hint);">Dhikr</div></button>
-  <button onclick="showPage('espace')" id="nb-espace" style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;"><div style="font-size:20px;">👤</div><div id="nbl-espace" style="font-size:8px;color:var(--text-hint);">Espace</div></button>
-</div>
+  <!-- ░░ MESSAGERIE ░░ -->
+  <div id="pg-contact" class="page">
+    <div
+      style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
+      <button onclick="showPage('home')"
+        style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">←
+        Retour</button>
+      <div style="color:#fff;font-size:22px;font-weight:800;">📞 Contacter Kyswa Travel</div>
+      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">115 Av. Blaise Diagne, Dakar</div>
+    </div>
+    <div style="padding:var(--space-md);">
+      <a href="https://wa.me/221787811616" target="_blank" class="btn btn-whatsapp"
+        style="margin-bottom:10px;border-radius:var(--radius-md);">📱 WhatsApp — +221 78 781 16 16</a>
+      <a href="tel:+221787811616" class="btn btn-primary" style="margin-bottom:10px;border-radius:var(--radius-md);">📞
+        Appeler directement</a>
+      <a href="mailto:kyswatravel@gmail.com" class="btn btn-outline"
+        style="margin-bottom:var(--space-md);border-radius:var(--radius-md);">✉️ Email — kyswatravel@gmail.com</a>
+      <div class="card">
+        <div class="section-label">Envoyer un message</div>
+        <input type="text" id="msg-nom" placeholder="Votre nom" class="input" style="margin-bottom:8px;" />
+        <input type="tel" id="msg-phone" placeholder="Votre téléphone" class="input" style="margin-bottom:8px;" />
+        <select id="msg-sujet" class="input" style="margin-bottom:8px;-webkit-appearance:none;">
+          <option>Demande de renseignement Oumra</option>
+          <option>Réservation package</option>
+          <option>Tontine Oumra</option>
+          <option>Boutique Kyswa</option>
+          <option>Urgence pèlerin</option>
+          <option>Autre</option>
+        </select>
+        <textarea id="msg-texte" placeholder="Votre message..." class="input"
+          style="min-height:80px;resize:none;margin-bottom:var(--space-md);"></textarea>
+        <button onclick="envoyerMessage()" class="btn btn-whatsapp">📱 Envoyer via WhatsApp</button>
+      </div>
+      <div class="card" style="text-align:center;margin-top:var(--space-md);">
+        <div style="font-size:32px;margin-bottom:8px;">🕌</div>
+        <div style="font-weight:700;margin-bottom:4px;">Kyswa Travel</div>
+        <div style="font-size:12px;color:var(--text-secondary);">115 Avenue Blaise Diagne, Dakar</div>
+        <div style="font-size:12px;color:var(--text-secondary);">Lun–Sam : 8h–20h</div>
+      </div>
+    </div>
+  </div>
 
-<script src="js/data.js"></script>
-<script src="js/langs.js"></script>
-<script src="js/app.js"></script>
+
+  <!-- ░░ PAGE ZAKAT ░░ -->
+  <div id="pg-zakat" class="page zk-page">
+    <div class="zk-hdr">
+      <button onclick="showPage('home')" style="align-self:flex-start;background:rgba(255,255,255,0.2);border:none;border-radius:var(--radius-sm);padding:6px 14px;margin-bottom:12px;color:#fff;cursor:pointer;">← Accueil</button>
+      <h2>⚖️ Calculateur de Zakat</h2>
+      <p>Calculez votre Zakat selon votre richesse<br>
+        <span style="font-family:'Amiri',serif;font-size:1rem;color:#f0c040;">وَأَقِيمُوا الصَّلَاةَ وَآتُوا
+          الزَّكَاةَ</span>
+      </p>
+    </div>
+    <div class="zk-info" style="margin:10px 12px 0;">
+      <span class="arab">وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ — Al-Baqara</span>
+      <strong>Qui paie ?</strong> Tout musulman adulte libre dont la richesse atteint le <em>nisab</em> depuis 1 an
+      lunaire (hawl). L'agriculture se paie à chaque récolte.
+    </div>
+    <div class="zk-cats">
+      <div class="zcat active" onclick="zkCat('epargne',this)">💰 Épargne</div>
+      <div class="zcat" onclick="zkCat('commerce',this)">🏪 Commerce</div>
+      <div class="zcat" onclick="zkCat('or',this)">💎 Or & Argent</div>
+      <div class="zcat" onclick="zkCat('agriculture',this)">🌾 Agriculture</div>
+      <div class="zcat" onclick="zkCat('betail',this)">🐄 Bétail</div>
+      <div class="zcat" onclick="zkCat('actions',this)">📈 Actions</div>
+      <div class="zcat" onclick="zkCat('location',this)">🏠 Location</div>
+      <div class="zcat" onclick="zkCat('mines',this)">⛏️ Mines/Pêche</div>
+      <div class="zcat" onclick="zkCat('salaire',this)">💼 Salaire</div>
+    </div>
+
+    <div id="zkf-epargne" class="zkf active zk-card">
+      <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:10px;">💰 Épargne & Liquidités</div>
+      <div class="zk-nisab">
+        <div class="zk-ndot" style="background:#8aada0;"></div><span>Nisab ≈ <strong style="color:#10b981;">400 000
+            FCFA</strong> (argent) · <strong style="color:#f0c040;">5 100 000 FCFA</strong> (or)</span>
+      </div>
+      <div class="zk-uw"><label class="zk-lbl">💵 Espèces + comptes bancaires</label><input type="number" id="ep-cash"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div class="zk-uw"><label class="zk-lbl">📱 Mobile Money (Wave, Orange…)</label><input type="number"
+          id="ep-mobile" class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div class="zk-uw"><label class="zk-lbl">🏦 Épargne / DAT / Placements</label><input type="number" id="ep-bank"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div class="zk-uw"><label class="zk-lbl">🤝 Créances récupérables</label><input type="number" id="ep-loans"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div class="zk-uw"><label class="zk-lbl">➖ Dettes à déduire</label><input type="number" id="ep-debts"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <button class="zk-btn" onclick="zkCalcEp()">⚖️ Calculer ma Zakat</button>
+    </div>
+
+    <div id="zkf-commerce" class="zkf zk-card">
+      <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:10px;">🏪 Commerce & Marchandises</div>
+      <div class="zk-info">Locaux, véhicules et machines <strong>non zakatisables</strong> — uniquement les actifs
+        circulants.</div>
+      <div class="zk-uw"><label class="zk-lbl">📦 Stock (valeur marché)</label><input type="number" id="co-stock"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div class="zk-uw"><label class="zk-lbl">💵 Trésorerie</label><input type="number" id="co-cash" class="zk-inp"
+          placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div class="zk-uw"><label class="zk-lbl">📋 Créances clients</label><input type="number" id="co-recv"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div class="zk-uw"><label class="zk-lbl">➖ Dettes fournisseurs</label><input type="number" id="co-pay"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <button class="zk-btn" onclick="zkCalcCo()">⚖️ Calculer ma Zakat</button>
+    </div>
+
+    <div id="zkf-or" class="zkf zk-card">
+      <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:10px;">💎 Or & Argent</div>
+      <div class="zk-info">Or porté régulièrement = exemption (Maliki). Seul l'or <strong>thésaurisé</strong> est
+        zakatisable.</div>
+      <div class="zk-uw"><label class="zk-lbl">🥇 Or thésaurisé (grammes)</label><input type="number" id="or-g"
+          class="zk-inp" placeholder="0"><span class="zk-unit">g</span></div>
+      <div class="zk-uw"><label class="zk-lbl">Prix du gramme d'or</label><input type="number" id="or-price"
+          class="zk-inp" value="60000"><span class="zk-unit">FCFA/g</span></div>
+      <div class="zk-uw"><label class="zk-lbl">🥈 Argent thésaurisé (grammes)</label><input type="number" id="ag-g"
+          class="zk-inp" placeholder="0"><span class="zk-unit">g</span></div>
+      <div class="zk-uw"><label class="zk-lbl">Prix du gramme d'argent</label><input type="number" id="ag-price"
+          class="zk-inp" value="700"><span class="zk-unit">FCFA/g</span></div>
+      <button class="zk-btn" onclick="zkCalcOr()">⚖️ Calculer ma Zakat</button>
+    </div>
+
+    <div id="zkf-agriculture" class="zkf zk-card">
+      <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:10px;">🌾 Agriculture (Zakat al-Zurû')
+      </div>
+      <div class="zk-info"><strong>Payable à chaque récolte</strong> — pas de hawl. Nisab : <strong>653 kg</strong> (5
+        wasq).<br>Sénégal : mil, arachide, riz, maïs, sorgho, coton.</div>
+      <div class="zk-uw"><label class="zk-lbl">🌾 Quantité récoltée (kg)</label><input type="number" id="ag-qty"
+          class="zk-inp" placeholder="0"><span class="zk-unit">kg</span></div>
+      <div style="margin-bottom:11px;"><label class="zk-lbl">💧 Mode d'irrigation</label><select id="ag-irr"
+          class="zk-sel">
+          <option value="0.1">🌧️ Pluie naturelle (10%)</option>
+          <option value="0.05">🚿 Irrigation artificielle (5%)</option>
+          <option value="0.075">🔀 Mixte (7.5%)</option>
+        </select></div>
+      <div class="zk-uw"><label class="zk-lbl">Prix du kg (FCFA)</label><input type="number" id="ag-kgp" class="zk-inp"
+          placeholder="ex: 300"><span class="zk-unit">FCFA/kg</span></div>
+      <button class="zk-btn" onclick="zkCalcAg()">⚖️ Calculer ma Zakat</button>
+    </div>
+
+    <div id="zkf-betail" class="zkf zk-card">
+      <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:10px;">🐄 Bétail (Zakat al-An'âm)</div>
+      <div class="zk-info">Animaux en pâture libre (saïma), pour la reproduction — <strong>pas</strong> les animaux de
+        travail.</div>
+      <div class="zk-uw"><label class="zk-lbl">🐪 Chameaux</label><input type="number" id="bt-cam" class="zk-inp"
+          placeholder="0" oninput="zkPreviewBt()"><span class="zk-unit">têtes</span></div>
+      <div class="zk-uw"><label class="zk-lbl">🐄 Bovins</label><input type="number" id="bt-cat" class="zk-inp"
+          placeholder="0" oninput="zkPreviewBt()"><span class="zk-unit">têtes</span></div>
+      <div class="zk-uw"><label class="zk-lbl">🐑 Ovins/Caprins</label><input type="number" id="bt-shp" class="zk-inp"
+          placeholder="0" oninput="zkPreviewBt()"><span class="zk-unit">têtes</span></div>
+      <div id="bt-prev" style="font-size:.74rem;color:#8aada0;padding:3px 0;min-height:18px;"></div>
+      <button class="zk-btn" onclick="zkCalcBt()">⚖️ Calculer ma Zakat</button>
+    </div>
+
+    <div id="zkf-actions" class="zkf zk-card">
+      <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:10px;">📈 Actions & Investissements</div>
+      <div class="zk-uw"><label class="zk-lbl">Valeur de marché du portefeuille</label><input type="number" id="ac-val"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div style="margin-bottom:11px;"><label class="zk-lbl">Type de société</label><select id="ac-type" class="zk-sel"
+          onchange="zkToggleAc()">
+          <option value="trade">Commerce/Mixte — 2.5% sur tout le portefeuille</option>
+          <option value="industry">Industrie — 2.5% sur dividendes + trésorerie</option>
+        </select></div>
+      <div id="ac-div-row" style="display:none;" class="zk-uw"><label class="zk-lbl">Dividendes + trésorerie
+          reçus</label><input type="number" id="ac-divs" class="zk-inp" placeholder="0"><span
+          class="zk-unit">FCFA</span></div>
+      <button class="zk-btn" onclick="zkCalcAc()">⚖️ Calculer ma Zakat</button>
+    </div>
+
+    <div id="zkf-location" class="zkf zk-card">
+      <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:10px;">🏠 Revenus Locatifs</div>
+      <div class="zk-info">L'immeuble <strong>n'est pas zakatisable</strong>. Seul le loyer net épargné depuis 1 an
+        l'est.</div>
+      <div class="zk-uw"><label class="zk-lbl">💵 Loyers annuels perçus</label><input type="number" id="lo-inc"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div class="zk-uw"><label class="zk-lbl">➖ Charges annuelles</label><input type="number" id="lo-chg"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div class="zk-uw"><label class="zk-lbl">💰 Solde économisé (1 an)</label><input type="number" id="lo-sav"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <button class="zk-btn" onclick="zkCalcLo()">⚖️ Calculer ma Zakat</button>
+    </div>
+
+    <div id="zkf-mines" class="zkf zk-card">
+      <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:10px;">⛏️ Mines, Ressources & Pêche</div>
+      <div style="margin-bottom:11px;"><label class="zk-lbl">Type de ressource</label><select id="mi-type"
+          class="zk-sel" onchange="zkUpdateMiRate()">
+          <option value="0.2">🏺 Rikaz (trésor enfoui) — 20%</option>
+          <option value="0.025">⛏️ Minerais (or, phosphate, zircon) — 2.5%</option>
+          <option value="0.025">🐟 Pêche — 2.5%</option>
+          <option value="0.1">🌊 Ressource naturelle (pluie) — 10%</option>
+        </select></div>
+      <div class="zk-alert">Taux applicable : <strong id="mi-rate-lbl">20%</strong></div>
+      <div class="zk-uw"><label class="zk-lbl">Valeur de la production</label><input type="number" id="mi-val"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <button class="zk-btn" onclick="zkCalcMi()">⚖️ Calculer ma Zakat</button>
+    </div>
+
+    <div id="zkf-salaire" class="zkf zk-card">
+      <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:10px;">�� Salaire & Revenus</div>
+      <div class="zk-info"><strong>Opinion Maliki (Sénégal) :</strong> Zakat sur l'épargne après 1
+        an.<br><strong>Opinion contemporaine :</strong> 2.5% sur le revenu annuel net.</div>
+      <div class="zk-uw"><label class="zk-lbl">Salaire mensuel net</label><input type="number" id="sa-mth"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div class="zk-uw"><label class="zk-lbl">Épargne totale accumulée (1 an)</label><input type="number" id="sa-sav"
+          class="zk-inp" placeholder="0"><span class="zk-unit">FCFA</span></div>
+      <div style="margin-bottom:11px;"><label class="zk-lbl">Méthode</label><select id="sa-mth2" class="zk-sel">
+          <option value="savings">Sur épargne (Maliki classique)</option>
+          <option value="annual">Sur revenu annuel (opinion contemporaine)</option>
+        </select></div>
+      <button class="zk-btn" onclick="zkCalcSa()">⚖️ Calculer ma Zakat</button>
+    </div>
+
+    <div class="zk-res" id="zakat-result">
+      <h3>📊 Résultat de votre Zakat</h3>
+      <div id="zk-result-body"></div>
+      <div style="margin-top:13px;">
+        <div style="font-size:.82rem;font-weight:700;color:#f0c040;margin-bottom:6px;">🤲 Les 8 bénéficiaires — At-Tawba
+          9:60</div>
+        <div class="zk-benef">
+          <div class="zk-bi"><span class="bn">①</span><span class="bname">Pauvres</span><span
+              class="barab">الفقراء</span></div>
+          <div class="zk-bi"><span class="bn">②</span><span class="bname">Nécessiteux</span><span
+              class="barab">المساكين</span></div>
+          <div class="zk-bi"><span class="bn">③</span><span class="bname">Collecteurs</span><span
+              class="barab">العاملون</span></div>
+          <div class="zk-bi"><span class="bn">④</span><span class="bname">Réconciliation</span><span
+              class="barab">المؤلفة</span></div>
+          <div class="zk-bi"><span class="bn">⑤</span><span class="bname">Libération</span><span
+              class="barab">الرقاب</span></div>
+          <div class="zk-bi"><span class="bn">⑥</span><span class="bname">Endettés</span><span
+              class="barab">الغارمون</span></div>
+          <div class="zk-bi"><span class="bn">⑦</span><span class="bname">Voie d'Allah</span><span class="barab">في سبيل
+              الله</span></div>
+          <div class="zk-bi"><span class="bn">⑧</span><span class="bname">Voyageurs</span><span class="barab">ابن
+              السبيل</span></div>
+        </div>
+      </div>
+      <div class="zk-info" style="margin-top:11px;">
+        <strong>📍 Où donner au Sénégal ?</strong> Mosquées · Association AHBAB Elhadji Malick Seye · Daara ·
+        Orphelinats islamiques
+        <br><br><a
+          href="https://wa.me/221787811616?text=Assalamu%20Alaikum%20!%20Je%20veux%20verser%20ma%20Zakat%20via%20AHBAB."
+          target="_blank"
+          style="background:rgba(16,185,129,0.2);color:#10b981;border-radius:8px;padding:8px 14px;font-size:.77rem;font-weight:700;display:inline-block;margin-top:6px;">💚
+          Contacter AHBAB pour ma Zakat →</a>
+      </div>
+    </div>
+    <div style="height:20px;"></div>
+  </div>
+
+  <!-- ░░ PAGE MIRAS ░░ -->
+  <div id="pg-miras" class="page zk-page">
+    <div class="zk-hdr">
+      <button onclick="showPage('home')" style="align-self:flex-start;background:rgba(255,255,255,0.2);border:none;border-radius:var(--radius-sm);padding:6px 14px;margin-bottom:12px;color:#fff;cursor:pointer;">← Accueil</button>
+      <h2>📜 Héritage Islamique (Miras)</h2>
+      <p>Calcul automatique selon le Fiqh des successions<br>
+        <span style="font-family:'Amiri',serif;font-size:1rem;color:#f0c040;">عِلْمُ الْفَرَائِضِ</span>
+      </p>
+    </div>
+    <div class="zk-info" style="margin:10px 12px 0;">
+      <span class="arab">يُوصِيكُمُ اللَّهُ فِي أَوْلَادِكُمْ — النساء 4:11</span>
+      Le Prophète ﷺ : <em>« Apprenez les Farâ'id et enseignez-les — c'est la moitié de la science. »</em>
+    </div>
+    <div class="mr-dots">
+      <div class="mr-dot active" id="ms1"></div>
+      <div class="mr-dot" id="ms2"></div>
+      <div class="mr-dot" id="ms3"></div>
+    </div>
+
+    <!-- ÉTAPE 1 -->
+    <div id="mr-step1" class="mr-step active">
+      <div class="zk-card" style="margin-top:10px;">
+        <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:12px;">📋 Étape 1 — La Succession</div>
+        <div class="zk-uw"><label class="zk-lbl"><span
+              style="font-family:'Amiri',serif;color:#f0c040;">التَّرِكَة</span> Masse successorale totale</label><input
+            type="number" id="mr-estate" class="zk-inp" placeholder="ex: 10 000 000" oninput="mrUpdateSummary()"><span
+            class="zk-unit">FCFA</span></div>
+        <div class="zk-uw"><label class="zk-lbl"><span style="font-family:'Amiri',serif;color:#f0c040;">الدُّيُون</span>
+            Dettes à rembourser</label><input type="number" id="mr-debts" class="zk-inp" placeholder="0"
+            oninput="mrUpdateSummary()"><span class="zk-unit">FCFA</span></div>
+        <div class="zk-uw"><label class="zk-lbl"><span style="font-family:'Amiri',serif;color:#f0c040;">تَجْهِيز</span>
+            Frais funéraires</label><input type="number" id="mr-funeral" class="zk-inp" placeholder="ex: 500 000"
+            oninput="mrUpdateSummary()"><span class="zk-unit">FCFA</span></div>
+        <div style="margin-bottom:12px;"><label class="zk-lbl"><span
+              style="font-family:'Amiri',serif;color:#f0c040;">الوَصِيَّة</span> Wasiyya (max 1/3)</label><select
+            id="mr-bequest" class="zk-sel" onchange="mrUpdateSummary()">
+            <option value="0">Pas de wasiyya</option>
+            <option value="10">1/10 (10%)</option>
+            <option value="20">1/5 (20%)</option>
+            <option value="33">1/3 maximum (33.3%)</option>
+          </select></div>
+        <div class="mr-estat" id="mr-summary">
+          <div class="mr-er"><span>Masse brute</span><span id="mrs-gross">—</span></div>
+          <div class="mr-er"><span>− Dettes</span><span id="mrs-debts">—</span></div>
+          <div class="mr-er"><span>− Funéraires</span><span id="mrs-funeral">—</span></div>
+          <div class="mr-er"><span>− Wasiyya</span><span id="mrs-bequest">—</span></div>
+          <div class="mr-er tot"><span>= Net distribuable</span><span id="mrs-net">—</span></div>
+        </div>
+      </div>
+      <div class="mr-nav"><button class="mr-next" onclick="mrGoStep(2)">Étape 2 : Les héritiers →</button></div>
+    </div>
+
+    <!-- ÉTAPE 2 -->
+    <div id="mr-step2" class="mr-step">
+      <div class="zk-card" style="margin-top:10px;">
+        <div style="color:#10b981;font-size:.87rem;font-weight:700;margin-bottom:10px;">👥 Étape 2 — Héritiers vivants
+          au décès</div>
+        <span class="arab-gold">الزَّوْجِيَّة — Conjoint(e)</span>
+        <div class="mr-tog">
+          <div class="mr-ti" id="mrt-husband" onclick="mrToggle('husband')"><span class="tii">👨</span>Époux</div>
+          <div class="mr-ti" id="mrt-wife1" onclick="mrSetWives(1)"><span class="tii">👩</span>1 Épouse</div>
+          <div class="mr-ti" id="mrt-wife2" onclick="mrSetWives(2)"><span class="tii">👩👩</span>2-4 Épouses</div>
+        </div>
+        <div id="mr-wives-row" style="display:none;" class="mr-cnt">
+          <label>Nombre d'épouses (2-4)</label>
+          <div class="mr-cbtns"><button class="mr-cb" onclick="mrAdjWives(-1)">−</button><span class="mr-cval"
+              id="mr-wv">2</span><button class="mr-cb" onclick="mrAdjWives(1)">+</button></div>
+        </div>
+        <span class="arab-gold">الأَوْلَاد — Descendants directs</span>
+        <div class="mr-cnt"><label>👦 Fils</label>
+          <div class="mr-cbtns"><button class="mr-cb" onclick="mrAdj('sons',-1)">−</button><span class="mr-cval"
+              id="mrv-sons">0</span><button class="mr-cb" onclick="mrAdj('sons',1)">+</button></div>
+        </div>
+        <div class="mr-cnt"><label>👧 Filles</label>
+          <div class="mr-cbtns"><button class="mr-cb" onclick="mrAdj('daughters',-1)">−</button><span class="mr-cval"
+              id="mrv-daughters">0</span><button class="mr-cb" onclick="mrAdj('daughters',1)">+</button></div>
+        </div>
+        <div class="mr-cnt"><label>👦👦 Petits-fils (fils du fils)</label>
+          <div class="mr-cbtns"><button class="mr-cb" onclick="mrAdj('grandsons',-1)">−</button><span class="mr-cval"
+              id="mrv-grandsons">0</span><button class="mr-cb" onclick="mrAdj('grandsons',1)">+</button></div>
+        </div>
+        <div class="mr-cnt"><label>👧👧 Petites-filles (filles du fils)</label>
+          <div class="mr-cbtns"><button class="mr-cb" onclick="mrAdj('granddaughters',-1)">−</button><span
+              class="mr-cval" id="mrv-granddaughters">0</span><button class="mr-cb"
+              onclick="mrAdj('granddaughters',1)">+</button></div>
+        </div>
+        <span class="arab-gold">الأُصُول — Ascendants</span>
+        <div class="mr-tog">
+          <div class="mr-ti" id="mrt-father" onclick="mrToggle('father')"><span class="tii">👨🦳</span>Père</div>
+          <div class="mr-ti" id="mrt-mother" onclick="mrToggle('mother')"><span class="tii">👩🦳</span>Mère</div>
+          <div class="mr-ti" id="mrt-grandfather" onclick="mrToggle('grandfather')"><span
+              class="tii">👴</span>Grand-père pat.</div>
+        </div>
+        <div class="mr-tog c2">
+          <div class="mr-ti" id="mrt-gm_pat" onclick="mrToggle('gm_pat')"><span class="tii">👵</span>Gd-mère pat.</div>
+          <div class="mr-ti" id="mrt-gm_mat" onclick="mrToggle('gm_mat')"><span class="tii">👵</span>Gd-mère mat.</div>
+        </div>
+        <span class="arab-gold">الإِخْوَة — Frères & Sœurs</span>
+        <div class="mr-cnt"><label>🤝 Frères germains (père + mère)</label>
+          <div class="mr-cbtns"><button class="mr-cb" onclick="mrAdj('full_brothers',-1)">−</button><span
+              class="mr-cval" id="mrv-full_brothers">0</span><button class="mr-cb"
+              onclick="mrAdj('full_brothers',1)">+</button></div>
+        </div>
+        <div class="mr-cnt"><label>👧 Sœurs germaines</label>
+          <div class="mr-cbtns"><button class="mr-cb" onclick="mrAdj('full_sisters',-1)">−</button><span class="mr-cval"
+              id="mrv-full_sisters">0</span><button class="mr-cb" onclick="mrAdj('full_sisters',1)">+</button></div>
+        </div>
+        <div class="mr-cnt"><label>🤝 Frères consanguins (père seul)</label>
+          <div class="mr-cbtns"><button class="mr-cb" onclick="mrAdj('pat_brothers',-1)">−</button><span class="mr-cval"
+              id="mrv-pat_brothers">0</span><button class="mr-cb" onclick="mrAdj('pat_brothers',1)">+</button></div>
+        </div>
+        <div class="mr-cnt"><label>👧 Sœurs consanguines</label>
+          <div class="mr-cbtns"><button class="mr-cb" onclick="mrAdj('pat_sisters',-1)">−</button><span class="mr-cval"
+              id="mrv-pat_sisters">0</span><button class="mr-cb" onclick="mrAdj('pat_sisters',1)">+</button></div>
+        </div>
+        <div class="mr-cnt"><label>🤝 Frères/Sœurs utérin(e)s (mère seule)</label>
+          <div class="mr-cbtns"><button class="mr-cb" onclick="mrAdj('mat_siblings',-1)">−</button><span class="mr-cval"
+              id="mrv-mat_siblings">0</span><button class="mr-cb" onclick="mrAdj('mat_siblings',1)">+</button></div>
+        </div>
+      </div>
+      <div class="mr-nav">
+        <button class="mr-prev" onclick="mrGoStep(1)">←</button>
+        <button class="mr-next" onclick="computeMiras()">⚖️ Calculer la succession</button>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 3 -->
+    <div id="mr-step3" class="mr-step">
+      <div class="zk-card" style="margin-top:10px;">
+        <h3 style="font-family:'Amiri',serif;font-size:1.02rem;color:#f0c040;margin-bottom:6px;">📊 Répartition de la
+          Succession</h3>
+        <div id="mr-awl-radd" style="margin-bottom:7px;"></div>
+        <div class="mr-estat" id="mr-recap"></div>
+        <div id="mr-result-body" style="margin-top:10px;"></div>
+        <div id="mr-excluded"></div>
+        <div class="zk-info" style="margin-top:10px;">⚠️ <strong>Important :</strong> Ce calcul est indicatif. Pour les
+          successions complexes, consultez un <em>cadi</em> ou un spécialiste des Farâ'id.</div>
+      </div>
+      <div class="mr-nav">
+        <button class="mr-prev" onclick="mrGoStep(2)">← Modifier</button>
+        <button class="mr-next" onclick="resetMiras()" style="background:#1e2d27;color:#e8f5f0;">🔄 Nouveau
+          calcul</button>
+      </div>
+    </div>
+    <div style="height:20px;"></div>
+  </div>
+
+  <!-- NAV — 16 onglets -->
+  <div id="bottom-nav"
+    style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:flex-start;align-items:center;padding:8px 12px 18px;z-index:100;box-shadow:0 -4px 24px rgba(0,0,0,0.06);overflow-x:auto;scrollbar-width:none;gap:16px;">
+    <button onclick="showPage('home')" id="nb-home"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:1;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">🏠</div>
+      <div id="nbl-home" style="font-size:8px;font-weight:700;color:var(--primary);">Accueil</div>
+    </button>
+    <button onclick="showPage('sira')" id="nb-sira"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">📚</div>
+      <div id="nbl-sira" style="font-size:8px;color:var(--text-hint);">Sira</div>
+    </button>
+    <button onclick="showPage('infos')" id="nb-infos"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">🌡️</div>
+      <div id="nbl-infos" style="font-size:8px;color:var(--text-hint);">Infos</div>
+    </button>
+    <button onclick="showPage('oumra')" id="nb-oumra"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">🕋</div>
+      <div id="nbl-oumra" style="font-size:8px;color:var(--text-hint);">Guide</div>
+    </button>
+    <button onclick="showPage('baraka')" id="nb-baraka"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">🌟</div>
+      <div id="nbl-baraka" style="font-size:8px;color:var(--text-hint);">Baraka</div>
+    </button>
+    <button onclick="showPage('dhikr')" id="nb-dhikr"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">📿</div>
+      <div id="nbl-dhikr" style="font-size:8px;color:var(--text-hint);">Dhikr</div>
+    </button>
+    <button onclick="showPage('espace')" id="nb-espace"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">👤</div>
+      <div id="nbl-espace" style="font-size:8px;color:var(--text-hint);">Espace</div>
+    </button>
+    <button onclick="showPage('zakat')" id="nb-zakat"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">⚖️</div>
+      <div id="nbl-zakat" style="font-size:8px;color:var(--text-hint);">Zakat</div>
+    </button>
+    <button onclick="showPage('miras')" id="nb-miras"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">📜</div>
+      <div id="nbl-miras" style="font-size:8px;color:var(--text-hint);">Miras</div>
+    </button>
+    <button onclick="showPage('packages')" id="nb-packages"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">✈️</div>
+      <div id="nbl-packages" style="font-size:8px;color:var(--text-hint);">Packages</div>
+    </button>
+    <button onclick="showPage('boutique')" id="nb-boutique"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">🛍️</div>
+      <div id="nbl-boutique" style="font-size:8px;color:var(--text-hint);">Boutique</div>
+    </button>
+    <button onclick="showPage('prieres')" id="nb-prieres"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">🕌</div>
+      <div id="nbl-prieres" style="font-size:8px;color:var(--text-hint);">Prières</div>
+    </button>
+    <button onclick="showPage('coran')" id="nb-coran"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">📖</div>
+      <div id="nbl-coran" style="font-size:8px;color:var(--text-hint);">Coran</div>
+    </button>
+    <button onclick="setDhikrTabAndShow()" id="nb-dhikrtab"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">🌹</div>
+      <div id="nbl-dhikrtab" style="font-size:8px;color:var(--text-hint);">Salawat</div>
+    </button>
+    <button onclick="showPage('dua')" id="nb-dua"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">🤲</div>
+      <div id="nbl-dua" style="font-size:8px;color:var(--text-hint);">Du'a</div>
+    </button>
+    <button onclick="showPage('quiz')" id="nb-quiz"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">🧠</div>
+      <div id="nbl-quiz" style="font-size:8px;color:var(--text-hint);">Quiz</div>
+    </button>
+    <button onclick="showPage('sadaqa')" id="nb-sadaqa"
+      style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
+      <div style="font-size:20px;">💚</div>
+      <div id="nbl-sadaqa" style="font-size:8px;color:var(--text-hint);">Sadaqa</div>
+    </button>
+  </div>
+
+  <script src="js/data.js?v=2"></script>
+  <script src="js/langs.js?v=2"></script>
+  <script src="js/app.js?v=2"></script>
 </body>
+
 </html>

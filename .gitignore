@@ -1,0 +1,32 @@
+# Fichiers système macOS (très courant)
+.DS_Store
+**/.DS_Store
+
+# Fichiers Python temporaires et caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Fichiers de patch ou temporaires que tu ne veux pas committer
+patch_index.py
+*.patch
+
+# Autres fichiers souvent inutiles dans un projet web
+*.log
+.DS_Store
+Thumbs.db
+
+# Si tu utilises un éditeur comme VS Code
+.vscode/
+*.code-workspace
+
+# Si tu as un dossier de build ou de dépendances plus tard
+node_modules/
+dist/
+build/
