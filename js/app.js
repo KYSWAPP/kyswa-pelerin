@@ -1,7 +1,8 @@
 let prayerTimes=null,qiblaDir=null,compassHeading=0;
-let dhikrSel=0,dhikrCount=0,dhikrTotal=0;
+let dhikrSel=0,dhikrCounts=[],dhikrTotal=0;
+try { dhikrCounts=JSON.parse(localStorage.getItem('kyswa-dhikrs'))||[0,0,0,0,0,0,0,0]; } catch(e) { dhikrCounts=[0,0,0,0,0,0,0,0]; }
 let pelerin=null,lastAzan={},prieresTabState="horaires";
-let boutiqueFiltre="tout",barakaScore=0,notifPermission=false,sw=null;
+let boutiqueFiltre="tout",barakaScore=parseInt(localStorage.getItem('kyswa-baraka')||'0', 10),notifPermission=false,sw=null;
 let oumraStepId="bagages",barakaTab="quotidien";
 let salawatWeekCount=0;
 let currentLang='fr';
@@ -48,8 +49,19 @@ function envoyerNotif(titre,corps,tag,delai=0){
 }
 
 function programmerToutesNotifications(){
-  if(!prayerTimes){setTimeout(programmerToutesNotifications,3000);return;}
   const now=new Date();
+  
+  // Notification paramétrable pour la leçon de Sira
+  const siraTime = localStorage.getItem('kyswa-sira-time');
+  if(siraTime) {
+    const el = document.getElementById('sira-notif-time');
+    if(el) el.value = siraTime;
+    const [sh,sm] = siraTime.split(':').map(Number);
+    const st = new Date(); st.setHours(sh,sm,0,0);
+    if(st > now) envoyerNotif('📚 Sira - Leçon du jour', 'Votre leçon quotidienne sur la vie du Prophète ﷺ est disponible !', 'sira-notif', st-now);
+  }
+
+  if(!prayerTimes){setTimeout(programmerToutesNotifications,3000);return;}
   PRAYERS.forEach(p=>{
     if(!prayerTimes[p]) return;
     const[h,m]=prayerTimes[p].split(':').map(Number);
@@ -57,6 +69,15 @@ function programmerToutesNotifications(){
     const d=t-now;
     if(d>0) envoyerNotif(PICONS[p]+' '+p+' — '+prayerTimes[p],['Fajr','Isha'].includes(p)?'🕌 Madinah':'🕋 Makkah','azan-'+p,d);
   });
+}
+
+function saveSiraTime(){
+  const t = document.getElementById('sira-notif-time').value;
+  if(t) {
+    localStorage.setItem('kyswa-sira-time', t);
+    programmerToutesNotifications();
+    showToast('⏰', 'Rappel enregistré', 'Vous serez notifié tous les jours à '+t, '#00815A');
+  }
 }
 
 function showToast(icon,titre,msg,couleur='#00815A'){
@@ -176,7 +197,13 @@ function renderBarakaQuotidien(el){
 function validerBaraka(id,pts){
   const key='baraka-done-'+new Date().toDateString();
   const done=JSON.parse(localStorage.getItem(key)||'{}');
-  if(!done[id]){done[id]=true;localStorage.setItem(key,JSON.stringify(done));barakaScore+=pts;if(pts>0) showToast('✨','Baraka !','+'+pts+' Hasanat','#00815A');}
+  if(!done[id]){
+    done[id]=true;
+    localStorage.setItem(key,JSON.stringify(done));
+    barakaScore+=pts;
+    localStorage.setItem('kyswa-baraka', barakaScore.toString());
+    if(pts>0) showToast('✨','Baraka !','+'+pts+' Hasanat','#00815A');
+  }
   renderBaraka();
 }
 
@@ -210,12 +237,35 @@ function renderPrieres(){
   }
 }
 function setPrieresTab(tab){prieresTabState=tab;renderPrieres();}
-function activerBoussole(){
+async function activerBoussole(){
   if(!navigator.geolocation) {
     alert("La géolocalisation n'est pas supportée par votre navigateur.");
     return;
   }
-  document.getElementById('compass-btn').innerText = "⏳ Recherche GPS...";
+  
+  const btn = document.getElementById('compass-btn');
+  const msg = document.getElementById('compass-msg');
+
+  // iOS 13+ requires explicit permission from synchronous user gesture
+  if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    try {
+      const p = await DeviceOrientationEvent.requestPermission();
+      if(p === 'granted') {
+        window.addEventListener('deviceorientation', onOrient, true);
+      } else {
+        alert("L'accès à la boussole a été refusé. Veuillez l'autoriser dans vos réglages iOS/Safari.");
+        return;
+      }
+    } catch (e) {
+      alert("Erreur d'accès à la boussole : " + e);
+      return;
+    }
+  } else {
+    window.addEventListener('deviceorientation', onOrient, true);
+    window.addEventListener('deviceorientationabsolute', onOrient, true);
+  }
+
+  if(btn) btn.innerText = "⏳ Recherche GPS...";
   navigator.geolocation.getCurrentPosition(pos => {
     const lat = pos.coords.latitude, lng = pos.coords.longitude;
     const phiK = 21.4225 * Math.PI / 180.0;
@@ -227,18 +277,12 @@ function activerBoussole(){
     let qDir = Math.atan2(y, x) * 180.0 / Math.PI;
     qiblaDir = (qDir + 360) % 360;
     
-    if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function'){
-      DeviceOrientationEvent.requestPermission().then(p=>{if(p==='granted')window.addEventListener('deviceorientation',onOrient,true);});
-    } else {
-      window.addEventListener('deviceorientation',onOrient,true);
-      window.addEventListener('deviceorientationabsolute',onOrient,true);
-    }
-    document.getElementById('compass-btn').style.display = 'none';
-    document.getElementById('compass-msg').innerText = "Tournez avec votre téléphone. La flèche vous pointe La Mecque.";
+    if(btn) btn.style.display = 'none';
+    if(msg) msg.innerText = "Tournez votre téléphone. La flèche pointe vers La Mecque.";
   }, err => {
     alert("Veuillez autoriser la géolocalisation pour trouver la Qibla.");
-    document.getElementById('compass-btn').innerText = "🧭 Activer la boussole";
-  });
+    if(btn) btn.innerText = "🧭 Activer la boussole";
+  }, {enableHighAccuracy:true, timeout:10000, maximumAge:0});
 }
 function onOrient(e){
   compassHeading = e.webkitCompassHeading != null ? e.webkitCompassHeading : (360 - (e.alpha || 0));
@@ -265,7 +309,9 @@ function setDhikrTab(tab){
   else{dc.style.display='none';sc.style.display='block';renderSalawat();}
 }
 function renderDhikr(){
-  const d=DHIKRS[dhikrSel],done=dhikrCount>=d.target;
+  const tabsEl=document.getElementById('dhikr-tabs');
+  if(tabsEl) tabsEl.innerHTML=DHIKRS.map((x,i)=>`<button onclick="selectDhikr(${i})" style="flex-shrink:0;background:${dhikrSel===i?'rgba(0,129,90,0.1)':'var(--surface-2)'};color:${dhikrSel===i?'var(--primary)':'var(--text-secondary)'};border:1px solid ${dhikrSel===i?'var(--primary)':'rgba(0,129,90,0.1)'};border-radius:20px;padding:6px 14px;font-size:12px;font-weight:${dhikrSel===i?'700':'500'};cursor:pointer;transition:all 0.2s;">${x.translit}</button>`).join('');
+  const d=DHIKRS[dhikrSel], count=dhikrCounts[dhikrSel], done=count>=d.target;
   const el=document.getElementById('dhikr-body');
   if(el) el.innerHTML=`
     <div style="background:#ffffff;padding:24px;border-radius:var(--radius-lg);margin-bottom:30px;box-shadow:0 10px 30px rgba(0,0,0,0.1);border:1px solid rgba(0,129,90,0.1);">
@@ -286,15 +332,28 @@ function renderDhikr(){
       onpointerdown="this.style.transform='scale(0.9)';this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)';"
       onpointerup="this.style.transform='scale(1)';this.style.boxShadow='0 15px 35px ${done?'rgba(212,175,55,0.4)':'rgba(0,129,90,0.4)'}';"
       onpointercancel="this.style.transform='scale(1)';"
-      >${dhikrCount}</button>
-      <div style="height:30px;">
+      >${count}</button>
+      <div style="height:30px;margin-bottom:10px;">
         ${done?'<div style="color:#D4AF37;font-weight:800;font-size:16px;">✨ Objectif atteint ! ✨</div>':''}
       </div>
+      <button onclick="resetDhikr()" style="background:transparent;border:1px solid #ddd;color:var(--text-secondary);padding:8px 20px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">↺ Remettre à zéro</button>
     </div>`;
 }
-function tapDhikr(){if(navigator.vibrate)navigator.vibrate(30);dhikrCount++;dhikrTotal++;renderDhikr();}
-function resetDhikr(){dhikrCount=0;renderDhikr();}
-function selectDhikr(i){dhikrSel=i;dhikrCount=0;renderDhikr();}
+function tapDhikr(){
+  if(navigator.vibrate)navigator.vibrate(30);
+  dhikrCounts[dhikrSel]++; dhikrTotal++;
+  localStorage.setItem('kyswa-dhikrs', JSON.stringify(dhikrCounts));
+  renderDhikr();
+}
+function resetDhikr(){
+  dhikrCounts[dhikrSel]=0;
+  localStorage.setItem('kyswa-dhikrs', JSON.stringify(dhikrCounts));
+  renderDhikr();
+}
+function selectDhikr(i){
+  dhikrSel=i;
+  renderDhikr();
+}
 
 function renderSalawat(){
   loadSalawat();
@@ -318,10 +377,12 @@ function renderSalawat(){
     onpointerup="this.style.transform='scale(1)';this.style.boxShadow='0 15px 35px rgba(233,30,99,0.4)';"
     onpointercancel="this.style.transform='scale(1)';"
     >🤲</button>
-    <div style="margin-top:20px;font-size:14px;color:var(--text-hint);font-weight:600;">Appuyez pour envoyer vos bénédictions</div>
+    <div style="margin-top:20px;font-size:14px;color:var(--text-hint);font-weight:600;margin-bottom:20px;">Appuyez pour envoyer vos bénédictions</div>
+    <button onclick="resetSalawat()" style="background:transparent;border:1px solid #ddd;color:var(--text-secondary);padding:8px 20px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">↺ Remettre à zéro</button>
   </div>`;
 }
 function tapSalawat(){if(navigator.vibrate)navigator.vibrate(30);salawatWeekCount++;saveSalawat();renderSalawat();}
+function resetSalawat(){salawatWeekCount=0;saveSalawat();renderSalawat();}
 
 // renderBoutique, openProduit, renderEspace, renderLogin are defined below (after init)
 async function doLogin(){
@@ -792,3 +853,27 @@ function computeMiras(){
 function resetMiras(){Object.keys(mrS).forEach(k=>{mrS[k]=typeof mrS[k]==="boolean"?false:0;});document.querySelectorAll(".mr-ti").forEach(el=>el.classList.remove("sel"));document.querySelectorAll(".mr-cval").forEach(el=>el.textContent="0");document.getElementById("mr-wives-row").style.display="none";["mr-estate","mr-debts","mr-funeral"].forEach(id=>{const el=document.getElementById(id);if(el)el.value="";});mrUpdateSummary();mrGoStep(1);}
 
 // Fin
+
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    document.querySelectorAll('#pg-zakat input, #pg-zakat select, #pg-miras input, #pg-miras select').forEach(el => {
+      if(el.id) {
+        const saved = localStorage.getItem('kyswa-form-'+el.id);
+        if(saved) {
+          el.value = saved;
+          // Reactivate logic visually if required
+          if(el.id.startsWith('mr-')) {
+            typeof mrUpdateSummary === 'function' && mrUpdateSummary();
+          } else if(el.id.startsWith('bt-')) {
+            typeof zkPreviewBt === 'function' && zkPreviewBt();
+          } else if(el.id.startsWith('ag-')) {
+            typeof zkCalcAg === 'function' && zkCalcAg(); // optional
+          }
+        }
+        const save = () => localStorage.setItem('kyswa-form-'+el.id, el.value);
+        el.addEventListener('input', save);
+        el.addEventListener('change', save);
+      }
+    });
+  }, 1500); // 1.5s delay to ensure all DOM fragments (zakat cats) are totally mapped
+});
