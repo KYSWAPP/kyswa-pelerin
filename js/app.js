@@ -124,7 +124,7 @@ function showPage(id){
 }
 function renderOumra(){
   const tabs=document.getElementById('oumra-tabs');
-  if(tabs) tabs.innerHTML=OUMRA_STEPS.map(s=>`<button class="step-btn${s.id===oumraStepId?' active':''}" onclick="setOumraStep('${s.id}')">${s.icon} ${s.titre}</button>`).join('');
+  if(tabs) tabs.innerHTML=OUMRA_STEPS.map(s=>`<button class="step-btn${s.id===oumraStepId?' active':''}" onclick="setOumraStep('${s.id}')">${s.icon} ${t(s.id)}</button>`).join('');
   const d=OUMRA_DATA[oumraStepId];
   const el=document.getElementById('oumra-content');
   if(el) el.innerHTML=`
@@ -408,18 +408,77 @@ function resetSalawat(){salawatWeekCount=0;saveSalawat();renderSalawat();}
 // renderBoutique, openProduit, renderEspace, renderLogin are defined below (after init)
 async function doLogin(){
   const phone=document.getElementById('login-phone')?.value||'';
-  const res=await fetch(SB_URL+'/rest/v1/clients?telephone=eq.'+phone,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
-  const data=await res.json();
-  if(data&&data.length>0){pelerin=data[0];renderEspace();}
+  if(!phone) {showToast('⚠️','Incomplet','Entrez un numéro de téléphone','#FF9800');return;}
+  try {
+    const res=await fetch(SB_URL+'/rest/v1/clients?telephone=eq.'+encodeURIComponent(phone),{
+      headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}
+    });
+    if(!res.ok){
+      const err=await res.json();
+      console.error('Supabase Error:',err);
+      if(err.code==='PGRST301'||res.status===401) {
+        showToast('❌','Accès refusé','Clé API invalide ou accès restreint.','#E53935');
+      } else {
+        showToast('❌','Erreur',err.message||'Erreur de connexion.','#E53935');
+      }
+      return;
+    }
+    const data=await res.json();
+    if(data&&data.length>0){pelerin=data[0];renderEspace();showToast('✅','Bienvenue',pelerin.prenom||'Pèlerin','#00815A');}
+    else {showToast('⚠️','Inconnu','Numéro non reconnu dans notre base.','#FF9800');}
+  } catch(e) {
+    console.error('Login Error:',e);
+    showToast('❌','Erreur','Impossible de joindre le serveur.','#E53935');
+  }
 }
 
 function deconnecter(){pelerin=null;renderEspace();}
 
 function t(key){return(LANGS[currentLang]&&LANGS[currentLang][key])||LANGS.fr[key]||key;}
+
+function updateStaticTranslations(){
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const key=el.getAttribute('data-t');
+    const txt=t(key);
+    if(txt){
+      // If it has children with specific tags or is a simple text node
+      if(el.children.length===0 || (el.childNodes.length===1 && el.childNodes[0].nodeType===3)){
+        el.innerText=txt;
+      } else {
+        // If it contains icons or HTML, we might need to be careful.
+        // For now, let's assume if it's a complex element, we only want to replace the text part.
+        // But for simplicity in this app, innerText is usually fine for most labeled elements.
+        // If we want to keep icons, we'd need a different approach.
+        // Let's check for most common case: emoji + text
+        const current=el.innerHTML;
+        const emojiMatch=current.match(/^([\uD800-\uDBFF][\uDC00-\uDFFF]|[\u2600-\u27BF]|.)/); // Simple emoji/icon match
+        if(emojiMatch && txt.indexOf(emojiMatch[0])===-1 && current.length > 5){
+           // Keep the first character if it's likely an icon
+           el.innerHTML = emojiMatch[0] + ' ' + txt;
+        } else {
+           el.innerText = txt;
+        }
+      }
+    }
+  });
+  // Update document direction and lang
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = LANGS[currentLang]?.dir || 'ltr';
+  
+  // Specific fixes for RTL if needed
+  if(document.documentElement.dir === 'rtl') {
+    document.body.classList.add('rtl-mode');
+  } else {
+    document.body.classList.remove('rtl-mode');
+  }
+}
+
 function setLang(lang){
   currentLang=lang;
   localStorage.setItem('kyswa-lang',lang);
+  updateStaticTranslations();
   showPage(document.querySelector('.page[style*="block"]')?.id.replace('pg-','')||'home');
+  toggleLangMenu(); // Close menu after selection
 }
 
 // ── Azan Audio ──────────────────────────────────────────────────────────────
@@ -451,6 +510,7 @@ async function init(){
   loadSalawat();
   const savedLang=localStorage.getItem('kyswa-lang');
   if(savedLang) currentLang=savedLang;
+  updateStaticTranslations();
 
   // Auto-restore notification permission
   if('Notification' in window && Notification.permission==='granted'){
@@ -507,7 +567,7 @@ let siraIdx = 0;
 function renderSira(){
   const tabs = document.getElementById('sira-tabs');
   if(tabs) tabs.innerHTML = SIRA_LECONS.map((l,i)=>
-    `<button class="step-btn${i===siraIdx?' active':''}" onclick="setSiraLecon(${i})">Leçon ${l.num}</button>`
+    `<button class="step-btn${i===siraIdx?' active':''}" onclick="setSiraLecon(${i})">${t('lecon')} ${l.num}</button>`
   ).join('');
   const l = SIRA_LECONS[siraIdx];
   const el = document.getElementById('sira-content');
@@ -623,12 +683,12 @@ function renderEspace(){
     profilSec.style.display='block';
     profilSec.innerHTML=`
       <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:var(--hero-pt) var(--space-md) var(--space-lg);">
-        <div style="color:rgba(255,255,255,0.6);font-size:11px;">MON ESPACE</div>
+        <div style="color:rgba(255,255,255,0.6);font-size:11px;" data-t="espaceTitle">${t('espaceTitle').toUpperCase()}</div>
         <div style="color:#fff;font-size:22px;font-weight:800;">${pelerin.prenom||''} ${pelerin.nom||''}</div>
         <div style="color:rgba(255,255,255,0.7);font-size:13px;">${pelerin.email||pelerin.telephone||''}</div>
       </div>
       <div style="padding:var(--space-md);">
-        <button onclick="deconnecter()" class="btn btn-ghost">🚪 Déconnexion</button>
+        <button onclick="deconnecter()" class="btn btn-ghost" data-t="deconnexion">🚪 ${t('deconnexion')}</button>
       </div>`;
   }
 }
@@ -640,17 +700,17 @@ function renderLogin(){
     loginSec.style.display='block';
     loginSec.innerHTML=`
       <div style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:var(--hero-pt) var(--space-md) var(--space-lg);">
-        <div style="color:rgba(255,255,255,0.6);font-size:11px;">KYSWA TRAVEL</div>
-        <div style="color:#fff;font-size:22px;font-weight:800;">Mon Espace</div>
-        <div style="color:rgba(255,255,255,0.65);font-size:12px;">Connectez-vous pour suivre votre parcours</div>
+        <div style="color:rgba(255,255,255,0.6);font-size:11px;" data-t="appName">${t('appName').toUpperCase()}</div>
+        <div style="color:#fff;font-size:22px;font-weight:800;" data-t="espaceTitle">${t('espaceTitle')}</div>
+        <div style="color:rgba(255,255,255,0.65);font-size:12px;" data-t="espaceSubtitle">${t('espaceSubtitle')}</div>
       </div>
       <div style="padding:var(--space-md);">
         <div class="card">
-          <div class="section-label">Téléphone</div>
+          <div class="section-label" data-t="infos">Téléphone</div>
           <input type="tel" id="login-phone" placeholder="77 123 45 67" class="input" style="margin-bottom:var(--space-md);"/>
-          <button onclick="doLogin()" class="btn btn-primary">Se connecter</button>
+          <button onclick="doLogin()" class="btn btn-primary" data-t="connexion">${t('connexion')}</button>
         </div>
-        <a href="https://wa.me/221787811616?text=Je%20veux%20demander%20un%20acc%C3%A8s%20Kyswa%20Travel" target="_blank" class="btn btn-outline" style="margin-top:10px;">📋 Demander un accès</a>
+        <a href="https://wa.me/221787811616?text=Je%20veux%20demander%20un%20acc%C3%A8s%20Kyswa%20Travel" target="_blank" class="btn btn-outline" style="margin-top:10px;" data-t="demanderAcces">${t('demanderAcces')}</a>
       </div>`;
   }
 }

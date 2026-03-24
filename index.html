@@ -58,9 +58,9 @@
       </div>
       <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;">
         <div>
-          <div style="color:rgba(255,255,255,0.85);font-size:13px;font-weight:700;margin-bottom:2px;">🙏 Elhadji Malick
+          <div style="color:rgba(255,255,255,0.85);font-size:13px;font-weight:700;margin-bottom:2px;" data-t="guideName">🙏 Elhadji Malick
             Seye</div>
-          <div style="color:rgba(255,255,255,0.7);font-size:11px;font-style:italic;margin-bottom:6px;">✨ Meilleur Guide
+          <div style="color:rgba(255,255,255,0.7);font-size:11px;font-style:italic;margin-bottom:6px;" data-t="guide">✨ Meilleur Guide
           </div>
           <div style="color:#fff;font-size:22px;font-weight:800;letter-spacing:-0.5px;">Kyswa Travel</div>
           <div
@@ -81,27 +81,27 @@
         style="background:linear-gradient(135deg,#1A0A3E,#3D1A78);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-bottom:var(--space-md);display:flex;align-items:center;gap:12px;cursor:pointer;box-shadow:var(--shadow-md);">
         <div style="font-size:28px;">🔔</div>
         <div style="flex:1;">
-          <div style="color:#fff;font-size:13px;font-weight:700;">Activer le Programme Baraka</div>
-          <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:2px;">Azan · Azkar · Rappels spirituels
+          <div style="color:#fff;font-size:13px;font-weight:700;" data-t="barakaTitle">Activer le Programme Baraka</div>
+          <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-top:2px;" data-t="notifDesc">Azan · Azkar · Rappels spirituels
           </div>
         </div>
         <div
-          style="background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:6px 14px;color:#fff;font-size:11px;font-weight:700;">
+          style="background:rgba(255,255,255,0.15);border-radius:var(--radius-full);padding:6px 14px;color:#fff;font-size:11px;font-weight:700;" data-t="notifBtn">
           Activer</div>
       </div>
       <div onclick="showPage('prieres')" class="card" style="cursor:pointer;margin-bottom:var(--space-md);">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <div>
-            <div class="section-label">Prochaine prière</div>
+            <div class="section-label" data-t="prochaineP">Prochaine prière</div>
             <div id="next-prayer-name" style="font-size:18px;font-weight:700;margin-top:4px;">⏳ Chargement...</div>
             <div style="display:flex;align-items:center;gap:6px;margin-top:6px;"><span
                 style="width:7px;height:7px;border-radius:50%;background:var(--primary);display:inline-block;animation:pulse 2s ease infinite;"></span><span
-                style="color:var(--text-secondary);font-size:11px;">Appuyez pour tous les horaires</span></div>
+                style="color:var(--text-secondary);font-size:11px;" data-t="tapToSeeHours">Appuyez pour tous les horaires</span></div>
           </div>
           <div style="text-align:right;">
             <div id="countdown-el" style="font-size:28px;font-weight:800;color:var(--primary);letter-spacing:-1px;">
               --:--</div>
-            <div style="color:var(--text-hint);font-size:10px;margin-top:2px;">restant</div>
+            <div style="color:var(--text-hint);font-size:10px;margin-top:2px;" data-t="restant">restant</div>
           </div>
         </div>
       </div>
@@ -130,33 +130,33 @@
       <div onclick="showPage('baraka')"
         style="background:linear-gradient(135deg,#0D2B1A,#1A5C36);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);cursor:pointer;box-shadow:0 8px 24px rgba(0,80,40,0.3);position:relative;overflow:hidden;">
         <div style="position:absolute;right:-20px;top:-20px;font-size:100px;opacity:0.06;">📿</div>
-        <div class="badge badge-primary" style="margin-bottom:10px;">🌟 PROGRAMME</div>
-        <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;">Programme Baraka</div>
-        <div style="color:rgba(255,255,255,0.7);font-size:12px;">Azkar · Post-Oumra 40 jours · Hasanat</div>
+        <div class="badge badge-primary" style="margin-bottom:10px;" data-t="baraka">🌟 PROGRAMME</div>
+        <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:4px;" data-t="barakaTitle">Programme Baraka</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:12px;" data-t="barakaDesc">Azkar · Post-Oumra 40 jours · Hasanat</div>
       </div>
       <div
         style="background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-md);position:relative;overflow:hidden;box-shadow:var(--shadow-primary);">
         <div style="position:absolute;right:-15px;top:-15px;font-size:90px;opacity:0.07;">🕋</div>
-        <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;">🔥 OFFRE LIMITÉE
+        <div class="badge badge-danger" style="margin-bottom:10px;animation:pulse 2s ease infinite;" data-t="offreLimitee">🔥 OFFRE LIMITÉE
         </div>
-        <div style="color:#fff;font-size:20px;font-weight:800;">Oumra Juin 2026</div>
-        <div style="color:rgba(255,255,255,0.75);font-size:12px;margin:4px 0 12px;">Du 20 au 30 Juin · Places limitées
+        <div style="color:#fff;font-size:20px;font-weight:800;" data-t="oumraJuin">Oumra Juin 2026</div>
+        <div style="color:rgba(255,255,255,0.75);font-size:12px;margin:4px 0 12px;" data-t="datesJuin">Du 20 au 30 Juin · Places limitées
         </div>
         <div style="display:flex;justify-content:space-between;align-items:flex-end;">
           <div style="color:#fff;font-size:30px;font-weight:900;">990 000<span style="font-size:14px;"> FCFA</span>
           </div>
           <a href="https://wa.me/221787811616?text=Promo%20Oumra%20Juin%202026" target="_blank"
-            style="background:#fff;color:var(--primary);border-radius:var(--radius-md);padding:12px 18px;font-size:13px;font-weight:700;">Réserver
+            style="background:#fff;color:var(--primary);border-radius:var(--radius-md);padding:12px 18px;font-size:13px;font-weight:700;" data-t="retour">Réserver
             →</a>
         </div>
       </div>
-      <div class="section-label">Accès rapide</div>
+      <div class="section-label" data-t="quickAccess">Accès rapide</div>
       <div id="depart-countdown" style="display:none;" class="card" onclick="showPage('espace')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <div>
-            <div style="color:rgba(255,255,255,0.6);font-size:10px;">DÉPART DANS</div>
+            <div style="color:rgba(255,255,255,0.6);font-size:10px;" data-t="departIn">DÉPART DANS</div>
             <div id="depart-days" style="color:#fff;font-size:32px;font-weight:900;"></div>
-            <div style="color:rgba(255,255,255,0.6);font-size:11px;">jours ✈️</div>
+            <div style="color:rgba(255,255,255,0.6);font-size:11px;" data-t="days">jours ✈️</div>
           </div>
           <div style="font-size:48px;">🕋</div>
         </div>
@@ -165,17 +165,17 @@
         <button onclick="showPage('packages')" class="card"
           style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
           <div style="font-size:20px;">✈️</div>
-          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Packages</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);" data-t="accueil">Packages</div>
         </button>
         <button onclick="showPage('boutique')" class="card"
           style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
           <div style="font-size:20px;">🛍️</div>
-          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Boutique</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);" data-t="boutiqueTitle">Boutique</div>
         </button>
         <button onclick="showPage('prieres')" class="card"
           style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
           <div style="font-size:20px;">🕌</div>
-          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Prières</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);" data-t="infos">Prières</div>
         </button>
         <button onclick="showPage('coran')" class="card"
           style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
@@ -190,27 +190,27 @@
         <button onclick="showPage('dua')" class="card"
           style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
           <div style="font-size:20px;">🤲</div>
-          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Du'a Perso</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);" data-t="duaPerso">Du'a Perso</div>
         </button>
         <button onclick="showPage('quiz')" class="card"
           style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
           <div style="font-size:20px;">🧠</div>
-          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Quiz</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);" data-t="quiz">Quiz</div>
         </button>
         <button onclick="showPage('sadaqa')" class="card"
           style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
           <div style="font-size:20px;">💚</div>
-          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Sadaqa</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);" data-t="sadaqa">Sadaqa</div>
         </button>
         <button onclick="showPage('zakat')" class="card"
           style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
           <div style="font-size:20px;">⚖️</div>
-          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Zakat</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);" data-t="zakat">Zakat</div>
         </button>
         <button onclick="showPage('miras')" class="card"
           style="padding:12px 4px;text-align:center;margin-bottom:0;border:none;cursor:pointer;">
           <div style="font-size:20px;">📜</div>
-          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);">Miras</div>
+          <div style="font-size:8px;margin-top:3px;color:var(--text-secondary);" data-t="miras">Miras</div>
         </button>
       </div>
     </div>
@@ -218,11 +218,11 @@
   <!-- ░░ GUIDE OUMRA ░░ -->
   <div id="pg-oumra" class="page">
     <div style="background:linear-gradient(160deg,#3D1A00,#8B4513);padding:56px var(--space-md) var(--space-md);">
-      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
-      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Elhadji Malick Seye — Kyswa Travel
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;" data-t="retour">← Retour</button>
+      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;" data-t="guideSub">Elhadji Malick Seye — Kyswa Travel
       </div>
-      <div style="color:#fff;font-size:22px;font-weight:800;">🕋 Guide Complet Oumra</div>
-      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Invocations étape par étape</div>
+      <div style="color:#fff;font-size:22px;font-weight:800;" data-t="guideTitle">🕋 Guide Complet Oumra</div>
+      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;" data-t="guideSubtitle">Invocations étape par étape</div>
     </div>
     <div style="display:flex;overflow-x:auto;gap:6px;padding:var(--space-md) var(--space-md) 0;scrollbar-width:none;"
       id="oumra-tabs"></div>
@@ -232,14 +232,14 @@
   <!-- ░░ BARAKA ░░ -->
   <div id="pg-baraka" class="page" style="background:var(--dark-bg);">
     <div style="background:linear-gradient(160deg,#0A1F10,#1A5C36);padding:56px var(--space-md) var(--space-lg);">
-      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
-      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Elhadji Malick Seye — Kyswa Travel
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;" data-t="retour">← Retour</button>
+      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;" data-t="guideSub">Elhadji Malick Seye — Kyswa Travel
       </div>
-      <div style="color:#fff;font-size:22px;font-weight:800;">🌟 Programme Baraka</div>
+      <div style="color:#fff;font-size:22px;font-weight:800;" data-t="barakaTitle">🌟 Programme Baraka</div>
       <div
         style="background:rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:14px var(--space-md);margin-top:var(--space-md);display:flex;justify-content:space-between;align-items:center;">
         <div>
-          <div style="color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:1px;">VOS HASANAT AUJOURD'HUI</div>
+          <div style="color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:1px;" data-t="hasanat">VOS HASANAT AUJOURD'HUI</div>
           <div id="baraka-score" style="color:#7FFFD4;font-size:32px;font-weight:900;letter-spacing:-1px;">0</div>
         </div>
         <div style="font-size:48px;">🏆</div>
@@ -247,10 +247,10 @@
     </div>
     <div style="display:flex;gap:6px;padding:var(--space-md) var(--space-md) 0;overflow-x:auto;">
       <button onclick="setBarakaTab('quotidien')" id="btab-quotidien"
-        style="flex-shrink:0;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-full);padding:8px 16px;font-size:11px;font-weight:700;cursor:pointer;">📿
+        style="flex-shrink:0;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-full);padding:8px 16px;font-size:11px;font-weight:700;cursor:pointer;" data-t="quotidien">📿
         Quotidien</button>
       <button onclick="setBarakaTab('postoumra')" id="btab-postoumra"
-        style="flex-shrink:0;background:var(--dark-surface-2);color:var(--dark-hint);border:none;border-radius:var(--radius-full);padding:8px 16px;font-size:11px;cursor:pointer;">🕋
+        style="flex-shrink:0;background:var(--dark-surface-2);color:var(--dark-hint);border:none;border-radius:var(--radius-full);padding:8px 16px;font-size:11px;cursor:pointer;" data-t="postOumra">🕋
         Post-Oumra 40j</button>
     </div>
     <div style="padding:var(--space-md);" id="baraka-content"></div>
@@ -260,9 +260,9 @@
   <div id="pg-packages" class="page">
     <div
       style="background:linear-gradient(160deg,var(--primary-dark),var(--primary));padding:56px var(--space-md) var(--space-lg);">
-      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;" data-t="retour">← Retour</button>
       <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-bottom:4px;">Kyswa Travel</div>
-      <div style="color:#fff;font-size:24px;font-weight:800;">✈️ Nos Packages 2026</div>
+      <div style="color:#fff;font-size:24px;font-weight:800;" data-t="packagesTitle">✈️ Nos Packages 2026</div>
     </div>
     <div style="padding:var(--space-md);margin-top:-8px;">
       <div
@@ -452,7 +452,7 @@
     <div style="padding:var(--space-md);">
       <div class="card">
         <div class="section-label">Type d'Oumra</div>
-        <select id="f-type" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+        <select id="f-type" class="input" style="margin-bottom:var(--space-md);appearance:none;-webkit-appearance:none;">
           <option value="">Choisir...</option>
           <option>🌟 PROMO Juin 2026 — 990 000 FCFA</option>
           <option>Oumra Standard — 1 850 000 FCFA</option>
@@ -461,7 +461,7 @@
           <option>🏦 Tontine — 200 000 FCFA/mois</option>
         </select>
         <div class="section-label">Mois</div>
-        <select id="f-mois" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+        <select id="f-mois" class="input" style="margin-bottom:var(--space-md);appearance:none;-webkit-appearance:none;">
           <option value="">Choisir...</option>
           <option>Juin 2026</option>
           <option>Juillet 2026</option>
@@ -470,7 +470,7 @@
           <option>Ramadan 2027</option>
         </select>
         <div class="section-label">Formule</div>
-        <select id="f-formule" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+        <select id="f-formule" class="input" style="margin-bottom:var(--space-md);appearance:none;-webkit-appearance:none;">
           <option value="">Choisir...</option>
           <option>Vol + Hôtel + Transport</option>
           <option>Vol + Hôtel</option>
@@ -478,7 +478,7 @@
           <option>Package tout inclus</option>
         </select>
         <div class="section-label">Chambre</div>
-        <select id="f-chambre" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+        <select id="f-chambre" class="input" style="margin-bottom:var(--space-md);appearance:none;-webkit-appearance:none;">
           <option value="">Choisir...</option>
           <option>Simple</option>
           <option>Double</option>
@@ -489,7 +489,7 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:var(--space-md);">
           <div>
             <div class="section-label">Personnes</div><select id="f-personnes" class="input"
-              style="-webkit-appearance:none;">
+              style="appearance:none;-webkit-appearance:none;">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -498,7 +498,7 @@
             </select>
           </div>
           <div>
-            <div class="section-label">Jours</div><select id="f-jours" class="input" style="-webkit-appearance:none;">
+            <div class="section-label">Jours</div><select id="f-jours" class="input" style="appearance:none;-webkit-appearance:none;">
               <option>7 jours</option>
               <option>10 jours</option>
               <option>14 jours</option>
@@ -508,14 +508,14 @@
           </div>
         </div>
         <div class="section-label">Combiné</div>
-        <select id="f-combine" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+        <select id="f-combine" class="input" style="margin-bottom:var(--space-md);appearance:none;-webkit-appearance:none;">
           <option>Makkah uniquement</option>
           <option>Makkah + Médine</option>
           <option>Makkah + Médine + Jérusalem</option>
           <option>Makkah + Istanbul</option>
         </select>
         <div class="section-label">Budget</div>
-        <select id="f-budget" class="input" style="margin-bottom:var(--space-md);-webkit-appearance:none;">
+        <select id="f-budget" class="input" style="margin-bottom:var(--space-md);appearance:none;-webkit-appearance:none;">
           <option>Moins de 1 000 000 FCFA</option>
           <option>1 000 000 — 2 000 000 FCFA</option>
           <option>2 000 000 — 3 000 000 FCFA</option>
@@ -541,12 +541,12 @@
   <!-- ░░ SIRA ░░ -->
   <div id="pg-sira" class="page" style="background:linear-gradient(180deg,#1A0A3E 0%,#0D1117 300px);">
     <div style="background:linear-gradient(160deg,#1A0A3E,#3D1A78);padding:56px var(--space-md) var(--space-md);">
-      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
-      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Kyswa Travel — Elhadji Malick Seye
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;" data-t="retour">← Retour</button>
+      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;" data-t="guideSub">Kyswa Travel — Elhadji Malick Seye
       </div>
-      <div style="color:#fff;font-size:22px;font-weight:800;">📚 Vie du Prophète ﷺ</div>
+      <div style="color:#fff;font-size:22px;font-weight:800;" data-t="siraTitle">📚 Vie du Prophète ﷺ</div>
       <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;">
-        <span>Leçon quotidienne · Hadith du jour</span>
+        <span data-t="siraSubtitle">Leçon quotidienne · Hadith du jour</span>
         <div style="display:flex;align-items:center;background:rgba(255,255,255,0.1);padding:4px 8px;border-radius:6px;" title="Régler l'heure de notification de la leçon">
           <span style="margin-right:6px;">⏰</span>
           <input type="time" id="sira-notif-time" onchange="saveSiraTime()" style="background:transparent;border:none;color:#fff;font-size:12px;outline:none;font-weight:700;">
@@ -561,14 +561,14 @@
   <!-- ░░ INFOS PRATIQUES ░░ -->
   <div id="pg-infos" class="page">
     <div style="background:linear-gradient(160deg,#004D6E,#006994);padding:56px var(--space-md) var(--space-md);">
-      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;">← Retour</button>
-      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;">Kyswa Travel</div>
-      <div style="color:#fff;font-size:22px;font-weight:800;">🌡️ Infos Pratiques</div>
-      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;">Climat · Interdits Ihram · Bagages ·
+      <button onclick="showPage('home')" style="background:rgba(255,255,255,0.15);border:none;border-radius:var(--radius-sm);padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;margin-bottom:12px;" data-t="retour">← Retour</button>
+      <div style="color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:4px;" data-t="appName">Kyswa Travel</div>
+      <div style="color:#fff;font-size:22px;font-weight:800;" data-t="infosTitle">🌡️ Infos Pratiques</div>
+      <div style="color:rgba(255,255,255,0.65);font-size:12px;margin-top:4px;" data-t="infosSubtitle">Climat · Interdits Ihram · Bagages ·
         Santé</div>
       <div style="display:flex;gap:6px;margin-top:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;">
         <button onclick="setInfosTab('climat')" id="itab-climat"
-          style="flex-shrink:0;background:#fff;color:#004D6E;border:none;border-radius:var(--radius-full);padding:7px 14px;font-size:11px;font-weight:700;cursor:pointer;">🌡️
+          style="flex-shrink:0;background:#fff;color:#004D6E;border:none;border-radius:var(--radius-full);padding:7px 14px;font-size:11px;font-weight:700;cursor:pointer;" data-t="climat">🌡️
           Climat</button>
       </div>
     </div>
@@ -757,7 +757,7 @@
         <div class="section-label">Envoyer un message</div>
         <input type="text" id="msg-nom" placeholder="Votre nom" class="input" style="margin-bottom:8px;" />
         <input type="tel" id="msg-phone" placeholder="Votre téléphone" class="input" style="margin-bottom:8px;" />
-        <select id="msg-sujet" class="input" style="margin-bottom:8px;-webkit-appearance:none;">
+        <select id="msg-sujet" class="input" style="margin-bottom:8px;appearance:none;-webkit-appearance:none;">
           <option>Demande de renseignement Oumra</option>
           <option>Réservation package</option>
           <option>Tontine Oumra</option>
@@ -782,9 +782,9 @@
   <!-- ░░ PAGE ZAKAT ░░ -->
   <div id="pg-zakat" class="page zk-page">
     <div class="zk-hdr">
-      <button onclick="showPage('home')" style="align-self:flex-start;background:rgba(255,255,255,0.2);border:none;border-radius:var(--radius-sm);padding:6px 14px;margin-bottom:12px;color:#fff;cursor:pointer;">← Accueil</button>
-      <h2>⚖️ Calculateur de Zakat</h2>
-      <p>Calculez votre Zakat selon votre richesse<br>
+      <button onclick="showPage('home')" style="align-self:flex-start;background:rgba(255,255,255,0.2);border:none;border-radius:var(--radius-sm);padding:6px 14px;margin-bottom:12px;color:#fff;cursor:pointer;" data-t="accueil">← Accueil</button>
+      <h2 data-t="zakatTitle">⚖️ Calculateur de Zakat</h2>
+      <p data-t="zakatSubtitle">Calculez votre Zakat selon votre richesse<br>
         <span style="font-family:'Amiri',serif;font-size:1rem;color:#f0c040;">وَأَقِيمُوا الصَّلَاةَ وَآتُوا
           الزَّكَاةَ</span>
       </p>
@@ -986,9 +986,9 @@
   <!-- ░░ PAGE MIRAS ░░ -->
   <div id="pg-miras" class="page zk-page">
     <div class="zk-hdr">
-      <button onclick="showPage('home')" style="align-self:flex-start;background:rgba(255,255,255,0.2);border:none;border-radius:var(--radius-sm);padding:6px 14px;margin-bottom:12px;color:#fff;cursor:pointer;">← Accueil</button>
-      <h2>📜 Héritage Islamique (Miras)</h2>
-      <p>Calcul automatique selon le Fiqh des successions<br>
+      <button onclick="showPage('home')" style="align-self:flex-start;background:rgba(255,255,255,0.2);border:none;border-radius:var(--radius-sm);padding:6px 14px;margin-bottom:12px;color:#fff;cursor:pointer;" data-t="accueil">← Accueil</button>
+      <h2 data-t="mirasTitle">📜 Héritage Islamique (Miras)</h2>
+      <p data-t="mirasSubtitle">Calcul automatique selon le Fiqh des successions<br>
         <span style="font-family:'Amiri',serif;font-size:1rem;color:#f0c040;">عِلْمُ الْفَرَائِضِ</span>
       </p>
     </div>
@@ -1136,62 +1136,62 @@
     <button onclick="showPage('home')" id="nb-home"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:1;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">🏠</div>
-      <div id="nbl-home" style="font-size:8px;font-weight:700;color:var(--primary);">Accueil</div>
+      <div id="nbl-home" style="font-size:8px;font-weight:700;color:var(--primary);" data-t="accueil">Accueil</div>
     </button>
     <button onclick="showPage('sira')" id="nb-sira"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">📚</div>
-      <div id="nbl-sira" style="font-size:8px;color:var(--text-hint);">Sira</div>
+      <div id="nbl-sira" style="font-size:8px;color:var(--text-hint);" data-t="sira">Sira</div>
     </button>
     <button onclick="showPage('infos')" id="nb-infos"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">🌡️</div>
-      <div id="nbl-infos" style="font-size:8px;color:var(--text-hint);">Infos</div>
+      <div id="nbl-infos" style="font-size:8px;color:var(--text-hint);" data-t="infos">Infos</div>
     </button>
     <button onclick="showPage('oumra')" id="nb-oumra"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">🕋</div>
-      <div id="nbl-oumra" style="font-size:8px;color:var(--text-hint);">Guide</div>
+      <div id="nbl-oumra" style="font-size:8px;color:var(--text-hint);" data-t="guide_nav">Guide</div>
     </button>
     <button onclick="showPage('baraka')" id="nb-baraka"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">🌟</div>
-      <div id="nbl-baraka" style="font-size:8px;color:var(--text-hint);">Baraka</div>
+      <div id="nbl-baraka" style="font-size:8px;color:var(--text-hint);" data-t="baraka">Baraka</div>
     </button>
     <button onclick="showPage('dhikr')" id="nb-dhikr"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">📿</div>
-      <div id="nbl-dhikr" style="font-size:8px;color:var(--text-hint);">Dhikr</div>
+      <div id="nbl-dhikr" style="font-size:8px;color:var(--text-hint);" data-t="dhikr">Dhikr</div>
     </button>
     <button onclick="showPage('espace')" id="nb-espace"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">👤</div>
-      <div id="nbl-espace" style="font-size:8px;color:var(--text-hint);">Espace</div>
+      <div id="nbl-espace" style="font-size:8px;color:var(--text-hint);" data-t="espace">Espace</div>
     </button>
     <button onclick="showPage('zakat')" id="nb-zakat"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">⚖️</div>
-      <div id="nbl-zakat" style="font-size:8px;color:var(--text-hint);">Zakat</div>
+      <div id="nbl-zakat" style="font-size:8px;color:var(--text-hint);" data-t="zakat">Zakat</div>
     </button>
     <button onclick="showPage('miras')" id="nb-miras"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">📜</div>
-      <div id="nbl-miras" style="font-size:8px;color:var(--text-hint);">Miras</div>
+      <div id="nbl-miras" style="font-size:8px;color:var(--text-hint);" data-t="miras">Miras</div>
     </button>
     <button onclick="showPage('packages')" id="nb-packages"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">✈️</div>
-      <div id="nbl-packages" style="font-size:8px;color:var(--text-hint);">Packages</div>
+      <div id="nbl-packages" style="font-size:8px;color:var(--text-hint);" data-t="accueil">Packages</div>
     </button>
     <button onclick="showPage('boutique')" id="nb-boutique"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">🛍️</div>
-      <div id="nbl-boutique" style="font-size:8px;color:var(--text-hint);">Boutique</div>
+      <div id="nbl-boutique" style="font-size:8px;color:var(--text-hint);" data-t="boutiqueTitle">Boutique</div>
     </button>
     <button onclick="showPage('prieres')" id="nb-prieres"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">🕌</div>
-      <div id="nbl-prieres" style="font-size:8px;color:var(--text-hint);">Prières</div>
+      <div id="nbl-prieres" style="font-size:8px;color:var(--text-hint);" data-t="infos">Prières</div>
     </button>
     <button onclick="showPage('coran')" id="nb-coran"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
@@ -1206,18 +1206,19 @@
     <button onclick="showPage('dua')" id="nb-dua"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">🤲</div>
-      <div id="nbl-dua" style="font-size:8px;color:var(--text-hint);">Du'a</div>
+      <div id="nbl-dua" style="font-size:8px;color:var(--text-hint);" data-t="duaPerso">Du'a</div>
     </button>
     <button onclick="showPage('quiz')" id="nb-quiz"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">🧠</div>
-      <div id="nbl-quiz" style="font-size:8px;color:var(--text-hint);">Quiz</div>
+      <div id="nbl-quiz" style="font-size:8px;color:var(--text-hint);" data-t="quiz">Quiz</div>
     </button>
     <button onclick="showPage('sadaqa')" id="nb-sadaqa"
       style="display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;opacity:0.5;flex-shrink:0;min-width:46px;">
       <div style="font-size:20px;">💚</div>
-      <div id="nbl-sadaqa" style="font-size:8px;color:var(--text-hint);">Sadaqa</div>
+      <div id="nbl-sadaqa" style="font-size:8px;color:var(--text-hint);" data-t="sadaqa">Sadaqa</div>
     </button>
+  </div>
   </div>
 
   <script src="js/data.js?v=11"></script>
